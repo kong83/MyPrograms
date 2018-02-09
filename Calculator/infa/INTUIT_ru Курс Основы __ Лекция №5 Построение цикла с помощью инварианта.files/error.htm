@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.intuit.ru/content-operation/error.xhtml -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY>~~~~ 
+<FORM name=errorForm action=/content-operation/error.xhtml method=post><INPUT 
+type=hidden name=url> <INPUT type=hidden name=charset> <INPUT type=hidden 
+name=text> <INPUT type=hidden name=param> </FORM>
+<SCRIPT src="error.files/default.js"></SCRIPT>
+
+<SCRIPT>
+var o1 = new contentOperation('errorForm');
+o1.window = self.parent;
+o1.dialog = {
+              confirm: "Вы хотите послать сообщение об ошибке в приведенном ниже тексте?\n\n%s",
+               prompt: "Обязательно введите дополнительную информацию об ошибке!"
+            };
+o1.eventKeys = {
+                  keyCode: Array(10,13),
+                  ctrlKey: 1
+               };
+o1.init();
+</SCRIPT>
+</BODY></HTML>

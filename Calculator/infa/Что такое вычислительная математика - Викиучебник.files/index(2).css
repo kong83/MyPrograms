@@ -1,0 +1,87 @@
+DL {
+	MARGIN-TOP: 0.1em; MARGIN-BOTTOM: 0.2em
+}
+UL {
+	MARGIN-TOP: 0.1em; MARGIN-BOTTOM: 0.2em
+}
+OL {
+	MARGIN-TOP: 0.1em; MARGIN-BOTTOM: 0.2em
+}
+DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-LEFT: 2em; PADDING-BOTTOM: 0.3em; MARGIN-LEFT: 0px; PADDING-TOP: 0.1em
+}
+.metka {
+	PADDING-RIGHT: 0.1em; DISPLAY: block; PADDING-LEFT: 0.1em; BACKGROUND: #fc5; FLOAT: right; PADDING-BOTTOM: 0.1em; WIDTH: 2em; COLOR: #002; PADDING-TOP: 0.1em
+}
+PRE {
+	PADDING-LEFT: 1em; BACKGROUND: none transparent scroll repeat 0% 0%
+}
+BLOCKQUOTE {
+	PADDING-LEFT: 3%; MARGIN-LEFT: 3%; BORDER-LEFT: #f3f8ff solid; BACKGROUND-COLOR: #fcfaff
+}
+CODE {
+	COLOR: #0e6720; BACKGROUND-COLOR: #feffff! important
+}
+CODE U {
+	COLOR: #03aa40; BORDER-BOTTOM: #23bb50 1px dotted; TEXT-DECORATION: none
+}
+CODE S {
+	COLOR: #a30
+}
+S {
+	COLOR: #866
+}
+KBD {
+	COLOR: #100; BACKGROUND-COLOR: #fffdfb
+}
+.messagebox {
+	CLEAR: both; MARGIN-TOP: 1em; FONT-SIZE: 100%; MARGIN-BOTTOM: 1em
+}
+.ramka {
+	BORDER-RIGHT: #999 solid; PADDING-RIGHT: 1em; BORDER-TOP: #999 solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 0.6em; MARGIN: 0.4em auto 0.8em; BORDER-LEFT: #999 solid; PADDING-TOP: 0.5em; BORDER-BOTTOM: #999 solid; BACKGROUND-COLOR: #fdfdfd
+}
+.ramka BLOCKQUOTE {
+	BORDER-LEFT-STYLE: none! important; BACKGROUND-COLOR: transparent! important
+}
+.lj_user A {
+	FONT: bold small Verdana; TEXT-DECORATION: underline
+}
+.lj_comm A {
+	FONT: bold small Verdana; TEXT-DECORATION: underline
+}
+.lj_synd A {
+	FONT: bold small Verdana; TEXT-DECORATION: underline
+}
+.lj_user:unknown {
+	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 2px; TEXT-DECORATION: none
+}
+.lj_comm:unknown {
+	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 2px; TEXT-DECORATION: none
+}
+.lj_synd:unknown {
+	VERTICAL-ALIGN: middle; MARGIN-RIGHT: 2px; TEXT-DECORATION: none
+}
+.lj_user:unknown {
+	content: url("http://upload.wikimedia.org/wikibooks/ru/5/5e/Lj_user.gif")
+}
+.lj_comm:unknown {
+	content: url("http://upload.wikimedia.org/wikibooks/ru/1/10/Lj_comm.gif")
+}
+.lj_synd:unknown {
+	content: url("http://upload.wikimedia.org/wikibooks/ru/5/57/Lj_syndicated.gif")
+}
+.lj_user A.external {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.lj_comm A.external {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.lj_synd A.external {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.zvuk_link {
+	PADDING-LEFT: 16px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/0/0b/Ltspkr.png) no-repeat 0px 0px
+}

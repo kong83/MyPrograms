@@ -1,0 +1,153 @@
+BODY {
+	MARGIN-TOP: 0px; FONT-SIZE: 16px; MARGIN-LEFT: 113px; COLOR: #000000; MARGIN-RIGHT: 30px; FONT-FAMILY: Times
+}
+TD {
+	FONT-SIZE: 16px; FONT-FAMILY: times
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; FONT-FAMILY: Verdana, sans-serif
+}
+H2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+.testbar {
+	RIGHT: -30px; POSITION: relative
+}
+.note {
+	BACKGROUND-COLOR: #ffffce
+}
+.unknown {
+	FONT-SIZE: 10px; COLOR: #ff3100; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.caption {
+	FONT-SIZE: 14px; FONT-FAMILY: Times
+}
+.number {
+	FONT-SIZE: 14px; FONT-FAMILY: Times
+}
+.signature {
+	FONT-SIZE: 14px; FLOAT: right; FONT-STYLE: italic; FONT-FAMILY: "Times New Roman", Times, serif
+}
+.pre {
+	FONT-SIZE: 14px; FONT-FAMILY: "Times New Roman", Times, serif
+}
+.descriptiontitle {
+	MARGIN-TOP: 15px; FONT-WEIGHT: bold; FONT-SIZE: 18px; MARGIN-BOTTOM: 15px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+.modelname {
+	MARGIN-TOP: 15px; FONT-WEIGHT: bold; FONT-SIZE: 16px; MARGIN-BOTTOM: 15px; FONT-FAMILY: Verdana, sans-serif
+}
+.unit {
+	FONT-SIZE: 11px; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+.table {
+	BACKGROUND-COLOR: #000044
+}
+.td {
+	FONT-SIZE: 16px; COLOR: #000000; FONT-FAMILY: times; BACKGROUND-COLOR: #d3fafb
+}
+SPAN.imperia {
+	FONT-WEIGHT: bold; FONT-SIZE: 25px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.subimperia {
+	FONT-WEIGHT: bold; FONT-SIZE: 24px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.superregnum {
+	FONT-SIZE: 23px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.regnum {
+	FONT-WEIGHT: bold; FONT-SIZE: 22px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.subregnum {
+	FONT-SIZE: 22px; COLOR: #089598; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.superphylum {
+	FONT-SIZE: 21px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.phylum {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.subphylum {
+	FONT-SIZE: 20px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.superclassis {
+	FONT-SIZE: 19px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.classis {
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.subclassis {
+	FONT-SIZE: 18px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+SPAN.superorder {
+	FONT-SIZE: 17px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.superorder {
+	MARGIN-LEFT: 200px
+}
+SPAN.order {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.order {
+	MARGIN-LEFT: 220px
+}
+SPAN.suborder {
+	FONT-SIZE: 16px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.suborder {
+	MARGIN-LEFT: 240px
+}
+SPAN.superfamily {
+	FONT-SIZE: 15px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.superfamily {
+	MARGIN-LEFT: 260px
+}
+SPAN.family {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.family {
+	MARGIN-LEFT: 280px
+}
+SPAN.subfamily {
+	FONT-SIZE: 14px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.subfamily {
+	MARGIN-LEFT: 300px
+}
+SPAN.supergenus {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.supergenus {
+	MARGIN-LEFT: 320px
+}
+SPAN.genus {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.genus {
+	MARGIN-LEFT: 340px
+}
+SPAN.subgenus {
+	FONT-SIZE: 13px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.subgenus {
+	MARGIN-LEFT: 360px
+}
+SPAN.superspecies {
+	FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.superspecies {
+	MARGIN-LEFT: 380px
+}
+SPAN.species {
+	FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: Verdana, sans-serif
+}
+TABLE.species {
+	MARGIN-LEFT: 400px
+}
+.descrip {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: Times, serif; TEXT-ALIGN: justify
+}

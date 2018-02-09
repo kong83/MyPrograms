@@ -1,0 +1,964 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0048)http://forum.sources.ru/index.php?showtopic=9387 -->
+<HTML><HEAD><TITLE>как возвести число в дробную степень? -> Форум на Исходниках.Ру</TITLE>
+<META http-equiv=Cache-Control content=no-cache>
+<META http-equiv=Pragma content=no-cache>
+<META http-equiv=no-cache content=no-cache>
+<META http-equiv=content-type content="text/html; charset=windows-1251">
+<META content="исходник.ру, исходники.ру" name=keywords><LINK title=RSS 
+href="http://forum.sources.ru/yandex.php?t=9387" type=application/rss+xml 
+rel=alternate>
+<STYLE type=text/css>HTML {
+	OVERFLOW-X: auto
+}
+.mstop {
+	BORDER-RIGHT: #000 1px dotted; PADDING-RIGHT: 3px; BORDER-TOP: #000 1px dotted; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND: #e4eaf2; PADDING-BOTTOM: 3px; MARGIN: 8px auto 0px; BORDER-LEFT: #8394b2 4px solid; COLOR: #000; PADDING-TOP: 3px; BORDER-BOTTOM: 0px
+}
+.msmain {
+	BORDER-RIGHT: #000 1px dotted; PADDING-RIGHT: 4px; BORDER-TOP: 0px; PADDING-LEFT: 4px; BACKGROUND: #fafcfe; PADDING-BOTTOM: 4px; MARGIN: 0px auto 8px; BORDER-LEFT: #8394b2 4px solid; COLOR: #465584; PADDING-TOP: 4px; BORDER-BOTTOM: #000 1px dotted
+}
+.gmstop {
+	BORDER-RIGHT: #000 1px dotted; PADDING-RIGHT: 3px; BORDER-TOP: #000 1px dotted; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND: #faa298; PADDING-BOTTOM: 3px; MARGIN: 8px auto 0px; BORDER-LEFT: #8394b2 4px solid; COLOR: #000; PADDING-TOP: 3px; BORDER-BOTTOM: 0px
+}
+.gmsmain {
+	BORDER-RIGHT: #000 1px dotted; PADDING-RIGHT: 4px; BORDER-TOP: 0px; PADDING-LEFT: 4px; BACKGROUND: #fafcfe; PADDING-BOTTOM: 4px; MARGIN: 0px auto 8px; BORDER-LEFT: #8394b2 4px solid; COLOR: #465584; PADDING-TOP: 4px; BORDER-BOTTOM: #000 1px dotted
+}
+FORM {
+	DISPLAY: inline
+}
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+BODY {
+	FONT-SIZE: 11px; MARGIN: 0px 10px; COLOR: #000; FONT-FAMILY: Verdana, Tahoma, Arial, sans-serif; BACKGROUND-COLOR: #fff
+}
+TABLE {
+	FONT-SIZE: 11px; COLOR: #000; FONT-FAMILY: Verdana, Tahoma, Arial, sans-serif
+}
+TR {
+	FONT-SIZE: 11px; COLOR: #000; FONT-FAMILY: Verdana, Tahoma, Arial, sans-serif
+}
+TD {
+	FONT-SIZE: 11px; COLOR: #000; FONT-FAMILY: Verdana, Tahoma, Arial, sans-serif
+}
+A:link {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: #cc3333
+}
+.spoiler {
+	BORDER-RIGHT: #333333 1px solid; BORDER-TOP: #333333 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #333333 1px solid; COLOR: #666666; BORDER-BOTTOM: #333333 1px solid; FONT-FAMILY: Verdana, Tahoma, Arial, sans-serif; BACKGROUND-COLOR: #666666
+}
+FIELDSET.search {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; LINE-HEIGHT: 150%; PADDING-TOP: 6px
+}
+LABEL {
+	CURSOR: pointer
+}
+IMG.attach {
+	BORDER-RIGHT: #eef2f7 2px outset; PADDING-RIGHT: 2px; BORDER-TOP: #eef2f7 2px outset; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #eef2f7 2px outset; PADDING-TOP: 2px; BORDER-BOTTOM: #eef2f7 2px outset
+}
+.googleroot {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; LINE-HEIGHT: 130%; PADDING-TOP: 6px
+}
+.googlechild {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; MARGIN-LEFT: 30px; LINE-HEIGHT: 130%; PADDING-TOP: 6px
+}
+.googlebottom {
+	FONT-SIZE: 11px; COLOR: #3a4f6c
+}
+.googlebottom A:link {
+	FONT-SIZE: 11px; COLOR: #3a4f6c
+}
+.googlebottom A:visited {
+	FONT-SIZE: 11px; COLOR: #3a4f6c
+}
+.googlebottom A:active {
+	FONT-SIZE: 11px; COLOR: #3a4f6c
+}
+.googlish {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #00d
+}
+.googlish A:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #00d
+}
+.googlish A:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #00d
+}
+.googlish A:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #00d
+}
+.googlepagelinks {
+	FONT-SIZE: 1.1em; LETTER-SPACING: 1px
+}
+.googlesmall {
+	FONT-SIZE: 10px; COLOR: #434951
+}
+.googlesmall A:link {
+	FONT-SIZE: 10px; COLOR: #434951
+}
+.googlesmall A:active {
+	FONT-SIZE: 10px; COLOR: #434951
+}
+.googlesmall A:visited {
+	FONT-SIZE: 10px; COLOR: #434951
+}
+LI.helprow {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 10px; PADDING-TOP: 0px
+}
+UL#help {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 15px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+OPTION.cat {
+	FONT-WEIGHT: bold
+}
+OPTION.sub {
+	FONT-WEIGHT: bold; COLOR: #555
+}
+.caldate {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 11px; PADDING-BOTTOM: 4px; MARGIN: 0px; COLOR: #777; PADDING-TOP: 4px; BACKGROUND-COLOR: #dfe6ef; TEXT-ALIGN: right
+}
+.warngood {
+	COLOR: green
+}
+.warnbad {
+	COLOR: red
+}
+#padandcenter {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 14px; MARGIN-LEFT: auto; MARGIN-RIGHT: auto; PADDING-TOP: 14px; TEXT-ALIGN: center
+}
+#profilename {
+	FONT-WEIGHT: bold; FONT-SIZE: 28px
+}
+#calendarname {
+	FONT-WEIGHT: bold; FONT-SIZE: 22px
+}
+#photowrap {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+#phototitle {
+	FONT-SIZE: 24px; BORDER-BOTTOM: black 1px solid
+}
+#photoimg {
+	MARGIN-TOP: 15px; TEXT-ALIGN: center
+}
+#ucpmenu {
+	BORDER-RIGHT: #345487 1px solid; BORDER-TOP: #345487 1px solid; BORDER-LEFT: #345487 1px solid; WIDTH: 22%; LINE-HEIGHT: 150%; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #f5f9fd
+}
+#ucpmenu P {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 9px; PADDING-BOTTOM: 6px; MARGIN: 0px; PADDING-TOP: 2px
+}
+#ucpcontent {
+	BORDER-RIGHT: #345487 1px solid; BORDER-TOP: #345487 1px solid; BORDER-LEFT: #345487 1px solid; WIDTH: auto; LINE-HEIGHT: 150%; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #f5f9fd
+}
+#ucpcontent P {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-TOP: 10px
+}
+#ipsbanner {
+	RIGHT: 5%; POSITION: absolute; TOP: 1px
+}
+#logostrip {
+	BORDER-RIGHT: #345487 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #345487 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #345487 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #6ea1e3
+}
+.logo {
+	COLOR: #ffffff
+}
+.logo A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.logo A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.logo A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.logo A:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+#submenu {
+	BORDER-RIGHT: #bcd0ed 1px solid; BORDER-TOP: #bcd0ed 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 10px; MARGIN: 3px 0px; BORDER-LEFT: #bcd0ed 1px solid; COLOR: #3a4f6c; BORDER-BOTTOM: #bcd0ed 1px solid; BACKGROUND-COLOR: #dfe6ef
+}
+#submenu A:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #3a4f6c; TEXT-DECORATION: none
+}
+#submenu A:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #3a4f6c; TEXT-DECORATION: none
+}
+#submenu A:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #3a4f6c; TEXT-DECORATION: none
+}
+#userlinks {
+	BORDER-RIGHT: #c2cfdf 1px solid; BORDER-TOP: #c2cfdf 1px solid; BORDER-LEFT: #c2cfdf 1px solid; BORDER-BOTTOM: #c2cfdf 1px solid; BACKGROUND-COLOR: #f0f5fa
+}
+#navstrip {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.activeuserstrip {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px; BACKGROUND-COLOR: #bcd0ed
+}
+.pformstrip {
+	PADDING-RIGHT: 7px; MARGIN-TOP: 1px; PADDING-LEFT: 7px; FONT-WEIGHT: bold; PADDING-BOTTOM: 7px; COLOR: #3a4f6c; PADDING-TOP: 7px; BACKGROUND-COLOR: #d1dceb
+}
+.pformleft {
+	BORDER-RIGHT: #c2cfdf 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #c2cfdf 1px solid; MARGIN-TOP: 1px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; WIDTH: 10%; PADDING-TOP: 6px; BACKGROUND-COLOR: #f5f9fd
+}
+.pformleftw {
+	BORDER-RIGHT: #c2cfdf 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #c2cfdf 1px solid; MARGIN-TOP: 1px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; WIDTH: 40%; PADDING-TOP: 6px; BACKGROUND-COLOR: #f5f9fd
+}
+.pformright {
+	PADDING-RIGHT: 6px; BORDER-TOP: #c2cfdf 1px solid; MARGIN-TOP: 1px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px; BACKGROUND-COLOR: #f5f9fd
+}
+.post1 {
+	BACKGROUND-COLOR: #f8f8fd
+}
+.post2 {
+	BACKGROUND-COLOR: #e7e9ee
+}
+.postlinksbar {
+	PADDING-RIGHT: 7px; MARGIN-TOP: 1px; PADDING-LEFT: 7px; FONT-SIZE: 10px; PADDING-BOTTOM: 7px; PADDING-TOP: 7px; BACKGROUND-COLOR: #d1dceb
+}
+.row1 {
+	BACKGROUND-COLOR: #f5f9fd
+}
+.row2 {
+	BACKGROUND-COLOR: #dfe6ef
+}
+.row3 {
+	BACKGROUND-COLOR: #eef2f7
+}
+.row4 {
+	BACKGROUND-COLOR: #e4eaf2
+}
+.pinned_topic {
+	BACKGROUND-COLOR: #d1dceb
+}
+.darkrow1 {
+	BACKGROUND-COLOR: #6ea1e3
+}
+.darkrow2 {
+	COLOR: #3a4f6c; BACKGROUND-COLOR: #bcd0ed
+}
+.darkrow3 {
+	COLOR: #3a4f6c; BACKGROUND-COLOR: #d1dceb
+}
+.hlight {
+	BACKGROUND-COLOR: #dfe6ef
+}
+.dlight {
+	BACKGROUND-COLOR: #eef2f7
+}
+.titlemedium {
+	PADDING-RIGHT: 7px; PADDING-LEFT: 7px; FONT-WEIGHT: bold; PADDING-BOTTOM: 7px; MARGIN: 0px; COLOR: #3a4f6c; PADDING-TOP: 7px; BACKGROUND-COLOR: #d1dceb
+}
+.titlemedium A:link {
+	COLOR: #3a4f6c; TEXT-DECORATION: underline
+}
+.titlemedium A:visited {
+	COLOR: #3a4f6c; TEXT-DECORATION: underline
+}
+.titlemedium A:active {
+	COLOR: #3a4f6c; TEXT-DECORATION: underline
+}
+.maintitle {
+	PADDING-LEFT: 6px; FONT-WEIGHT: bold; FONT-SIZE: 12px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: middle; COLOR: #ffffff; PADDING-TOP: 8px; LETTER-SPACING: 1px; BACKGROUND-COLOR: #6ea1e3
+}
+.maintitle A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.maintitle A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.maintitle A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.maintitle A:hover {
+	TEXT-DECORATION: underline
+}
+.plainborder {
+	BORDER-RIGHT: #345487 1px solid; BORDER-TOP: #345487 1px solid; BORDER-LEFT: #345487 1px solid; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #f5f9fd
+}
+.tableborder {
+	BORDER-RIGHT: #345487 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #345487 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #345487 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #6ea1e3
+}
+.tablefill {
+	BORDER-RIGHT: #345487 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #345487 1px solid; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; BORDER-LEFT: #345487 1px solid; PADDING-TOP: 6px; BORDER-BOTTOM: #345487 1px solid; BACKGROUND-COLOR: #f5f9fd
+}
+.tablepad {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px; BACKGROUND-COLOR: #f5f9fd
+}
+.tablebasic {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: 0px; WIDTH: 100%; PADDING-TOP: 0px; BORDER-BOTTOM: 0px
+}
+.wrapmini {
+	FLOAT: left; WIDTH: 25%; LINE-HEIGHT: 1.5em
+}
+.pagelinks {
+	FLOAT: left; WIDTH: 35%; LINE-HEIGHT: 1.2em
+}
+.desc {
+	FONT-SIZE: 10px; COLOR: #434951
+}
+.edit {
+	FONT-SIZE: 9px
+}
+.signature {
+	FONT-SIZE: 10px; COLOR: #999999; LINE-HEIGHT: 150%
+}
+.postdetails {
+	FONT-SIZE: 10px
+}
+.postcolor {
+	FONT-SIZE: 12px; LINE-HEIGHT: 160%
+}
+.normalname {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #003
+}
+.normalname A:link {
+	FONT-SIZE: 12px
+}
+.normalname A:visited {
+	FONT-SIZE: 12px
+}
+.normalname A:active {
+	FONT-SIZE: 12px
+}
+.unreg {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #900
+}
+.searchlite {
+	FONT-WEIGHT: bold; COLOR: #f00; BACKGROUND-COLOR: #ff0
+}
+#QUOTE {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 11px; PADDING-BOTTOM: 2px; OVERFLOW: auto; BORDER-LEFT: #000 1px solid; COLOR: #465584; PADDING-TOP: 2px; BORDER-BOTTOM: #000 1px solid; FONT-FAMILY: Verdana, Arial; BACKGROUND-COLOR: #fafcfe
+}
+#CODE {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 11px; PADDING-BOTTOM: 2px; OVERFLOW: auto; BORDER-LEFT: #000 1px solid; COLOR: #465584; LINE-HEIGHT: 120%; PADDING-TOP: 2px; BORDER-BOTTOM: #000 1px solid; FONT-FAMILY: Courier New, serif; BACKGROUND-COLOR: #fafcfe
+}
+.copyright {
+	FONT-SIZE: 9px; LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, Tahoma, Arial, Sans-Serif
+}
+.codebuttons {
+	FONT-SIZE: 10px; VERTICAL-ALIGN: middle; FONT-FAMILY: verdana, helvetica, sans-serif
+}
+.forminput {
+	FONT-SIZE: 11px; VERTICAL-ALIGN: middle; FONT-FAMILY: verdana, helvetica, sans-serif
+}
+.radiobutton {
+	FONT-SIZE: 11px; VERTICAL-ALIGN: middle; FONT-FAMILY: verdana, helvetica, sans-serif
+}
+.checkbox {
+	FONT-SIZE: 11px; VERTICAL-ALIGN: middle; FONT-FAMILY: verdana, helvetica, sans-serif
+}
+.textinput {
+	FONT-SIZE: 12px; VERTICAL-ALIGN: middle; FONT-FAMILY: courier new, serif; BACKGROUND-COLOR: #e4eaf2
+}
+.thin {
+	PADDING-RIGHT: 0px; BORDER-TOP: #fff 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 6px; MARGIN: 2px 0px; LINE-HEIGHT: 140%; PADDING-TOP: 6px; BORDER-BOTTOM: #fff 1px solid
+}
+.purple {
+	FONT-WEIGHT: bold; COLOR: purple
+}
+.red {
+	FONT-WEIGHT: bold; COLOR: red
+}
+.green {
+	FONT-WEIGHT: bold; COLOR: green
+}
+.blue {
+	FONT-WEIGHT: bold; COLOR: blue
+}
+.orange {
+	FONT-WEIGHT: bold; COLOR: #f90
+}
+.voteprefix {
+	COLOR: green
+}
+.movedprefix {
+	COLOR: red
+}
+.clubprefix {
+	COLOR: blue
+}
+.pinnedprefix {
+	
+}
+.p {
+	TABLE-LAYOUT: fixed
+}
+#CODE {
+	MARGIN: 0px; WORD-WRAP: break-word
+}
+PRE {
+	MARGIN: 0px; WORD-WRAP: break-word
+}
+PRE {
+	MARGIN: 0px; WORD-WRAP: break-word
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=ipbwrapper>
+<SCRIPT language=JavaScript type=text/javascript>
+var session_id  = "";
+var st 		= "";
+var tpl_q1 	= "Введите номер страницы, к которой хотите перейти.";
+var base_url	= "http://forum.sources.ru/index.php?";
+</SCRIPT>
+
+<SCRIPT 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/global.js" 
+type=text/javascript></SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR id=logostrip>
+    <TD><A title="На главную" href="http://www.sources.ru/"><IMG 
+      alt="На главную" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/logo4.gif" 
+      border=0></A></TD>
+    <TD>&nbsp;</TD>
+    <TD>· <A href="http://www.sources.ru/"><B>Главная</B></A> · <A 
+      href="http://www.sources.ru/magazine/"><B>Журнал</B></A> · <A 
+      href="http://alglib.sources.ru/"><B>Алгоритмы</B></A> · <A 
+      href="http://e-science.sources.ru/"><B>Естественные Науки</B></A> · <A 
+      href="http://www.sources.ru/wiki/"><B>Wiki</B></A> </TD></TR></TBODY></TABLE>
+<TABLE id=submenu cellSpacing=0 width="100%">
+  <TBODY>
+  <TR align=middle>
+    <TD><A href="http://forum.sources.ru/rules.html" target=blank_><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_rules.gif" 
+      border=0>ПРАВИЛА</A> </TD>
+    <TD><A href="http://forum.sources.ru/index.php?showtopic=50223"><IMG 
+      alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_faq.gif" 
+      border=0> FAQ</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=Help"><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_help.gif" 
+      border=0> Помощь</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=Search&amp;f=43"><IMG 
+      alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_search.gif" 
+      border=0> Поиск</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=Members"><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_members.gif" 
+      border=0> Участники</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=calendar"><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_calendar.gif" 
+      border=0> Календарь</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=fav&amp;show=1"><IMG 
+      alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_favs.gif" 
+      border=0> Избранное</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?act=store"><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/atb_coin.gif" 
+      border=0> DigiMania</A></TD>
+    <TD><A href="http://forum.sources.ru/index.php?showtopic=81342">RSS 
+  </A></TD></TR></TBODY></TABLE>
+<TABLE id=userlinks cellSpacing=6 width="100%">
+  <TBODY>
+  <TR align=middle>
+    <TD align=left>Здравствуйте, Гость </TD>
+    <TD><A 
+      href="http://forum.sources.ru/index.php?act=Login&amp;CODE=00">Вход</A> · 
+      <A 
+      href="http://forum.sources.ru/index.php?act=Reg&amp;CODE=00">Регистрация</A> 
+      · <A 
+      href="http://forum.sources.ru/index.php?act=Reg&amp;CODE=reval">Выслать 
+      повторно письмо для активации</A> · <A 
+      href="http://forum.sources.ru/index.php?showtopic=50223">Что даёт 
+      регистрация на форуме?</A> </TD></TR></TBODY></TABLE>
+<DIV id=navstrip align=left><IMG alt=">" 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/nav.gif" 
+border=0>&nbsp; <A href="http://forum.sources.ru/index.php?">Форум на 
+Исходниках.RU</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG alt="" 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/open.gif" 
+border=0>&nbsp;&nbsp;<A 
+href="http://forum.sources.ru/index.php?act=SC&amp;c=2">Программирование</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG 
+alt="" 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/open.gif" 
+border=0>&nbsp;&nbsp;<A 
+href="http://forum.sources.ru/index.php?showforum=43">Алгоритмы</A> </DIV><BR>
+<SCRIPT language=javascript type=text/javascript>
+var 
+base_url	    = "http://forum.sources.ru/index.php?",
+tid		    = "9387",
+session_id	    = "",
+error_no_url        = "Вы должны ввести адрес",
+error_no_title      = "Вы должны ввести название",
+error_no_email      = "Вы должны ввести е-мэйл",
+error_no_width      = "Вы должны ввести ширину",
+error_no_height     = "Вы должны ввести высоту",
+text_enter_url      = "Введите полный адрес ссылки",
+text_enter_url_name = "Введите название сайта",
+text_enter_image    = "Введите полный адрес картинки",
+list_prompt         = "Введите пункт списка. Для завершения списка нажмите 'отмена' или оставьте очередное поле пустым",
+prompt_start        = "Введите текст для форматирования",
+tt_prompt	    = "Копирование прямой ссылки этой темы для сохранения ссылки в буфере обмена вашего компьютера",
+js_del_1	    = "Вы действительно хотите удалить это сообщение?",
+js_del_2	    = "Не хотите, как хотите :)",
+msg_no_title	    = "Необходимо ввести заголовок сообщения",
+js_no_message	    = "Вы должны ввести текст сообщения!",
+js_max_length	    = "Максимальная длина",
+js_characters	    = "символов",
+js_current	    = "Текущие символы",
+error_no_url        = "Вы должны ввести адрес",
+error_no_title      = "Вы должны ввести название",
+error_no_email      = "Вы должны ввести е-мэйл",
+error_no_width      = "Вы должны ввести ширину",
+error_no_height     = "Вы должны ввести высоту",
+text_enter_url      = "Введите полный адрес ссылки",
+text_enter_url_name = "Введите название сайта",
+text_enter_image    = "Введите полный адрес картинки",
+list_prompt         = "Введите пункт списка. Для завершения списка нажмите 'отмена' или оставьте очередное поле пустым",
+prompt_start        = "Введите текст для форматирования",
+MessageMax  	    = "",
+Override    	    = "",
+rusLet		    = new Array("Э","Щ","Щ","Ч","Ч","Ш","Ш","Ё","Ё","Ё","Ё","Ю","Ю","Ю","Ю","Я","Я","Я","Я","Ж","Ж","А","Б","В","Г","Д","Е","З","ИЙ","ИЙ","ЫЙ","ЫЙ","И","Й","К","КС","Л","М","Н","О","П","Р","С","Т","У","Ф","Х","Ц","Щ","Ы","э","щ","ч","ш","ё","ё","ю","ю","я","я","ж","а","б","в","г","д","е","з","ий","ий","ый","ый","и","й","к","кс","л","м","н","о","п","р","с","т","у","ф","х","ц","щ","щ","ы","ъ","ъ","ь"),
+engReg		    = new Array(/E'/g,/SHCH/g,/Shch/g,/CH/g,/Ch/g,/SH/g,/Sh/g,/YO/g,/JO/g,/Yo/g,/Jo/g,/YU/g,/JU/g,/Yu/g,/Ju/g,/YA/g,/JA/g,/Ya/g,/Ja/g,/ZH/g,/Zh/g,/A/g,/B/g,/V/g,/G/g,/D/g,/E/g,/Z/g,/II/g,/IY/g,/YI/g,/YY/g,/I/g,/J/g,/K/g,/X/g,/L/g,/M/g,/N/g,/O/g,/P/g,/R/g,/S/g,/T/g,/U/g,/F/g,/H/g,/C/g,/W/g,/Y/g,/e'/g,/shch/g,/ch/g,/sh/g,/yo/g,/jo/g,/yu/g,/ju/g,/ya/g,/ja/g,/zh/g,/a/g,/b/g,/v/g,/g/g,/d/g,/e/g,/z/g,/ii/g,/iy/g,/yi/g,/yy/g,/i/g,/j/g,/k/g,/x/g,/l/g,/m/g,/n/g,/o/g,/p/g,/r/g,/s/g,/t/g,/u/g,/f/g,/h/g,/c/g,/w/g,/#/g,/y/g,/`/g,/~/g,/'/g),
+decline1 	    = "Отклонить",
+decline2 	    = "Восстановить",
+post_delete1 	    = "X",
+post_delete2 	    = "Уд. %s дн.".replace("%s","5"),
+solve1 		    = "<b>Вопрос решён</b>",
+solve2 		    = "Вопрос не решён",
+fav1		    = "Добавить в Избранное",
+fav2		    = "Удалить из Избранного",
+scroll_to	    = 0,
+MessageMax          = parseInt(MessageMax);
+if ( MessageMax < 0 ) MessageMax = 0;
+</SCRIPT>
+
+<SCRIPT 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/ibfcode_11.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/topics.js" 
+type=text/javascript></SCRIPT>
+<A name=top></A>
+<DIV id=ipbwrapper align=left><IMG alt=! 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/forum_rules.gif" 
+border=0>&nbsp;<B>правила раздела Алгоритмы</B><BR><BR>
+<TABLE 
+style="BORDER-RIGHT: red 2px solid; BORDER-TOP: red 2px solid; BORDER-LEFT: red 2px solid; BORDER-BOTTOM: red 2px solid" 
+bgColor=#ffffff>
+  <TBODY>
+  <TR>
+    <TD>1. Помните, что название темы должно хоть как-то отражать ее 
+      содержимое (не создавайте темы с заголовком ПОМОГИТЕ, HELP и т.д.). 
+      Злоупотребление заглавными буквами в заголовках тем ЗАПРЕЩЕНО.<BR>2. При 
+      создании темы постарайтесь, как можно более точно описать проблему, а не 
+      ограничиваться общими понятиями и определениями.<BR>3. Приводимые 
+      фрагменты исходного кода старайтесь выделять тегами code.../code <BR>4. 
+      Помните, чем подробнее Вы опишите свою проблему, тем быстрее получите 
+      вразумительный совет<BR>5. И не забывайте о кнопочках TRANSLIT и РУССКАЯ 
+      КЛАВИАТУРА, если не можете писать в русской раскладке <IMG alt=:) 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/smile.gif" 
+      border=0><BR></TD></TR></TBODY></TABLE></DIV><BR>Модераторы: <A 
+href="http://forum.sources.ru/index.php?showuser=8816">Math</A>, <A 
+href="http://forum.sources.ru/index.php?showuser=2527">shadeofgray</A> 
+<BR><BR><BR>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD noWrap align=left width="20%">&nbsp;&nbsp;</TD>
+    <TD align=right width="80%"><A 
+      href="http://forum.sources.ru/index.php?act=Post&amp;CODE=10&amp;f=43">Новое 
+      голосование</A></TD></TR></TBODY></TABLE><BR>
+<DIV class=tableborder>
+<DIV class=maintitle><IMG alt=">" 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/nav_m.gif" 
+border=0>&nbsp;<B>как возвести число в дробную степень?</B></DIV><!--{IBF.POLL}-->
+<DIV class=postlinksbar align=right><B><!--{IBF.START_NEW_POLL}--><A 
+href="http://forum.sources.ru/index.php?act=Track&amp;f=43&amp;t=9387">Подписаться 
+на тему</A> | <A 
+href="http://forum.sources.ru/index.php?act=Forward&amp;f=43&amp;t=9387">Сообщить 
+другу</A> | <A 
+href="http://forum.sources.ru/index.php?act=Print&amp;client=choose&amp;f=43&amp;t=9387">Скачать/распечатать 
+тему</A></B> </DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><A name=entry91397></A><SPAN 
+      class=unreg><A onmouseover="get_name('[b]-Crazy-[/b]');" 
+      href="javascript:Insert();"><SPAN class=unreg>-Crazy-</SPAN></A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91397); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>1</A> от 
+      3.05.03, 17:17</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post2 vAlign=top><SPAN class=postdetails><B>Unregistered</B> 
+      <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post2 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post2 vAlign=top width="100%">
+      <DIV class=postcolor>нужно возвести число а в степень n, где например 
+      n=2,568.<BR>Как это можно сделать?<BR><BR>И еще: как найти корень третьей 
+      степени?<BR><BR>Заранее спасибо. </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><IMG title=Profi alt=Profi 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/starmod.gif" 
+      border=0> <A name=entry91398></A><SPAN class=normalname><A 
+      onmouseover="get_name('[b]esperanto[/b]');" 
+      href="javascript:Insert();">esperanto</A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91398); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>2</A> от 
+      3.05.03, 18:53</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post1 vAlign=top><SPAN class=postdetails><IMG height=64 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/av-2619.gif" 
+      width=64 border=0><BR><B>математик<BR></B><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><BR><A href="http://forum.sources.ru/index.php?showuser=2619" 
+      target=_blank>Профиль</A> · <A 
+      href="http://forum.sources.ru/index.php?act=Msg&amp;CODE=4&amp;MID=2619" 
+      target=_blank>PM</A><BR><BR><A 
+      href="http://forum.sources.ru/index.php?act=store&amp;code=showfine&amp;id=2619">Поощрения</A>: 
+      5 Dgm<BR>Рейтинг (т): 31 <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post1 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post1 vAlign=top width="100%">
+      <DIV class=postcolor>численными методами корень ищется с помощью итерации 
+      неподвижной точки<BR>напримет квадратный с помощью рекурсивного 
+      ур-я<BR>X(n+1)=1/2*(x(n)+1/x(n)) &nbsp;с точностью до константы<BR>а 
+      другие корни ищутся с помощью похожего уравнения </DIV><BR>___________<BR>
+      <DIV class=signature><A 
+      href="http://cs.haifa.ac.il/courses/probab/spring_2004/myhomepage/" 
+      target=_blank>http://cs.haifa.ac.il/courses/probab/spring_2004/myhomepage/</A> 
+      <BR><A 
+      href="http://www.photohost.ru/showmember.php?galleryid=0&amp;userid=7379&amp;marks=y" 
+      target=_blank>http://www.photohost.ru/showmember.php?galleryid=0&amp;userid=7379&amp;marks=y</A> 
+      </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><IMG title=Profi alt=Profi 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/starmod.gif" 
+      border=0> <A name=entry91399></A><SPAN class=normalname><A 
+      onmouseover="get_name('[b]deil[/b]');" 
+      href="javascript:Insert();">deil</A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91399); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>3</A> от 
+      3.05.03, 19:46</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post2 vAlign=top><SPAN class=postdetails><IMG alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/Whale.jpg" 
+      border=0><BR><B>Profi<BR></B><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><BR><A href="http://forum.sources.ru/index.php?showuser=3227" 
+      target=_blank>Профиль</A> · <A 
+      href="http://forum.sources.ru/index.php?act=Msg&amp;CODE=4&amp;MID=3227" 
+      target=_blank>PM</A><BR><BR>Рейтинг (т): 31 <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post2 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post2 vAlign=top width="100%">
+      <DIV class=postcolor>а не проще было бы сделать так: a^b=exp(b*ln(a)) ? 
+      <IMG alt=;) 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/wink.gif" 
+      border=0> </DIV><BR>___________<BR>
+      <DIV class=signature>Я не могу тебя забыть, ты снишься мне ночами, твой 
+      нежный запах, вкус и цвет стоят перед глазами.<BR>Когда тебя со мною нет, 
+      так тоскливо, и без тебя я не могу, мое ПИВО...<IMG 
+      alt="user posted image" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/crazy.gif" 
+      border=0> </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><IMG title=Profi alt=Profi 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/starmod.gif" 
+      border=0> <A name=entry91400></A><SPAN class=normalname><A 
+      onmouseover="get_name('[b]esperanto[/b]');" 
+      href="javascript:Insert();">esperanto</A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91400); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>4</A> от 
+      4.05.03, 09:45</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post1 vAlign=top><SPAN class=postdetails><IMG height=64 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/av-2619.gif" 
+      width=64 border=0><BR><B>математик<BR></B><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><BR><A href="http://forum.sources.ru/index.php?showuser=2619" 
+      target=_blank>Профиль</A> · <A 
+      href="http://forum.sources.ru/index.php?act=Msg&amp;CODE=4&amp;MID=2619" 
+      target=_blank>PM</A><BR><BR><A 
+      href="http://forum.sources.ru/index.php?act=store&amp;code=showfine&amp;id=2619">Поощрения</A>: 
+      5 Dgm<BR>Рейтинг (т): 31 <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post1 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post1 vAlign=top width="100%">
+      <DIV class=postcolor>
+      <DIV><A 
+      href="http://forum.sources.ru/index.php?showtopic=9387&amp;view=findpost&amp;p=20"><B>Цитата</B></A> 
+      (DEiL @ 03.05.03)
+      <DIV id=QUOTE>а не проще было бы сделать так: a^b=exp(b*ln(a)) ? <IMG 
+      alt=;) 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/wink.gif" 
+      border=0></DIV></DIV><BR><BR>точно проще<BR>вместо того чтобы возвести 
+      число в дробную степень<BR>мы сначала посчитаем логарифм а потом другое 
+      число возведем в другую дробную степень<BR></DIV><BR>___________<BR>
+      <DIV class=signature><A 
+      href="http://cs.haifa.ac.il/courses/probab/spring_2004/myhomepage/" 
+      target=_blank>http://cs.haifa.ac.il/courses/probab/spring_2004/myhomepage/</A> 
+      <BR><A 
+      href="http://www.photohost.ru/showmember.php?galleryid=0&amp;userid=7379&amp;marks=y" 
+      target=_blank>http://www.photohost.ru/showmember.php?galleryid=0&amp;userid=7379&amp;marks=y</A> 
+      </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><A name=entry91401></A><SPAN 
+      class=unreg><A onmouseover="get_name('[b]y.cad[/b]');" 
+      href="javascript:Insert();"><SPAN class=unreg>y.cad</SPAN></A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91401); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>5</A> от 
+      4.05.03, 22:13</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post2 vAlign=top><SPAN class=postdetails><B>Unregistered</B> 
+      <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post2 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post2 vAlign=top width="100%">
+      <DIV class=postcolor>Не забывайте что основание логарифма типа не может 
+      быть равно 0 и меньше 0 </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=row4 vAlign=center width="1%"><IMG title=Profi alt=Profi 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/starmod.gif" 
+      border=0> <A name=entry91402></A><SPAN class=normalname><A 
+      onmouseover="get_name('[b]shadeofgray[/b]');" 
+      href="javascript:Insert();">shadeofgray</A></SPAN></TD>
+    <TD class=row4 vAlign=top width="99%">
+      <DIV class=row4 style="FLOAT: left; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=left><SPAN class=postdetails><B>Сообщ.</B> <A 
+      title="Показать ссылку этой темы" style="TEXT-DECORATION: underline" 
+      onclick="link_to_post(91402); return false;" 
+      href="http://forum.sources.ru/index.php?showtopic=9387#"><B>#</B>6</A> от 
+      5.05.03, 07:34</SPAN></DIV>
+      <DIV class=row4 
+      style="FLOAT: right; PADDING-BOTTOM: 4px; PADDING-TOP: 4px" 
+      align=right></DIV></TD></TR>
+  <TR>
+    <TD class=post1 vAlign=top><SPAN 
+      class=postdetails><B>Moderator<BR></B><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><IMG alt=* 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/pip.gif" 
+      border=0><BR><A href="http://forum.sources.ru/index.php?showuser=2527" 
+      target=_blank>Профиль</A> · <A 
+      href="http://forum.sources.ru/index.php?act=Msg&amp;CODE=4&amp;MID=2527" 
+      target=_blank>PM</A><BR><BR>Рейтинг (т): 13 <BR></SPAN><!--$ author[field_1]-->
+      <DIV class=post1 style="FLOAT: left; WIDTH: auto" 
+      align=left><B></B></DIV><IMG height=1 alt="" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/spacer.gif" 
+      width=160><BR></TD>
+    <TD class=post1 vAlign=top width="100%">
+      <DIV class=postcolor>
+      <DIV><A 
+      href="http://forum.sources.ru/index.php?showtopic=9387&amp;view=findpost&amp;p=23"><B>Цитата</B></A> 
+      (Yesenin A. Anton @ 04.05.03)
+      <DIV id=QUOTE>Не забывайте что основание логарифма типа не может быть 
+      равно 0 и меньше 0</DIV></DIV><BR>Это если не использовать ТФКП.<BR>Если 
+      же работать в поле комплексных чисел, то там основание может быть любым 
+      ненулевым числом. </DIV><BR>___________<BR>
+      <DIV class=signature>Автор ALGLIB </DIV></TD></TR></TBODY></TABLE>
+<DIV class=darkrow1 style="HEIGHT: 5px"><!-- --></DIV>
+<DIV class=activeuserstrip>1 пользователей читают эту тему (1 гостей и 0 скрытых 
+пользователей)</DIV>
+<DIV class=row2 
+style="PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px">0 
+пользователей: </DIV>
+<DIV class=activeuserstrip align=center>« <A 
+href="http://forum.sources.ru/index.php?showtopic=9387&amp;view=old">Предыдущая 
+тема</A> | <STRONG><A 
+href="http://forum.sources.ru/index.php?showforum=43">Алгоритмы</A></STRONG> | 
+<A 
+href="http://forum.sources.ru/index.php?showtopic=9387&amp;view=new">Следующая 
+тема</A> » </DIV></DIV><BR>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="60%"><IMG alt=">" 
+      src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/nav.gif" 
+      border=0> <A href="http://forum.sources.ru/index.php?">Форум на 
+      Исходниках.RU</A> · <A 
+      href="http://forum.sources.ru/index.php?showforum=43">Алгоритмы</A><BR><BR></TD>
+    <TD vAlign=top align=right width="40%"></TD></TR>
+  <TR>
+    <TD colSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD noWrap align=left width="20%"></TD>
+          <TD align=right width="80%"><!--IBF.QUICK_REPLY_CLOSED--><A 
+            href="http://forum.sources.ru/index.php?act=Post&amp;CODE=10&amp;f=43">Новое 
+            голосование</A> </TD></TR></TBODY></TABLE></TD></TD></TR>
+  <TR>
+    <TD></TD></TR>
+  <TR>
+    <TD></TD></TR></TBODY></TABLE><!--IBF.QUICK_REPLY_OPEN--><BR>
+<DIV align=right></DIV><BR><BR><BR>
+<DIV align=center>[ Script Execution time: 0.0935 ] &nbsp; [ 16 queries used ] 
+&nbsp; </DIV><BR><!-- Copyright Information -->
+<DIV class=copyright align=center>Powered by <A 
+href="http://www.invisionboard.com/" target=_blank>Invision Power Board</A>(U) 
+v1.2 © 2003 &nbsp;<A href="http://www.invisionpower.com/" target=_blank>IPS, 
+Inc.</A></DIV><!--TopList COUNTER--><A href="http://top.list.ru/jump?from=89876" 
+target=_top>
+<SCRIPT language=JavaScript><!--
+d=document;a='';a+=';r='+escape(d.referrer)
+js=10//--></SCRIPT>
+
+<SCRIPT language=JavaScript1.1><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></SCRIPT>
+
+<SCRIPT language=JavaScript1.2><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></SCRIPT>
+
+<SCRIPT language=JavaScript1.3><!--
+js=13//--></SCRIPT>
+
+<SCRIPT language=JavaScript><!--
+d.write('<img src="http://top.list.ru/counter'+
+'?id=89876;t=57;js='+js+a+';rand='+Math.random()+
+'" alt="TopList" '+ 'border=0 height=1 width=1>')
+if(js>11)d.write('<'+'!-- ')//--></SCRIPT>
+<NOSCRIPT><IMG height=1 alt=TopList 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/counter.gif" 
+width=1 border=0></NOSCRIPT>
+<SCRIPT language=JavaScript><!--
+if(!(js<=11))d.write('--'+'>')//--></SCRIPT>
+</A><!--TopList COUNTER--> <!--Rambler--><A 
+href="http://counter.rambler.ru/top100/"><IMG height=1 alt="Rambler's Top100" 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/top100.gif" 
+width=1 border=0></A> <!-- SpyLOG f:0211 -->
+<SCRIPT language=javascript> 
+u="u1624.10.spylog.com";d=document;nv=navigator;na=nv.appName;p=1; 
+bv=Math.round(parseFloat(nv.appVersion)*100); 
+n=(na.substring(0,2)=="Mi")?0:1;rn=Math.random();z="p="+p+"&rn="+rn;y=""; 
+y+="<a href='http://"+u+"/cnt?f=3&p="+p+"&rn="+rn+"' target=_blank>"; 
+y+="<img src='http://"+u+"/cnt?"+z+ 
+"&r="+escape(d.referrer)+"&pg="+escape(window.location.href)+"' border=0 width=1 height=1 alt='SpyLOG'>"; 
+y+="</a>"; d.write(y);if(!n) { d.write("<"+"!--"); }//--></SCRIPT>
+<NOSCRIPT><A href="http://u1624.10.spylog.com/cnt?f=3&amp;p=1" 
+target=_blank><IMG height=1 alt=SpyLOG 
+src="как возвести число в дробную степень - Форум на Исходниках_Ру.files/cnt.gif" 
+width=1 border=0> </A></NOSCRIPT>
+<SCRIPT language=javascript1.2><!-- 
+if(!n) { d.write("--"+">"); }//--></SCRIPT>
+<!-- SpyLOG --><!-- HotLog -->
+<SCRIPT language=javascript>
+hotlog_js="1.0";hotlog_d=document; hotlog_n=navigator;hotlog_rn=Math.random();
+hotlog_n_n=(hotlog_n.appName.substring(0,3)=="Mic")?0:1;
+hotlog_r=""+hotlog_rn+"&s=14399&r="+escape(hotlog_d.referrer)+"&pg="+
+escape(window.location.href);
+hotlog_d.cookie="hotlog=1"; hotlog_r+="&c="+(hotlog_d.cookie?"Y":"N");
+hotlog_d.cookie="hotlog=1; expires=Thu, 01-Jan-70 00:00:01 GMT"</SCRIPT>
+
+<SCRIPT language=javascript1.1>
+hotlog_js="1.1";hotlog_r+="&j="+(navigator.javaEnabled()?"Y":"N")</SCRIPT>
+
+<SCRIPT language=javascript1.2>
+hotlog_js="1.2";hotlog_s=screen;
+hotlog_r+="&wh="+hotlog_s.width+'x'+hotlog_s.height+"&px="+((hotlog_n_n==0)?
+hotlog_s.colorDepth:hotlog_s.pixelDepth)</SCRIPT>
+
+<SCRIPT language=javascript1.3>hotlog_js="1.3"</SCRIPT>
+
+<SCRIPT language=javascript>hotlog_r+="&js="+hotlog_js;
+hotlog_d.write("<img src='http://hit2.hotlog.ru/cgi-bin/hotlog/count?'+hotlog_r+'&' border=0 width=1 height=1>")</SCRIPT>
+<NOSCRIPT><IMG height=1 src="" width=1 border=0></NOSCRIPT> 
+<!-- /HotLog --></DIV><!-- <script type='text/javascript'>if(window.comboInit)setTimeout('comboInit()',10)</script> --></BODY></HTML>

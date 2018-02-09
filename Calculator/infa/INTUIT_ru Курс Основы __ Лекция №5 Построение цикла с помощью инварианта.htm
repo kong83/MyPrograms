@@ -1,0 +1,722 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0049)http://www.intuit.ru/department/se/pbmsu/5/4.html -->
+<HTML><HEAD><TITLE>INTUIT.ru: Курс: Основы ..: Лекция №5: Построение цикла с помощью инварианта</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META 
+content="INTUIT.ru: учебный курс: Основы программирования. Лекция: Построение цикла с помощью инварианта" 
+name=description>
+<META 
+content="учебный курс Основы программирования Построение цикла с помощью инварианта&#13;&#10;INTUIT" 
+name=keywords><LINK href="/favicon.ico" rel="shortcut icon">
+<META http-equiv=Pragma content=no-cache>
+<META http-equiv=Cache-Control content="no-cache, must-revalidate">
+<META content=no-cache name=Pragma>
+<META content=no-cache name=Cache-Control><LINK 
+href="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/style.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY bgColor=white leftMargin=6 topMargin=6 marginwidth="6" marginheight="6"><!----><!--header--><!-- topbox -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center bgColor=white 
+border=0>
+  <TBODY>
+  <TR>
+    <TD class=border><!-- header:logo, menu -->
+      <TABLE cellSpacing=0 cellPadding=6 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=top>
+          <TD rowSpan=3><A href="http://www.intuit.ru/"><IMG height=52 
+            alt="Интернет Университет информационных технологий" 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/logo.gif" 
+            width=285 border=0></A></TD>
+          <TD class=epigraph vAlign=top align=right>Твой путь к 
+        знаниям</A></TD></TR>
+        <TR vAlign=bottom align=right>
+          <TD class=topnavi ?><A 
+            href="http://www.intuit.ru/user/login/">регистрация</A> || <A 
+            href="http://www.intuit.ru/user/speciality/">зачетка</A> | <A 
+            href="http://www.intuit.ru/user/diploms/">дипломы</A> || <A 
+            href="http://www.intuit.ru/user.html">настройки</A> | <A 
+            href="http://www.intuit.ru/user/cart/">корзина</A> | <A 
+            href="http://www.intuit.ru/shop/order/history.xhtml">заказы</A> | <A 
+            href="http://www.intuit.ru/user/account/">личный счет</A> 
+        </TD></TR></TBODY></TABLE><!-- //header:logo, menu --><!-- menu -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#ff9900 
+      background="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/bgtopmenu.gif" 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD class=topmenu align=right height=24><A 
+            href="http://www.intuit.ru/courses.html">Курсы</A> | <A 
+            href="http://www.intuit.ru/speciality/">Учебные программы</A> | <A 
+            href="http://www.intuit.ru/shop/">Учебники</A> | <A 
+            href="http://www.intuit.ru/news.html">Новости</A> | <A 
+            href="http://forum.intuit.ru/">Форум</A> | <A 
+            href="http://www.intuit.ru/help/">Помощь</A>&nbsp;&nbsp; 
+        </TD></TR></TBODY></TABLE><!-- //menu --></TD></TR></TBODY></TABLE><!-- //topbox -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=menu align=middle>
+      <TABLE class=orang cellSpacing=0 cellPadding=1 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=4 width="100%" bgColor=#eeff99 
+            border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD class=rtitle width="100%"><FONT class=rtxt><A 
+                  href="http://www.intuit.ru/shop/complect.xhtml?id=180"><B><FONT 
+                  color=#990000>ТЕПЕРЬ 2 CD: ВСЕ 125 КУРСОВ</FONT></B>!</A> <!--
+|| <a href="http://www.intuit.ru/job/">Работа в INTUIT.ru</a>
+--></FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR><!--/header--><!----><!--/menu-->
+<TABLE height=73 cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=6><IMG height=1 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+      width=6></TD>
+    <TD width=180><!-- leftcolumn -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+      background="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/5.htm" 
+      border=0>
+        <TBODY>
+        <TR vAlign=center>
+          <TD class=orang height=24>&nbsp;&nbsp;Лекции</TD></TR>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR vAlign=top>
+                <TD colSpan=4><A class=spec 
+                  href="http://www.intuit.ru/department/se/pbmsu/">Основы 
+                  программирования</A> </TD></TR>
+              <TR vAlign=top>
+                <TD colSpan=4 height=6><IMG height=6 
+                  src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>1.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Общее понятие алгоритма. Управляющие конструкции алгоритмического языка. Понятие переменной" 
+                  href="http://www.intuit.ru/goto/lecture/810/">Общее понятие 
+                  алгоритма. Управля...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>2.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Типы переменных. Целые и вещественные переменные, представление целых и вещественных чисел в компьютере" 
+                  href="http://www.intuit.ru/goto/lecture/813/">Типы переменных. 
+                  Целые и веществ...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>3.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Символьные и логические переменные и выражения. Массивы и текстовые строки" 
+                  href="http://www.intuit.ru/goto/lecture/814/">Символьные и 
+                  логические переменн...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>4.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Вычисление функций на последовательностях" 
+                  href="http://www.intuit.ru/goto/lecture/815/">Вычисление 
+                  функций на последоват...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>5.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture_selected 
+                  href="http://www.intuit.ru/goto/lecture/816/">Построение цикла 
+                  с помощью инварианта</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>6.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Устройство компьютера. Оперативная память, процессор, регистры процессора. Аппаратный стек" 
+                  href="http://www.intuit.ru/goto/lecture/817/">Устройство 
+                  компьютера. Оперативн...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>7.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Машинно-независимый Ассемблер RTL и Ассемблер Intel 80x86. Внешние устройства и прерывания. Виртуальная память и поддержка параллельных задач" 
+                  href="http://www.intuit.ru/goto/lecture/818/">Машинно-независимый 
+                  Ассемблер RT...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>8.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Основы языка Си: структура Си-программы, базовые типы и конструирование новых типов, операции и выражения" 
+                  href="http://www.intuit.ru/goto/lecture/819/">Основы языка Си: 
+                  структура Си-пр...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>9.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Управляющие конструкции языка Си. Представление программ в виде функций. Работа с памятью. Структуры" 
+                  href="http://www.intuit.ru/goto/lecture/820/">Управляющие 
+                  конструкции языка Си...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>10.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Технология программирования на Си: представление матриц, работа с файлами и с текстами" 
+                  href="http://www.intuit.ru/goto/lecture/821/">Технология 
+                  программирования на С...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>11.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Структуры данных: общее понятие, реализация. Простейшие структуры данных: очередь, стек. Использование стека и обратная польская запись" 
+                  href="http://www.intuit.ru/goto/lecture/822/">Структуры 
+                  данных: общее понятие,...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>12.</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  title="Ссылочные реализации структур данных. Списки и деревья. Реализации множества: с помощью бинарного поиска, на базе сбалансированных деревьев, хеширование" 
+                  href="http://www.intuit.ru/goto/lecture/823/">Ссылочные 
+                  реализации структур да...</A> </TD></TR>
+              <TR vAlign=top>
+                <TD colSpan=4 height=6><IMG height=6 
+                  src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  href="http://www.intuit.ru/department/se/pbmsu/class/examination/">Экзамен</A></TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture_red 
+                  href="http://www.intuit.ru/department/se/pbmsu/class/examination_extern/">Сдать 
+                  экзамен экстерном</A></TD></TR>
+              <TR vAlign=top>
+                <TD colSpan=4 height=6><IMG height=6 
+                  src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+                  width=1></TD></TR>
+              <TR vAlign=top>
+                <TD>&nbsp;</TD>
+                <TD class=llecture>&nbsp;</TD>
+                <TD>&nbsp;</TD>
+                <TD class=llecture><A class=llecture 
+                  href="http://www.intuit.ru/department/se/pbmsu/lit.html">Литература</A></TD></TR></TBODY></TABLE><BR></TD></TR>
+        <TR vAlign=center align=middle>
+          <TD class=bordo height=24><NOBR>&nbsp;&nbsp;Вход для 
+          студентов</NOBR></TD></TR>
+        <FORM action=/user/login/ method=post>
+        <TR>
+          <TD class=gray>&nbsp;<B>Псевдоним (ник)</B> </TD></TR>
+        <TR>
+          <TD class=gray align=middle><INPUT class=inputl size=12 name=login> 
+          </TD></TR>
+        <TR>
+          <TD class=gray>&nbsp;<B>пароль</B> </TD></TR>
+        <TR>
+          <TD class=gray align=middle><INPUT class=inputl type=password 
+            size=12 name=password> </TD></TR>
+        <TR>
+          <TD class=gray align=middle><INPUT class=inputlo type=submit value=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вход&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name=LOGIN> 
+          </TD></TR>
+        <TR>
+          <TD class=gray><A class=spec 
+            href="http://www.intuit.ru/user/remind/">Забыли пароль?</A> 
+        </TD></TR></FORM>
+        <TR>
+          <TD><BR>
+            <TABLE class=orang cellSpacing=0 cellPadding=1 width="100%" 
+border=0>
+              <TBODY>
+              <TR>
+                <TD>
+                  <TABLE cellSpacing=0 cellPadding=4 width="100%" 
+                  bgColor=#ffffff border=0>
+                    <TBODY>
+                    <TR>
+                      <TD><A class=reg 
+                        href="http://www.intuit.ru/user/registry/">Регистрация<BR>новых 
+                        пользователей</A> 
+            </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR></TD></TR>
+        <TR vAlign=top>
+          <TD>
+            <TABLE cellSpacing=0 cellPadding=2 width="100%" 
+            background="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/5.htm" 
+            border=0>
+              <TBODY>
+              <TR vAlign=center>
+                <TD class=orang height=24>&nbsp;&nbsp;Статистика</TD></TR>
+              <TR>
+                <TD>
+                  <TABLE cellSpacing=2 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD colSpan=2>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD class=lb>Опубликован:</TD>
+                            <TD class=llecture_red 
+                          align=right>16.09.2005</TD></TR></TBODY></TABLE></TD></TR>
+                    <TR>
+                      <TD class=lb>Изучают:</TD>
+                      <TD class=llecture_red align=right>742</TD></TR>
+                    <TR>
+                      <TD class=lb>Закончили:</TD>
+                      <TD class=llecture_red align=right>59</TD></TR>
+                    <TR>
+                      <TD class=lb align=right>из них на 
+                      5:&nbsp;&nbsp;&nbsp;</TD>
+                      <TD class=llecture_red align=right>7</TD></TR>
+                    <TR>
+                      <TD class=lb align=right>на 4:&nbsp;&nbsp;&nbsp;</TD>
+                      <TD class=llecture_red align=right>11</TD></TR>
+                    <TR>
+                      <TD class=lb align=right>на 3:&nbsp;&nbsp;&nbsp;</TD>
+                      <TD class=llecture_red 
+                align=right>41</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD height=4><IMG height=4 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD height=1><A 
+            href="http://www.intuit.ru/department/se/pbmsu/robot.html"><IMG 
+            height=1 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1 border=0></A></TD></TR></TBODY></TABLE><!-- /leftcolumn --></TD>
+    <TD width=6><IMG height=1 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+      width=6></TD>
+    <TD class=gray width=1><IMG height=1 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+      width=1></TD>
+    <TD width=6><IMG height=1 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+      width=6></TD>
+    <TD><!-- content -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD class=head>Основы программирования</TD>
+          <TD align=right><A 
+            style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #990000" 
+            href="http://www.intuit.ru/go/department/se/pbmsu/download_zip.html">версии 
+            для локальной работы</A> </TD></TR>
+        <TR>
+          <TD colSpan=2 height=4><IMG height=4 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang colSpan=2 height=1><IMG height=1 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD align=left colSpan=2>
+            <TABLE class=ramka1ext cellSpacing=0 cellPadding=1 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD>
+                  <TABLE class=ramka1int cellSpacing=0 cellPadding=4 
+                  width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=rtxt align=middle>Купить курс для локальной 
+                        работы просто - отправьте SMS-сообщение <SPAN 
+                        class=rtitle>WWW</SPAN> на номер <SPAN 
+                        class=rtitle>8887</SPAN> <A class=spectxt 
+                        onclick="window.open(this.href,'', 'width=700,height=500,toolbars=no,status=yes,location=no,resizable=yes,scrollbars=yes,menubar=yes'); return false;" 
+                        href="http://www.intuit.ru/help/wapn.html" 
+                        target=_blank>(подробности)</A>. 
+              </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang colSpan=2 height=1><IMG height=1 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR></TD></TR>
+        <TR>
+          <TD align=left colSpan=2><SPAN class=headsub>5. Лекция: <A 
+            href="http://www.intuit.ru/goto/lecture/816/">Построение цикла с 
+            помощью инварианта</A></SPAN> </TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang colSpan=2 height=1><IMG height=1 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=2 height=2><IMG height=2 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD align=left><FONT class=rtitle>Страницы:</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/3.html">«</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/1.html">1</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/2.html">2</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/3.html">3</A> <FONT 
+            class=stitle>|</FONT> <FONT class=rtitle>4</FONT> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/5.html">5</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/6.html">6</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/test/">вопросы</A> 
+            <FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/5.html"><B>»</B></A> 
+          </TD>
+          <TD align=right><FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/shop/books/departments/se/pbmsu/">учебники</A> 
+            <FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/pbmsu_5.html" 
+            target=_blank>для печати и PDA</A> </TD></TR>
+        <TR>
+          <TD colSpan=2 height=2><IMG height=2 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang_light align=middle colSpan=2>&nbsp; <SPAN 
+            class=rtxt>Если Вы заметили ошибку - <A class=llecture_red 
+            href="http://www.intuit.ru/help/askform.xhtml?course=149&amp;url=http://www.intuit.ru/department/se/pbmsu/5/4.html" 
+            target=_blank>сообщите нам</A>, или выделите ее и нажмите 
+            Ctrl+Enter</SPAN> &nbsp; </TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=2>
+            <H4>Вычисление логарифма без использования разложения в ряд</H4>
+            <P>Схема построения цикла с помощью инварианта позволяет легко 
+            написать алгоритм вычисления логарифма заданного числа без 
+            использования разложения в ряд. </P>
+            <P>Пусть задано вещественное число <SPAN class=texample>x</SPAN>. 
+            Требуется вычислить логарифм числа <SPAN class=texample>x</SPAN> по 
+            основанию <SPAN class=texample>a</SPAN> c точностью <SPAN 
+            class=texample>&#949;</SPAN>, где <SPAN class=texample>&#949;</SPAN> - 
+            некоторое положительное очень маленькое число. Для определенности, 
+            пусть <SPAN class=texample>a&gt;1</SPAN> (для <SPAN 
+            class=texample>a&lt;1</SPAN> можно воспользоваться тождеством <SPAN 
+            class=texample>log<SUB>1/a</SUB>x = -log<SUB>a</SUB>x</SPAN>). </P>
+            <P>Из определения логарифма следует, что надо найти число <SPAN 
+            class=texample>y</SPAN> такое, что </P>
+            <DIV class=example><PRE>a<SUP>y</SUP> = x.
+</PRE></DIV>
+            <P>Нам достаточно, чтобы это равенство выполнялось приближенно. В 
+            качестве инварианта используем условие </P>
+            <DIV class=example><PRE>a<SUP>y</SUP>z<SUP>t</SUP> = x = const. 
+</PRE></DIV>
+            <P>Таким образом, в цикле будут меняться три переменные </P>
+            <DIV class=example><PRE>(y,z,t),
+</PRE></DIV>
+            <P>и инвариант записывается в виде </P>
+            <DIV class=example><PRE>I(y,z,t): a<SUP>y</SUP>z<SUP>t</SUP> = x   
+</PRE></DIV>
+            <P>Начальные значения переменных <SPAN class=texample>y</SPAN>, 
+            <SPAN class=texample>z</SPAN>, <SPAN class=texample>t</SPAN> 
+            выбираются так, чтобы выполнялся инвариант: </P>
+            <DIV class=example><PRE>y<SUB>0</SUB> = 0,  z<SUB>0</SUB> = x,  t<SUB>0</SUB> = 1. 
+</PRE></DIV>
+            <P>Определим условие завершения цикла <SPAN 
+            class=texample>Q(y,z,t)</SPAN>. Необходимо, чтобы искомая величина 
+            по окончанию цикла содержалась в переменной <SPAN 
+            class=texample>y</SPAN>. Следовательно, величина <SPAN 
+            class=texample>z<SUP>t</SUP></SPAN> должна быть близка к единице: 
+            тогда приблизительно выполняется равенство </P>
+            <DIV class=example><PRE>a<SUP>y</SUP> <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/cong.gif" width=10 border=0> a<SUP>y</SUP>z<SUP>t</SUP> = x
+</PRE></DIV>
+            <P>т.е. <SPAN class=texample>y</SPAN> приближенно равен искомому 
+            логарифму. Для того, чтобы величина <SPAN 
+            class=texample>z<SUP>t</SUP></SPAN> была близка к единице, нужно, 
+            чтобы показатель степени <SPAN class=texample>t</SPAN> был близок к 
+            нулю, а основание <SPAN class=texample>z</SPAN> было не очень велико 
+            и не очень мало. Для этого достаточно выполнения трех неравенств 
+</P>
+            <DIV class=example><PRE>|t| &lt; &#949;,  1/a &lt; z &lt; a   
+</PRE></DIV>
+            <P>Можно доказать строго, что при выполнении этих неравенств, а 
+            также условия <SPAN class=texample>a<SUP>y</SUP>z<SUP>t</SUP> = 
+            x</SPAN>, величина <SPAN class=texample>y</SPAN> отличается от <SPAN 
+            class=texample>log<SUB>a</SUB>x</SPAN> не больше чем на <SPAN 
+            class=texample>&#949;</SPAN>. </P>
+            <P>Выполнение этих трех неравенств и являются условием завершения 
+            цикла: </P>
+            <DIV class=example><PRE>Q(y,z,t):  |t| &lt; &#949; и 1/a &lt; z и z &lt; a    
+</PRE></DIV>
+            <P>Наконец, тело цикла должно преобразовывать переменные <SPAN 
+            class=texample>(y,z,t)</SPAN> так, чтобы абсолютная величина <SPAN 
+            class=texample>t</SPAN> монотонно убывала, а переменная <SPAN 
+            class=texample>z</SPAN> рано или поздно попадала бы в интервал <SPAN 
+            class=texample>(1/a,a)</SPAN>, и при этом сохранялся инвариант. 
+            Такое преобразование <SPAN class=texample>T</SPAN> легко 
+            выписывается по инварианту цикла: </P>
+            <DIV class=example><PRE>T(y,z,t) = (y+t, z/a, t), если z <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/ge.gif" width=8 border=0> a 
+T(y,z,t) = (y-t, z*a, t), если z <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/le.gif" width=8 border=0> 1/a
+T(y,z,t) = (y, z*z, t/2), если 1/a &lt; z &lt; a     
+</PRE></DIV>
+            <P>Заметим, что при применении преобразования <SPAN 
+            class=texample>T</SPAN> некоторая величина как бы перетекает из 
+            одних переменных в другие, при этом равенство <SPAN 
+            class=texample>a<SUP>y</SUP>z<SUP>t</SUP> = x</SPAN> остается 
+            неизменным. </P>
+            <P>Теперь можно выписать алгоритм вычисления логарифма: </P>
+            <DIV class=example><PRE>вещ алгоритм логарифм(вх: вещ x, вещ a, вещ eps)
+| дано: x &gt; 0, a &gt; 1, eps &gt; 0
+| надо: вычислить log_a x с точностью eps
+начало алгоритма
+| вещ y, z, t;
+|
+| // инициализация
+| y := 0.0; z := x; t := 1.0;
+| утверждение: a^y * z^t == x;
+|
+| цикл пока |t| &gt;= eps или z &lt;= 1.0/a или z &gt;= a
+| | инвариант: a^y * z^t == x;
+| | если z &gt;= a
+| | | то
+| | |   z := z/a; y := y + t;
+| | иначе если z &lt;= 1.0/a
+| | | то
+| | |   z := z*a; y := y - t;
+| | иначе
+| | |   z := z*z; t := t/2.0;
+| | конец если
+| конец цикла
+|
+| утверждение: |t| &lt; eps  и
+|              z &gt; 1.0/a  и  z &lt; a  и
+|              a^y * z^t == x;
+| ответ := y;
+конец алгоритма
+</PRE></DIV></TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD align=middle colSpan=2><A class=attention 
+            href="http://www.intuit.ru/department/se/pbmsu/5/5.html">Дальше 
+            »</B></A> </TD></TR>
+        <TR>
+          <TD colSpan=2 height=16><IMG height=16 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang_light align=middle colSpan=2>&nbsp; <SPAN 
+            class=rtxt>Если Вы заметили ошибку - <A class=llecture_red 
+            href="http://www.intuit.ru/help/askform.xhtml?course=149&amp;url=http://www.intuit.ru/department/se/pbmsu/5/4.html" 
+            target=_blank>сообщите нам</A>, или выделите ее и нажмите 
+            Ctrl+Enter</SPAN> &nbsp; </TD></TR>
+        <TR>
+          <TD colSpan=2 height=2><IMG height=2 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD align=left><FONT class=rtitle>Страницы:</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/3.html">«</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/1.html">1</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/2.html">2</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/3.html">3</A> <FONT 
+            class=stitle>|</FONT> <FONT class=rtitle>4</FONT> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/5.html">5</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/6.html">6</A> <FONT 
+            class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/test/">вопросы</A> 
+            <FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/5.html"><B>»</B></A> 
+          </TD>
+          <TD align=right><FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/shop/books/departments/se/pbmsu/">учебники</A> 
+            <FONT class=stitle>|</FONT> <A class=rtitle 
+            href="http://www.intuit.ru/department/se/pbmsu/5/pbmsu_5.html" 
+            target=_blank>для печати и PDA</A> </TD></TR>
+        <TR>
+          <TD colSpan=2 height=8><IMG height=8 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang colSpan=2 height=1><IMG height=1 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+            width=1></TD></TR></TBODY></TABLE><!-- /content --></TD>
+    <TD width=6><IMG height=1 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/empty.gif" 
+      width=6></TD></TR></TBODY></TABLE><!-- /bottom --><BR>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center bgColor=white 
+border=0>
+  <TBODY>
+  <TR><!---->
+    <TD class=border align=middle>
+      <TABLE cellSpacing=8 cellPadding=0 width="100%" bgColor=white border=0>
+        <TBODY>
+        <TR>
+          <TD width=1><IFRAME id=errorHandling 
+            src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/error.htm" 
+            frameBorder=0 width=1 scrolling=no height=1></IFRAME></TD>
+          <TD class=rtxt align=middle width="100%">Внимание! Если Вы увидите 
+            ошибку на нашем сайте, выделите её и нажмите Ctrl+Enter. 
+        </TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD class=border align=middle>
+      <TABLE cellSpacing=8 cellPadding=0 width="100%" bgColor=white border=0>
+        <TBODY>
+        <TR>
+          <TD><B>Нужна помощь?</B><BR>• Забыли пароль? <A 
+            href="http://www.intuit.ru/user/remind/">Вам сюда...</A><BR>• Есть 
+            вопрос? <A 
+            href="http://www.intuit.ru/help/askform.xhtml">Спрашивайте!</A> </TD>
+          <TD><B>Вы можете:</B><BR>• Изменить персональные <A 
+            href="http://www.intuit.ru/user/edit/">данные</A><BR>• Изменить 
+            параметры <A 
+            href="http://www.intuit.ru/help/subscribe/">подписки</A> </TD>
+          <TD><B>Интернет-магазин:</B><BR>• Ваши заказы <A 
+            href="http://www.intuit.ru/shop/order/history.xhtml">здесь</A><BR>• 
+            Ваш личный <A href="http://www.intuit.ru/user/account/">счет</A> 
+        </TD></TR></TBODY></TABLE></TD></TR><!---->
+  <TR>
+    <TD class=copy align=middle bgColor=#ff9900><A class=bot 
+      href="http://www.intuit.ru/courses.html">Курсы</A> | <A class=bot 
+      href="http://www.intuit.ru/speciality/">Учебные программы</A> | <A 
+      class=bot href="http://www.intuit.ru/shop/">Учебники</A> | <A class=bot 
+      href="http://www.intuit.ru/news.html">Новости</A> | <A class=bot 
+      href="http://www.intuit.ru/forum/">Форум</A> | <A class=bot 
+      href="http://www.intuit.ru/help/">Помощь</A> <BR><BR>Телефон: +7 (495) 
+      253-9312, 253-9313, факс: +7 (495) 253-9310, email: <A class=bot 
+      href="mailto:info@intuit.ru">info@intuit.ru</A><BR>© 2003-2007, <A 
+      class=bot href="http://www.intuit.ru/">INTUIT.ru::Интернет-Университет 
+      Информационных Технологий - дистанционное образование</A> 
+</TD></TR></TBODY></TABLE><!-- /bottom -->
+<CENTER>
+<TABLE cellPadding=4 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD class=topnavi>Хостинг предоставлен компанией <A 
+      href="http://www.rmt.ru/" target=_blank>РМ Телеком</A>.<BR>Сервер 
+      предоставлен компанией <A href="http://www.kraftway.ru/" 
+      target=_blank>KRAFTWAY COMPUTERS</A>. </TD>
+    <TD align=right><!--begin of Rambler's Top100 code --><IMG height=1 alt="" 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/top100.gif" 
+      width=1 border=0><A href="http://top100.rambler.ru/top100/"><IMG height=31 
+      alt="Rambler's Top100" 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/rambler.gif" 
+      width=88 border=0></A> <!--end of Top100 code-->&nbsp; <!--Rating@Mail.ru COUNTER-->
+      <SCRIPT language=JavaScript><!--
+d=document;a='';a+=';r='+escape(d.referrer)
+js=10//--></SCRIPT>
+
+      <SCRIPT language=JavaScript1.1><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></SCRIPT>
+
+      <SCRIPT language=JavaScript1.2><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></SCRIPT>
+
+      <SCRIPT language=JavaScript1.3><!--
+js=13//--></SCRIPT>
+
+      <SCRIPT language=JavaScript><!--
+d.write('<a href="http://top.mail.ru/jump?from=496301"'+
+' target=_top><img src="http://top.list.ru/counter'+
+'?id=496301;t=75;js='+js+a+';rand='+Math.random()+
+'" alt="Рейтинг@Mail.ru"'+' border=0 height=31 width=38></a>')
+if(js>11)d.write('<'+'!-- ')//--></SCRIPT>
+      <NOSCRIPT><A href="http://top.mail.ru/jump?from=496301" target=_blank><IMG 
+      height=31 alt=Рейтинг@Mail.ru 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/list.gif" 
+      width=38 border=0></A></NOSCRIPT>
+      <SCRIPT language=JavaScript><!--
+if(js>11)d.write('--'+'>')//--></SCRIPT>
+<!--/COUNTER--> &nbsp; <!-- SpyLOG -->
+      <SCRIPT id=spylog_code 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/counter2.2.js" 
+      type=text/javascript counter="459372"></SCRIPT>
+      <NOSCRIPT><A 
+      href="http://u4593.72.spylog.com/cnt?cid=459372&amp;f=3&amp;p=0" 
+      target=_blank><IMG height=31 alt=SpyLOG 
+      src="INTUIT_ru Курс Основы __ Лекция №5 Построение цикла с помощью инварианта.files/cnt.gif" 
+      width=88 border=0></A> </NOSCRIPT><!--/ SpyLOG -->&nbsp; <!--
+<script language="javascript">
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+        return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+        cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+if (getCookie('adskip') == null && (getCookie('adcnt') == null || getCookie('adcnt') < 6)) {  window.open('/popup/1/','adpopup','width=300,height=320,location=no,scrollbars=no,resizable=yes,status=no,history=no,toolbar=no'); }
+</script>
+-->&nbsp; 
+<!--LiveInternet counter-->
+      <SCRIPT language=JavaScript><!--
+document.write('<a href="http://www.liveinternet.ru/click" '+
+'target=_blank><img src="http://counter.yadro.ru/hit?t44.6;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';'+Math.random()+
+'" border=0 width=31 height=31 alt="liveinternet.ru"></a>')//--></SCRIPT>
+<!--/LiveInternet-->&nbsp; <!-- bigmir)net TOP 100 --><A 
+      onclick='img = new Image();img.src="http://www.bigmir.net/?cl=143122";' 
+      href="http://www.bigmir.net/" target=_blank>
+      <SCRIPT language=javascript><!--
+bmQ='<img src=http://c.bigmir.net/?s143122&t8'
+bmD=document
+bmD.cookie="b=b"
+if(bmD.cookie)bmQ+='&c1'
+//--></SCRIPT>
+
+      <SCRIPT language=javascript1.2><!-- 
+bmS=screen;bmQ+='&d'+(bmS.colorDepth?bmS.colorDepth:bmS.pixelDepth)+"&r"+bmS.width;
+//--></SCRIPT>
+
+      <SCRIPT language=javascript><!--
+bmF = bmD.referrer.slice(7);
+((bmI=bmF.indexOf('/'))!=-1)?(bmF=bmF.substring(0,bmI)):(bmI=bmF.length);
+if(bmF!=window.location.href.substring(7,7+bmI))bmQ+='&f'+escape(bmD.referrer);
+bmD.write(bmQ+" border=0 width=88 height=31 alt='bigmir TOP100'>");
+//--></SCRIPT>
+      </A></TD></TR></TBODY></TABLE></CENTER></BODY></HTML>

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://physics.nad.ru/matboard/messages/16098.html -->
+<HTML><HEAD><TITLE>Re: [exp(x)]</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<SCRIPT language=JavaScript src="Re [exp(x)].files/ins.js"></SCRIPT>
+
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY bgColor=#d3d3d3><!--advert-->
+<DIV align=center>
+<SCRIPT language=JavaScript>
+<!--
+if (navigator.userLanguage=='ru'|navigator.language=='ru'|navigator.systemLanguage=='ru'|navigator.userLanguage=='ru') 
+{
+k = Math.round( Math.random()*19+1 );
+
+	if(k<=8) 
+	{
+	document.writeln('<a href="mailto:info@physics.nad.ru"><img border="0" src="http://physics.nad.ru/advert/ban-0'+k+'.jpg"></a>');
+	}
+
+	else
+	{
+	document.writeln('<table border="1" width="468" id="table1" height="60"><tr><td align="center">');
+	document.writeln('<p align="center"><font size="2" face="Arial">Здесь могла бы быть ваша реклама.. <a href="mailto:info@physics.nad.ru">Пишите</a>.</font>');
+	document.writeln('</td></tr></table>');
+	}
+}
+else
+{
+k = Math.round( Math.random()*5+1 );
+
+	if(k<=1) 
+	{
+	document.writeln('<a  target="_blank" href="http://order.kagi.com/?RB1"><img border="0" src="http://physics.nad.ru/advert/ban-0'+k+'.gif"></a>');
+	}
+	else
+	{
+	document.writeln('<table border="1" width="468" id="table1" height="60"><tr><td align="center">');
+	document.writeln('<p align="center"><font size="2" face="Arial">Place for your advertisement.. <a href="mailto:info@physics.nad.ru">Contact us</a>.</font>');
+	document.writeln('</td></tr></table>');
+	}
+
+}
+// -->  
+</SCRIPT>
+</DIV>
+<CENTER>
+<H2>Re: [exp(x)]</H2></CENTER>
+<HR width="100%" SIZE=7>
+
+<CENTER>[ <A 
+href="http://physics.nad.ru/matboard/messages/16098.html#postfp">Ответить</A> ] 
+[ <A href="http://physics.nad.ru/cgi-bin/forum.pl?forum=mat">Форум по 
+математике</A> ] [ <A 
+href="http://physics.nad.ru/cgi-bin/forum.pl?forum=mat&amp;mode=rules">Правила</A> 
+][ <A href="http://physics.nad.ru/matboard/messages/13599.html">Тема</A> 
+]</CENTER>
+<HR width="100%" SIZE=7>
+
+<P>Сообщение №16098 от Жутко , 27 сентября 2005 г. <!--time-->23:24:
+<P>В ответ на №16082: <A 
+href="http://physics.nad.ru/matboard/messages/16082.html">Re: [exp(x)]</A> от 
+Арх , 27 сентября 2005 г.:
+<P><!--body-->&gt; <FONT color=#0085ba>&gt; Как посчитать целую часть от e в 
+степени x, пользуясь сложением и умножением (деление - не желательно)? x - 
+допустим целое. Можно разложить в ряд Тейлора, но до какого члена 
+считать?????</FONT>
+<P>&gt; <FONT color=#0085ba><FONT color=#0085ba>Прямой ответ: от данного числа 
+отбросить дробную часть и получим целую часть.</FONT></FONT><BR>&gt; <FONT 
+color=#0085ba>|e^2| = |7,389...| = 7 </FONT><BR>&gt; <FONT color=#0085ba><FONT 
+color=#0085ba>Чтобы число "е" возвести в дробную степень N+x, где N - целое, х - 
+дробь:</FONT></FONT><BR>&gt; <FONT color=#0085ba>e^(N+x) = 
+e^N*(1+x+x^2/2!+x^3/3!+...) = e^N*S(x^k/k!), k{0 -:- oo}</FONT><BR>&gt; <FONT 
+color=#0085ba><FONT color=#0085ba>Для примера вычислим значение самого числа 
+"е":</FONT></FONT><BR>&gt; <FONT 
+color=#0085ba>e^1=e^0*(1+1/2+1/6+1/42+...)</FONT><BR>&gt; <FONT 
+color=#0085ba><FONT color=#0085ba>Чтобы ряд Тейлора быстрее сходился, можно 
+уменьшить дробную часть:</FONT></FONT><BR>&gt; <FONT 
+color=#0085ba>e^1,6=e^(1,5+0,1)=e*e^0,5*(1+0,5+0,25/2+...)</FONT><BR>&gt; <FONT 
+color=#0085ba><FONT color=#0085ba>А это - пример вычисления логарифмов любых 
+чисел:</FONT></FONT><BR>&gt; <FONT color=#0085ba>ln(e^N + x) = 
+N+a-a^2/2+a^3/3-...= N+S(a^k/k), a=x/e^N, k{1 -:- oo)</FONT><BR>&gt; <FONT 
+color=#0085ba><FONT color=#0085ba>Как только следующий член разложения станет 
+меньше требуемой погрешности, прекращаем вычисление.</FONT></FONT>
+<P>Просили же без деления.... <BR><BR>
+<HR width="100%" SIZE=7>
+
+<SCRIPT language=JavaScript>
+	<!--//
+    var agt=navigator.userAgent.toLowerCase(); 
+    var is_major = parseInt(navigator.appVersion); 
+    var is_minor = parseFloat(navigator.appVersion); 
+    var is_nav  = ((agt.indexOf('mozilla')!=-1) && (agt.indexOf('spoofer')==-1) 
+                && (agt.indexOf('compatible') == -1) && (agt.indexOf('opera')==-1) 
+                && (agt.indexOf('webtv')==-1)); 
+    var is_nav3up = (is_nav && (is_major >= 3));
+    var is_ie   = (agt.indexOf("msie") != -1);
+    var is_ie4up  = (is_ie  && (is_major >= 4)); 
+    var is_opera = (agt.indexOf("opera") != -1); 
+	if(is_opera) delta="14";
+	else if(is_nav3up) delta="-22";
+	else if(is_nav) delta="-22";
+	else if(is_ie4up) delta="16";
+	else if(is_ie) delta="-19";
+	else delta="0";
+	if(delta) document.writeln("<style> ul {margin-left:"+delta+"} </style>");
+	// -->
+	</SCRIPT>
+Отклики на это сообщение (<A 
+href="http://physics.nad.ru/cgi-bin/forum.pl?forum=mat&amp;mes=16098">показывать 
+тексты ответов</A>): <FONT size=2>
+<UL><!--insert: 16098--></UL><!--end: 16098--></FONT><BR>
+<HR width="100%" SIZE=7>
+
+<P>
+<CENTER><A name=postfp><B>ОТВЕТ:</B></A>
+<P></P></CENTER>
+<FORM name=board action=../../cgi-bin/board.pl method=post><INPUT type=hidden 
+value=13599,16078,16079,16082,16098 name=followup> <INPUT type=hidden 
+value=Жутко name=origname> <INPUT type=hidden value=mat name=forum> <INPUT 
+type=hidden value="Re: [exp(x)]" name=origsubject> <INPUT type=hidden 
+value="27 сентября 2005 г." name=origdate> 
+<CENTER><B>Имя</B> <FONT color=#ff0000>*</FONT>: <INPUT maxLength=21 size=50 
+name=name><BR></CENTER>
+<CENTER><B>E-Mail</B>: <INPUT maxLength=50 size=50 name=email></CENTER><BR>
+<CENTER><B>Тема</B> <FONT color=#ff0000>*</FONT>:<INPUT maxLength=50 size=50 
+value="Re: [exp(x)]" name=subject></CENTER>
+<P>
+<P>
+<CENTER><INPUT type=checkbox value=yes name=double> Продублировать ответ по 
+e-mail <INPUT type=checkbox value=yes name=orig> Игнорировать переносы 
+строк</CENTER>
+<P></P>
+<CENTER><B>Текст ответа</B><FONT color=#ff0000>*</FONT> (<A 
+href="http://physics.nad.ru/htmltegs.html" target=_blank>Информация о работе 
+форума</A>) <BR><TEXTAREA name=body rows=10 cols=80>&gt; &gt; &gt; Как посчитать целую часть от e в степени x, пользуясь сложением и умножением (деление - не желательно)? x - допустим целое. Можно разложить в ряд Тейлора, но до какого члена считать?????
+
+&gt; &gt; Прямой ответ: от данного числа отбросить дробную часть и получим целую часть.
+&gt; &gt; |e^2| = |7,389...| = 7 
+&gt; &gt; Чтобы число "е" возвести в дробную степень N+x, где N - целое, х - дробь:
+&gt; &gt; e^(N+x) = e^N*(1+x+x^2/2!+x^3/3!+...) = e^N*S(x^k/k!), k{0 -:- oo}
+&gt; &gt; Для примера вычислим значение самого числа "е":
+&gt; &gt; e^1=e^0*(1+1/2+1/6+1/42+...)
+&gt; &gt; Чтобы ряд Тейлора быстрее сходился, можно уменьшить дробную часть:
+&gt; &gt; e^1,6=e^(1,5+0,1)=e*e^0,5*(1+0,5+0,25/2+...)
+&gt; &gt; А это - пример вычисления логарифмов любых чисел:
+&gt; &gt; ln(e^N + x) = N+a-a^2/2+a^3/3-...= N+S(a^k/k), a=x/e^N, k{1 -:- oo)
+&gt; &gt; Как только следующий член разложения станет меньше требуемой погрешности, прекращаем вычисление.
+
+&gt; Просили же без деления....
+
+</TEXTAREA></CENTER>
+<CENTER>
+<P>Вставить в текст сообщения: <A onclick="DoPrompt('url');" 
+href="javascript:%20x()">ссылка</A> · <A onclick="DoPrompt('email');" 
+href="javascript:%20x()">e-mail</A> · <A onclick="DoPrompt('bold');" 
+href="javascript:%20x()">полужирный</A> · <A onclick="DoPrompt('italics');" 
+href="javascript:%20x()">курсив</A> · <A onclick="DoPrompt('code');" 
+href="javascript:%20x()">код</A> · <A onclick="DoPrompt('image');" 
+href="javascript:%20x()">рисунок</A> · <A onclick="DoPrompt('lt');" 
+href="javascript:%20x()">&lt;</A> · <A onclick="DoPrompt('gt');" 
+href="javascript:%20x()">&gt;</A> </P></CENTER>
+<CENTER>Добавить URL: <INPUT size=50 name=url><BR></CENTER>
+<CENTER>Название URL: <INPUT size=50 name=url_title></CENTER><BR>
+<CENTER><FONT face=Arial size=2><A href="http://physics.nad.ru/cgi-bin/img.pl" 
+target=_blank>Загрузить рисунок на сервер (gif или jpg)</A></FONT></CENTER><BR>
+<CENTER>Рисунок (URL): <INPUT size=50 name=img></CENTER>
+<P>
+<CENTER><INPUT type=submit value="Послать ответ"> <INPUT type=submit value=Просмотр name=preview></CENTER>
+<P>
+<HR width="100%" SIZE=7>
+
+<CENTER>[ <A 
+href="http://physics.nad.ru/matboard/messages/16098.html#postfp">Ответить</A> ] 
+[ <A href="http://physics.nad.ru/cgi-bin/forum.pl?forum=mat">Форум по 
+математике</A> ] [ <A 
+href="http://physics.nad.ru/cgi-bin/forum.pl?forum=mat&amp;mode=rules">Правила</A> 
+]</CENTER><BR><IFRAME marginWidth=0 marginHeight=0 
+src="Re [exp(x)].files/pict.gif" frameBorder=0 width=0 scrolling=no 
+height=1><img border="0" src="../../cgi-bin/pict.pl?forum=mat&n=16098" width="1" height="1"></IFRAME><!--spylog--><BR>
+<CENTER><!-- SpyLOG -->
+<SCRIPT id=spylog_code src="Re [exp(x)].files/counter2.2.js" 
+type=text/javascript counter="135106"></SCRIPT>
+<NOSCRIPT><A href="http://u1351.06.spylog.com/cnt?cid=135106&amp;f=3&amp;p=0" 
+target=_blank><IMG height=31 alt=SpyLOG src="Re [exp(x)].files/cnt.gif" width=88 
+border=0></A> </NOSCRIPT><!--/ SpyLOG --><!--begin of Top100--><A 
+href="http://top100.rambler.ru/top100/"><IMG height=1 alt="Rambler's Top100" 
+src="Re [exp(x)].files/top100.gif" width=1 border=0></A> <!--end of Top100 code--><!--begin of Top100 logo--><A 
+href="http://top100.rambler.ru/top100/"><IMG height=31 alt="Rambler's Top100" 
+src="Re [exp(x)].files/rambler.gif" width=88 border=0></A> <!--end of Top100 logo --></CENTER></FORM></BODY></HTML>

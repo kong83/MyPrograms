@@ -1,0 +1,697 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.intuit.ru/department/se/pbmsu/5/pbmsu_5.html -->
+<HTML><HEAD><TITLE>INTUIT.ru::Интернет-Университет Информационных Технологий</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251"><LINK 
+href="INTUIT_ruИнтернет-Университет Информационных Технологий.files/printable.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY leftMargin=6 topMargin=6 marginwidth="6" marginheight="6">
+<DIV align=left><SPAN style="FONT-WEIGHT: bold; COLOR: #000000">&nbsp;&nbsp; 
+<SPAN style="FONT-SIZE: 12pt">Интернет-Университет Информационных 
+Технологий</SPAN> </SPAN></DIV>&nbsp;&nbsp; <SPAN 
+style="COLOR: #330066; TEXT-DECORATION: underline" 
+align="rright">http://www.INTUIT.ru</SPAN> 
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD colSpan=3 height=8><IMG height=8 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=1></TD></TR>
+  <TR>
+    <TD class=orang colSpan=3 height=1><IMG height=1 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=1></TD></TR>
+  <TR>
+    <TD colSpan=3 height=8><IMG height=8 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=1></TD></TR>
+  <TR vAlign=top>
+    <TD><IMG height=1 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=8></TD>
+    <TD><!-- content -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD class=head>Основы программирования</TD></TR>
+        <TR>
+          <TD height=4><IMG height=4 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang height=1><IMG height=1 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD height=8><IMG height=8 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD><SPAN class=headsub>5. Лекция: Построение цикла с помощью 
+            инварианта: версия для печати и PDA</SPAN> <BR><SPAN 
+            class=rtxt>Рассматривается схема построения цикла "пока" с помощью 
+            инварианта, т.е. утверждения, которое сохраняется при каждом 
+            выполнении тела цикла. Применение этой схемы дает возможность 
+            сознательно строить алгоритм и доказывать правильность его работы по 
+            тексту, не прибегая к тестированию. Применение схемы иллюстрируется 
+            на примерах: алгоритм Евклида вычисления наибольшего общего 
+            делителя, алгоритм быстрого возведения в степень, расширенный 
+            алгоритм Евклида, приближенное вычисление логарифма без 
+            использования разложения в ряд. </SPAN></TD></TR>
+        <TR>
+          <TD height=8><IMG height=8 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD class=orang height=1><IMG height=1 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD height=8><IMG height=8 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR>
+        <TR>
+          <TD>
+            <H3></H3>
+            <P>Правильное использование конструкции цикла всегда представляет 
+            некоторую трудность. Применение элементарной теории помогает 
+            избежать ошибок и облегчает написание сложных программ.</P>
+            <P>Основная идея состоит в следующем. В процессе выполнения цикла 
+            изменяются значения набора переменных. Надо найти соотношение между 
+            меняющимися переменными, которое остается постоянным. Это 
+            соотношение называется инвариантом цикла. Сознательное построение 
+            цикла "пока" всегда связано с явной формулировкой и использованием 
+            инварианта цикла. </P>
+            <P>Явная формулировка инварианта помогает выписать инициализацию 
+            переменных, выполняемую до начала цикла, и тело цикла. Инициализация 
+            должна обеспечить выполнение инварианта до начала работы цикла. Тело 
+            цикла должно быть сконструировано таким образом, чтобы обеспечить 
+            сохранение инварианта. (Более точно, из того, что инвариант 
+            выполняется до начала исполнения тела цикла, должно следовать 
+            выполнение инварианта после окончания тела цикла. В процессе 
+            исполнения тела цикла инвариант может нарушаться.) </P>
+            <P>Завершение цикла, как правило, связано с ограниченной величиной, 
+            которая монотонно возрастает или монотонно убывает при каждом 
+            выполнении тела цикла. Цикл "пока" завершается, когда условие после 
+            слова "пока" в заголовке цикла становится ложным. Следовательно, это 
+            условие должно прямо или косвенно зависеть от величины, монотонно 
+            убывающей или возрастающей в процессе выполнения цикла. По 
+            достижению ее определенного значения условие должно становиться 
+            ложным. Условием завершения цикла называют отрицание условия, 
+            стоящего после слова "пока" в заголовке цикла. </P>
+            <P>Выполнение инварианта цикла и одновременно условия завершения 
+            должно обеспечивать решение требуемой задачи. </P>
+            <H4>Общая схема</H4>
+            <P>Обозначим через <SPAN class=texample>X</SPAN> множество 
+            всевозможных наборов значений всех переменных, меняющихся в ходе 
+            выполнения цикла. Множество <SPAN class=texample>X</SPAN> иногда 
+            называют фазовым, или конфигурационным, пространством задачи. 
+            Инвариант - это некоторое условие <SPAN class=texample>I(x)</SPAN>, 
+            зависящее от точки <SPAN class=texample>x</SPAN> из множества <SPAN 
+            class=texample>X</SPAN> и принимающее значение "истина" или "ложь". 
+            (Математики называют такие условия предикатами.) В процессе 
+            инициализации точке <SPAN class=texample>x</SPAN> присваивается 
+            такое значение <SPAN class=texample>x<SUB>0</SUB></SPAN>, что 
+            условие <SPAN class=texample>I(x<SUB>0</SUB>)</SPAN> истинно. </P>
+            <P>Обозначим условие завершения цикла через <SPAN 
+            class=texample>Q(x)</SPAN>. Условия <SPAN class=texample>I(x)</SPAN> 
+            и <SPAN class=texample>Q(x)</SPAN> должны быть подобраны таким 
+            образом, чтобы одновременная истинность <SPAN 
+            class=texample>I(x)</SPAN> и <SPAN class=texample>Q(x)</SPAN> 
+            обеспечивала решение требуемой задачи: нахождение точки <SPAN 
+            class=texample>x</SPAN> с требуемыми свойствами. </P>
+            <P>Тело цикла можно трактовать как отображение точки <SPAN 
+            class=texample>x</SPAN> в новую точку <SPAN 
+            class=texample>T(x)</SPAN> из того же множества <SPAN 
+            class=texample>X</SPAN>: </P>
+            <DIV class=example><PRE>T:X <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/srarr.gif" width=15 border=0> X    
+</PRE></DIV>
+            <P>Условие <SPAN class=texample>I(x)</SPAN> является инвариантом для 
+            отображения <SPAN class=texample>T</SPAN>: если <SPAN 
+            class=texample>I(x)</SPAN>, то <SPAN class=texample>I(T(x))</SPAN> 
+            также истинно. </P>
+            <P>Общая схема построения цикла с помощью инварианта выглядит 
+            следующим образом: </P>
+            <DIV class=example><PRE>  x := x0;    // x0 выбирается так, чтобы условие
+              //              I(x0) было истинным
+  утверждение: I(x);
+
+  цикл пока не Q(x)
+  | инвариант: I(x);
+  | x := T(x);  // точка x преобразуется в T(x)
+  конец цикла
+
+  утверждение: Q(x) и I(x);
+  ответ := x;
+</PRE></DIV>
+            <P>Конечно, эта схема не имеет никакой ценности без умения применять 
+            ее на практике. Рассмотрим несколько важных примеров ее 
+            использования. </P>
+            <H4>Алгоритм Евклида вычисления наибольшего общего делителя</H4>
+            <P>Пусть даны два целых числа <SPAN class=texample>m</SPAN> и <SPAN 
+            class=texample>n</SPAN>, хотя бы одно из которых не равно нулю. 
+            Требуется найти их наибольший общий делитель. Напомним, что 
+            наибольшим общим делителем двух чисел <SPAN class=texample>m</SPAN> 
+            и <SPAN class=texample>n</SPAN> называется такой их общий делитель 
+            <SPAN class=texample>d</SPAN>, который делится на любые другие общие 
+            делители <SPAN class=texample>d'</SPAN>. Такое определение НОД 
+            подходит не только для чисел, но и для многочленов, поскольку в нем 
+            не используется сравнение по величине. Наибольший общий делитель 
+            определен с точностью до обратимого множителя; в частности, 
+            поскольку в кольце чисел обратимы только элементы <SPAN 
+            class=texample>±1</SPAN>, НОД целых чисел определен с точностью до 
+            знака. </P>
+            <P>В качестве пространства <SPAN class=texample>X</SPAN> 
+            рассматривается множество пар целых чисел </P>
+            <DIV class=example><PRE>X = {(a,b) | a, b <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/isin.gif" width=8 border=0> Z, a <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/ne.gif" width=8 border=0> 0   или b <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/ne.gif" width=8 border=0> 0} 
+</PRE></DIV>
+            <P>Надо вычислить НОД для заданной пары чисел <SPAN 
+            class=texample>(m,n)</SPAN>. В качестве инварианта используем 
+            утверждение, что НОД текущей пары чисел равен НОД исходной пары: 
+</P>
+            <DIV class=example><PRE>I(a,b): НОД(a,b) = НОД(m,n). 
+</PRE></DIV>
+            <P>Следовательно, цикл надо строить таким образом, чтобы при 
+            изменении переменных <SPAN class=texample>a</SPAN>, <SPAN 
+            class=texample>b</SPAN> наибольший общий делитель пары <SPAN 
+            class=texample>(a,b)</SPAN> оставался неизменным. В качестве 
+            начальной точки <SPAN class=texample>x<SUB>0</SUB></SPAN> 
+            используется пара <SPAN class=texample>(m,n)</SPAN>. </P>
+            <P>Обозначим через <SPAN class=texample>r</SPAN> остаток от деления 
+            <SPAN class=texample>a</SPAN> на <SPAN class=texample>b</SPAN>: </P>
+            <DIV class=example><PRE>a = gb+r, где |r| &lt; |b|.   
+</PRE></DIV>
+            <P>Тогда нетрудно доказать, что <SPAN class=texample>НОД(b,r) = 
+            НОД(a,b)</SPAN>. Достаточно показать, что множества общих делителей 
+            пары <SPAN class=texample>(b,r)</SPAN> и пары <SPAN 
+            class=texample>(a,b)</SPAN> совпадают. Пусть <SPAN 
+            class=texample>d</SPAN> делит <SPAN class=texample>b</SPAN> и <SPAN 
+            class=texample>r</SPAN>. Тогда из равенства <SPAN class=texample>a = 
+            gb+r</SPAN> вытекает, что <SPAN class=texample>d</SPAN> делит <SPAN 
+            class=texample>a</SPAN>. Обратно, пусть <SPAN 
+            class=texample>d</SPAN> делит <SPAN class=texample>a</SPAN> и <SPAN 
+            class=texample>b</SPAN>. Из определения остатка имеем: </P>
+            <DIV class=example><PRE>r = a-gb.
+</PRE></DIV>
+            <P>Так как правая часть равенства делится на <SPAN 
+            class=texample>d</SPAN>, то <SPAN class=texample>r</SPAN> тоже 
+            делится на <SPAN class=texample>d</SPAN>. </P>
+            <P>Итак, при замене пары <SPAN class=texample>(a,b)</SPAN> на пару 
+            <SPAN class=texample>(b,r)</SPAN> НОД не меняется. Обозначим через 
+            <SPAN class=texample>T</SPAN> отображение </P>
+            <DIV class=example><PRE>T:(a,b) <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/srarr.gif" width=15 border=0> (b,r)   
+</PRE></DIV>
+            <P>Условие <SPAN class=texample>I(a,b)</SPAN> является инвариантным 
+            для отображения <SPAN class=texample>T</SPAN>. </P>
+            <P>Осталось только определить условие завершения цикла <SPAN 
+            class=texample>Q(a,b)</SPAN>. Выполнение этого условия должно 
+            обеспечивать решение задачи, т.е. нахождение HOД чисел <SPAN 
+            class=texample>a</SPAN>, <SPAN class=texample>b</SPAN>. Для какой 
+            пары чисел их НОД можно сразу вычислить? Проще всего, когда одно из 
+            чисел равно нулю. В этом случае </P>
+            <DIV class=example><PRE>НОД(a,0) = a 
+</PRE></DIV>
+            <P>Итак, в качестве условия завершения цикла используем условие, что 
+            вторая компонента пары <SPAN class=texample>(a, b)</SPAN> нулевая: 
+            </P>
+            <DIV class=example><PRE>Q(a,b): b = 0 
+</PRE></DIV>
+            <P>Теперь можно выписать алгоритм нахождения наибольшего общего 
+            делителя: </P>
+            <DIV class=example><PRE>цел алгоритм НОД(вх: цел m, цел n)
+| дано: целые числа m, n, хотя бы одно отлично от нуля
+| надо: вычислить наибольший общий делитель пары (m, n)
+начало алгоритма
+| цел a, b, r;
+| // инициализация
+| a := m; b := n;
+| утверждение: НОД(a, b) == НОД(m, n);
+|
+| цикл пока b != 0
+| | инвариант: НОД(a, b) == НОД(m, n)
+| | r := a % b;     // находим остаток от деления a на b
+| | a := b; b := r; // заменяем пару (a, b) на (b, r)
+| конец цикла
+|
+| утверждение: b == 0 и НОД(a, b) == НОД(m, n);
+| ответ := a;
+конец алгоритма
+</PRE></DIV>
+            <P>Алгоритм Евклида - один из самых замечательных алгоритмов теории 
+            чисел и программирования. Работает он исключительно быстро, за 
+            время, линейно зависящее от длины записи входных чисел. 
+            (Действительно, легко показать, что за два выполнения тела цикла 
+            число <SPAN class=texample>b</SPAN> уменьшается не менее, чем в 
+            четыре раза. Следовательно, число выполнений тела цикла в худшем 
+            случае равно длине двоичной записи максимального из чисел <SPAN 
+            class=texample>a</SPAN>, <SPAN class=texample>b</SPAN>.) Это 
+            позволяет применять алгоритм Евклида к очень большим целым числам - 
+            например, к двухсотзначным десятичным. Алгоритм Евклида (более 
+            точно, расширенный алгоритм Евклида, который будет рассмотрен ниже) 
+            применяется для таких больших чисел в схеме кодирования с открытым 
+            ключом RSA, которая в настоящее время широко используется на 
+            практике для защиты информации. </P>
+            <H4>Быстрое возведение в степень</H4>
+            <P>Второй важнейший алгоритм элементарной теории чисел - это 
+            алгоритм быстрого возведения в степень. Наряду с алгоритмом Евклида, 
+            он встречается буквально на каждом шагу, когда речь идет о 
+            применении теории чисел в программировании, - например, в теории 
+            кодирования. </P>
+            <P>Пусть требуется возвести элемент <SPAN class=texample>a</SPAN> в 
+            целую неотрицательную степень <SPAN class=texample>n</SPAN>. В 
+            качестве <SPAN class=texample>a</SPAN> может фигурировать целое или 
+            вещественное число, квадратная матрица, элемент кольца вычетов по 
+            модулю <SPAN class=texample>m</SPAN> и т.п. - требуется только, 
+            чтобы элемент <SPAN class=texample>a</SPAN> принадлежал 
+            алгебраической структуре, в которой определена ассоциативная 
+            операция умножения (т.е. в общем случае, <SPAN 
+            class=texample>a</SPAN> - элемент полугруппы). </P>
+            <P>Идея алгоритма состоит в том, чтобы возвести <SPAN 
+            class=texample>a</SPAN> в произвольную степень, применяя 
+            элементарные операции возведения в квадрат и умножения. </P>
+            <P>В качестве фазового пространства <SPAN class=texample>X</SPAN> 
+            этой задачи рассмотрим множество троек </P>
+            <DIV class=example><PRE>X = {(b,k,p)}.
+</PRE></DIV>
+            <P>Здесь <SPAN class=texample>b</SPAN> выступает в роли текущего 
+            основания степени, <SPAN class=texample>k</SPAN> - в роли текущего 
+            показателя степени, <SPAN class=texample>p</SPAN> - это уже 
+            вычисленная часть степени. Ключевым моментом всегда является 
+            формулировка инварианта цикла: </P>
+            <DIV class=example><PRE>I(b,k,p): b<SUP>k</SUP>*p = a<SUP>n</SUP> = const, 
+</PRE></DIV>
+            <P>т.е. величина <SPAN class=texample>b<SUP>k</SUP>*p</SPAN> 
+            постоянна и равна <SPAN class=texample>a<SUP>n</SUP></SPAN>. Легко 
+            подобрать начальные значения так, чтобы инвариант выполнялся: </P>
+            <DIV class=example><PRE>b<SUB>0</SUB> = a;  k<SUB>0</SUB> = n;  p<SUB>0</SUB> = 1.
+I(b<SUB>0</SUB>,k<SUB>0</SUB>,p<SUB>0</SUB>) = I(a,n,1): a<SUP>n</SUP>*1 = a<SUP>n</SUP>  
+</PRE></DIV>
+            <P>Условие завершения совместно с выполнением инварианта должно 
+            обеспечить легкое решение требуемой задачи, т.е. вычисление <SPAN 
+            class=texample>a<SUP>n</SUP></SPAN>. Действительно, если <SPAN 
+            class=texample>k = 0</SPAN>, то из инварианта следует, что </P>
+            <DIV class=example><PRE>b<SUP>0</SUP>*p = p = a<SUP>n</SUP>,  
+</PRE></DIV>
+            <P>т.е. искомая величина содержится в переменной <SPAN 
+            class=texample>p</SPAN>. Итак, условие завершения состоит в 
+            равенстве нулю числа <SPAN class=texample>k</SPAN>: </P>
+            <DIV class=example><PRE>Q(b,k,p): k = 0
+</PRE></DIV>
+            <P>Осталось написать преобразование <SPAN class=texample>T</SPAN> 
+            точки <SPAN class=texample>x = (b,k,p)</SPAN>, которое сохраняет 
+            инвариант и одновременно уменьшает <SPAN class=texample>k</SPAN>. 
+            Определим преобразование <SPAN class=texample>T</SPAN> следующим 
+            образом: </P>
+            <DIV class=example><PRE>T(b,k,p) = (b*b, k/2, p),     если k четное
+T(b,k,p) = (b, k-1, p*b),   если k нечетное
+</PRE></DIV>
+            <P>Легко видеть, что инвариант сохраняется и <SPAN 
+            class=texample>k</SPAN> монотонно убывает. Итак, выпишем алгоритм 
+            быстрого возведения в степень для случая вещественного основания: 
+            </P>
+            <DIV class=example><PRE>вещ алг. быстрое возведение в степень(вх: вещ a, цел n)
+| дано: основание a и показатель степени n &gt;= 0
+| надо: вычислить a в степени n
+начало алгоритма
+| вещ b, p; цел k;
+|
+| // инициализация
+| b := a; p := 1.0; k := n;
+| утверждение: b^k * p == a^n;
+|
+| цикл пока k &gt; 0
+| | инвариант: b^k * p == a^n;
+| | если k четное
+| | | то
+| | |   k := k / 2;
+| | |   b := b * b;
+| | | иначе
+| | |   k := k - 1;
+| | |   p := p * b;
+| | конец если
+| конец цикла
+|
+| утверждение: k == 0 и b^k * p == a^n;
+| ответ := p;
+конец алгоритма
+</PRE></DIV>
+            <H4>Вычисление логарифма без использования разложения в ряд</H4>
+            <P>Схема построения цикла с помощью инварианта позволяет легко 
+            написать алгоритм вычисления логарифма заданного числа без 
+            использования разложения в ряд. </P>
+            <P>Пусть задано вещественное число <SPAN class=texample>x</SPAN>. 
+            Требуется вычислить логарифм числа <SPAN class=texample>x</SPAN> по 
+            основанию <SPAN class=texample>a</SPAN> c точностью <SPAN 
+            class=texample>&#949;</SPAN>, где <SPAN class=texample>&#949;</SPAN> - 
+            некоторое положительное очень маленькое число. Для определенности, 
+            пусть <SPAN class=texample>a&gt;1</SPAN> (для <SPAN 
+            class=texample>a&lt;1</SPAN> можно воспользоваться тождеством <SPAN 
+            class=texample>log<SUB>1/a</SUB>x = -log<SUB>a</SUB>x</SPAN>). </P>
+            <P>Из определения логарифма следует, что надо найти число <SPAN 
+            class=texample>y</SPAN> такое, что </P>
+            <DIV class=example><PRE>a<SUP>y</SUP> = x.
+</PRE></DIV>
+            <P>Нам достаточно, чтобы это равенство выполнялось приближенно. В 
+            качестве инварианта используем условие </P>
+            <DIV class=example><PRE>a<SUP>y</SUP>z<SUP>t</SUP> = x = const. 
+</PRE></DIV>
+            <P>Таким образом, в цикле будут меняться три переменные </P>
+            <DIV class=example><PRE>(y,z,t),
+</PRE></DIV>
+            <P>и инвариант записывается в виде </P>
+            <DIV class=example><PRE>I(y,z,t): a<SUP>y</SUP>z<SUP>t</SUP> = x   
+</PRE></DIV>
+            <P>Начальные значения переменных <SPAN class=texample>y</SPAN>, 
+            <SPAN class=texample>z</SPAN>, <SPAN class=texample>t</SPAN> 
+            выбираются так, чтобы выполнялся инвариант: </P>
+            <DIV class=example><PRE>y<SUB>0</SUB> = 0,  z<SUB>0</SUB> = x,  t<SUB>0</SUB> = 1. 
+</PRE></DIV>
+            <P>Определим условие завершения цикла <SPAN 
+            class=texample>Q(y,z,t)</SPAN>. Необходимо, чтобы искомая величина 
+            по окончанию цикла содержалась в переменной <SPAN 
+            class=texample>y</SPAN>. Следовательно, величина <SPAN 
+            class=texample>z<SUP>t</SUP></SPAN> должна быть близка к единице: 
+            тогда приблизительно выполняется равенство </P>
+            <DIV class=example><PRE>a<SUP>y</SUP> <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/cong.gif" width=10 border=0> a<SUP>y</SUP>z<SUP>t</SUP> = x
+</PRE></DIV>
+            <P>т.е. <SPAN class=texample>y</SPAN> приближенно равен искомому 
+            логарифму. Для того, чтобы величина <SPAN 
+            class=texample>z<SUP>t</SUP></SPAN> была близка к единице, нужно, 
+            чтобы показатель степени <SPAN class=texample>t</SPAN> был близок к 
+            нулю, а основание <SPAN class=texample>z</SPAN> было не очень велико 
+            и не очень мало. Для этого достаточно выполнения трех неравенств 
+</P>
+            <DIV class=example><PRE>|t| &lt; &#949;,  1/a &lt; z &lt; a   
+</PRE></DIV>
+            <P>Можно доказать строго, что при выполнении этих неравенств, а 
+            также условия <SPAN class=texample>a<SUP>y</SUP>z<SUP>t</SUP> = 
+            x</SPAN>, величина <SPAN class=texample>y</SPAN> отличается от <SPAN 
+            class=texample>log<SUB>a</SUB>x</SPAN> не больше чем на <SPAN 
+            class=texample>&#949;</SPAN>. </P>
+            <P>Выполнение этих трех неравенств и являются условием завершения 
+            цикла: </P>
+            <DIV class=example><PRE>Q(y,z,t):  |t| &lt; &#949; и 1/a &lt; z и z &lt; a    
+</PRE></DIV>
+            <P>Наконец, тело цикла должно преобразовывать переменные <SPAN 
+            class=texample>(y,z,t)</SPAN> так, чтобы абсолютная величина <SPAN 
+            class=texample>t</SPAN> монотонно убывала, а переменная <SPAN 
+            class=texample>z</SPAN> рано или поздно попадала бы в интервал <SPAN 
+            class=texample>(1/a,a)</SPAN>, и при этом сохранялся инвариант. 
+            Такое преобразование <SPAN class=texample>T</SPAN> легко 
+            выписывается по инварианту цикла: </P>
+            <DIV class=example><PRE>T(y,z,t) = (y+t, z/a, t), если z <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/ge.gif" width=8 border=0> a 
+T(y,z,t) = (y-t, z*a, t), если z <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/le.gif" width=8 border=0> 1/a
+T(y,z,t) = (y, z*z, t/2), если 1/a &lt; z &lt; a     
+</PRE></DIV>
+            <P>Заметим, что при применении преобразования <SPAN 
+            class=texample>T</SPAN> некоторая величина как бы перетекает из 
+            одних переменных в другие, при этом равенство <SPAN 
+            class=texample>a<SUP>y</SUP>z<SUP>t</SUP> = x</SPAN> остается 
+            неизменным. </P>
+            <P>Теперь можно выписать алгоритм вычисления логарифма: </P>
+            <DIV class=example><PRE>вещ алгоритм логарифм(вх: вещ x, вещ a, вещ eps)
+| дано: x &gt; 0, a &gt; 1, eps &gt; 0
+| надо: вычислить log_a x с точностью eps
+начало алгоритма
+| вещ y, z, t;
+|
+| // инициализация
+| y := 0.0; z := x; t := 1.0;
+| утверждение: a^y * z^t == x;
+|
+| цикл пока |t| &gt;= eps или z &lt;= 1.0/a или z &gt;= a
+| | инвариант: a^y * z^t == x;
+| | если z &gt;= a
+| | | то
+| | |   z := z/a; y := y + t;
+| | иначе если z &lt;= 1.0/a
+| | | то
+| | |   z := z*a; y := y - t;
+| | иначе
+| | |   z := z*z; t := t/2.0;
+| | конец если
+| конец цикла
+|
+| утверждение: |t| &lt; eps  и
+|              z &gt; 1.0/a  и  z &lt; a  и
+|              a^y * z^t == x;
+| ответ := y;
+конец алгоритма
+</PRE></DIV>
+            <H4>Расширенный алгоритм Евклида</H4>
+            <P>Один из важнейших результатов элементарной теории чисел 
+            утверждает, что наибольший общий делитель двух целых чисел 
+            выражается в виде их линейной комбинации с целыми коэффициентами. 
+            Пусть <SPAN class=texample>m</SPAN> и <SPAN class=texample>n</SPAN> 
+            - два целых числа, хотя бы одно из которых не равно нулю. Тогда их 
+            наибольший общий делитель <SPAN class=texample>d = НОД(m,n)</SPAN> 
+            выражается в виде </P>
+            <DIV class=example><PRE>d = um+vn,
+</PRE></DIV>
+            <P>где <SPAN class=texample>u</SPAN> и <SPAN class=texample>v</SPAN> 
+            - некоторые целые числа. Результат этот очень важен для практики, 
+            т.к. позволяет вычислить обратный элемент к <SPAN 
+            class=texample>n</SPAN> в кольце вычетов по модулю <SPAN 
+            class=texample>m</SPAN>. Действительно, пусть числа <SPAN 
+            class=texample>m</SPAN> и <SPAN class=texample>n</SPAN> взаимно 
+            просты, т.е. <SPAN class=texample>НОД(m,n) = 1</SPAN>. Тогда </P>
+            <DIV class=example><PRE>1 = um+vn, 
+</PRE></DIV>
+            <P>откуда следует </P>
+            <DIV class=example><PRE>vn = 1-um  <IMG style="POSITION: relative; TOP: 2px" height=12 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/rArr.gif" width=12 border=0>     
+vn <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/equiv.gif" width=8 border=0> 1(mod m) 
+</PRE></DIV>
+            <P>Нахождение обратного элемента в кольце вычетов <SPAN 
+            class=texample>Z<SUB>m</SUB></SPAN> применяется во многих дискретных 
+            алгоритмах, например, в схеме кодирования с открытым ключом. </P>
+            <P>Для вычисления наибольшего общего делителя <SPAN 
+            class=texample>d</SPAN> и одновременно чисел <SPAN 
+            class=texample>u</SPAN> и <SPAN class=texample>v</SPAN> используется 
+            так называемый <B>расширенный алгоритм Евклида</B>. В обычном 
+            алгоритме Евклида пара чисел <SPAN class=texample>(a,b)</SPAN> в 
+            цикле заменяется на пару <SPAN class=texample>(b,r)</SPAN>, где 
+            <SPAN class=texample>r</SPAN> - остаток от деления <SPAN 
+            class=texample>a</SPAN> на <SPAN class=texample>b</SPAN>, при этом 
+            наибольший общий делитель у обеих пар одинаковый. Начальные значения 
+            переменных <SPAN class=texample>a</SPAN> и <SPAN 
+            class=texample>b</SPAN> равны <SPAN class=texample>m</SPAN> и <SPAN 
+            class=texample>n</SPAN> соответственно. Алгоритм заканчивается, 
+            когда <SPAN class=texample>b</SPAN> становится равным нулю, при этом 
+            <SPAN class=texample>a</SPAN> будет содержать наибольший общий 
+            делитель. </P>
+            <P>Идея расширенного алгоритма Евклида заключается в том, что на 
+            любом шаге алгоритма хранятся коэффициенты, выражающие текущие числа 
+            <SPAN class=texample>a</SPAN> и <SPAN class=texample>b</SPAN> через 
+            исходные числа <SPAN class=texample>m</SPAN> и <SPAN 
+            class=texample>n</SPAN>. При замене пары <SPAN 
+            class=texample>(a,b)</SPAN> на пару <SPAN 
+            class=texample>(b,r)</SPAN> эти коэффициенты перевычисляются. </P>
+            <P>Итак, в алгоритме участвуют переменные <SPAN 
+            class=texample>a</SPAN>, <SPAN class=texample>b</SPAN>, <SPAN 
+            class=texample>u<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>v<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>u<SUB>2</SUB></SPAN>, <SPAN 
+            class=texample>v<SUB>2</SUB></SPAN>, для которых выполняется 
+            следующий инвариант цикла: </P>
+            <DIV class=example><PRE>I(a, b, u<SUB>1</SUB>, v<SUB>1</SUB>, u<SUB>2</SUB>, v<SUB>2</SUB>):  НОД(a,b) = НОД(m,n)  
+              a = u<SUB>1</SUB>m+v<SUB>1</SUB>n
+              b = u<SUB>2</SUB>m+v<SUB>2</SUB>n
+</PRE></DIV>
+            <P>Начальные значения этих переменных обеспечивают выполнение 
+            инварианта: </P>
+            <DIV class=example><PRE>a = m, b = n,
+u<SUB>1</SUB> = 1, v<SUB>1</SUB> = 0,
+u<SUB>2</SUB> = 0, v<SUB>2</SUB> = 1.
+</PRE></DIV>
+            <P>Условием завершения цикла, как и в обычном алгоритме Евклида, 
+            является равенство нулю переменной <SPAN class=texample>b</SPAN>: 
+            </P>
+            <DIV class=example><PRE>Q(a, b, u<SUB>1</SUB>, v<SUB>1</SUB>, u<SUB>2</SUB>, v<SUB>2</SUB>):  b = 0. 
+</PRE></DIV>
+            <P>Осталось написать тело цикла, сохраняющее инвариант и уменьшающее 
+            абсолютную величину переменной <SPAN class=texample>b</SPAN>. Это 
+            нетрудно сделать, исходя из инварианта цикла. В обычном алгоритме 
+            Евклида пара <SPAN class=texample>(a,b)</SPAN> заменяется на <SPAN 
+            class=texample>(b,r)</SPAN>, где <SPAN class=texample>r</SPAN> - 
+            остаток от деления <SPAN class=texample>a</SPAN> на <SPAN 
+            class=texample>b</SPAN>. </P>
+            <DIV class=example><PRE>a = gb+r,  |r| &lt; |b|.    
+</PRE></DIV>
+            <P>Здесь <SPAN class=texample>g</SPAN> равняется целой части 
+            частного от деления <SPAN class=texample>a</SPAN> на <SPAN 
+            class=texample>b</SPAN>. Заметим, что в программировании, в отличие 
+            от школьной математики, операция взятия целой части перестановочна с 
+            операцией изменения знака: </P>
+            <DIV class=example><PRE>целая часть(-x) = - целая часть(x) 
+</PRE></DIV>
+            <P>Например, <SPAN class=texample>целая часть(-3.7) = -3</SPAN>. Это 
+            позволяет работать с отрицательными числами так же, как и с 
+            положительными, т.е. вообще не следить за знаком! Отметим также, что 
+            в большинстве языков программирования считается, что результат любой 
+            операции с целыми числами является целым числом, например, <SPAN 
+            class=texample>8/3 = 2</SPAN>. </P>
+            <P>Переменная <SPAN class=texample>g</SPAN> вычисляется как целая 
+            часть частного от деления <SPAN class=texample>a</SPAN> на <SPAN 
+            class=texample>b</SPAN>: </P>
+            <DIV class=example><PRE>g = целая часть (a/b) 
+</PRE></DIV>
+            <P>Выразим остаток <SPAN class=texample>r</SPAN> в виде линейной 
+            комбинации <SPAN class=texample>a</SPAN> и <SPAN 
+            class=texample>b</SPAN>: </P>
+            <DIV class=example><PRE>r = a-gb
+</PRE></DIV>
+            <P>Используя инвариант цикла, можно выразить <SPAN 
+            class=texample>r</SPAN> через исходные числа <SPAN 
+            class=texample>m</SPAN> и <SPAN class=texample>n</SPAN>: </P>
+            <DIV class=example><PRE>r = a-gb = (u<SUB>1</SUB>m+v<SUB>1</SUB>n)-g(u<SUB>2</SUB>m+v<SUB>2</SUB>) =
+= (u<SUB>1</SUB>-gu<SUB>2</SUB>)m+(v<SUB>1</SUB>-gv<SUB>2</SUB>)n. 
+</PRE></DIV>
+            <P>Через <SPAN class=texample>u'<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>v'<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>u'<SUB>2</SUB></SPAN>, <SPAN 
+            class=texample>v'<SUB>2</SUB></SPAN> обозначаются новые значения 
+            переменных <SPAN class=texample>u<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>v<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>u<SUB>2</SUB></SPAN>, <SPAN 
+            class=texample>v<SUB>2</SUB></SPAN>. При замене <SPAN 
+            class=texample>(a,b) <IMG style="POSITION: relative; TOP: 2px" 
+            height=18 alt="" 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/srarr.gif" 
+            width=15 border=0> (b,r)</SPAN> они вычисляются следующим образом: 
+            </P>
+            <DIV class=example><PRE>u'<SUB>1</SUB> = u<SUB>2</SUB>,  v'<SUB>1</SUB> = v<SUB>2</SUB>
+u'<SUB>2</SUB> = u<SUB>1</SUB>-gu<SUB>2</SUB>, v'<SUB>2</SUB> = v<SUB>1</SUB>-gv<SUB>2</SUB>   
+</PRE></DIV>
+            <P>По завершению цикла ответ будет находиться в переменных <SPAN 
+            class=texample>a</SPAN> (НОД исходных чисел <SPAN 
+            class=texample>m</SPAN> и <SPAN class=texample>n</SPAN>), <SPAN 
+            class=texample>u<SUB>1</SUB></SPAN>, <SPAN 
+            class=texample>v<SUB>1</SUB></SPAN> (коэффициенты выражения НОД 
+            через <SPAN class=texample>m</SPAN> и <SPAN 
+            class=texample>n</SPAN>). </P>
+            <P>Выпишем алгоритм: </P>
+            <DIV class=example><PRE>алгоритм Расширенный алгоритм Евклида(
+    вх: цел m, цел n,
+    вых: цел d, цел u, цел v
+)
+| дано: целые числа m, n, хотя бы одно отлично от нуля;
+| надо: вычислить d = НОД(m, n) и найти u, v такие, что
+|                 d = u * m + v * n;
+начало алгоритма
+| цел a, b, q, r, u1, v1, u2, v2;
+| цел t;        // вспомогательная переменная
+| // инициализация
+| a := m; b := n;
+| u1 := 1; v1 := 0;
+| u2 := 0; v2 := 1;
+| утверждение: НОД(a, b) == НОД(m, n)  и
+|              a == u1 * m + v1 * n    и
+|              b == u2 * m + v2 * n;
+|
+| цикл пока b != 0
+| | инвариант: НОД(a, b) == НОД(m, n)  и
+| |            a == u1 * m + v1 * n    и
+| |            b == u2 * m + v2 * n;
+| | q := a / b; // целая часть частного от деления a на b
+| | r := a % b; // остаток от деления a на b
+| | a := b; b := r;    // заменяем пару (a, b) на (b, r)
+| |
+| | // Вычисляем новые значения переменных u1, u2
+| | t := u2;           // запоминаем старое значение u2
+| | u2 := u1 - q * u2; // вычисляем новое значение u2
+| | u1 := t;           // новое значение u1 := старое
+| |                    //                 значение u2
+| | // Аналогично находим новые значения переменных v1, v2
+| | t := v2;
+| | v2 := v1 - q * v2;
+| | v1 := t;
+| конец цикла
+|
+| утверждение: b == 0                 и
+|              НОД(a, b) == НОД(m, n) и
+|              a == u1 * m + v1 * n;
+| // Выдаем ответ
+| d := a;
+| u := u1; v := v1;
+конец алгоритма
+</PRE></DIV>
+            <H4>Нахождение корня функции методом деления отрезка пополам</H4>
+            <P>Рассмотрим еще один пример использования схемы построения цикла с 
+            помощью инварианта, часто встречающийся в реальных программах. Пусть 
+            <SPAN class=texample>y = f(x)</SPAN> - <B>непрерывная</B> функция от 
+            вещественного аргумента, принимающая вещественные значения. Пусть 
+            известно, что на заданном отрезке <SPAN class=texample>[a,b]</SPAN> 
+            она принимает значения разных знаков. Из непрерывности функции <SPAN 
+            class=texample>f</SPAN> следует, что она имеет по крайней мере один 
+            корень на этом отрезке. Требуется вычислить корень функции <SPAN 
+            class=texample>f</SPAN> с заданной точностью <SPAN 
+            class=texample>&#949;</SPAN>. </P>
+            <P>Идея алгоритма состоит в том, чтобы поделить отрезок пополам и 
+            выбрать ту половину отрезка, на которой функция принимает значения 
+            разных знаков. Эта операция повторяется до тех пор, пока длина 
+            отрезка не станет меньше, чем <SPAN class=texample>&#949;</SPAN>. </P>
+            <P>Пусть концы текущего отрезка хранятся в переменных <SPAN 
+            class=texample>x<SUB>0</SUB></SPAN>, <SPAN 
+            class=texample>x<SUB>1</SUB></SPAN>. Инвариантом цикла является 
+            утверждение о том, что функция принимает значения разных знаков в 
+            точках <SPAN class=texample>x<SUB>0</SUB></SPAN>, <SPAN 
+            class=texample>x<SUB>1</SUB></SPAN>: </P>
+            <DIV class=example><PRE>I(x<SUB>0</SUB>, x<SUB>1</SUB>): f(x<SUB>0</SUB>)*f(x<SUB>1</SUB>) <IMG style="POSITION: relative; TOP: 2px" height=18 alt="" src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/le.gif" width=8 border=0> 0 
+</PRE></DIV>
+            <P>Начальные значения: </P>
+            <DIV class=example><PRE>x<SUB>0</SUB> = a,  x<SUB>1</SUB> = b 
+</PRE></DIV>
+            <P>Условием завершения цикла является утверждение о том, что длина 
+            отрезка меньше <SPAN class=texample>&#949;</SPAN>: </P>
+            <DIV class=example><PRE>Q(x<SUB>0</SUB>, x<SUB>1</SUB>): |x<SUB>1</SUB>-x<SUB>0</SUB>| &lt; &#949;       
+</PRE></DIV>
+            <P>(знак модуля используется потому, что в условии задачи не 
+            требуется выполнения неравенства <SPAN class=texample>a &lt; 
+            b</SPAN>). </P>
+            <P>Выпишем алгоритм вычисления корня функции с заданной точностью: 
+            </P>
+            <DIV class=example><PRE>вещ корень функции на отрезке(вх: вещ a, вещ b, вещ eps)
+| дано: f(a) * f(b) &lt;= 0,
+|       eps &gt; 0 - очень маленькое число;
+| надо: вычислить корень функции f на отрезке [a, b] с
+|       точностью eps;
+начало алгоритма
+| вещ x0, x1, c;
+|
+| // инициализация
+| x0 := a; x1 := b;
+| утверждение: f(x0) * f (x1) &lt;= 0;
+|
+| цикл пока |x1 - x0| &gt;= eps
+| | инвариант: f(x0) * f (x1) &lt;= 0;
+| | c := (x0 + x1) / 2; // Середина отрезка [x0, x1]
+| | если f(x0) * f(c) &lt;= 0
+| | | то
+| | |   x1 := c
+| | | иначе
+| | |   утверждение: f(c) * f(x1) &lt;= 0
+| | |   x0 := c
+| | конец если
+| конец цикла
+|
+| утверждение: |x1 - x0| &lt; eps  и
+|              f(x0) * f (x1) &lt;= 0;
+| ответ := (x0 + x1) / 2;
+конец алгоритма
+</PRE></DIV></TD></TR>
+        <TR>
+          <TD height=8><IMG height=8 
+            src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+            width=1></TD></TR></TBODY></TABLE><!-- /content --></TD>
+    <TD><IMG height=1 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=8></TD></TR></TBODY></TABLE><!-- /bottom -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=orang height=1><IMG height=1 
+      src="INTUIT_ruИнтернет-Университет Информационных Технологий.files/empty.gif" 
+      width=1></TD></TR>
+  <TR>
+    <TD class=ltxt align=middle>© 2003-2007 INTUIT.ru. Все права 
+  защищены.</TD></TR></TBODY></TABLE><!-- /bottom --></BODY></HTML>

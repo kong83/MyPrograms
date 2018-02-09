@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16D1FD4C-2142-4005-84E7-143505B6CE21}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TicTacToe</RootNamespace>
+    <AssemblyName>TicTacToe</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>xo.ico</ApplicationIcon>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckFieldClass.cs" />
+    <Compile Include="ComputerClass.cs" />
+    <Compile Include="InvestigateFieldClass.cs" />
+    <Compile Include="PaintClass.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerConnectForm.resx">
+      <DependentUpon>ServerConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ServerConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerConnectForm.Designer.cs">
+      <DependentUpon>ServerConnectForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\connect.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\connectDel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\setServer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\remi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\start.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\stop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\cross.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\nil.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Pictures\Icons\cancel.ico" />
+    <None Include="Pictures\Icons\ok.ico" />
+    <None Include="Pictures\Icons\ShowLastStep.ico" />
+    <Content Include="xo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FromClientClass\FromClientClass.csproj">
+      <Project>{B0CFEF29-3431-46D4-9D4E-FB2CFB988260}</Project>
+      <Name>FromClientClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FromServerClass\FromServerClass.csproj">
+      <Project>{DDB17562-2AA8-4A18-B433-FA1065121E7F}</Project>
+      <Name>FromServerClass</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

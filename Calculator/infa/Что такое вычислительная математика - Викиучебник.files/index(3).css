@@ -1,0 +1,95 @@
+@import url( http://ru.wikipedia.org/w/index.php?title=MediaWiki:Common.css&action=raw&ctype=text/css&smaxage=2678400 );
+@import url( http://ru.wikibooks.org/w/index.php?title=MediaWiki:Common.css&action=raw&ctype=text/css&smaxage=2678400 );
+BODY {
+	BACKGROUND-IMAGE: none! important; BACKGROUND-COLOR: #f3f3f2
+}
+#dobro_doshli {
+	MARGIN-TOP: 0.8em
+}
+#f-poweredbyico {
+	DISPLAY: none
+}
+#f-copyrightico {
+	DISPLAY: none
+}
+H1 {
+	BORDER-TOP-STYLE: none! important; BORDER-RIGHT-STYLE: none! important; BORDER-LEFT-STYLE: none! important; BORDER-BOTTOM-STYLE: none! important
+}
+#content {
+	MARGIN-LEFT: 11.6em
+}
+.pBody {
+	BACKGROUND: none transparent scroll repeat 0% 0%; MARGIN: 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.portlet UL {
+	MARGIN-LEFT: 0.6em; LIST-STYLE-TYPE: none
+}
+.portlet A {
+	COLOR: #027; TEXT-DECORATION: none
+}
+.portlet A:link {
+	COLOR: #027; TEXT-DECORATION: none
+}
+.portlet A:visited {
+	COLOR: #204
+}
+.portlet A:hover {
+	COLOR: #07d; TEXT-DECORATION: underline
+}
+.portlet H5 {
+	DISPLAY: none
+}
+#p-lang H5 {
+	DISPLAY: block
+}
+#body {
+	BACKGROUND: #f3f3f2
+}
+#footer {
+	BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+PRE {
+	PADDING-BOTTOM: 0.5em; BORDER-TOP-STYLE: none; LINE-HEIGHT: 140%; PADDING-TOP: 0.3em; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#p-cactions LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: visible; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#p-cactions LI.selected {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+#p-cactions LI A {
+	BORDER-RIGHT: transparent 1px solid; PADDING-RIGHT: 0.8em! important; BORDER-TOP: transparent 1px solid; PADDING-LEFT: 0.8em! important; Z-INDEX: 3; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; MARGIN: 0px; TEXT-TRANSFORM: lowercase; BORDER-LEFT: transparent 1px solid; COLOR: #149; PADDING-TOP: 0px! important; BORDER-BOTTOM: transparent 1px solid; POSITION: relative; TEXT-DECORATION: none; moz-border-radius-topright: 3px; moz-border-radius-topleft: 3px
+}
+#p-cactions LI.selected A {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; Z-INDEX: 3; BACKGROUND: #fff; BORDER-LEFT: #999 1px solid; BORDER-BOTTOM: white 1px solid
+}
+#p-cactions .new A {
+	COLOR: #5a0000
+}
+#p-cactions LI A:hover {
+	BORDER-RIGHT: #89b 1px solid; BORDER-TOP: #89b 1px solid; Z-INDEX: 3; BACKGROUND: #fff; BORDER-LEFT: #89b 1px solid; COLOR: #06a; BORDER-BOTTOM: #fafafa 1px solid; TEXT-DECORATION: none
+}
+#p-cactions LI.selected A:hover {
+	BORDER-RIGHT: #755 1px solid; BORDER-TOP: #755 1px solid; Z-INDEX: 3; BACKGROUND: #fff; BORDER-LEFT: #755 1px solid; BORDER-BOTTOM: #fffef0 1px solid; TEXT-DECORATION: none
+}
+#p-cactions .new A:hover {
+	COLOR: #900
+}
+LI#ca-talk {
+	MARGIN-RIGHT: 3%
+}
+LI#ca-watch {
+	MARGIN-LEFT: 0.7%
+}
+LI#ca-unwatch {
+	MARGIN-LEFT: 0.7%
+}
+LI#ca-varlang-0 {
+	MARGIN-LEFT: 0.7%
+}
+LI#ca-print {
+	MARGIN-LEFT: 0.7%
+}
+#bodyContent A.external {
+	PADDING-RIGHT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #07a
+}

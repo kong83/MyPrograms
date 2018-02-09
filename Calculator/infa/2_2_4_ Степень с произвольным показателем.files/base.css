@@ -1,0 +1,54 @@
+A:visited {
+	COLOR: #729780
+}
+.em {
+	FONT-WEIGHT: bold
+}
+.emphasis {
+	
+}
+.subtitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; FONT-STYLE: italic
+}
+.term {
+	FONT-WEIGHT: bold; COLOR: #089598; FONT-STYLE: italic
+}
+.th {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #000000; FONT-FAMILY: times; BACKGROUND-COLOR: #7ccacb; TEXT-ALIGN: center
+}
+.m {
+	FONT-STYLE: italic
+}
+.nom {
+	FONT-STYLE: normal
+}
+.menulisting {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; FONT-FAMILY: arial
+}
+.filelisting {
+	FONT-SIZE: 11pt; FONT-FAMILY: Courier New
+}
+.codelisting {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier New
+}
+.keylisting {
+	FONT-SIZE: 12pt; FONT-FAMILY: arial
+}
+.menu {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; FONT-FAMILY: arial
+}
+.file {
+	FONT-SIZE: 11pt; FONT-FAMILY: Courier New
+}
+.code {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier New
+}
+.key {
+	FONT-SIZE: 12pt; FONT-FAMILY: arial
+}
+.bold {
+	FONT-WEIGHT: bold
+}
+.italic {
+	FONT-STYLE: italic
+}

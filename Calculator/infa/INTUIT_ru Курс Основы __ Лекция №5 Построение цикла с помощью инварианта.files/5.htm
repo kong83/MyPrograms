@@ -1,0 +1,789 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<TITLE>INTUIT.ru: Курс: Основы ..: Лекция №5: Построение цикла с помощью инварианта</TITLE>
+
+<meta name=description content="INTUIT.ru: учебный курс: Основы программирования. Лекция: Построение цикла с помощью инварианта">
+
+<meta name=keywords content="учебный курс Основы программирования Построение цикла с помощью инварианта
+INTUIT"> 
+
+<link rel="shortcut icon" href="/favicon.ico">
+
+<META http-equiv="Pragma" CONTENT="no-cache">
+<META http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META NAME="Pragma" CONTENT="no-cache">
+<META NAME="Cache-Control" CONTENT="no-cache">
+<link href="/ssi/style.css" type="text/css" rel="stylesheet">
+</head>
+<body leftmargin="6" topmargin="6" marginheight="6" marginwidth="6" bgcolor="white">
+<!---->
+<!--header-->
+<!-- topbox -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="white">
+<tr>
+<td class="border">
+
+<!-- header:logo, menu -->
+<table border="0" cellpadding="6" cellspacing="0" width="100%">
+<tr valign="top">
+<td rowspan=3><a href="/"><img src="/img/logo.gif" border="0" width="285" height="52" alt="Интернет Университет информационных технологий"></a></td>
+<td valign=top align=right class="epigraph">Твой путь к знаниям</a></td>
+</tr>
+<tr valign=bottom align=right>
+<td class="topnavi""> 
+<a href="/user/login/">регистрация</a> || 
+<a href="/user/speciality/">зачетка</a> | 
+<a href="/user/diploms/">дипломы</a> || 
+<a href="/user.html">настройки</a> | 
+<a href="/user/cart/">корзина</a> |  
+<a href="/shop/order/history.xhtml">заказы</a> | 
+<a href="/user/account/">личный счет</a>  
+</td>
+</tr>
+</table>
+<!-- //header:logo, menu -->
+
+<!-- menu -->
+<table border="0" cellpadding="" cellspacing="0" width="100%" bgcolor="#ff9900" background="/img/bgtopmenu.gif">
+<tr>
+<td align="right" height="24" class="topmenu">
+<a href="/courses.html">Курсы</a> |
+<a href="/speciality/">Учебные программы</a> |
+<a href="/shop/">Учебники</a> |
+<a href="/news.html">Новости</a> |
+<a href="http://forum.intuit.ru/">Форум</a> |
+<a href="/help/">Помощь</a>&nbsp;&nbsp;
+</td></tr></table>
+<!-- //menu -->
+</td>
+</tr>
+</table>
+<!-- //topbox -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="center" class="menu">
+<table border=0 cellpadding=1 cellspacing=0 width=100% class="orang"><tr><td>
+<table border=0 cellpadding=4 cellspacing=0 width=100% bgcolor="#eeff99">
+<tr align=center>
+<td width="100%" class="rtitle">
+<font class="rtxt"><a href="http://www.intuit.ru/shop/complect.xhtml?id=180"><b><font color="#990000">ТЕПЕРЬ 2 CD: ВСЕ 125 КУРСОВ</font></b>!</a>
+<!--
+|| <a href="http://www.intuit.ru/job/">Работа в INTUIT.ru</a>
+-->
+</font>
+</td>
+</tr></table>
+</td></tr></table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!--/header-->
+<!---->
+<!--/menu-->
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="73">
+<tr valign="top">
+<td width="6"><img src="/img/empty.gif" height="1" width="6"></td>
+<td width="180">
+<!-- leftcolumn -->
+<table border="0" cellpadding="0" cellspacing="0" background="" width="100%">
+
+		<tr valign="middle">
+	<td class="orang" height="24">&nbsp;&nbsp;Лекции</td>
+	</tr>
+	<tr>
+	<td>
+		<table border="0" cellpadding="0" cellspacing="0">
+
+		<tr valign=top>
+
+		<td colspan=4>
+<a href="/department/se/pbmsu/" class="spec">Основы программирования</a>
+</td>
+		</tr>
+<tr valign=top><td colspan="4" height="6"><img src="/img/empty.gif" width="1" height="6"></td></tr>
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">1.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/810/" title="Общее понятие алгоритма. Управляющие конструкции алгоритмического языка. Понятие переменной" class="llecture">Общее понятие алгоритма. Управля...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">2.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/813/" title="Типы переменных. Целые и вещественные переменные, представление целых и вещественных чисел в компьютере" class="llecture">Типы переменных. Целые и веществ...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">3.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/814/" title="Символьные и логические переменные и выражения. Массивы и текстовые строки" class="llecture">Символьные и логические переменн...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">4.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/815/" title="Вычисление функций на последовательностях" class="llecture">Вычисление функций на последоват...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">5.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+Построение цикла с помощью инварианта
+
+
+
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">6.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/817/" title="Устройство компьютера. Оперативная память, процессор, регистры процессора. Аппаратный стек" class="llecture">Устройство компьютера. Оперативн...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">7.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/818/" title="Машинно-независимый Ассемблер RTL и Ассемблер Intel 80x86. Внешние устройства и прерывания. Виртуальная память и поддержка параллельных задач" class="llecture">Машинно-независимый Ассемблер RT...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">8.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/819/" title="Основы языка Си: структура Си-программы, базовые типы и конструирование новых типов, операции и выражения" class="llecture">Основы языка Си: структура Си-пр...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">9.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/820/" title="Управляющие конструкции языка Си. Представление программ в виде функций. Работа с памятью. Структуры" class="llecture">Управляющие конструкции языка Си...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">10.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/821/" title="Технология программирования на Си: представление матриц, работа с файлами и с текстами" class="llecture">Технология программирования на С...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">11.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/822/" title="Структуры данных: общее понятие, реализация. Простейшие структуры данных: очередь, стек. Использование стека и обратная польская запись" class="llecture">Структуры данных: общее понятие,...</a>
+</td>
+		</tr>
+
+
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">12.</td>
+		<td>&nbsp;</td>
+<td class="llecture">
+
+<a href="/goto/lecture/823/" title="Ссылочные реализации структур данных. Списки и деревья. Реализации множества: с помощью бинарного поиска, на базе сбалансированных деревьев, хеширование" class="llecture">Ссылочные реализации структур да...</a>
+</td>
+		</tr>
+
+
+
+
+
+
+<tr valign=top><td colspan="4" height="6"><img src="/img/empty.gif" width="1" height="6"></td></tr>
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">&nbsp;</td>
+<td>&nbsp;</td>
+
+		<td class="llecture"><a href="/department/se/pbmsu/class/examination/" class="llecture">Экзамен</a></td>
+		</tr>
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">&nbsp;</td>
+<td>&nbsp;</td>
+
+		<td class="llecture"><a class="llecture_red" href="/department/se/pbmsu/class/examination_extern/">Сдать экзамен экстерном</a></td>
+		</tr>
+
+<tr valign=top><td colspan="4" height="6"><img src="/img/empty.gif" width="1" height="6"></td></tr>
+
+
+		<tr valign=top>
+<td>&nbsp;</td>
+		<td class="llecture">&nbsp;</td>
+<td>&nbsp;</td>
+
+		<td class="llecture"><a href="/department/se/pbmsu/lit.html" class="llecture">Литература</a></td>
+		</tr>
+
+
+
+
+
+
+
+
+		</table><br>
+	</td>
+	</tr>
+
+	
+
+	<tr valign="middle" align="center">
+<td class="bordo" height="24"><nobr>&nbsp;&nbsp;Вход для студентов</nobr></td>
+</tr>
+<form method="post" action="/user/login/">
+
+<tr>
+<td class="gray">
+&nbsp;<b>Псевдоним (ник)</b>
+</td>
+</tr>
+<tr>
+<td class="gray" align="center">
+<input type=text name="login" size="12" value="" class="inputl">
+</td>
+</tr>
+<tr>
+<td class="gray">
+&nbsp;<b>пароль</b>
+</td>
+</tr>
+<tr>
+<td class="gray" align="center">
+<input type="password" name="password" value="" size="12" class="inputl">
+</td>
+</tr>
+<tr>
+<td class="gray" align="center">
+<INPUT TYPE=submit NAME=LOGIN VALUE="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;вход&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" class="inputlo">
+</td>
+</tr>
+<tr>
+<td class="gray">
+<a href="/user/remind/" class="spec">Забыли пароль?</a>
+</td>
+</tr>
+</form>
+
+<tr><td><br>
+  <table border=0 cellpadding=1 cellspacing=0 width=100% class="orang"><tr><td>
+    <table border=0 cellpadding=4 cellspacing=0 width=100% bgcolor="#ffffff"><tr><td>
+
+    <a href="/user/registry/" class="reg">Регистрация<br>новых пользователей</a>
+
+    </td></tr></table>
+  </td></tr></table>
+  <br>
+</td></tr>
+
+
+
+<tr valign="top">
+<td>
+
+
+<table border="0" cellpadding="2" cellspacing="0" background="" width="100%">
+<tr valign="middle">
+<td class="orang" height="24">&nbsp;&nbsp;Статистика</td>
+</tr>
+<tr><td><table border="0" cellpadding="0" cellspacing="2" width="100%">
+<tr>
+<td colspan="2"><table border=0 cellpadding=0 cellspacing=0 width=100%><tr>
+<td class="lb">Опубликован:</td>
+<td class="llecture_red" align="right">16.09.2005</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="lb">Изучают:</td>
+<td class="llecture_red" align="right">742</td>
+</tr>
+<tr>
+<td class="lb">Закончили:</td>
+<td class="llecture_red" align="right">59</td>
+</tr>
+<tr>
+<td class="lb" align="right">из них на 5:&nbsp;&nbsp;&nbsp;</td>
+<td class="llecture_red" align="right">7</td>
+</tr>
+<tr>
+<td class="lb" align="right">на 4:&nbsp;&nbsp;&nbsp;</td>
+<td class="llecture_red" align="right">11</td>
+</tr>
+<tr>
+<td class="lb" align="right">на 3:&nbsp;&nbsp;&nbsp;</td>
+<td class="llecture_red" align="right">41</td>
+</tr>
+</table></td></tr>
+</table>
+</td>
+</tr>
+<tr><td height="4"><img src="/img/empty.gif" width="1" height="4"></td></tr>
+
+
+
+
+<tr><td height="1"><a href="/department/se/pbmsu/robot.html"><img src="/img/empty.gif" width="1" height="1" border="0"></a></td></tr>
+	</table>
+<!-- /leftcolumn -->	
+
+</td>
+<td width="6"><img src="/img/empty.gif" height="1" width="6"></td>
+<td width="1" class="gray"><img src="/img/empty.gif" width="1" height="1"></td>
+<td width="6"><img src="/img/empty.gif" height="1" width="6"></td>
+<td>
+	<!-- content -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+<td class="head">Основы программирования</td>
+<td align="right">
+<a href="/go/department/se/pbmsu/download_zip.html" style="color: #990000; font-size:8pt; font-weight: bold;">версии для локальной работы</a>
+</td>
+</tr>
+<tr><td colspan=2 height="4"><img src="/img/empty.gif" width="1" height="4"></td></tr>
+	<tr><td class="orang" height="1" colspan=2><img src="/img/empty.gif" width="1" height="1"></td></tr>
+	<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+
+
+
+<tr><td colspan="2" align=left>
+
+<table border=0 cellpadding=1 cellspacing=0 width="100%" class="ramka1ext"><tr><td>
+<table border=0 cellpadding=4 cellspacing=0 width=100%  class="ramka1int">
+<tr><td class="rtxt" align="center">
+Купить курс для локальной работы просто - отправьте SMS-сообщение  
+<span class="rtitle">WWW</span> на номер <span class="rtitle">8887</span>
+<a 
+	onClick="window.open(this.href,'', 'width=700,height=500,toolbars=no,status=yes,location=no,resizable=yes,scrollbars=yes,menubar=yes'); return false;"
+	target="_blank" 
+	class="spectxt"
+	href="/help/wapn.html ">(подробности)</a>.
+</td></tr></table>
+</td></tr></table>
+
+</td></tr>
+<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+<tr><td class="orang" height="1" colspan=2><img src="/img/empty.gif" width="1" height="1"></td></tr>
+<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+</td></tr>
+
+
+
+
+
+<tr>
+<td colspan="2" align=left>
+<span class="headsub">5. Лекция:
+ Построение цикла с помощью инварианта</span>
+</td>
+</tr>
+
+<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+<tr><td class="orang" height="1" colspan=2><img src="/img/empty.gif" width="1" height="1"></td></tr>
+<tr><td height="2" colspan=2><img src="/img/empty.gif" width="1" height="2"></td></tr>
+
+
+<tr>
+
+<td align=left><font class="rtitle">Страницы:</font>
+
+
+<font class="rtitle">1</font>
+
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="2.html">2</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="3.html">3</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="4.html">4</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="5.html">5</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="6.html">6</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="test/">вопросы</a> <font class="stitle">|</font> 
+<a class="rtitle" href="2.html"><b>&raquo;</b></a>
+</td>
+<td align=right>
+
+<font class="stitle">|</font>
+<a href="/shop/books/departments/se/pbmsu/" class="rtitle">учебники</a>
+
+<font class="stitle">|</font>
+<a href="/department/se/pbmsu/5/pbmsu_5.html" class="rtitle" target="_blank">для печати и PDA</a>
+
+
+</td>
+
+</tr>
+
+
+
+	<tr><td height="2" colspan=2><img src="/img/empty.gif" width="1" height="2"></td></tr>
+
+<tr><td align="center" class="orang_light" colspan="2">
+&nbsp;
+<span class="rtxt">Если Вы заметили ошибку - <a class="llecture_red" target="_blank" href="/help/askform.xhtml?course=149&url=http://www.intuit.ru/department/se/pbmsu/5/1.html">сообщите нам</a>, 
+или выделите ее и нажмите Ctrl+Enter</span>
+&nbsp;
+</td></tr>
+
+
+	<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+
+
+<tr><td colspan=2>Рассматривается схема построения цикла "пока" с помощью инварианта, т.е. утверждения, которое сохраняется при каждом выполнении тела цикла. Применение этой схемы дает возможность сознательно строить алгоритм и доказывать правильность его работы по тексту, не прибегая к тестированию. Применение схемы иллюстрируется на примерах: алгоритм Евклида вычисления наибольшего общего делителя, алгоритм быстрого возведения в степень, расширенный алгоритм Евклида, приближенное вычисление логарифма без использования разложения в ряд.
+</td></tr>
+<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+<tr><td class="orang" height="1" colspan=2><img src="/img/empty.gif" width="1" height="1"></td></tr>
+<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+
+
+
+	<tr><td colspan=2>
+
+<h3 ></h3><p >Правильное использование конструкции цикла всегда представляет некоторую трудность. Применение элементарной теории помогает избежать ошибок и облегчает написание сложных программ.</p><p >Основная идея состоит в следующем. В процессе выполнения цикла изменяются значения набора переменных. Надо найти соотношение между меняющимися переменными, которое остается постоянным. Это соотношение называется инвариантом цикла. Сознательное построение цикла "пока" всегда связано с явной формулировкой и использованием инварианта цикла. 
+</p><p >Явная формулировка инварианта помогает выписать инициализацию переменных, выполняемую до начала цикла, и тело цикла. Инициализация должна обеспечить выполнение инварианта до начала работы цикла. Тело цикла должно быть сконструировано таким образом, чтобы обеспечить сохранение инварианта. (Более точно, из того, что инвариант выполняется до начала исполнения тела цикла, должно следовать выполнение инварианта после окончания тела цикла. В процессе исполнения тела цикла инвариант может нарушаться.) 
+</p><p >Завершение цикла, как правило, связано с ограниченной величиной, которая монотонно возрастает или монотонно убывает при каждом выполнении тела цикла. Цикл "пока" завершается, когда условие после слова "пока" в заголовке цикла становится ложным. Следовательно, это условие должно прямо или косвенно зависеть от величины, монотонно убывающей или возрастающей в процессе выполнения цикла. По достижению ее определенного значения условие должно становиться ложным. Условием завершения цикла называют отрицание условия, стоящего после слова "пока" в заголовке цикла. 
+</p><p >Выполнение инварианта цикла и одновременно условия завершения должно обеспечивать решение требуемой задачи. 
+</p><h4 >Общая схема</h4><p >Обозначим через <span class="texample">X</span> множество всевозможных наборов значений всех переменных, меняющихся в ходе выполнения цикла. Множество <span class="texample">X</span> иногда называют фазовым, или конфигурационным, пространством задачи. Инвариант - это некоторое условие <span class="texample">I(x)</span>, зависящее от точки <span class="texample">x</span> из множества <span class="texample">X</span> и принимающее значение "истина" или "ложь". (Математики называют такие условия предикатами.) В процессе инициализации точке <span class="texample">x</span> присваивается такое значение <span class="texample">x<sub>0</sub></span>, что условие <span class="texample">I(x<sub>0</sub>)</span> истинно. 
+</p><p >Обозначим условие завершения цикла через <span class="texample">Q(x)</span>. Условия <span class="texample">I(x)</span> и <span class="texample">Q(x)</span> должны быть подобраны таким образом, чтобы одновременная истинность <span class="texample">I(x)</span> и <span class="texample">Q(x)</span> обеспечивала решение требуемой задачи: нахождение точки <span class="texample">x</span> с требуемыми свойствами. 
+</p><p >Тело цикла можно трактовать как отображение точки <span class="texample">x</span> в новую точку <span class="texample">T(x)</span> из того же множества <span class="texample">X</span>: 
+</p><div  class="example"><pre>
+T:X <img src="/img/symbols/srarr.gif" width="15" height="18" border="0" alt="" style="position: relative; top: 2px"> X    
+</pre></div><p >Условие <span class="texample">I(x)</span> является инвариантом для отображения <span class="texample">T</span>: если <span class="texample">I(x)</span>, то <span class="texample">I(T(x))</span> также истинно. 
+</p><p >Общая схема построения цикла с помощью инварианта выглядит следующим образом: 
+</p><div  class="example"><pre>
+  x := x0;    // x0 выбирается так, чтобы условие
+              //              I(x0) было истинным
+  утверждение: I(x);
+
+  цикл пока не Q(x)
+  | инвариант: I(x);
+  | x := T(x);  // точка x преобразуется в T(x)
+  конец цикла
+
+  утверждение: Q(x) и I(x);
+  ответ := x;
+</pre></div><p >Конечно, эта схема не имеет никакой ценности без умения применять ее на практике. Рассмотрим несколько важных примеров ее использования. 
+</p>
+
+    
+
+	</td>
+	</tr>
+	<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+
+	<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+	<tr><td colspan=2 align="center">
+
+<a href="2.html" class="attention">Дальше &raquo;</b></a>
+
+	</td></tr>
+	<tr><td height="16" colspan=2><img src="/img/empty.gif" width="1" height="16"></td></tr>
+
+
+<tr><td align="center" class="orang_light" colspan="2">
+&nbsp;
+<span class="rtxt">Если Вы заметили ошибку - <a class="llecture_red" target="_blank" href="/help/askform.xhtml?course=149&url=http://www.intuit.ru/department/se/pbmsu/5/1.html">сообщите нам</a>, 
+или выделите ее и нажмите Ctrl+Enter</span>
+&nbsp;
+</td></tr>
+
+
+	<tr><td height="2" colspan=2><img src="/img/empty.gif" width="1" height="2"></td></tr>
+<tr>
+
+<td align=left><font class="rtitle">Страницы:</font>
+
+
+<font class="rtitle">1</font>
+
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="2.html">2</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="3.html">3</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="4.html">4</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="5.html">5</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="6.html">6</a>
+<font class="stitle">|</font>
+
+
+<a class="rtitle" href="test/">вопросы</a> <font class="stitle">|</font> 
+<a class="rtitle" href="2.html"><b>&raquo;</b></a>
+</td>
+<td align=right>
+
+<font class="stitle">|</font>
+<a href="/shop/books/departments/se/pbmsu/" class="rtitle">учебники</a>
+
+<font class="stitle">|</font>
+<a href="/department/se/pbmsu/5/pbmsu_5.html" class="rtitle" target="_blank">для печати и PDA</a>
+
+
+</td>
+
+</tr>
+
+	<tr><td height="8" colspan=2><img src="/img/empty.gif" width="1" height="8"></td></tr>
+	<tr><td class="orang" height="1" colspan=2><img src="/img/empty.gif" width="1" height="1"></td></tr>
+	</table>
+	<!-- /content -->
+
+</td>
+<td width="6"><img src="/img/empty.gif" height="1" width="6"></td>
+</tr>
+</table>
+
+<!-- /bottom -->
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="white">
+<tr>
+<!---->
+<td align="center" class="border">
+    <table border="0" cellpadding="0" cellspacing="8" bgcolor="white" width="100%">
+    <tr>
+    <td width="1"><iframe id="errorHandling" src="/content-operation/error.xhtml" width="1" height="1" frameborder="0" scrolling="no"></iframe></td>
+    <td align="center" width="100%" class="rtxt">
+    Внимание! Если Вы увидите ошибку на нашем сайте, выделите её и нажмите Ctrl+Enter.
+    </td>
+    </tr>
+    </table>
+</td>
+</tr>
+<tr>
+<td align="center" class="border">
+    <table border="0" cellpadding="0" cellspacing="8" bgcolor="white" width="100%">
+    <tr>
+    <td>
+<b>Нужна помощь?</b><br>
+&#149; Забыли пароль? <a href="/user/remind/">Вам сюда...</a><br>
+&#149; Есть вопрос? <a href="/help/askform.xhtml">Спрашивайте!</a>
+    </td>
+    <td>
+<b>Вы можете:</b><br>
+&#149; Изменить персональные <a href="/user/edit/">данные</a><br>
+&#149; Изменить параметры <a href="/help/subscribe/">подписки</a>
+    </td>
+    <td>
+<b>Интернет-магазин:</b><br>
+&#149; Ваши заказы <a href="/shop/order/history.xhtml">здесь</a><br>
+&#149; Ваш личный <a href="/user/account/">счет</a>
+    </td>
+    </tr>
+    </table>
+</td>
+</tr>
+<!---->
+<tr>
+<td align="center" class="copy" bgcolor="#ff9900">
+    <a href="/courses.html" class="bot">Курсы</a> |
+    <a href="/speciality/" class="bot">Учебные программы</a> |
+    <a href="/shop/" class="bot">Учебники</a> | 
+    <a href="/news.html" class="bot">Новости</a> | 
+    <a href="/forum/" class="bot">Форум</a> |
+    <a href="/help/" class="bot">Помощь</a>
+    <br><br>
+    Телефон: +7 (495) 253-9312, 253-9313, факс: +7 (495) 253-9310, email: <a href="mailto:info@intuit.ru" class="bot">info@intuit.ru</a><br>
+    &copy; 2003-2007, <a href="http://www.intuit.ru/" class="bot">INTUIT.ru::Интернет-Университет Информационных Технологий - дистанционное образование</a>
+</td>
+</tr>
+</table>
+<!-- /bottom -->
+
+
+<center>
+<table width=100% border=0 cellpadding=4>
+<tr valign=top><td class="topnavi">
+Хостинг предоставлен компанией <a href="http://www.rmt.ru/" target="_blank">РМ Телеком</a>.<br>
+Сервер предоставлен компанией <a href="http://www.kraftway.ru/" target="_blank">KRAFTWAY COMPUTERS</a>.
+</td>
+<td align=right>
+<!--begin of Rambler's Top100 code -->
+<img src="http://counter.rambler.ru/top100.cnt?435517" alt="" width=1 height=1 border=0><a href="http://top100.rambler.ru/top100/"><img src="/img/rambler.gif" alt="Rambler's Top100" width=88 height=31 border=0></a>
+<!--end of Top100 code-->
+&nbsp;
+
+<!--Rating@Mail.ru COUNTER--><script language="JavaScript"><!--
+d=document;a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3"><!--
+js=13//--></script><script language="JavaScript"><!--
+d.write('<a href="http://top.mail.ru/jump?from=496301"'+
+' target=_top><img src="http://top.list.ru/counter'+
+'?id=496301;t=75;js='+js+a+';rand='+Math.random()+
+'" alt="Рейтинг@Mail.ru"'+' border=0 height=31 width=38></a>')
+if(js>11)d.write('<'+'!-- ')//--></script><noscript><a
+target=_blank href="http://top.mail.ru/jump?from=496301"><img
+src="/img/list.gif"
+border=0 height=31 width=38
+alt="Рейтинг@Mail.ru"></a></noscript><script language="JavaScript"><!--
+if(js>11)d.write('--'+'>')//--></script><!--/COUNTER-->
+&nbsp;
+
+<!-- SpyLOG -->
+<script src="http://tools.spylog.ru/counter2.2.js" type="text/javascript" id="spylog_code" counter="459372" ></script>
+<noscript>
+<a href="http://u4593.72.spylog.com/cnt?cid=459372&f=3&p=0" target="_blank">
+<img src="http://u4593.72.spylog.com/cnt?cid=459372&p=0&f=4" alt='SpyLOG' border='0' width=88 height=31 ></a> 
+</noscript>
+<!--/ SpyLOG -->
+&nbsp;
+<!--
+<script language="javascript">
+function getCookie(name) {
+var prefix = name + "="
+var cookieStartIndex = document.cookie.indexOf(prefix)
+if (cookieStartIndex == -1)
+        return null
+var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length)
+if (cookieEndIndex == -1)
+        cookieEndIndex = document.cookie.length
+return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex))
+}
+if (getCookie('adskip') == null && (getCookie('adcnt') == null || getCookie('adcnt') < 6)) {  window.open('/popup/1/','adpopup','width=300,height=320,location=no,scrollbars=no,resizable=yes,status=no,history=no,toolbar=no'); }
+</script>
+-->
+&nbsp;
+
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<a href="http://www.liveinternet.ru/click" '+
+'target=_blank><img src="http://counter.yadro.ru/hit?t44.6;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';'+Math.random()+
+'" border=0 width=31 height=31 alt="liveinternet.ru"></a>')//--></script><!--/LiveInternet-->
+&nbsp;
+<!-- bigmir)net TOP 100 --><a href="http://www.bigmir.net/" target=_blank onClick='img = new Image();img.src="http://www.bigmir.net/?cl=143122";' ><script language="javascript"><!--
+bmQ='<img src=http://c.bigmir.net/?s143122&t8'
+bmD=document
+bmD.cookie="b=b"
+if(bmD.cookie)bmQ+='&c1'
+//--></script><script language="javascript1.2"><!-- 
+bmS=screen;bmQ+='&d'+(bmS.colorDepth?bmS.colorDepth:bmS.pixelDepth)+"&r"+bmS.width;
+//--></script><script language="javascript"><!--
+bmF = bmD.referrer.slice(7);
+((bmI=bmF.indexOf('/'))!=-1)?(bmF=bmF.substring(0,bmI)):(bmI=bmF.length);
+if(bmF!=window.location.href.substring(7,7+bmI))bmQ+='&f'+escape(bmD.referrer);
+bmD.write(bmQ+" border=0 width=88 height=31 alt='bigmir TOP100'>");
+//--></script></a>
+
+
+</td>
+</tr></table>
+</center>
+
+
+</body>
+</html>

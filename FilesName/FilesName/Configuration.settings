@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FilesName" GeneratedClassName="Configuration">
+  <Profiles />
+  <Settings>
+    <Setting Name="FolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CheckNestingFolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FindString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReplaceString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReplaceTo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">начало</Value>
+    </Setting>
+    <Setting Name="TypeOfReplace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">File</Value>
+    </Setting>
+    <Setting Name="Convertion" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CopyBufferSettings" Type="System.String" Scope="User">
+      <Value Profile="(Default)">File</Value>
+    </Setting>
+    <Setting Name="SetAttributeSettings" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Icirc;&aacute;&ugrave;&aring;&aring; &icirc;&iuml;&egrave;&ntilde;&agrave;&iacute;&egrave;&aring;">
+		<param name="Name" value="Общее описание">
+		<param name="Local" value="index.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Ntilde;&icirc;&ccedil;&auml;&agrave;&iacute;&egrave;&aring; &ntilde;&oacute;&auml;&icirc;&ecirc;&oacute;">
+		<param name="Name" value="Создание судоку">
+		<param name="Local" value="create.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Dstrok;&aring;&oslash;&aring;&iacute;&egrave;&aring; &ntilde;&oacute;&auml;&icirc;&ecirc;&oacute;">
+		<param name="Name" value="Решение судоку">
+		<param name="Local" value="solve.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Auml;&icirc;&iuml;&icirc;&euml;&iacute;&egrave;&ograve;&aring;&euml;&uuml;&iacute;&ucirc;&aring; &igrave;&aring;&ograve;&ecirc;&egrave;">
+		<param name="Name" value="Дополнительные метки">
+		<param name="Local" value="smartInfo.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Oacute;&ntilde;&ograve;&agrave;&iacute;&icirc;&acirc;&ecirc;&agrave; &acirc;&eth;&aring;&igrave;&aring;&iacute;&egrave; &iuml;&icirc;&auml;&ntilde;&acirc;&aring;&ograve;&ecirc;&egrave;">
+		<param name="Name" value="Установка времени подсветки">
+		<param name="Local" value="settingDelay.html">
+		</OBJECT>
+</UL>
+</BODY></HTML>

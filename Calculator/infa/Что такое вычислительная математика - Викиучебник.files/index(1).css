@@ -1,0 +1,417 @@
+TABLE.wikitable {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BACKGROUND: #f9f9f9; MARGIN: 1em 1em 1em 0px; BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.prettytable {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BACKGROUND: #f9f9f9; MARGIN: 1em 1em 1em 0px; BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.wikitable TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+TABLE.wikitable TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+TABLE.prettytable TH {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+TABLE.prettytable TD {
+	BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; BORDER-LEFT: #aaaaaa 1px solid; PADDING-TOP: 0.2em; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+TABLE.wikitable TH {
+	BACKGROUND: #f2f2f2; TEXT-ALIGN: center
+}
+TABLE.prettytable TH {
+	BACKGROUND: #f2f2f2; TEXT-ALIGN: center
+}
+TABLE.wikitable CAPTION {
+	FONT-WEIGHT: bold; FONT-SIZE: larger
+}
+TABLE.prettytable CAPTION {
+	FONT-WEIGHT: bold; FONT-SIZE: larger
+}
+OL.references {
+	FONT-SIZE: 100%
+}
+.references-small {
+	FONT-SIZE: 90%
+}
+.hiddenStructure {
+	DISPLAY: none; speak: none
+}
+.notice {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0.2em; MARGIN: 1em 1em 1em 20%; PADDING-TOP: 0.2em
+}
+#disambig {
+	BORDER-TOP: #cccccc 3px double; BORDER-BOTTOM: #cccccc 3px double
+}
+#spoiler {
+	BORDER-TOP: #ddd 2px solid; BORDER-BOTTOM: #ddd 2px solid
+}
+.Talk-Notice {
+	BORDER-RIGHT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; MARGIN-BOTTOM: 3px; MARGIN-LEFT: auto; BORDER-LEFT: #c0c090 1px solid; WIDTH: 85%; MARGIN-RIGHT: auto; BORDER-BOTTOM: #c0c090 1px solid; BACKGROUND-COLOR: #f8eaba; border-spacing: 3px
+}
+.Talk-Notice TD {
+	
+}
+.Use_Default_Date_Convention {
+	DISPLAY: inline
+}
+.Use_AD_and_BC {
+	DISPLAY: none
+}
+.Use_BCE_and_CE {
+	DISPLAY: none
+}
+.plainlinksneverexpand {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.plainlinksneverexpand .urlexpansion {
+	DISPLAY: none! important
+}
+.plainlinksneverexpand A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.plainlinksneverexpand A.text:unknown {
+	DISPLAY: none! important
+}
+.plainlinksneverexpand A.autonumber:unknown {
+	DISPLAY: none! important
+}
+#bodyContent .plainlinksneverexpand A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; PADDING-TOP: 0px! important
+}
+.messagebox {
+	BORDER-RIGHT: #aaaaaa thin solid; PADDING-RIGHT: 0.4em; BORDER-TOP: #aaaaaa thin solid; PADDING-LEFT: 0.4em; FONT-SIZE: 90%; PADDING-BOTTOM: 0.4em; MARGIN: 0px auto 1em; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaaaaa thin solid; WIDTH: 88%; PADDING-TOP: 0.4em; BORDER-BOTTOM: #aaaaaa thin solid; BACKGROUND-COLOR: #f9f9f9
+}
+.merge {
+	BORDER-RIGHT: #cf9fff 1px solid; BORDER-TOP: #cf9fff 1px solid; BORDER-LEFT: #cf9fff 1px solid; BORDER-BOTTOM: #cf9fff 1px solid; BACKGROUND-COLOR: #f5edf5; TEXT-ALIGN: center
+}
+.cleanup {
+	BORDER-RIGHT: #9f9fff 1px solid; BORDER-TOP: #9f9fff 1px solid; BORDER-LEFT: #9f9fff 1px solid; BORDER-BOTTOM: #9f9fff 1px solid; BACKGROUND-COLOR: #efefff; TEXT-ALIGN: center
+}
+.standard-talk {
+	BORDER-RIGHT: #c0c090 1px solid; BORDER-TOP: #c0c090 1px solid; BORDER-LEFT: #c0c090 1px solid; BORDER-BOTTOM: #c0c090 1px solid; BACKGROUND-COLOR: #f8eaba
+}
+.messagebox .floatleft {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 2px; VERTICAL-ALIGN: middle; PADDING-TOP: 0px
+}
+.messagebox .image {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.infobox {
+	CLEAR: right; BORDER-RIGHT: #aaaaaa 1px solid; PADDING-RIGHT: 0.4em; BORDER-TOP: #aaaaaa 1px solid; PADDING-LEFT: 0.4em; FONT-SIZE: 90%; FLOAT: right; MARGIN-BOTTOM: 0.5em; PADDING-BOTTOM: 0.4em; MARGIN-LEFT: 1em; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaaaaa 1px solid; WIDTH: 18em; PADDING-TOP: 0.4em; BORDER-BOTTOM: #aaaaaa 1px solid; BACKGROUND-COLOR: #f9f9f9
+}
+.sisterproject {
+	BACKGROUND-COLOR: #f9fafd
+}
+.epigraf {
+	CLEAR: both; MARGIN-BOTTOM: 1em; MARGIN-LEFT: 54%; FONT-FAMILY: serif; min-width: 16em; max-width: 38em
+}
+.epigraf BLOCKQUOTE {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0.1em; MARGIN: 0px; PADDING-TOP: 0px; FONT-STYLE: italic; BORDER-RIGHT-WIDTH: 0px
+}
+.epigraf BLOCKQUOTE P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.2em; MARGIN: 0px; PADDING-TOP: 0.2em
+}
+.podpis {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.2em; MARGIN: 0px 1em 0px 0px; PADDING-TOP: 0.2em; TEXT-ALIGN: right
+}
+.lj A {
+	PADDING-RIGHT: 0px! important; PADDING-LEFT: 0px! important; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px! important; FONT: bold small Verdana; PADDING-TOP: 0px! important; TEXT-DECORATION: underline
+}
+.lj A.image IMG {
+	VERTICAL-ALIGN: -2px
+}
+.IPA {
+	FONT-FAMILY: Chrysanthi Unicode, Doulos SIL, Gentium, GentiumAlt, Code2000, TITUS Cyberbit Basic, DejaVu Sans, Bitstream Vera Sans, Bitstream Cyberbit, Arial Unicode MS, Lucida Sans Unicode, Hiragino Kaku Gothic Pro, Matrix Unicode
+}
+.Unicode {
+	FONT-FAMILY: TITUS Cyberbit Basic, Code2000, Doulos SIL, Chrysanthi Unicode, Bitstream Cyberbit, Bitstream CyberBase, Bitstream Vera, Thryomanes, Gentium, GentiumAlt, Visual Geez Unicode, Lucida Grande, Arial Unicode MS, Lucida Sans Unicode, Microsoft Sans Serif
+}
+.polytonic {
+	FONT-FAMILY: Athena, Gentium, Palatino Linotype, Arial Unicode MS, Lucida Sans Unicode, Lucida Grande, Code2000
+}
+#wpSave {
+	FONT-WEIGHT: bold
+}
+BLOCKQUOTE {
+	PADDING-RIGHT: 2%; PADDING-LEFT: 4%; PADDING-BOTTOM: 0.7em; MARGIN: 0.7em 0px 0.7em 5%; PADDING-TOP: 0.7em; BACKGROUND-COLOR: #f5f5f5
+}
+P.istochnik_pred {
+	FONT-SIZE: 110%; MARGIN: 1em 0px 0px 5%
+}
+P.istochnik_pred:unknown {
+	content: ':'
+}
+P.istochnik_sled {
+	MARGIN: 0px 2em 0px 0px; TEXT-ALIGN: right
+}
+P.istochnik_sled:unknown {
+	content: '— '
+}
+TABLE.toccolours {
+	TEXT-ALIGN: center
+}
+TABLE.toccolours TH {
+	BACKGROUND-COLOR: #ccccff
+}
+TABLE.simple {
+	BORDER-LEFT-COLOR: rgb(170,170,170); BORDER-BOTTOM-COLOR: rgb(170,170,170); BORDER-TOP-COLOR: rgb(170,170,170); BORDER-COLLAPSE: collapse; BORDER-RIGHT-COLOR: rgb(170,170,170)
+}
+TABLE.simple TH {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; BORDER-LEFT-COLOR: rgb(170,170,170); BORDER-BOTTOM-COLOR: rgb(170,170,170); BORDER-TOP-COLOR: rgb(170,170,170); BORDER-RIGHT-COLOR: rgb(170,170,170)
+}
+TABLE.simple TD {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; BORDER-LEFT-COLOR: rgb(170,170,170); BORDER-BOTTOM-COLOR: rgb(170,170,170); BORDER-TOP-COLOR: rgb(170,170,170); BORDER-RIGHT-COLOR: rgb(170,170,170)
+}
+TABLE.standard {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; BORDER-TOP: rgb(170,170,170) 1px solid; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.wide {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; BORDER-TOP: rgb(170,170,170) 1px solid; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.wikitable {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; BORDER-TOP: rgb(170,170,170) 1px solid; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.standart {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; BORDER-TOP: rgb(170,170,170) 1px solid; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BORDER-COLLAPSE: collapse
+}
+TABLE.standard TH {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BACKGROUND-COLOR: #eeeeff
+}
+TABLE.wide TH {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BACKGROUND-COLOR: #eeeeff
+}
+TABLE.wikitable TH {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BACKGROUND-COLOR: #eeeeff
+}
+TABLE.standart TH {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid; BACKGROUND-COLOR: #eeeeff
+}
+TABLE.standard TD {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid
+}
+TABLE.wide TD {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid
+}
+TABLE.wikitable TD {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid
+}
+TABLE.standart TD {
+	BORDER-RIGHT: rgb(170,170,170) 1px solid; PADDING-RIGHT: 0.2em; BORDER-TOP: rgb(170,170,170) 1px solid; PADDING-LEFT: 0.2em; BORDER-LEFT: rgb(170,170,170) 1px solid; BORDER-BOTTOM: rgb(170,170,170) 1px solid
+}
+TABLE.standard CAPTION {
+	FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em
+}
+TABLE.wide CAPTION {
+	FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em
+}
+TABLE.wikitable CAPTION {
+	FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em
+}
+TABLE.standart CAPTION {
+	FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em
+}
+TABLE.tiles CAPTION {
+	FONT-WEIGHT: bold; PADDING-BOTTOM: 0.2em; PADDING-TOP: 0.2em
+}
+TABLE.wide {
+	WIDTH: 100%
+}
+TABLE.tiles {
+	BORDER-COLLAPSE: separate; border-spacing: 2px
+}
+TABLE.tiles TH {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; BACKGROUND-COLOR: #eeeeff
+}
+TABLE.tiles TD {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; BACKGROUND-COLOR: #f0f0f0
+}
+TR.highlight TH {
+	BACKGROUND-COLOR: #eeeeff
+}
+TR.highlight TD {
+	BACKGROUND-COLOR: #ffffee
+}
+TR.bright TH {
+	BACKGROUND-COLOR: #ccccff
+}
+TR.bright TD {
+	BACKGROUND-COLOR: #ffeecc
+}
+TR.shadow TH {
+	BACKGROUND-COLOR: #f0f0f0
+}
+TR.shadow TD {
+	BACKGROUND-COLOR: #f0f0f0
+}
+TR.dark TH {
+	BACKGROUND-COLOR: #cccccc
+}
+TR.dark TD {
+	BACKGROUND-COLOR: #cccccc
+}
+TABLE TH.highlight {
+	BACKGROUND-COLOR: #eeeeff
+}
+TABLE TD.highlight {
+	BACKGROUND-COLOR: #ffffee
+}
+TABLE TH.bright {
+	BACKGROUND-COLOR: #ccccff
+}
+TABLE TD.bright {
+	BACKGROUND-COLOR: #ffeecc
+}
+TABLE TH.shadow {
+	BACKGROUND-COLOR: #f0f0f0
+}
+TABLE TD.shadow {
+	BACKGROUND-COLOR: #f0f0f0
+}
+TABLE TH.dark {
+	BACKGROUND-COLOR: #cccccc
+}
+TABLE TD.dark {
+	BACKGROUND-COLOR: #cccccc
+}
+TABLE TH.transparent {
+	BACKGROUND-COLOR: transparent
+}
+TABLE TD.transparent {
+	BACKGROUND-COLOR: transparent
+}
+.tickerDiffLink {
+	
+}
+.tickerMiscLink {
+	
+}
+.tickerList UL {
+	MARGIN-LEFT: 2em; TEXT-INDENT: -2em; LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+.tickerList UL LI {
+	MARGIN-LEFT: 2em; TEXT-INDENT: -2em; LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+.tickerList UL UL {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: 0px; LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+.tickerList UL UL LI {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: 0px; LIST-STYLE-TYPE: none; TEXT-ALIGN: left
+}
+.tickerEntry_deleted {
+	
+}
+.tickerEntry_restored {
+	
+}
+.tickerEntry_replaced {
+	
+}
+.tickerEntry_tagged {
+	
+}
+.tickerEntry_redir {
+	
+}
+.tickerEntry_recat {
+	
+}
+.tickerEntry_notify {
+	
+}
+.tickerEntry_changed {
+	
+}
+.tickerStatus_done {
+	TEXT-DECORATION: line-through
+}
+.tickerAction_deleted:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #ff0000; FONT-FAMILY: monospace; content: " GONE "
+}
+.tickerAction_restored:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #00bb00; FONT-FAMILY: monospace; content: " BACK "
+}
+.tickerAction_deletedRev:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #ddaaaa; FONT-FAMILY: monospace; content: " -OLD "
+}
+.tickerAction_replaced:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #cc88ff; FONT-FAMILY: monospace; content: " REPL "
+}
+.tickerAction_replacedOwn:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #eeaaff; FONT-FAMILY: monospace; content: " UPDT "
+}
+.tickerAction_addedBad:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #ff8800; FONT-FAMILY: monospace; content: " +VfD "
+}
+.tickerAction_removedBad:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #00bb00; FONT-FAMILY: monospace; content: " -VfD "
+}
+.tickerAction_addedGood:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #00bb00; FONT-FAMILY: monospace; content: " +OK "
+}
+.tickerAction_removedGood:unknown {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; COLOR: #ff8800; FONT-FAMILY: monospace; content: " -OK "
+}
+.tickerUsage {
+	FONT-SIZE: 80%
+}
+.tickerTemplateEntry {
+	FONT-WEIGHT: bold
+}
+.tickerSubEntry {
+	
+}
+.tickerMinorEntry {
+	COLOR: #666
+}
+.tickerMinorEntry A {
+	COLOR: #669
+}
+.tickerMinorEntry A:link {
+	COLOR: #669
+}
+.tickerMinorEntry A:visited {
+	COLOR: #669
+}
+#bodyContent .tickerMinorEntry A.extiw {
+	COLOR: #669
+}
+#bodyContent .tickerMinorEntry A.extiw:link {
+	COLOR: #669
+}
+#bodyContent .tickerMinorEntry A.extiw:visited {
+	COLOR: #669
+}
+#file IMG {
+	BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png)
+}
+.gold {
+	BACKGROUND-COLOR: gold
+}
+.silver {
+	BACKGROUND-COLOR: silver
+}
+.bronze {
+	BACKGROUND-COLOR: #cc9966
+}
+.allpagesredirect {
+	FONT-STYLE: italic
+}
+UNKNOWN {
+	PADDING-RIGHT: 16px; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Icons-mini-file_acrobat.gif/15px-Icons-mini-file_acrobat.gif) no-repeat right center
+}
+SPAN.PDFlink A {
+	PADDING-RIGHT: 17px! important; BACKGROUND: url(http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Icons-mini-file_acrobat.gif/15px-Icons-mini-file_acrobat.gif) no-repeat right center
+}
+.clickable-image A:hover {
+	TEXT-DECORATION: none
+}
+SUP.reference:unknown {
+	BACKGROUND-COLOR: #ffffcc
+}
+OL.references LI:unknown {
+	BACKGROUND-COLOR: #ffffcc
+}
+SUP.reference:unknown {
+	FONT-WEIGHT: bold
+}

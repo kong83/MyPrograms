@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E5EB0AEA-E4BF-44FA-80B1-3822301EBC6F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimeWatcher</RootNamespace>
+    <AssemblyName>TimeWatcher</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>stopwatch.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net, Version=1.0.2433.27290, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProjectForm.Designer.cs">
+      <DependentUpon>AddProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseTools.cs" />
+    <Compile Include="DeleteProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteProjectForm.Designer.cs">
+      <DependentUpon>DeleteProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteTimesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteTimesForm.Designer.cs">
+      <DependentUpon>DeleteTimesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProjectForm.Designer.cs">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditTimesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTimesForm.Designer.cs">
+      <DependentUpon>EditTimesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exchange.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddProjectForm.resx">
+      <DependentUpon>AddProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteProjectForm.resx">
+      <DependentUpon>DeleteProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteTimesForm.resx">
+      <DependentUpon>DeleteTimesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProjectForm.resx">
+      <DependentUpon>EditProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTimesForm.resx">
+      <DependentUpon>EditTimesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimesForm.resx">
+      <DependentUpon>TimesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SettingClass.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimesForm.Designer.cs">
+      <DependentUpon>TimesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\close.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pictures\OK.ico" />
+    <None Include="pictures\properties.ico" />
+    <None Include="pictures\timeStart.ico" />
+    <None Include="pictures\timeStop.ico" />
+    <None Include="pictures\money24.ico" />
+    <None Include="pictures\stopwatch.ico" />
+    <Content Include="stopwatch.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

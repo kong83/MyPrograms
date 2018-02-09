@@ -1,0 +1,252 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82CF3E50-BDCD-466F-9628-9A795C9B3169}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Checkers</RootNamespace>
+    <AssemblyName>Checkers</AssemblyName>
+    <ApplicationIcon>iconCheckersBignew1.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net, Version=1.0.2433.27290, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Работа\BillingInterface\AdminInterface\bin\Debug\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionClass.cs" />
+    <Compile Include="AutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutorForm.Designer.cs">
+      <DependentUpon>AutorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckClass.cs" />
+    <Compile Include="ComputerClass.cs" />
+    <Compile Include="LoadGameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadGameForm.Designer.cs">
+      <DependentUpon>LoadGameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogClass.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AutorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadGameForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoadGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveGameForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SaveGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerConnectForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ServerConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RegistryClass.cs" />
+    <Compile Include="SaveGameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveGameForm.Designer.cs">
+      <DependentUpon>SaveGameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerConnectForm.Designer.cs">
+      <DependentUpon>ServerConnectForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_black_select.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_black_select.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_white.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_white_select.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_white.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_white_select.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\empty.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\full.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\full_select.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_white_show.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_black_show.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_black_show.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\check_dam_white_show.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\changeSide.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\connect.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\end.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\first.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\next.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\prevision.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\setServer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\start_2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\stop_2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\smallBlack.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\smallWhite.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\remi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\connectDel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\cancel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Icons\ok.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="iconCheckersBignew1.ico" />
+    <None Include="Pictures\smallComp.gif" />
+    <None Include="Pictures\Icons\undo.ico" />
+    <None Include="Pictures\Icons\path24.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FromClientClass\FromClientClass\FromClientClass.csproj">
+      <Project>{6AE7B33E-574D-4D4A-A49C-C330813D393D}</Project>
+      <Name>FromClientClass</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FromServerClass\FromServerClass\FromServerClass.csproj">
+      <Project>{959678C4-54E4-4321-BE66-B9D6F151F59A}</Project>
+      <Name>FromServerClass</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

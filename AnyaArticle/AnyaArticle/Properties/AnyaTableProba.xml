@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <Id>0</Id>
+    <Name>asdfsdfgsdfg</Name>
+    <Autor>asdf</Autor>
+    <Tema>Коновалов</Tema>
+    <Language>E</Language>
+    <Path>asdf</Path>
+    <Year>2000-01-01T00:00:00+03:00</Year>
+    <About>asdf</About>
+  </Table1>
+  <Table1>
+    <Id>1</Id>
+    <Name>sdfg</Name>
+    <Autor>sdfg</Autor>
+    <Tema>sdfg</Tema>
+    <Language>E</Language>
+    <Path>C:\Программы\.NET\C#\AnyaArticle\AnyaTableProba.xml</Path>
+    <Year>2000-01-01T00:00:00+03:00</Year>
+    <About>sdfg</About>
+  </Table1>
+  <Table1>
+    <Id>2</Id>
+    <Name>афывафывафывафыва</Name>
+    <Autor>ывафывафывафывафыва</Autor>
+    <Tema>ывафывафывафывафыва</Tema>
+    <Language>E</Language>
+    <Path>C:\Программы\.NET\C#\AnyaArticle\AnyaArticle\Properties\Resources.Designer.cs</Path>
+    <Year>2006-01-01T00:00:00+03:00</Year>
+    <About>фывафывафывафывафывафывафыва</About>
+  </Table1>
+</NewDataSet>

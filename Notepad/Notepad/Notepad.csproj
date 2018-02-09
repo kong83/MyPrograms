@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A2BDE74-E665-460C-B0E8-D67B3EFA727F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Notepad</RootNamespace>
+    <AssemblyName>Notepad</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>NOTEBOOK.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net, Version=1.0.2433.27290, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionClass.cs" />
+    <Compile Include="AddAutostartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAutostartForm.Designer.cs">
+      <DependentUpon>AddAutostartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttributesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributesForm.Designer.cs">
+      <DependentUpon>AttributesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutostartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutostartForm.Designer.cs">
+      <DependentUpon>AutostartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConvertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConvertForm.Designer.cs">
+      <DependentUpon>ConvertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CryptClass.cs" />
+    <Compile Include="FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoToForm.Designer.cs">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuidForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuidForm.Designer.cs">
+      <DependentUpon>GuidForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryClass.cs" />
+    <Compile Include="PerfCounterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerfCounterForm.Designer.cs">
+      <DependentUpon>PerfCounterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessForm.Designer.cs">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessInfoForm.Designer.cs">
+      <DependentUpon>ProcessInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuickReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuickReplaceForm.Designer.cs">
+      <DependentUpon>QuickReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAutostartForm.resx">
+      <DependentUpon>AddAutostartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttributesForm.resx">
+      <DependentUpon>AttributesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutostartForm.resx">
+      <DependentUpon>AutostartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConvertForm.resx">
+      <DependentUpon>ConvertForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoToForm.resx">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuidForm.resx">
+      <DependentUpon>GuidForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerfCounterForm.resx">
+      <DependentUpon>PerfCounterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessForm.resx">
+      <DependentUpon>ProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessInfoForm.resx">
+      <DependentUpon>ProcessInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuickReplaceForm.resx">
+      <DependentUpon>QuickReplaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReplaceFilesTextForm.resx">
+      <DependentUpon>ReplaceFilesTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectDropFileForm.resx">
+      <DependentUpon>SelectDropFileForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UninstallForm.resx">
+      <DependentUpon>UninstallForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZLibForm.resx">
+      <DependentUpon>ZLibForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReplaceFilesTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReplaceFilesTextForm.Designer.cs">
+      <DependentUpon>ReplaceFilesTextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDropFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDropFileForm.Designer.cs">
+      <DependentUpon>SelectDropFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WrongSmartStringException.cs" />
+    <Compile Include="UninstallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UninstallForm.Designer.cs">
+      <DependentUpon>UninstallForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZLibForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZLibForm.Designer.cs">
+      <DependentUpon>ZLibForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NOTEBOOK.ico" />
+    <None Include="Resources\_goto32.ico" />
+    <None Include="Resources\remove24.ico" />
+    <None Include="Resources\add24.ico" />
+    <None Include="Resources\process16.ico" />
+    <None Include="Resources\Pack.ico" />
+    <None Include="Resources\Unpack.ico" />
+    <None Include="Resources\hideEztraParam.ico" />
+    <None Include="Resources\showExtraParam.ico" />
+    <None Include="Resources\zlib16.ico" />
+    <None Include="Resources\zlib.ico" />
+    <None Include="Resources\up.ico" />
+    <None Include="Resources\filterDelete.ico" />
+    <None Include="Resources\UninstallProgram16.ico" />
+    <None Include="Resources\copyConvert24.ico" />
+    <None Include="Resources\refresh24.ico" />
+    <None Include="Resources\plus16.ico" />
+    <None Include="Resources\minus16.ico" />
+    <None Include="Resources\topMostOn.ico" />
+    <None Include="Resources\topMostOff.ico" />
+    <None Include="Resources\selectAllNew16.ico" />
+    <None Include="Resources\ok24.ico" />
+    <None Include="Resources\cansel24.ico" />
+    <None Include="Resources\paste16.ico" />
+    <None Include="Resources\goto16.ico" />
+    <None Include="Resources\cut16.ico" />
+    <None Include="Resources\copy16.ico" />
+    <None Include="Resources\openShifr32.ico" />
+    <None Include="Resources\saveShifr32.ico" />
+    <None Include="Resources\copyConvert48.ico" />
+    <None Include="Resources\copyConvert.ico" />
+    <None Include="Resources\down.ico" />
+    <None Include="Resources\close16.ico" />
+    <None Include="Resources\pageSettings16.ico" />
+    <None Include="Resources\convert16.ico" />
+    <None Include="Resources\font16.ico" />
+    <None Include="Resources\replace16.ico" />
+    <None Include="Resources\redo16.ico" />
+    <None Include="Resources\find16.ico" />
+    <None Include="Resources\about16.ico" />
+    <None Include="Resources\undo16.ico" />
+    <None Include="Resources\saveas16.ico" />
+    <None Include="Resources\save16.ico" />
+    <None Include="Resources\print16.ico" />
+    <None Include="Resources\pintView16.ico" />
+    <None Include="Resources\open16.ico" />
+    <None Include="Resources\new16.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0051)http://nb.cyber-net.spb.ru/comp/progr/exponent.html -->
+<HTML><HEAD><TITLE>Записная книжка :: Компьютеры / Возведение числа в степень</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<STYLE type=text/css>BODY {
+	BACKGROUND: #ffffff
+}
+iinput {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+FORM {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+TABLE {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+BODY {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+A:visited {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+A:link {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+A:active {
+	FONT-SIZE: 10pt; MARGIN: 0px; COLOR: #000000; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+UL {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+OL {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+LI {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+.mh A {
+	COLOR: #ffffff
+}
+.mh A:link {
+	COLOR: #ffffff
+}
+.mh A:visited {
+	COLOR: #ffffff
+}
+.mh A:active {
+	COLOR: #ffffff
+}
+.mh {
+	COLOR: #ffffff
+}
+.mb A {
+	COLOR: #000000
+}
+.mb A:link {
+	COLOR: #000000
+}
+.mb A:visited {
+	COLOR: #000000
+}
+.mb A:active {
+	COLOR: #000000
+}
+.mb {
+	COLOR: #000000
+}
+.sm A {
+	FONT-SIZE: 8pt; COLOR: #000000
+}
+.sm A:link {
+	FONT-SIZE: 8pt; COLOR: #000000
+}
+.sm A:visited {
+	FONT-SIZE: 8pt; COLOR: #000000
+}
+.sm A:active {
+	FONT-SIZE: 8pt; COLOR: #000000
+}
+.sm {
+	FONT-SIZE: 8pt; COLOR: #000000
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY style="MARGIN: 0px">
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width=750>
+  <TBODY>
+  <TR>
+    <TD width="100%"><A title="Главная страница" 
+      href="http://nb.cyber-net.spb.ru/"><SPAN 
+      style="FONT-SIZE: 12pt; FONT-FAMILY: cursive">Записная книжка :: 
+      Компьютеры</SPAN></A><!-- br --></TD><!-- td width=335 align=center><span style="font-size: 12pt; font-family: cursive;">Кафедра Систем Управления и Информатики</span></td>
+    <td width=265><a href="http://www.ifmo.ru" target=_blank title="СПбГИТМО(ТУ)"><img src="/templates/0/ifmo001.gif" width=265 height=40 border=0></a></td --></TR></TBODY></TABLE>
+<TABLE width=750 bgColor=#dddddd ccellspacing="0" ccellpadding="0">
+  <TBODY>
+  <TR><!-- td width=140>
+  < ?=$MAINLINK2? >
+  </td -->
+    <TD align=middle width="100%" colSpan=2 wwidth="560"><SPAN 
+      style="FONT-WEIGHT: 800; FONT-SIZE: 12pt; FONT-FAMILY: sans-serif">Возведение 
+      числа в степень</SPAN> </TD>
+    <TD align=right width=100><SPAN 
+      style="FONT-SIZE: 10pt; FONT-FAMILY: sans-serif"></SPAN></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width=750>
+  <TBODY>
+  <TR>
+    <TD><IMG height=5 src="" width=750 border=0></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width=750 bgColor=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=left width=200 bgColor=#dddddd>
+      <TABLE style="FONT-WEIGHT: 800; FONT-SIZE: 10pt; COLOR: #ffffff" 
+      width="100%" bgColor=#bbbbbb text="#ffffff" bbgcolor="#eeeeee">
+        <TBODY>
+        <TR>
+          <TD align=middle>Программирование</TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-SIZE: 10pt" width="100%" bgColor=#dddddd>
+        <TBODY>
+        <TR>
+          <TD align=left aalign="center"><A 
+            href="http://nb.cyber-net.spb.ru/comp/progr/exponent.html">Возведение 
+            числа в степень</A><!-- br --> </TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-WEIGHT: 800; FONT-SIZE: 10pt; COLOR: #ffffff" 
+      width="100%" bgColor=#bbbbbb text="#ffffff" bbgcolor="#eeeeee">
+        <TBODY>
+        <TR>
+          <TD align=middle>Web</TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-SIZE: 10pt" width="100%" bgColor=#dddddd>
+        <TBODY>
+        <TR>
+          <TD align=left aalign="center"><A 
+            href="http://nb.cyber-net.spb.ru/comp/web/listsinjs.html">HTML - 
+            списки и JavaScript</A><!-- br --><BR><A 
+            href="http://nb.cyber-net.spb.ru/comp/web/httpheaders.html">О 
+            заголовках HTTP</A><!-- br --><BR><A 
+            href="http://nb.cyber-net.spb.ru/comp/web/htmlimport.html">Вставка 
+            внешних HTML страниц</A><!-- br --><BR><A 
+            href="http://nb.cyber-net.spb.ru/comp/web/filesindb.html">Храним 
+            файлы в БД</A><!-- br --> </TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-WEIGHT: 800; FONT-SIZE: 10pt; COLOR: #ffffff" 
+      width="100%" bgColor=#bbbbbb text="#ffffff" bbgcolor="#eeeeee">
+        <TBODY>
+        <TR>
+          <TD align=middle>Сети</TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-SIZE: 10pt" width="100%" bgColor=#dddddd>
+        <TBODY>
+        <TR>
+          <TD align=left aalign="center"><A 
+            href="http://nb.cyber-net.spb.ru/comp/networks/iprouting.html">Маршрутизация 
+            в IP сетях</A><!-- br --><BR><A 
+            href="http://nb.cyber-net.spb.ru/comp/networks/literatura.html">Полезная 
+            литература</A><!-- br --> </TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-WEIGHT: 800; FONT-SIZE: 10pt; COLOR: #ffffff" 
+      width="100%" bgColor=#bbbbbb text="#ffffff" bbgcolor="#eeeeee">
+        <TBODY>
+        <TR>
+          <TD align=middle>Ссылки</TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-SIZE: 10pt" width="100%" bgColor=#dddddd>
+        <TBODY>
+        <TR>
+          <TD align=left aalign="center"><A 
+            href="http://nb.cyber-net.spb.ru/comp/links/myproj.html">Разработки 
+            автора</A><!-- br --> </TD></TR></TBODY></TABLE>
+      <TABLE style="FONT-WEIGHT: 800; FONT-SIZE: 10pt; COLOR: #ffffff" 
+      width="100%" bgColor=#bbbbbb text="#ffffff" bbgcolor="#eeeeee">
+        <TBODY>
+        <TR>
+          <TD align=middle>&nbsp;</TD></TR></TBODY></TABLE></TD>
+    <TD style="TEXT-ALIGN: justify" vAlign=top align=left width=550><BR>
+      <UL>
+        <LI><A 
+        href="http://nb.cyber-net.spb.ru/comp/progr/exponent.html#pascaltit">Паскаль</A> 
+
+        <LI><A 
+        href="http://nb.cyber-net.spb.ru/comp/progr/exponent.html#asmtit">Ассемблер 
+        IBM PC</A> </LI></UL><BR><A name=pascaltit></A>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TH align=middle bgColor=#dddddd colSpan=7>Паскаль 
+      </TH></TR></TBODY></TABLE>
+      <P>В Паскале нет функции возведения числа в произвольную степень, но зато 
+      есть функции для вычисления экспоненты и натурального логарифма (exp() и 
+      ln() соответственно). 
+      <P>Пусть надо вычислить X<SUP>V</SUP>. Сделаем такую замену: X = e<SUP>ln 
+      X</SUP>. Тогда X<SUP>V</SUP> = e<SUP>V ln X</SUP>. 
+      <P>Оформим это выражение в виде функции на Паскале: 
+      <P><PRE>Function pow(x, v : real) : real;
+Begin
+  pow := exp(v*ln(x));
+End;
+</PRE>Эта функция будет правильно работать только при положительных 
+      значениях X (при X=0 логарифм равен минус бесконечности). 
+      <P>Для X &lt; 0 при дробном V решение является комплексным. 
+      <P>В вещественных числах можно найти решение для целых значений показателя 
+      степени. Используем свойство: Для отрицательного X и целого N выполняются 
+      следующие равенства: <BR>X<SUP>N</SUP> = |X|<SUP>N</SUP>, если N - четное; 
+      <BR>X<SUP>N</SUP> = -(|X|<SUP>N</SUP>), если N - нечетное. 
+      <P>Кроме того, следует отдельно рассмотреть случаи, когда показатель 
+      степени или основание равны нулю: 
+      <UL>
+        <LI>X<SUP>0</SUP> = 1; 
+        <LI>0<SUP>V</SUP> = 0 при V&gt;0; 
+        <LI>0<SUP>V</SUP> = бесконечность при V&lt;0; </LI></UL>Заменим 
+      бесконечность нулем. При вычислениях надо будет избегать сочетания 
+      X=0,V&lt;0. 
+      <P>Получилась такая функция: <PRE>Function pow1(x, v : real) : real;
+Begin
+ if (v = 0.0) then
+  pow1 := 1
+ else
+  if (x = 0.0) then
+   pow1 := 0
+  else
+   if (x &gt; 0.0) then
+    pow1 := exp(v*ln(x))
+   else
+    if (odd(trunc(v))) then
+     pow1 := -exp(int(v)*ln(-x))
+    else
+     pow1 := exp(int(v)*ln(-x));
+End;
+</PRE>Заметим еще раз, что эта функция возвращает неверный результат при 
+      отрицательных V: 
+      <UL>
+        <LI>когда X=0; 
+        <LI>когда V - дробное. </LI></UL><BR><A name=asmtit></A>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TH align=middle bgColor=#dddddd colSpan=7>Ассемблер 
+      </TH></TR></TBODY></TABLE>
+      <P>В арифметическом сопроцессоре предусмотрены команды, позволяющие 
+      выполнять возведение в степень по схеме, сходной с той, которая 
+      применяется в Паскале: <BR>также производится замена X = 2<SUP>lg X</SUP>. 
+      <BR>Результат вычисляется как X<SUP>V</SUP> = 2<SUP>V lg X</SUP>. 
+      <BR>Здесь lg X = log<SUB>2</SUB>X 
+      <P>Ниже приведен листинг программы на Visual C++, с ассемблерными 
+      вставками. 
+      <P><B>pow(x,v)</B> - функция возведения числа X в степень V. 
+      <BR>Использует функции pow2(e) и ylog2x(x,v). 
+      <P><B>ylog2x(x,v)</B> - функция, вычисляющая V log<SUB>2</SUB> X. <BR>V и 
+      X загружаются в стек сопроцессора и выполняется команда FYL2X, после чего 
+      из стека извлекается результат. <BR>Команда FYL2X работает верно при 
+      неотрицательном значении X. <BR>При X=0, в зависимости от значения маски 
+      деления на ноль (бит ZM в регистре управления сопроцессора CR) либо 
+      возникает исключительная ситуация, либо результат равен бесконечности, со 
+      знаком, обратным знаку значения V. <BR>В приведенном примере случай X=0 
+      отсекается функцией pow(). 
+      <P><B>pow2(v)</B> - функция, вычисляющая 2<SUP>V</SUP>. <BR>Вычисление 
+      выполняется по следующей формуле: <BR>2<SUP>V</SUP> = 2<SUP>frac(V)</SUP> 
+      2<SUP>int(V)</SUP>, где frac(V) - дробная часть числа, int(V) - целая 
+      часть. <BR>Это вызвано тем, что команда F2XM1, выполняющая возведение 2 в 
+      вещественную степень, работает только со значениями из диапазона -1 .. 1. 
+      <BR>Кроме того, F2XM1 вычисляет значение, уменьшенное на 1. Следовательно, 
+      нужно будет прибавить еще единицу. <BR>Команда FSCALE вычисляет 
+      ST(0)2<SUP>ST(1)</SUP> (ST(0) и ST(1) - регистры сопроцессора). Результат 
+      помещается в ST(0), а в ST(1) остается масштабный коэффициент, который по 
+      окончании вычислений следует удалить, чтобы стек не засорялся. <BR>В ST(1) 
+      может быть помещено и дробное значение, но оно автоматически округляется в 
+      сторону нуля. 
+      <P>Рассмотрим по шагам действия, выполняемые функцией pow2(v): 
+      <P>
+      <TABLE border=1>
+        <TBODY>
+        <TR>
+          <TH>Команда</TH>
+          <TH>Стек сопроцессора</TH>
+          <TH>Комментарии</TH></TR>
+        <TR>
+          <TD></TD>
+          <TD></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>rnd = roundToZero(v);</TD>
+          <TD></TD>
+          <TD>rnd = int(v);</TD></TR>
+        <TR>
+          <TD>fld rnd</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD></TD></TR>
+              <TR>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fld v</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>v</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>int(v)</TD></TR>
+              <TR>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fsub rnd</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>frac(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>f2xm1</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>2<SUP>frac(v)</SUP>-1</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fld1</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>1</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>2<SUP>frac(v)</SUP>-1</TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD>int(v)</TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fadd</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>2<SUP>frac(v)</SUP></TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fscale</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>2<SUP>frac(v)</SUP>2<SUP>int(v)</SUP></TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD></TD></TR>
+        <TR>
+          <TD>fstp v</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD>int(v)</TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD></TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD>v - результат </TD></TR>
+        <TR>
+          <TD>fstp rnd</TD>
+          <TD vAlign=center align=middle>
+            <TABLE border=0>
+              <TBODY>
+              <TR align=middle>
+                <TD>ST(0):</TD>
+                <TD></TD></TR>
+              <TR align=middle>
+                <TD>ST(1):</TD>
+                <TD></TD></TR>
+              <TR align=middle>
+                <TD>ST(2):</TD>
+                <TD></TD></TR></TBODY></TABLE></TD>
+          <TD>Очистка стека </TD></TR></TBODY></TABLE>
+      <P>Функции <B>round()</B> и <B>roundToZero()</B> выполняют округление. 
+      <BR>В арифметическом сопроцессоре округление выполняется командой FRNDINT. 
+      Способ округления опредеделяется битами RC (10 и 11) регистра управления 
+      CR. <BR>Возможные варианты: 
+      <UL>
+        <LI>0 - к ближайшему числу (устанавливается при инициализации 
+        сопроцессора); 
+        <LI>1 - в направлении минус бесконечности; 
+        <LI>2 - в направлении плюс бесконечности; 
+        <LI>3 - в направлении нуля (в нашем случае нужен именно этот способ). 
+        </LI></UL>
+      <P>Команды FSTCW и FLDCW выполняют чтение из регистра CR и запись в 
+      регистр CR соответственно. Использование битовых операций и масок 
+      позволяет установить требуемые значения в выбранные разряды не изменяя 
+      остальных разрядов. 
+      <P><B>Листинг 1:</B> <PRE>#include &lt;iostream.h&gt;
+
+#define RND_MASK 0x0c00
+#define RND_INV_MASK 0xF3FF
+#define RND_NEAR 0x0000
+#define RND_MINUS 0x0400
+#define RND_PLUS 0x0800
+#define RND_ZERO 0x0c00
+
+double round(double e, int flag) {
+  int sav;
+  _asm fstcw sav
+  _asm and sav, RND_INV_MASK
+  _asm mov eax, flag
+  _asm and eax, RND_MASK
+  _asm or sav, eax
+  _asm fldcw sav
+  _asm fld e
+  _asm frndint
+  _asm fstp e
+  return e;
+}
+
+double roundToZero(double e) {
+  return round(e, RND_ZERO);
+}
+
+double pow2(double v) {
+  double rnd = roundToZero(v);
+  _asm fld rnd
+  _asm fld v
+  _asm fsub rnd
+  _asm f2xm1
+  _asm fld1
+  _asm fadd
+  _asm fscale
+  _asm fstp v
+  _asm fstp rnd
+  return v;
+}
+
+double ylog2x(double x, double v) {
+  _asm fld v
+  _asm fld x
+  _asm fyl2x
+  _asm fstp x
+  return x;
+}
+
+double pow(double x, double v) {
+  if (x &lt;= 0) return 0;
+  else return pow2( ylog2x(x, v) );
+}
+
+void main() {
+  cout &lt;&lt; pow( pow(77.77, 2.0/3.0), 3.0/2.0) &lt;&lt; endl;
+}
+</PRE>
+      <P>В листинге 2 приведена компактная версия функции возведения в степень. 
+      Предполагается, что к моменту ее вызова соответствующий режим округления 
+      уже установлен. 
+      <P><B>Листинг 2:</B> <PRE>double shortpow(double e1, double e2) {
+  if (e1 &lt;= 0) return 0;
+  _asm fld e2
+  _asm fld e1
+  _asm fyl2x
+  _asm fld st(0)
+  _asm frndint
+  _asm fld st(0)
+  _asm fsubr st(0), st(2)
+  _asm f2xm1
+  _asm fld1
+  _asm fadd
+  _asm fscale
+  _asm fstp e1
+  _asm fstp e2
+  _asm fstp e2
+  return e1;
+}
+</PRE>
+      <P>В листинге 3 - несколько модифицированная функция, составленная в 
+      синтаксисе AT&amp;T и объявление СИ для нее (при выходе из функции 
+      результат находится в st(0)). 
+      <P><B>Листинг 3:</B> <PRE>Файл pow.s:
+.text
+.globl _d_pow
+_d_pow:
+  fldl 12(%esp)
+  fldl 4(%esp)
+  fyl2x
+  fld %st(0)
+  frndint
+  fsubr %st(0), %st(1)
+  fxch
+  f2xm1
+  fld1
+  faddp
+  fscale
+  ffree %st(1)
+  ret
+
+Файл pow.h:
+extern double d_pow(double e1, double e2) asm("_d_pow");
+
+</PRE></TR></TBODY></TABLE></CENTER></BODY></HTML>

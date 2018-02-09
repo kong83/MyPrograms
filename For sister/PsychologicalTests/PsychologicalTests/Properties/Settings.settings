@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PsychologicalTests.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TestName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test_Phillipsa</Value>
+    </Setting>
+    <Setting Name="TestDisplayName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tест Филиппса по адаптации школьника</Value>
+    </Setting>
+    <Setting Name="TestSavePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\PK\Public\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
