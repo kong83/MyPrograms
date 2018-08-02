@@ -1,0 +1,165 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UpdateDatabase" GeneratedClassName="Configuration">
+  <Profiles />
+  <Settings>
+    <Setting Name="SourceDatabaseName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ConfirmitCATIUpgrade</Value>
+    </Setting>
+    <Setting Name="SourceDatabaseBackupFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ConfirmitCATIUpgrade.bak</Value>
+    </Setting>
+    <Setting Name="SqlUserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="SqlPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">firm</Value>
+    </Setting>
+    <Setting Name="SplitTablesList" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;bvcellflag;cellflags&lt;/string&gt;
+  &lt;string&gt;bvcell;cells&lt;/string&gt;
+  &lt;string&gt;bvinterview;interviews&lt;/string&gt;
+  &lt;string&gt;bvhistoryraw;historyraw&lt;/string&gt;
+  &lt;string&gt;bvkey;key&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="SplitProceduresList" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;BvSpCall_Activate&lt;/string&gt;
+  &lt;string&gt;BvSpCall_ChangeShiftType&lt;/string&gt;
+  &lt;string&gt;BvSpCall_MoveToITS&lt;/string&gt;
+  &lt;string&gt;BvSpCallHistory_List&lt;/string&gt;
+  &lt;string&gt;BvSpCell_Insert&lt;/string&gt;
+  &lt;string&gt;BvSpChildQuestionnaires&lt;/string&gt;
+  &lt;string&gt;BvSpChildQuestionnaires_Delete&lt;/string&gt;
+  &lt;string&gt;BvSpChildQuestionnaires_DeleteData&lt;/string&gt;
+  &lt;string&gt;BvSpDeleteBatches&lt;/string&gt;
+  &lt;string&gt;BvSpGetStatesFromBatch&lt;/string&gt;
+  &lt;string&gt;BvSpGetSurveyTasks&lt;/string&gt;
+  &lt;string&gt;BvSpHistory_Insert&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_CheckSerialField&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_Get&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_Insert&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_IsExists&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_List&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_Start&lt;/string&gt;
+  &lt;string&gt;BvSpInterview_Update&lt;/string&gt;
+  &lt;string&gt;BvSpKey_Delete&lt;/string&gt;
+  &lt;string&gt;BvSpKey_GetByRID&lt;/string&gt;
+  &lt;string&gt;BvSpKey_InsertUpdate&lt;/string&gt;
+  &lt;string&gt;BvSpReportSSS&lt;/string&gt;
+  &lt;string&gt;BvSpReportSSSChart&lt;/string&gt;
+  &lt;string&gt;BvSpRptQtPgrsByPers&lt;/string&gt;
+  &lt;string&gt;BvSpRptQuotaDynamics&lt;/string&gt;
+  &lt;string&gt;BvSpRptSampleDisposition&lt;/string&gt;
+  &lt;string&gt;BvSpRptSSSPrgssChrtByPers&lt;/string&gt;
+  &lt;string&gt;BvSpSample_Abandon&lt;/string&gt;
+  &lt;string&gt;BvSpSample_Finalize&lt;/string&gt;
+  &lt;string&gt;BvSpSummaryReport_InterviewStatistics&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_CancelInterview&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_Delete&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_DeleteInterview&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_GetTotalMinutes&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_QreDistribution&lt;/string&gt;
+  &lt;string&gt;BvSpSurvey_Update&lt;/string&gt;
+  &lt;string&gt;BvSpSurveyModifyStateGroup&lt;/string&gt;
+  &lt;string&gt;BvSpSvySch_Update&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="BackupContent_ClrAssembyFiles" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;%PROJPATH%\DLL\BvSqlCallQueue.dll&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ProductionDatabaseBackupFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IsTestModeEnabled" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TemplateSurveyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">confirmit template</Value>
+    </Setting>
+    <Setting Name="DatabaseNamePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">(PtBvDb\d+$)|(ConfirmitCATI$)</Value>
+    </Setting>
+    <Setting Name="ExecuteUpdateScript" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ExternalUpdateScriptPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Updates\DataUpdate.sql</Value>
+    </Setting>
+    <Setting Name="BackupContent_SqlScriptFiles" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\CreateDB.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\TABLES\bvcellflag.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\TABLES\bvcell.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\TABLES\bvinterview.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\TABLES\bvhistoryraw.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\TABLES\bvkey.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpCall_Activate.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpCall_ChangeShiftType.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpCall_MoveToITS.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpCallHistory_List.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpCell_Insert.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpChildQuestionnaires.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpChildQuestionnaires_Delete.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpChildQuestionnaires_DeleteData.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpDeleteBatches.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpGetStatesFromBatch.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpGetSurveyTasks.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpHistory_Insert.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_CheckSerialField.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_Get.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_Insert.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_IsExists.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_List.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_Start.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpInterview_Update.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpKey_Delete.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpKey_GetByRID.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpKey_InsertUpdate.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpReportSSS.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpReportSSSChart.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpRptQtPgrsByPers.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpRptQuotaDynamics.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpRptSampleDisposition.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpRptSSSPrgssChrtByPers.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSample_Abandon.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSample_Finalize.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSummaryReport_InterviewStatistics.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_CancelInterview.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_Delete.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_DeleteInterview.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_GetTotalMinutes.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_QreDistribution.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurvey_Update.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSurveyModifyStateGroup.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvTrInterview_InterviewsDelete.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvTrInterview_InterviewsInsert.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvTrInterview_InterviewsUpdate.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\BvSpSvySch_Update.sql&lt;/string&gt;
+  &lt;string&gt;%PROJPATH%\UNITS\bv7\SQL\PROCEDURES\bvspstate_update.sql&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="SqlServerName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.</Value>
+    </Setting>
+    <Setting Name="UpdateDefaultDatabaseBackup" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DefaultDatabaseName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ConfirmitCATI</Value>
+    </Setting>
+    <Setting Name="DefaultDatabaseBackupFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\backupConfirmitCATI.bak </Value>
+    </Setting>
+    <Setting Name="DatabaseBackupsDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

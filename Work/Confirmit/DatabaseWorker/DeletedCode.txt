@@ -1,0 +1,97 @@
+
+const string DatabaseName = "ConfirmitCATITest";
+        const string BackupPath = @"c:\_Grigoriy\Progi\Work\DatabaseWorker\DatabaseWorker\bin\Debug\Proba1.bak";
+        StringCollection _dbFileNames;
+        string _saveTempDirectory;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            buttonExit.Enabled = false;
+            Application.DoEvents();
+            try
+            {
+                RestoreDatabase(DatabaseName, BackupPath);
+                using (var cn = new SqlConnection(CreateConnecionString()))
+                {
+                    cn.Open();
+
+                    var sc = new ServerConnection(cn);
+
+                    var server = new Server(sc);
+
+                    _dbFileNames = new StringCollection
+                    {
+                        Path.Combine(server.Databases["master"].PrimaryFilePath,
+                                     DatabaseName + ".LDF"),
+                        Path.Combine(server.Databases["master"].PrimaryFilePath,
+                                     DatabaseName + ".mdf")
+                    };
+                   /* foreach (DataFile s in server.Databases[DatabaseName].FileGroups[0].Files)
+                    {
+                        _dbFileNames.Add(s.FileName);
+                    }*/
+
+
+                    _saveTempDirectory = Path.Combine(Path.GetTempPath(), "SaveDbFiles");
+                    if (!Directory.Exists(_saveTempDirectory))
+                        Directory.CreateDirectory(_saveTempDirectory);
+                    server.DetachDatabase(DatabaseName, false, false);
+
+                    foreach (string s in _dbFileNames)
+                    {
+                        File.Copy(s, Path.Combine(_saveTempDirectory, Path.GetFileName(s)), true);
+                    }
+
+                    server.AttachDatabase(DatabaseName, _dbFileNames);
+                }
+
+                PutDatabasesList();
+                MessageBox.Show("Database files were save successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                buttonExit.Enabled = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            buttonExit.Enabled = false;
+            Application.DoEvents();
+            try
+            {
+                using (var cn = new SqlConnection(CreateConnecionString()))
+                {
+                    cn.Open();
+
+                    var sc = new ServerConnection(cn);
+
+                    var server = new Server(sc);
+
+                    server.DetachDatabase(DatabaseName, false, false);
+
+                    foreach (string s in _dbFileNames)
+                    {
+                        File.Copy(Path.Combine(_saveTempDirectory, Path.GetFileName(s)), s, true);
+                    }
+
+                    server.AttachDatabase(DatabaseName, _dbFileNames);
+                }
+
+                PutDatabasesList();
+                MessageBox.Show("Database files were restore successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                buttonExit.Enabled = true;
+            }
+
+        }

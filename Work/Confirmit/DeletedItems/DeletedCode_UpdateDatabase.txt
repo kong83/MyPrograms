@@ -1,0 +1,1290 @@
+#region OldCollect
+/*
+ * 
+ * 
+ *        /// <summary>
+        /// Get stored procedures from indicated database
+        /// </summary>
+        /// <param name="database">Database</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetStoredProceduresInfo(Microsoft.SqlServer.Management.Smo.Database database)
+        {
+            List<MySmoObjectBase> stores = new List<MySmoObjectBase>();
+
+            string commandText = " select ROUTINE_NAME, ROUTINE_DEFINITION " +
+                                 " from INFORMATION_SCHEMA.ROUTINES " +
+                                 " where ROUTINE_DEFINITION <> 'NULL' and ROUTINE_TYPE = 'PROCEDURE'" +
+                                 " order by ROUTINE_NAME";
+            string connectionString = "server=" + sqlServer.Name +
+                                     ";database=" + database.Name +
+                                     ";uid=" + sqlServer.ConnectionContext.Login +
+                                     ";password=" + sqlServer.ConnectionContext.Password;
+
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(commandText, cn))
+            {
+                cn.Open();
+
+                cmd.CommandType = CommandType.Text;
+                SqlDataReader sqlDR = cmd.ExecuteReader();
+                while (sqlDR.Read())
+                {
+                    string name = sqlDR.GetString(0);
+                    string bodyText = sqlDR.GetString(1);
+                    stores.Add(new MySmoObjectBase(
+                        database.StoredProcedures[name],
+                        name,
+                        bodyText,
+                        ""));
+                }
+            }
+            return stores;
+        }
+ * 
+ * /// <param name="originalProcedureName">Optional, for template tables only, for static tables eq null</param>
+        /// <param name="surveyId">Optional, for template tables only, for static tables eq 0</param>
+        private StoredProcedure CreateStoredProcedureScriptItem(
+            StoredProcedure modelProcedure,
+            string originalProcedureName,
+            int surveyId)
+        {
+            StoredProcedure newStoredProcedure;
+
+            if (surveyId == 0)
+            {
+                newStoredProcedure = new StoredProcedure(
+                    productionDatabase,
+                    originalProcedureName);
+            }
+            else
+            {
+                newStoredProcedure = new StoredProcedure(
+                    productionDatabase,
+                    databaseEngine.GetTemplateNameByOriginalName(
+                        originalProcedureName,
+                        surveyId));
+            }
+
+            newStoredProcedure.TextMode = false;
+
+            newStoredProcedure.QuotedIdentifierStatus = modelProcedure.QuotedIdentifierStatus;
+            newStoredProcedure.AnsiNullsStatus = modelProcedure.AnsiNullsStatus;
+
+            newStoredProcedure.ImplementationType = modelProcedure.ImplementationType;
+            newStoredProcedure.AssemblyName = modelProcedure.AssemblyName;
+            newStoredProcedure.ClassName = modelProcedure.ClassName;
+            newStoredProcedure.MethodName = modelProcedure.MethodName;
+
+            newStoredProcedure.Startup = modelProcedure.Startup;
+
+            foreach (StoredProcedureParameter storedProcedureParameter in modelProcedure.Parameters)
+            {
+                StoredProcedureParameter newStoredProcedureParameter = new StoredProcedureParameter(
+                    newStoredProcedure,
+                    storedProcedureParameter.Name,
+                    storedProcedureParameter.DataType);
+
+                newStoredProcedureParameter.DefaultValue = storedProcedureParameter.DefaultValue;
+                newStoredProcedureParameter.IsOutputParameter = storedProcedureParameter.IsOutputParameter;
+
+                newStoredProcedure.Parameters.Add(newStoredProcedureParameter);
+            } // foreach (StoredProcedureParameter storedProcedureParameter in splitProcedureObject.Parameters)
+
+            if (surveyId == 0)
+            {
+                newStoredProcedure.TextBody = modelProcedure.TextBody;
+            }
+            else
+            {
+                newStoredProcedure.TextBody = databaseEngine.GetTemplateTSQL(
+                    modelProcedure.TextBody,
+                    surveyId);
+            }
+
+            //productionDatabase.StoredProcedures.Add(newStoredProcedure);
+
+            return newStoredProcedure;
+        }
+ * 
+ * 
+ *  
+        /// <summary>
+        /// Get Triggers from indicated table
+        /// </summary>
+        /// <param name="table">Table</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetTriggersInfo(Table table)
+        {
+            List<MySmoObjectBase> triggers = new List<MySmoObjectBase>();
+
+            foreach (Trigger trigger in table.Triggers)
+            {
+                MySmoObjectBase myTrigger = new MyTrigger(
+                    trigger,
+                    trigger.Name,
+                    trigger.TextBody,
+                    trigger.TextHeader);
+                triggers.Add(myTrigger);
+            }
+            return triggers;
+        }
+
+
+        /// <summary>
+        /// Get Indexes from indicated table
+        /// </summary>
+        /// <param name="table">Table</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetIndexesInfo(Table table)
+        {
+            List<MySmoObjectBase> indexes = new List<MySmoObjectBase>();
+
+            foreach (Index index in table.Indexes)
+            {
+                if (index.IndexKeyType != IndexKeyType.DriPrimaryKey)
+                {
+                    MySmoObjectBase myIndex = new MyIndex(index, index.Name);
+                    indexes.Add(myIndex);
+                }
+            }
+            return indexes;
+        }
+
+
+        /// <summary>
+        /// Get ForeignKeys from indicated table
+        /// </summary>
+        /// <param name="table">Table</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetForeignKeysInfo(Table table)
+        {
+            List<MySmoObjectBase> foreignKeys = new List<MySmoObjectBase>();
+
+            foreach (ForeignKey foreignKey in table.ForeignKeys)
+            {
+                MySmoObjectBase myForeignKey = new MyForeignKey(foreignKey, foreignKey.Name);
+                foreignKeys.Add(myForeignKey);
+            }
+            return foreignKeys;
+        }
+
+
+        /// <summary>
+        /// Get Columns from indicated table
+        /// </summary>
+        /// <param name="table">Table</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetColumnsInfo(Table table)
+        {
+            List<MySmoObjectBase> columns = new List<MySmoObjectBase>();
+
+            foreach (Column column in table.Columns)
+            {
+                MySmoObjectBase myColumn = new MyColumn(column, column.Name);
+                columns.Add(myColumn);
+            }
+            return columns;
+        }
+
+ * 
+ * 
+ * 
+
+ private MySmoObjectBase CreateTriggerScriptItem(
+            Table productionTable,
+            MySmoObjectBase modelObject,
+            int surveyId)
+        {
+            Trigger newTrigger;
+            Trigger modelTrigger = (Trigger)modelObject.SourceSmoObject;
+
+            if (surveyId == 0)
+            {
+                newTrigger = new Trigger(
+                    productionTable,
+                    modelTrigger.Name);
+            }
+            else
+            {
+                newTrigger = new Trigger(
+                    productionTable,
+                    databaseEngine.GetTemplateNameByOriginalName(
+                        modelTrigger.Name,
+                        surveyId));
+            }
+
+            newTrigger.TextMode = false;
+
+            newTrigger.Delete = modelTrigger.Delete;
+            newTrigger.DeleteOrder = modelTrigger.DeleteOrder;
+
+            newTrigger.Insert = modelTrigger.Insert;
+            newTrigger.InsertOrder = modelTrigger.InsertOrder;
+
+            newTrigger.Update = modelTrigger.Update;
+            newTrigger.UpdateOrder = modelTrigger.UpdateOrder;
+
+            //newTrigger.AssemblyName = modelTrigger.AssemblyName;
+            //newTrigger.ClassName = modelTrigger.ClassName;
+
+            newTrigger.QuotedIdentifierStatus = modelTrigger.QuotedIdentifierStatus;
+
+            //newTrigger.AnsiNullsStatus = modelTrigger.AnsiNullsStatus;
+
+            //newTrigger.ImplementationType = modelTrigger.ImplementationType;
+
+            //newTrigger.ClassName = modelTrigger.ClassName;
+
+            //newTrigger.MethodName = modelTrigger.MethodName;
+
+            if (surveyId == 0)
+            {
+                newTrigger.TextBody = modelTrigger.TextBody;
+            }
+            else
+            {
+                newTrigger.TextBody = databaseEngine.GetTemplateTSQL(
+                    modelTrigger.TextBody,
+                    surveyId);
+            }
+
+            return new MySmoObjectBase(newTrigger,
+                newTrigger.Name,
+                newTrigger.TextBody,
+                newTrigger.TextHeader);
+        }        
+
+        private MySmoObjectBase CreateIndexScriptItem(
+            Table productionTable,
+            MySmoObjectBase modelObject,
+            int surveyId)
+        {
+            Index newIndex = new Index();
+            Index modelIndex = (Index)modelObject.SourceSmoObject;
+
+            newIndex.Parent = productionTable;
+
+            if (surveyId == 0)
+            {
+                newIndex.Name = modelIndex.Name;
+            }
+            else
+            {
+                newIndex.Name = databaseEngine.GetTemplateNameByOriginalName(
+                    modelIndex.Name,
+                    surveyId);
+            }
+
+            newIndex.IgnoreDuplicateKeys = modelIndex.IgnoreDuplicateKeys;
+            newIndex.IndexKeyType = modelIndex.IndexKeyType;
+            newIndex.IsClustered = modelIndex.IsClustered;
+            newIndex.IsUnique = modelIndex.IsUnique;
+            newIndex.NoAutomaticRecomputation = modelIndex.NoAutomaticRecomputation;
+            newIndex.OnlineIndexOperation = modelIndex.OnlineIndexOperation;
+
+            foreach (IndexedColumn indexedColumn in modelIndex.IndexedColumns)
+            {
+                IndexedColumn newIndexedColumn = new IndexedColumn(
+                    newIndex,
+                    indexedColumn.Name,
+                    indexedColumn.Descending);
+
+                newIndexedColumn.IsIncluded = indexedColumn.IsIncluded;
+
+                newIndex.IndexedColumns.Add(newIndexedColumn);
+            }
+
+            return new MySmoObjectBase(newIndex,
+                newIndex.Name,
+                "", "");
+        }
+
+        private MySmoObjectBase CreateForeignKeyScriptItem(
+            Table productionTable,
+            MySmoObjectBase modelObject,
+            int surveyId)
+        {
+            ForeignKey newForeignKey = new ForeignKey();
+            ForeignKey modelForeignKey = (ForeignKey)modelObject.SourceSmoObject;
+
+            newForeignKey.Parent = productionTable;
+
+            if (surveyId == 0)
+            {
+                newForeignKey.Name = modelForeignKey.Name;
+            }
+            else
+            {
+                newForeignKey.Name = databaseEngine.GetTemplateNameByOriginalName(
+                    modelForeignKey.Name,
+                    surveyId);
+            }
+
+            newForeignKey.IsEnabled = modelForeignKey.IsEnabled;
+            newForeignKey.IsChecked = modelForeignKey.IsChecked;
+
+            newForeignKey.DeleteAction = modelForeignKey.DeleteAction;
+            newForeignKey.UpdateAction = modelForeignKey.UpdateAction;
+
+            newForeignKey.ReferencedTable = modelForeignKey.ReferencedTable;
+            newForeignKey.ReferencedTableSchema = modelForeignKey.ReferencedTableSchema;
+
+            foreach (ForeignKeyColumn column in modelForeignKey.Columns)
+            {
+                ForeignKeyColumn newColumn = new ForeignKeyColumn(
+                    newForeignKey,
+                    column.Name,
+                    column.ReferencedColumn);
+
+                newForeignKey.Columns.Add(newColumn);
+            }
+
+            return new MySmoObjectBase(newForeignKey,
+                newForeignKey.Name,
+                "", "");
+        }
+
+        private MySmoObjectBase CreateColumnScriptItem(
+            Table productionTable,
+            MySmoObjectBase modelObject,
+            int emptyParam)
+        {
+            Column modelColumn = (Column)modelObject.SourceSmoObject;
+            Column newColumn = new Column(
+                productionTable,
+                modelColumn.Name,
+                modelColumn.DataType);
+
+            newColumn.Collation = modelColumn.Collation;
+            //newColumn.DefaultSchema = modelColumn.DefaultSchema;
+
+            newColumn.Nullable = modelColumn.Nullable;
+            newColumn.Identity = modelColumn.Identity;
+            newColumn.IdentitySeed = modelColumn.IdentitySeed;
+            newColumn.IdentityIncrement = modelColumn.IdentityIncrement;
+
+            if (modelColumn.DefaultConstraint != null)
+                newColumn.AddDefaultConstraint(modelColumn.DefaultConstraint.Name).Text = modelColumn.DefaultConstraint.Text;
+
+            //productionTable.Columns.Add(newColumn);
+
+            return new MySmoObjectBase(newColumn,
+               newColumn.Name,
+               "", "");
+        }
+
+ * 
+ * 
+ * 
+ //preSql.Add("EXEC dbo.sp_changedbowner @loginame = N'sa', @map = false");
+ * 
+ * 
+ private MySmoObjectBase CreateCheckScriptItem(
+            Table productionTable,
+            MySmoObjectBase modelObject,
+            int surveyId)
+        {
+            Check newCheck = new Check();
+            Check modelCheck = (Check)modelObject.SmoObject;
+
+            newCheck.Parent = productionTable;
+
+            if (surveyId == 0)
+            {
+                newCheck.Name = modelCheck.Name;
+            }
+            else
+            {
+                newCheck.Name = GenerateUniqueName("CH");
+            }
+
+            newCheck.IsEnabled = modelCheck.IsEnabled;
+            newCheck.IsChecked = modelCheck.IsChecked;
+            newCheck.Text = modelCheck.Text;
+
+            return new MySmoObjectBase(newCheck,
+                newCheck.Name,
+                "", "");
+        }
+  
+ * 
+ * 
+ *   
+ 
+
+        /// <summary>
+        /// Get Checks from indicated table
+        /// </summary>
+        /// <param name="table">Table</param>
+        /// <returns></returns>
+        private List<MySmoObjectBase> GetChecksInfo(Table table)
+        {
+            List<MySmoObjectBase> checks = new List<MySmoObjectBase>();
+
+            foreach (Check check in table.Checks)
+            {
+                MySmoObjectBase myCheck = new MyCheck(check, check.Name);
+                checks.Add(myCheck);
+            }
+            return checks;
+        }
+ * 
+ * 
+ * 
+ * 
+ 
+                #region Triggers
+                foreach (Trigger trigger in productionTable.Triggers)
+                {
+                    bool isContains = false;
+
+                    // if sourceTable contains trigger with production trigger name - compare it
+                    if (sourceTable.Triggers.Contains(trigger.Name))
+                    {
+                        isContains = true;
+                        // if triggers are not identical - add trigger from sourceTable to create list
+                        if (!IsTriggersIdentical(trigger, sourceTable.Triggers[trigger.Name]))
+                        {
+                            isContains = false;
+                            createTriggerItems.Add(new MySmoObjectBase(
+                            sourceTable.Triggers[trigger.Name],
+                            trigger.Name,
+                            trigger.TextBody,
+                            trigger.TextHeader,
+                            sourceTable.Name));
+
+                            // create this trigers in dynamical tables
+                            if (databaseEngine.IsSplitTable(sourceTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTableName,
+                                        surveyId);
+
+                                    Trigger dynamicalTrigger = CreateTriggerScriptItem(
+                                        productionTable,
+                                        trigger,
+                                        surveyId);
+                                    createTriggerItems.Add(new MySmoObjectBase(
+                                        dynamicalTrigger,
+                                        dynamicalTrigger.Name,
+                                        dynamicalTrigger.TextBody,
+                                        dynamicalTrigger.TextHeader,
+                                        templateTableName));
+                                }
+                            }
+                        }
+                    }
+
+                    // if triggers are not identical - add trigger from productionTable to drop list 
+                    if (!isContains)
+                    {
+                        dropTriggerItems.Add(new MySmoObjectBase(
+                            trigger,
+                            trigger.Name,
+                            trigger.TextBody,
+                            trigger.TextHeader,
+                            productionTableName));
+
+                        //
+                        // Drop this triger from dynamical tables
+                        //
+                        if (databaseEngine.IsSplitTable(productionTableName))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                string dynamicalTriggerName = databaseEngine.GetTemplateNameByOriginalName(trigger.Name, surveyId);
+                                Trigger dynamicalTrigger = productionDatabase.Tables[templateTableName].Triggers[dynamicalTriggerName];
+                                dropTriggerItems.Add(new MySmoObjectBase(
+                                    dynamicalTrigger,
+                                    dynamicalTrigger.Name,
+                                    dynamicalTrigger.TextBody,
+                                    dynamicalTrigger.TextHeader,
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+
+                // add new triggers from source table
+                foreach (Trigger trigger in sourceTable.Triggers)
+                {
+                    if (!productionTable.Triggers.Contains(trigger.Name))
+                    {
+                        createTriggerItems.Add(new MySmoObjectBase(
+                            trigger,
+                            trigger.Name,
+                            trigger.TextBody,
+                            trigger.TextHeader,
+                            sourceTable.Name));
+
+                        // create this trigers in dynamical tables
+                        if (databaseEngine.IsSplitTable(sourceTable.Name))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                Trigger dynamicalTrigger = CreateTriggerScriptItem(
+                                    productionTable,
+                                    trigger,
+                                    surveyId);
+                                createTriggerItems.Add(new MySmoObjectBase(
+                                    dynamicalTrigger,
+                                    dynamicalTrigger.Name,
+                                    dynamicalTrigger.TextBody,
+                                    dynamicalTrigger.TextHeader,
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #region Indexes
+                foreach (Index index in productionTable.Indexes)
+                {
+                    bool isContains = false;
+
+                    // if sourceTable contains index with production index name - compare it
+                    if (sourceTable.Indexes.Contains(index.Name))
+                    {
+                        // if indexs are not identical - add index from sourceTable to create list
+                        if (!IsIndexesIdentical(index, sourceTable.Indexes[index.Name]))
+                        {
+                            alterIndexItems.Add(new MySmoObjectBase(
+                            sourceTable.Indexes[index.Name],
+                            index.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+                            alterIndexItems[alterIndexItems.Count - 1].OneMoreSmoObject = index;
+
+                            //IsIndexesIdentical(index, sourceTable.Indexes[index.Name]);
+
+                            // create this trigers in dynamical tables
+                            if (databaseEngine.IsSplitTable(sourceTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTableName,
+                                        surveyId);
+
+                                    Index dynamicalIndex = CreateIndexScriptItem(
+                                        productionTable,
+                                        index,
+                                        surveyId);
+                                    alterIndexItems.Add(new MySmoObjectBase(
+                                        dynamicalIndex,
+                                        dynamicalIndex.Name,
+                                        "",
+                                        "",
+                                        templateTableName));
+                                    alterIndexItems[alterIndexItems.Count - 1].OneMoreSmoObject = productionDatabase.Tables[templateTableName].Indexes[dynamicalIndex.Name];
+                                }
+                            }
+                        }
+                        isContains = true;
+                    }
+
+                    // if indexs are not identical - add index from productionTable to drop list 
+                    if (!isContains)
+                    {
+                        dropIndexItems.Add(new MySmoObjectBase(
+                            index,
+                            index.Name,
+                            "",
+                            "",
+                            productionTableName));
+
+                        //
+                        // Drop this triger from dynamical tables
+                        //
+                        if (databaseEngine.IsSplitTable(productionTableName))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                string dynamicalIndexName = databaseEngine.GetTemplateNameByOriginalName(index.Name, surveyId);
+                                Index dynamicalIndex = productionDatabase.Tables[templateTableName].Indexes[dynamicalIndexName];
+                                dropIndexItems.Add(new MySmoObjectBase(
+                                    dynamicalIndex,
+                                    dynamicalIndex.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+
+                // add new indexs from source table
+                foreach (Index index in sourceTable.Indexes)
+                {
+                    if (!productionTable.Indexes.Contains(index.Name))
+                    {
+                        createIndexItems.Add(new MySmoObjectBase(
+                            index,
+                            index.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+
+                        // create this trigers in dynamical tables
+                        if (databaseEngine.IsSplitTable(sourceTable.Name))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                Index dynamicalIndex = CreateIndexScriptItem(
+                                    productionTable,
+                                    index,
+                                    surveyId);
+                                createIndexItems.Add(new MySmoObjectBase(
+                                    dynamicalIndex,
+                                    dynamicalIndex.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #region Checks
+                foreach (Check check in productionTable.Checks)
+                {
+                    bool isContains = false;
+
+                    // if sourceTable contains check with production check name - compare it
+                    if (sourceTable.Checks.Contains(check.Name))
+                    {
+                        isContains = true;
+                        // if checks are not identical - add check from sourceTable to create list
+                        if (!IsChecksIdentical(check, sourceTable.Checks[check.Name]))
+                        {
+                            isContains = false;
+                            createCheckItems.Add(new MySmoObjectBase(
+                            sourceTable.Checks[check.Name],
+                            check.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+
+                            // create this trigers in dynamical tables
+                            if (databaseEngine.IsSplitTable(sourceTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTableName,
+                                        surveyId);
+
+                                    Check dynamicalCheck = CreateCheckScriptItem(
+                                        productionTable,
+                                        check,
+                                        surveyId);
+                                    createCheckItems.Add(new MySmoObjectBase(
+                                        dynamicalCheck,
+                                        dynamicalCheck.Name,
+                                        "",
+                                        "",
+                                        templateTableName));
+                                }
+                            }
+                        }
+
+                    }
+
+                    // if checks are not identical - add check from productionTable to drop list 
+                    if (!isContains)
+                    {
+                        dropCheckItems.Add(new MySmoObjectBase(
+                            check,
+                            check.Name,
+                            "",
+                            "",
+                            productionTableName));
+
+                        //
+                        // Drop this triger from dynamical tables
+                        //
+                        if (databaseEngine.IsSplitTable(productionTableName))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                string dynamicalCheckName = databaseEngine.GetTemplateNameByOriginalName(check.Name, surveyId);
+                                Check dynamicalCheck = productionDatabase.Tables[templateTableName].Checks[dynamicalCheckName];
+                                dropCheckItems.Add(new MySmoObjectBase(
+                                    dynamicalCheck,
+                                    dynamicalCheck.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+
+                // add new checks from source table
+                foreach (Check check in sourceTable.Checks)
+                {
+                    if (!productionTable.Checks.Contains(check.Name))
+                    {
+                        createCheckItems.Add(new MySmoObjectBase(
+                            check,
+                            check.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+
+                        // create this trigers in dynamical tables
+                        if (databaseEngine.IsSplitTable(sourceTable.Name))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                Check dynamicalCheck = CreateCheckScriptItem(
+                                    productionTable,
+                                    check,
+                                    surveyId);
+                                createCheckItems.Add(new MySmoObjectBase(
+                                    dynamicalCheck,
+                                    dynamicalCheck.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #region ForeignKeys
+                foreach (ForeignKey foreignKey in productionTable.ForeignKeys)
+                {
+                    bool isContains = false;
+
+                    // if sourceTable contains foreignKey with production foreignKey name - compare it
+                    if (sourceTable.ForeignKeys.Contains(foreignKey.Name))
+                    {
+                        isContains = true;
+                        // if foreignKeys are not identical - add foreignKey from sourceTable to create list
+                        if (!IsForeignKeysIdentical(foreignKey, sourceTable.ForeignKeys[foreignKey.Name]))
+                        {
+                            isContains = false;
+                            createForeignKeyItems.Add(new MySmoObjectBase(
+                            sourceTable.ForeignKeys[foreignKey.Name],
+                            foreignKey.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+                            IsForeignKeysIdentical(foreignKey, sourceTable.ForeignKeys[foreignKey.Name]);
+
+                            // create this trigers in dynamical tables
+                            if (databaseEngine.IsSplitTable(sourceTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTableName,
+                                        surveyId);
+
+                                    ForeignKey dynamicalForeignKey = CreateForeignKeyScriptItem(
+                                        productionTable,
+                                        foreignKey,
+                                        surveyId);
+                                    createForeignKeyItems.Add(new MySmoObjectBase(
+                                        dynamicalForeignKey,
+                                        dynamicalForeignKey.Name,
+                                        "",
+                                        "",
+                                        templateTableName));
+                                }
+                            }
+                        }
+                    }
+
+                    // if foreignKeys are not identical - add foreignKey from productionTable to drop list 
+                    if (!isContains)
+                    {
+                        dropForeignKeyItems.Add(new MySmoObjectBase(
+                            foreignKey,
+                            foreignKey.Name,
+                            "",
+                            "",
+                            productionTableName));
+
+                        //
+                        // Drop this triger from dynamical tables
+                        //
+                        if (databaseEngine.IsSplitTable(productionTableName))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                string dynamicalForeignKeyName = databaseEngine.GetTemplateNameByOriginalName(foreignKey.Name, surveyId);
+                                ForeignKey dynamicalForeignKey = productionDatabase.Tables[templateTableName].ForeignKeys[dynamicalForeignKeyName];
+                                dropForeignKeyItems.Add(new MySmoObjectBase(
+                                    dynamicalForeignKey,
+                                    dynamicalForeignKey.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+
+                // add new foreignKeys from source table
+                foreach (ForeignKey foreignKey in sourceTable.ForeignKeys)
+                {
+                    if (!productionTable.ForeignKeys.Contains(foreignKey.Name))
+                    {
+                        createForeignKeyItems.Add(new MySmoObjectBase(
+                            foreignKey,
+                            foreignKey.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+
+                        // create this trigers in dynamical tables
+                        if (databaseEngine.IsSplitTable(sourceTable.Name))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                ForeignKey dynamicalForeignKey = CreateForeignKeyScriptItem(
+                                    productionTable,
+                                    foreignKey,
+                                    surveyId);
+                                createForeignKeyItems.Add(new MySmoObjectBase(
+                                    dynamicalForeignKey,
+                                    dynamicalForeignKey.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #region Columns
+                foreach (Column column in productionTable.Columns)
+                {
+                    bool isContains = false;
+
+                    // if sourceTable contains column with production column name - compare it
+                    if (sourceTable.Columns.Contains(column.Name))
+                    {
+                        // if columns are not identical - add column from sourceTable to create list
+                        if (!IsColumnsIdentical(column, sourceTable.Columns[column.Name]))
+                        {
+                            alterColumnItems.Add(new MySmoObjectBase(
+                            sourceTable.Columns[column.Name],
+                            column.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+                            alterColumnItems[alterColumnItems.Count - 1].OneMoreSmoObject = column;
+
+
+                            // create this trigers in dynamical tables
+                            if (databaseEngine.IsSplitTable(sourceTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTableName,
+                                        surveyId);
+
+                                    Column dynamicalColumn = CreateColumnScriptItem(
+                                        productionTable,
+                                        column);
+                                    alterColumnItems.Add(new MySmoObjectBase(
+                                        dynamicalColumn,
+                                        dynamicalColumn.Name,
+                                        "",
+                                        "",
+                                        templateTableName));
+                                    alterColumnItems[alterColumnItems.Count - 1].OneMoreSmoObject = productionDatabase.Tables[templateTableName].Columns[dynamicalColumn.Name];
+                                }
+                            }
+                        }
+                        isContains = true;
+                    }
+
+                    // if columns are not identical - add column from productionTable to drop list 
+                    if (!isContains)
+                    {
+                        dropColumnItems.Add(new MySmoObjectBase(
+                            column,
+                            column.Name,
+                            "",
+                            "",
+                            productionTableName));
+
+                        //
+                        // Drop this triger from dynamical tables
+                        //
+                        if (databaseEngine.IsSplitTable(productionTableName))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                string dynamicalColumnName = databaseEngine.GetTemplateNameByOriginalName(column.Name, surveyId);
+                                Column dynamicalColumn = productionDatabase.Tables[templateTableName].Columns[dynamicalColumnName];
+                                dropColumnItems.Add(new MySmoObjectBase(
+                                    dynamicalColumn,
+                                    dynamicalColumn.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+
+                // add new columns from source table
+                foreach (Column column in sourceTable.Columns)
+                {
+                    if (!productionTable.Columns.Contains(column.Name))
+                    {
+                        createColumnItems.Add(new MySmoObjectBase(
+                            column,
+                            column.Name,
+                            "",
+                            "",
+                            sourceTable.Name));
+
+                        // create this trigers in dynamical tables
+                        if (databaseEngine.IsSplitTable(sourceTable.Name))
+                        {
+                            foreach (int surveyId in databaseEngine.SurveyIds)
+                            {
+                                string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTableName,
+                                    surveyId);
+
+                                Column dynamicalColumn = CreateColumnScriptItem(
+                                    productionTable,
+                                    column);
+                                createColumnItems.Add(new MySmoObjectBase(
+                                    dynamicalColumn,
+                                    dynamicalColumn.Name,
+                                    "",
+                                    "",
+                                    templateTableName));
+                            }
+                        }
+                    }
+                }
+                #endregion
+                */
+#endregion
+
+
+
+#region dell
+            /*//
+            // Get info about stored procedures from productionDatabase and sourceDatabase
+            //
+            
+            //
+            // Add stores to dropItems and createItems
+            //
+            foreach (MySmoObjectBase productionStor in productionStores)
+            {
+                if (!string.IsNullOrEmpty(databaseEngine.GetOriginalStoreNameByTemplateStoreName(productionStor.Name)))
+                    continue;
+
+                bool isContains = false;
+
+                foreach (MySmoObjectBase sourceStor in sourceStores)
+                {
+                    if (sourceStor.Name == productionStor.Name)
+                    {
+                        isContains = true;
+                        if (!sourceStor.IsEqual(productionStor))
+                        {
+                            isContains = false;                            
+                            createItems.Add(new MySmoObjectBase(sourceStor));
+                            //
+                            // Add dynamical stores, if this stor have it
+                            //
+                            if (databaseEngine.IsSplitProcedure(sourceStor.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    MySmoObjectBase dynamicalStor = sourceStor.CreateDynamicalItem(productionDatabase, surveyId, databaseEngine);
+                                    createItems.Add(new MySmoObjectBase(dynamicalStor));
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                if (!isContains)
+                {
+                    dropItems.Add(new MySmoObjectBase(productionStor));
+                    //
+                    // Add dynamical stores, if this stor have it
+                    //
+                    if (databaseEngine.IsSplitProcedure(productionStor.Name))
+                    {
+                        foreach (int surveyId in databaseEngine.SurveyIds)
+                        {
+                            StoredProcedure dynamicalStor = productionDatabase.StoredProcedures[databaseEngine.GetTemplateNameByOriginalName(productionStor.Name, surveyId)];
+                            dropItems.Add(new MySmoObjectBase(
+                                dynamicalStor,
+                                dynamicalStor.Name));
+                        }
+                    }
+                }
+            }
+
+            //
+            // Add new stores from production database
+            //
+            foreach (MySmoObjectBase sourceStor in sourceStores)
+            {
+                bool isContains = false;
+
+                foreach (MySmoObjectBase productionStor in productionStores)
+                {
+                    if (sourceStor.Name == productionStor.Name)
+                    {
+                        isContains = true;
+                        break;
+                    }
+                }
+
+                if (!isContains)
+                {
+                    createItems.Add(new MySmoObjectBase(sourceStor));
+                    //
+                    // Add dynamical stores, if this stor have it
+                    //
+                    if (databaseEngine.IsSplitProcedure(sourceStor.Name))
+                    {
+                        foreach (int surveyId in databaseEngine.SurveyIds)
+                        {
+                            MySmoObjectBase dynamicalStor = sourceStor.CreateDynamicalItem(productionDatabase, surveyId, databaseEngine);
+                            createItems.Add(new MySmoObjectBase(dynamicalStor));
+                        }
+                    }
+                }
+            }*/
+            #endregion
+
+
+#region del
+            /*
+            foreach (MySmoObjectBase productionObject in productionCollection)
+            {
+                bool isContains = false;
+
+                //
+                // Find object from production collection in source collection
+                //
+                foreach (MySmoObjectBase sourceObject in sourceCollection)
+                {
+                    if (sourceObject.Name == productionObject.Name)
+                    {
+                        //
+                        // Compare these objects (own compare for every object)
+                        //
+                        if (sourceObject.IsEqual(productionObject))
+                        {
+                            isContains = true;
+                        }
+                        else
+                        {
+                            //
+                            // if our objects is indexes or columns - add it into alter collection
+                            // otherwise - into create collection
+                            //
+                            if (alterItems != null)
+                            {
+                                sourceObject.ProductionSmoObject = productionObject.SourceSmoObject;
+                                alterItems.Add(new MySmoObjectBase(sourceObject));
+                                isContains = true;
+                            }
+                            else
+                            {
+                                createItems.Add(new MySmoObjectBase(sourceObject));
+                            }
+                            //
+                            // Add dynamical object from dynamical tables, 
+                            // if this table have dynamical versions
+                            //                            
+                            if (databaseEngine.IsSplitTable(productionTable.Name))
+                            {
+                                foreach (int surveyId in databaseEngine.SurveyIds)
+                                {
+                                    //
+                                    // Get dynamical table 
+                                    //
+                                    string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTable.Name,
+                                        surveyId);
+                                    Table templateTable = productionDatabase.Tables[templateTableName];
+
+                                    //
+                                    // Create dynamical object on this table
+                                    //
+                                    MySmoObjectBase dynamicalObject = sourceObject.CreateDynamicalItem(
+                                        templateTable,
+                                        surveyId,
+                                        databaseEngine);
+
+                                    //
+                                    // if our objects is indexes or columns - add it into alter collection
+                                    // otherwise - into create collection
+                                    //
+                                    if (alterItems != null)
+                                    {
+                                        //
+                                        // Find old version of this object in production database
+                                        //                                        
+                                        Dictionary<string, MySmoObjectBase>  templateCollection = dynamicalObject.GetItemsInfo(templateTable);
+
+                                        foreach (MySmoObjectBase tempObject in templateCollection)
+                                        {
+                                            if (tempObject.Name == dynamicalObject.Name)
+                                            {
+                                                dynamicalObject.ProductionSmoObject = tempObject.SourceSmoObject;
+                                                break;
+                                            }
+                                        }
+                                        alterItems.Add(new MySmoObjectBase(dynamicalObject));
+                                    }
+                                    else
+                                    {
+                                        createItems.Add(new MySmoObjectBase(dynamicalObject));
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                //
+                // if our object must to drop - add it into drop collection
+                //
+                if (!isContains)
+                {
+                    dropItems.Add(new MySmoObjectBase(productionObject));
+                    //
+                    // Add dynamical objects to drop collection, if this table 
+                    // have dynamical versions
+                    //
+                    if (databaseEngine.IsSplitTable(productionTable.Name))
+                    {
+                        foreach (int surveyId in databaseEngine.SurveyIds)
+                        {
+                            //
+                            // Get object collection from each dynamical table
+                            //
+                            string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                    productionTable.Name,
+                                    surveyId);
+                            Dictionary<string, MySmoObjectBase>  templateCollection = productionObject.GetItemsInfo(productionDatabase.Tables[templateTableName]);
+                            string dynamicalObjectName = databaseEngine.GetTemplateNameByOriginalName(productionObject.Name, surveyId);
+
+                            //
+                            // Find our object from this collection and add it into drop collection
+                            //
+                            foreach (MySmoObjectBase tempObject in templateCollection)
+                            {
+                                if (tempObject.Name == dynamicalObjectName)
+                                {
+                                    dropItems.Add(new MySmoObjectBase(tempObject));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //
+            // Add new objects from source database
+            //
+            foreach (MySmoObjectBase sourceObject in sourceCollection)
+            {
+                bool isContains = false;
+
+                foreach (MySmoObjectBase productionObject in productionCollection)
+                {
+                    if (sourceObject.Name == productionObject.Name)
+                    {
+                        isContains = true;
+                        break;
+                    }
+                }
+
+                //
+                // If source database contains new object - add it into create collection
+                //
+                if (!isContains)
+                {
+                    createItems.Add(new MySmoObjectBase(sourceObject));
+                    //
+                    // Add dynamical objects, if this table have dynamical version
+                    //
+                    if (databaseEngine.IsSplitTable(productionTable.Name))
+                    {
+                        foreach (int surveyId in databaseEngine.SurveyIds)
+                        {
+                            string templateTableName = databaseEngine.GetTemplateTableNameByOriginalTableName(
+                                        productionTable.Name,
+                                        surveyId);
+                            //
+                            // Create dynamical version of object for dynamical version of table
+                            //
+                            MySmoObjectBase dynamicalObject = sourceObject.CreateDynamicalItem(
+                                productionDatabase.Tables[templateTableName],
+                                surveyId,
+                                databaseEngine);
+                            createItems.Add(new MySmoObjectBase(dynamicalObject));
+                        }
+                    }
+                }
+            }
+            */
+            #endregion

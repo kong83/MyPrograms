@@ -1,0 +1,81 @@
+
+        public void RestoreTciDialerConfig(string configPath, string installLocation, string doNotUpdateConfigFile)
+        {
+            string configName = Path.GetFileName(configPath);
+            string backupFolder = Path.Combine(installLocation, "ConfigBackups");
+            string latestSavedConfigPath = GetLatestSavedConfigPath(backupFolder, configName);
+            if (string.IsNullOrEmpty(latestSavedConfigPath))
+            {
+                return;
+            }
+
+            string configSavePath = Path.Combine(backupFolder, latestSavedConfigPath);
+
+            File.Copy(configSavePath, configPath, true);
+            File.Delete(configSavePath);
+
+            if (Directory.GetFiles(backupFolder).Length == 0 && Directory.GetDirectories(backupFolder).Length == 0)
+            {
+                Directory.Delete(backupFolder);
+            }
+        }
+
+        private string GetLatestSavedConfigPath(string backupFolder, string configName)
+        {
+            string[] configPaths = Directory.GetFiles(backupFolder, "*" + configName);
+            if (configPaths.Length == 0)
+            {
+                return null;
+            }
+
+            string newestConfigName = configPaths[0];
+            for (int i = 1; i < configPaths.Length; i++)
+            {
+                string currentConfigName = configPaths[i];
+
+                if (DateTime.Compare(GetDateFromConfigName(currentConfigName), GetDateFromConfigName(newestConfigName)) > 0)
+                {
+                    newestConfigName = currentConfigName;
+                }
+            }
+
+            return Path.Combine(backupFolder, newestConfigName);
+        }
+
+        private DateTime GetDateFromConfigName(string configName)
+        {
+            string[] configNameParts = configName.Split('_');
+
+            if (configNameParts.Length != 3)
+            {
+                return DateTime.MinValue;
+            }
+
+            return DateTime.ParseExact(configNameParts[1], "yyyy-MM-dd HH-mm", CultureInfo.InvariantCulture);
+        }
+
+
+[CustomAction]
+        public static ActionResult RestoreOldTciDialerConfigIfNeeded(Session session)
+        {
+            var setupEngine = new TciSetupEngine(session, true);
+
+            string installLocation = session.CustomActionData["INSTALL_LOCATION"];
+            string doNotUpdateConfigFile = session.CustomActionData["DO_NOT_UPDATE_CONFIG_FILE"];
+            
+            try
+            {
+                setupEngine.WriteLog("Begin RestoreOldTciConfigIfNeeded");
+
+                setupEngine.RestoreTciDialerConfig(Path.Combine(installLocation, "bvvs.cfg"), installLocation, doNotUpdateConfigFile);
+            }
+            catch (Exception ex)
+            {
+                setupEngine.WriteLog(ex.ToString());
+            }
+            finally
+            {
+                setupEngine.WriteLog("End RestoreOldTciConfigIfNeeded");
+            }
+            return ActionResult.Success;
+        }

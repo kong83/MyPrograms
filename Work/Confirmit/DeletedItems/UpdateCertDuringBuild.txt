@@ -1,0 +1,30 @@
+<Target Name="InstallCertificate">
+        <MSBuild.ExtensionPack.Security.Certificate TaskAction="GetInfo" Thumbprint="F2741D106BE9AFEC54B62F2827900C5DC3AC407D" ContinueOnError="true">
+            <Output TaskParameter="CertInfo" ItemName="FirstCertInfo" />
+        </MSBuild.ExtensionPack.Security.Certificate>
+
+        <Message Text="SubjectName: %(FirstCertInfo.SubjectName)" />
+        <Message Text="Thumbprint: %(FirstCertInfo.Thumbprint)"/>
+        <Message Text="NotAfter: %(FirstCertInfo.NotAfter)"/>
+
+        <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="GetElapsed" Start="%(FirstCertInfo.NotAfter)" Format="Seconds" Condition="'%(FirstCertInfo.Thumbprint)' != ''">
+            <Output TaskParameter="Result" PropertyName="ElapsedSeconds"/>
+        </MSBuild.ExtensionPack.Framework.DateAndTime>
+        <Message Text="ElapsedSeconds: $(ElapsedSeconds)" Condition="'%(FirstCertInfo.Thumbprint)' != ''"/>
+
+        <MSBuild.ExtensionPack.Framework.TextString TaskAction="Compare" String1="$(ElapsedSeconds)" String2="-" Comparison="StartsWith" Condition="'%(FirstCertInfo.Thumbprint)' != ''">
+            <Output TaskParameter="Result" PropertyName="NormalCert" />
+        </MSBuild.ExtensionPack.Framework.TextString>
+        <Message Text="Cert is normal: $(NormalCert)" Condition="'%(FirstCertInfo.Thumbprint)' != ''"/>
+
+        <MSBuild.ExtensionPack.Security.Certificate TaskAction="Remove" Thumbprint="%(FirstCertInfo.Thumbprint)" Condition="'%(FirstCertInfo.Thumbprint)' != '' AND $(NormalCert) == false"/>            
+        <Message Text="The expired cert was removed!" Condition="'%(FirstCertInfo.Thumbprint)' != '' AND $(NormalCert) == false"/>
+            
+        <MSBuild.ExtensionPack.Security.Certificate TaskAction="GetInfo" Thumbprint="F2741D106BE9AFEC54B62F2827900C5DC3AC407D"  ContinueOnError="true">
+            <Output TaskParameter="CertInfo" ItemName="SecondCertInfo" />
+        </MSBuild.ExtensionPack.Security.Certificate>
+
+        <MSBuild.ExtensionPack.Security.Certificate 
+            TaskAction="Add" FileName="$(ProjectDir)\Certificates\CatiClickOnce.pfx" CertPassword="Cati99ClickOnce543Password8" Condition="'%(FirstCertInfo.Thumbprint)' == ''" />
+        <Message Text="The new cert was added!" Condition="'%(FirstCertInfo.Thumbprint)' == ''"/>
+    </Target>

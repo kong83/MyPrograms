@@ -1,0 +1,158 @@
+<#"feature_CATI-419"#>
+
+
+
+<# Backend
+
+$CatiDatabaseServerName = 'TestCatiDatabaseServerName'
+$CatiDatabaseAdminUserName = 'Test$CatiDatabaseAdminUserName'
+$CatiDatabaseAdminPassword = 'Test$CatiDatabaseAdminPassword'
+$CatiDatabaseUserName = 'Test$CatiDatabaseUserName'
+$CatiDatabasePassword = 'Test$CatiDatabasePassword'
+$CatiDatabaseLinkedServerNameToConfirmit = 'Test$CatiDatabaseLinkedServerNameToConfirmit'
+$CatiDatabaseUseSimpleRecoveryMode = 'True'
+$CatiDatabaseConfirmitServerName = 'Test$CatiDatabaseConfirmitServerName'
+$CatiDatabaseConfirmitUserName = 'Test$CatiDatabaseConfirmitUserName'
+$CatiDatabaseConfirmitPassword = 'Test$CatiDatabaseConfirmitPassword'
+$CatiDatabaseUpdateSnapshotFilePath = 'Test$CatiDatabaseUpdateSnapshotFilePath'
+$CatiDatabaseUpdateMinFreeSpaceOnDiskInMB = '1024'
+$CatiDatabaseUpdateUseSnapshots = 'True'
+$CatiDatabaseUpdateUseTransactions = 'False'
+$CatiDatabaseServerDataPath = 'Test$CatiDatabaseServerDataPath'
+$CatiDatabaseServerLogPath = 'Test$CatiDatabaseServerLogPath'
+$CatiParametersValidWCFIpAddresses = 'Test$CatiParametersValidWCFIpAddresses'
+$CatiParametersNotificationEmailBcc = 'Test$CatiParametersNotificationEmailBcc'
+$CatiSSLUseAccelerator = 'True'
+$CatiSSLGenerateTestCertificate = 'False'
+$CatiSSLCertificateName = 'Test$CatiSSLCertificateName'
+$CatiSSLCertificateThumbprint = 'Test$CatiSSLCertificateThumbprint'
+$CatiMsiParametersInstallLocation = 'Test$CatiMsiParametersInstallLocation'
+$CatiMsiParametersIsAliveHtmlLocation = 'Test$CatiMsiParametersIsAliveHtmlLocation'
+
+# This section should be comment for test pupose, when Octopus variables created
+$OctopusActionPackageNuGetPackageVersion = "18.0.4"
+
+$CatiDatabaseServerName = "co-osl-devb41\mssqlserver_2012"
+$CatiDatabaseAdminUserName = "sa"
+$CatiDatabaseAdminPassword = "firm"
+$CatiDatabaseUserName = "ConfirmitDeploy"
+$CatiDatabasePassword = "DeployConfirmit01"
+
+$ConfirmitDatabaseServerName = "co-osl-devb41\mssqlserver_int"
+$ConfirmitDatabaseUserName = "ConfirmitDeploy"
+$ConfirmitDatabasePassword = "DeployConfirmit01"
+
+$CatiDatabaseUpdateSnapshotFilePath = ""
+$CatiDatabaseUpdateMinFreeSpaceOnDiskInMB = ""
+$CatiDatabaseLinkedServerNameToConfirmit = "co-osl-devb41\mssqlserver_int"
+$CatiDatabaseUseSimpleRecoveryMode = "True"
+
+$CatiServerLocalPathCatiData = ""
+$CatiServerLocalPathCatiLogs = ""
+$CatiParametersValidWCFIpAddresses = ""
+$CatiParametersNotificationEmailBcc = "qwer@qwer.ru"
+
+$CatiParametersConfirmitDeploymentServer = "locahost"
+$CatiParametersConfirmitWebServiceServer = "locahost"
+
+$CatiSSLUseAccelerator = "False"
+$CatiSSLGenerateTestCeritficate = "True"
+$CatiSSLCertificateName = "localhost"
+$CatiSSLCertificateThumbprint = ""
+
+$CatiParametersIsEventlogLoggingEnabled = "True"
+
+$CatiDatabaseUpdateUseSnapshots = "True"
+$CatiDatabaseUpdateUseTransactions = "False"
+
+
+
+
+<#Supervisor
+
+$CatiDatabaseServerName = 'TestCatiDatabaseServerName'
+$CatiDatabaseAdminUserName = 'Test$CatiDatabaseAdminUserName'
+$CatiDatabaseAdminPassword = 'Test$CatiDatabaseAdminPassword'
+$CatiDatabaseConfirmitServerName = 'Test$CatiDatabaseConfirmitServerName'
+$CatiDatabaseConfirmitUserName = 'Test$CatiDatabaseConfirmitUserName'
+$CatiDatabaseConfirmitPassword = 'Test$CatiDatabaseConfirmitPassword'
+$CatiSessionStateMode = 'Test$CatiSessionStateMode'
+$CatiSessionStateDatabaseServerName = 'Test$CatiSessionStateDatabaseServerName'
+$CatiSessionStateDatabaseUserName = 'Test$CatiSessionStateDatabaseUserName'
+$CatiSessionStateDatabasePassword = 'Test$CatiSessionStateDatabasePassword'
+$CatiSessionStateRedisHostName = 'Test$CatiSessionStateRedisHostName'
+$CatiSessionStateCookieName = 'Test$CatiSessionStateCookieName'
+$CatiParametersSupervisorVirtualDirectoryName = 'Test$CatiParametersSupervisorVirtualDirectoryName'
+$CatiParametersSupervisorAppPoolName = 'Test$CatiParametersSupervisorAppPoolName'
+$CatiParametersSupervisorSiteName = 'Test$CatiParametersSupervisorSiteName'
+
+# This section should be comment for test pupose, when Octopus variables created
+$OctopusActionPackageNuGetPackageVersion = "18.0.4"
+
+$CatiDatabaseServerName = "co-osl-devb41\mssqlserver_2012"
+$CatiDatabaseAdminUserName = "sa"
+$CatiDatabaseAdminPassword = "firm"
+
+$CatiParametersIsEventlogLoggingEnabled = "True"
+
+# Unique for Supervisor
+$CatiParametersConfirmitAuthoringServer = "localhost"
+$CatiSessionStateDatabaseServerName = "co-osl-devb41\mssqlserver_int"
+$CatiSessionStateDatabaseUserName = "sa"
+$CatiSessionStateDatabasePassword = "firm"
+$CatiSessionStateMode = "SQLServer"    # InProc | Redis 
+$CatiSessionStateRedisHostName = ""
+$CatiSessionStateCookieName = "ConfirmitCati_CookieName"
+
+$CatiParametersSupervisorVirtualDirectoryName = "Supervisor"
+$CatiParametersSupervisorAppPoolName = "CatiAppPool"
+$CatiParametersSupervisorSiteName = "Default Web Site"
+
+
+
+
+<# Interviewer Console
+$OctopusActionPackageNuGetPackageVersion = "18.5.0.0"
+
+$CatiDatabaseServerName = "co-osl-devb41\mssqlserver_2012"
+$CatiDatabaseUserName = "sa"
+$CatiDatabasePassword = "firm"
+
+$InterviewerConsoleParametersCreateVirtualDirectories = "True"
+$InterviewerConsoleParametersVirtaulDirectoryName = "downloadOctopus\cati/CatiInterviewerConsole"
+
+$InterviewerConsoleParametersDeploymentServerName = "localhost"
+$InterviewerConsoleParametersCatiServerName = "locahost"
+ 
+$InterviewerConsoleCertificateGetCertificateFromStore = "False"
+$InterviewerConsoleCertificateStoreSubject = ""
+$InterviewerConsoleCertificateStoreThumbprint = ""
+$InterviewerConsoleCertificateFilePath = "d:\CatiClickOnce.pfx"
+$InterviewerConsoleCertificateFilePassword = "Cati99ClickOnce543Password8"
+#>
+
+
+
+
+
+
+
+<# Monitoring Console
+$OctopusActionPackageNuGetPackageVersion = "18.5.0.0"
+
+$CatiDatabaseServerName = "co-osl-devb41\mssqlserver_2012"
+$CatiDatabaseUserName = "sa"
+$CatiDatabasePassword = "firm"
+
+$MonitoringConsoleParametersCreateVirtualDirectories = "True"
+$MonitoringConsoleParametersVirtaulDirectoryName = "downloadOctopus\cati/CatiSupervisorPlayer"
+
+$MonitoringConsoleParametersDeploymentServerName = "localhost"
+$MonitoringConsoleParametersCatiServerName = "locahost"
+ 
+$MonitoringConsoleCertificateGetCertificateFromStore = "False"
+$MonitoringConsoleCertificateStoreSubject = ""
+$MonitoringConsoleCertificateStoreThumbprint = ""
+$MonitoringConsoleCertificateFilePath = "d:\CatiClickOnce.pfx"
+$MonitoringConsoleCertificateFilePassword = "Cati99ClickOnce543Password8"
+#>

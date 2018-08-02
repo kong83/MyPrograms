@@ -1,0 +1,1002 @@
+CallManagement.aspx.cs
+private void ChangeColumnsOrder()
+{
+            var selectedView = GetSelectedCallManagementView();
+            GridColumnCollection columnCollection = new GridColumnCollection();
+
+            foreach (var selectedColumn in selectedView.Columns)
+            {
+                if(selectedColumn.ColumnKey == CallManagementColumnKey.QuestionColumnsPosition)
+                {
+                    columnCollection.AddRange(GetAdditionalVariableColumns());
+                    continue;
+                }
+
+                columnCollection.Add(GetSelectedColumn(selectedColumn.ColumnKey.ToString()));
+            }
+
+            AddMissedColumnsFromGrid(columnCollection);
+
+            m_grid.Columns = columnCollection;
+}
+private void AddMissedColumnsFromGrid(GridColumnCollection columnCollection)
+{
+            foreach (var column in m_grid.Columns)
+            {
+                if (!columnCollection.Contains(column))
+                {
+                    columnCollection.Add(column);
+                }
+            }
+}
+private List<GridField> GetAdditionalVariableColumns()
+{
+            var columns = new List<GridField>();
+            if (variableNames.Any())
+            {
+                columns.AddRange(variableNames.Select(variable => GetSelectedColumn(ConfirmitVariablesHelper.GetConfirmitVariableAlias(variable))));
+            }
+
+            return columns;
+}
+
+
+
+CustomAction.wxs
+<CustomAction Id="ClearArrearsCustomAction"
+                Return="check"
+                Execute="immediate"
+                BinaryKey="CustomBinary"
+                DllEntry="ClearArrearsCustomAction" />
+    <CustomAction Id="AfterInstallCustomAction"
+                Return="check"
+                Execute="immediate"
+                BinaryKey="CustomBinary"
+                DllEntry="AfterInstallCustomAction" />
+    <!--
+    <CustomAction Id="CustomActionSetProperty" 
+                  Return="check"                  
+                  Property="CustomAction" 
+                  Value='/SQLUSER=[SQLUSER] /action=install' />
+    <CustomAction Id='CustomAction'
+                  BinaryKey='CustomBinary'
+                  DllEntry='CustomAction1'
+                  Execute='immediate'
+                  Return='check'/>
+    -->
+
+ <CustomAction Id="UninstallAllCreatedCustomAction"
+                  Return="ignore"
+                  Execute="deferred"
+                  BinaryKey="CustomBinary"
+                  DllEntry="UninstallAllCreatedCustomAction" />
+
+
+    <!--<CustomAction Id='AlreadyUpdated' Error="!(loc.Message_OldVersion)" />-->
+
+
+
+
+
+
+
+ /// <summary>
+        /// Check MSMQ service on this computer
+        /// This CA run before start installation
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
+        [CustomAction]
+        public static ActionResult CheckMSMQ(Session session)
+        {            
+            FunctionClass.WriteLog(session, "Begin CheckMSMQ");
+            
+            try
+            {
+                ServiceController[] scServices = ServiceController.GetServices(Environment.MachineName);
+                if (Array.Find(scServices, serv => serv.ServiceName == "MSMQ") != null)
+                {
+                    return ActionResult.Success;
+                }
+                session["FATALERRORBACKEND"] = "\n\nThe Microsoft Message Queuing must be installed\n\n";
+                return ActionResult.Failure;
+            }
+            catch (Exception ex)
+            {
+                session["FATALERRORBACKEND"] = "\n\n" + ex.Message + "\n\n";
+                return ActionResult.Failure;
+            }
+            finally
+            {
+                FunctionClass.WriteLog(session, "End CheckMSMQ");
+            }
+        }
+
+
+
+
+
+/// <summary>
+        /// Check that real certificate name exists
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
+        [CustomAction]
+        public static ActionResult ValidateRealCertificateCustomAction(Session session)
+        {
+            FunctionClass.WriteLog(session, "Begin ValidateRealCertificateCustomAction");
+
+            try
+            {
+                string realCertificateName = session["REALCERTIFICATENAME"];
+
+                var certClass = new CertificateClass(session, "My", "LocalMachine", realCertificateName);
+                int certCnt = certClass.CertificatesCount;
+                if (certCnt != 1)
+                {
+                    throw new Exception(
+                        string.Format("Wrong count {0} for certificate {1}", certCnt, realCertificateName));
+                }
+
+                session["TESTSUCCESS"] = "Success";
+            }
+            catch (Exception ex)
+            {
+                FunctionClass.WriteLog(session, ex.ToString());
+                MessageBox.Show(ex.Message, session["ProductName"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+                session["TESTSUCCESS"] = "Error";
+            }
+            finally
+            {
+                FunctionClass.WriteLog(session, "End ValidateRealCertificateCustomAction");
+            }
+
+            return ActionResult.Success;
+        }
+
+
+
+
+/*MessageBox.Show(
+                    "productName=" + productName +
+                    "\r\ntypeOfActionWithDatabase=" + typeOfActionWithDatabase +
+                    "\r\ncreateDatabaseLogin=" + createDatabaseLogin +
+                    "\r\ncreateDatabasePassword=" + createDatabasePassword +
+                    "\r\ncatiSqlServerName=" + catiSqlServerName +
+                    "\r\ncatiDefaultDatabaseName=" + catiDefaultDatabaseName +
+                    "\r\nmdfPath=" + mdfPath +
+                    "\r\nldfPath=" + ldfPath);*/
+
+
+
+
+
+/*MessageBox.Show(
+                "typeOfActionWithDatabase=" + typeOfActionWithDatabase +
+                "\r\nisDatabaseLoggingEnabled=" + isDatabaseLoggingEnabled +
+                "\r\nisEventlogLoggingEnabled=" + isEventlogLoggingEnabled +
+                "\r\nsupervisorLocation=" + supervisorLocation +
+                "\r\ninstallLocation=" + installLocation +
+                "\r\nisSslAcceleratorUse=" + isSslAcceleratorUse +
+                "\r\ncreateDatabaseLogin=" + createDatabaseLogin +
+                "\r\ncreateDatabasePassword=" + createDatabasePassword +
+                "\r\ncatiSqlServerName=" + catiSqlServerName +
+                "\r\ncatiDefaultDatabaseName=" + catiDefaultDatabaseName +
+                "\r\ndefaultDatabaseBackupPath=" + defaultDatabaseBackupPath +
+                "\r\nworkWithDatabaseLogin=" + workWithDatabaseLogin +
+                "\r\ncertificateType=" + certificateType +
+                "\r\ntestCertificateName=" + testCertificateName +
+                "\r\nrealCertificateThumbprint=" + realCertificateThumbprint +
+                "\r\nproductName=" + productName +
+                "\r\nsupervisorAppPoolName=" + supervisorAppPoolName +
+                "\r\nsupervisorAliasName=" + supervisorAliasName);*/
+
+
+
+
+
+FunctionClass.cs
+ /// <summary>
+        /// Run process (regAsm) with parameters (fileName)
+        /// </summary>
+        /// <param name="session">Session variable</param>
+        /// <param name="regAsm">Path to regasm.exe file</param>
+        /// <param name="fileName">Path to registering net dll</param>
+        /// <returns></returns>
+        /*public static bool UseRegAsm(Session session, string regAsmPath, string fileName)
+        {
+            WriteLog(session, "Begin UseRegAsm");
+
+            string nelTlbName = fileName.Substring(0, fileName.Length - 4) + "tlb\"";
+            ProcessStartInfo psi = new ProcessStartInfo(regAsmPath, fileName + " /codebase /tlb:" + nelTlbName);
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            string res = "";
+            string err = "";
+
+            using (Process regAsmProc = new Process())
+            {
+                regAsmProc.StartInfo = psi;
+                try
+                {
+                    regAsmProc.Start();
+                    regAsmProc.WaitForExit(10000);
+                    res = regAsmProc.StandardOutput.ReadToEnd();
+                    err = regAsmProc.StandardError.ReadToEnd();
+
+                    WriteLog(session, res);
+                    WriteLog(session, err);
+                    return regAsmProc.ExitCode == 0;
+                }
+                catch (Exception ex)
+                {
+                    WriteLog(session, "regAsmProc call " + ex.ToString());
+                    return false;
+                }
+                finally
+                {
+                    WriteLog(session, "End UseRegAsm");
+                }
+            }
+        }*/
+
+
+
+
+
+
+
+
+
+
+
+ProgressDlg.wxs
+<Custom Action="AfterInstallCustomAction" After="ExecuteAction"><![CDATA[Not Installed]]></Custom>
+<Custom Action="ClearArrearsCustomAction" After="ExecuteAction">Installed</Custom>
+
+
+
+
+
+
+
+
+
+
+Product.wxs
+<!--<ScheduleReboot After='InstallFinalize'>REMOVE AND NOT UPGRADINGPRODUCTCODE</ScheduleReboot>-->
+
+
+    <!--<Condition Message="Windows XP or later requare for installation.">
+      <![CDATA[VersionNT >= 501]]>
+    </Condition>-->
+
+     <Component Id='ServiceComponent' Guid='9BA6B08B-BFF0-4ba8-A174-937BDB0636BD'>
+        <ServiceControl Id='Service' Name='BvDbsSvc' Start='install' Stop='both' Remove='uninstall' />
+      </Component>
+
+      <ComponentRef Id="ServiceComponent" />
+
+<!--<CustomAction Id='LaunchApplication' FileKey='BVCFGu' ExeCommand='-service' Return='asyncNoWait' >
+      <![CDATA[&BackEndFeature>2]]>
+    </CustomAction>
+    
+    <Property Id="WixShellExecTarget" Value="[#BVCFGu.EXE]" />
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />-->
+
+
+
+<Custom Action="UninstallAllCreatedCustomAction" After="MsiUnpublishAssemblies">Installed</Custom>
+
+
+
+
+WixUI.wxs
+<!--      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
+        <![CDATA[NOT Installed AND &BackEndFeature>2]]>
+      </Publish>-->
+
+
+
+
+
+
+
+CustomAction.cs
+
+#region Set IIs5IsolationModeEnabled to false
+                /*ManagementObject classInstance =
+                   new ManagementObject("root\\MicrosoftIISv2",
+                   "IIsWebServiceSetting.Name='W3SVC'",
+                   null);
+                classInstance.Properties["IIs5IsolationModeEnabled"].Value = false;*/
+                #endregion
+
+
+
+
+
+ using (var classInstance = new ManagementObject(
+                    "root\\MicrosoftIISv2",
+                    "IIsApplicationPoolSetting.Name='W3SVC/APPPOOLS/DefaultAppPool'",
+                    null))
+                {
+                    try
+                    {
+                        classInstance.Properties["Enable32BitAppOnWin64"].Value = "True";
+                        classInstance.Put();
+                    }
+                    catch (Exception ex)
+                    {
+                        FunctionClass.WriteStandartLog(session, ex.ToString());
+                    }
+                }
+
+
+
+
+
+
+
+/// <summary>
+        /// Delete database and all files that was created during install and programm work
+        /// </summary>
+        [CustomAction]
+        public static ActionResult UninstallAllCreatedCustomAction(Session session)
+        {
+            try
+            {
+                RegistryKey regKey = Registry.LocalMachine;
+                regKey.CreateSubKey(@"SOWTWARE\PulseTrain\Bv\7.00");
+                              
+                //
+                // Delete database
+                //
+                string s = "";
+                s = (string)regKey.GetValue("DB Connection String", s);
+
+                string[] connArray = s.Split(new char[1] { ';' });
+                string sqlConnectionString = connArray[0] + connArray[1] + connArray[3] + connArray[4];
+
+                connArray = connArray[2].Split(new char[1] {'='});
+                string database = connArray[1];
+                
+                using (SqlConnection cn = new SqlConnection(sqlConnectionString))
+                using (SqlCommand cmd = new SqlCommand("DROP DATABASE " + database, cn))
+                {
+                    cn.Open();
+                    cmd.CommandType = CommandType.Text;                    
+                    cmd.ExecuteNonQuery();
+                }
+
+                //
+                // Delete tlb files and sitekey.txt
+                //
+                s = "";
+                string path = (string)regKey.GetValue("Path", s);
+                DirectoryInfo di = new DirectoryInfo(path);
+                foreach (FileInfo fi in di.GetFiles())
+                {
+                    if (Path.GetExtension(fi.FullName) == ".tlb")
+                    {
+                        fi.Delete();
+                    }
+                }
+                FileInfo fiSK = new FileInfo(Path.Combine(path, "sitekey.txt"));
+                if (fiSK.Exists)
+                {
+                    fiSK.Delete();
+                }
+
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {                
+                MessageBox.Show(ex.Message);
+                return ActionResult.Failure;
+            }            
+        }
+
+
+
+
+
+
+
+/*
+
+        //
+        // Check connect to server
+        //
+        string connString = FunctionClass.CreateSqlConnectionString(session, server, null, null, null, null);
+        string exMessage = "";        
+        bool isServerConnectOk = true;
+        if (server == null || server == "" || server == "localhost" || server == "Put your server here")
+        {
+          isServerConnectOk = false;
+        }
+        else
+        {
+          if (!FunctionClass.CheckConnect(session, connString, out exNumber, out exMessage))
+          {
+            if (exNumber == 53)
+            {
+              isServerConnectOk = false;
+              verify = false;
+            }
+          }
+        }
+        if (isServerConnectOk)
+        {
+          result += "Connection to server is ok\r\n";
+        }
+        else
+        {
+          result += "Connection to server is failed\r\n";
+          verify = false;
+        }
+
+
+        //
+        // Check user's login and password
+        //
+        bool isLogPassOkUser = true;
+        bool isLogPassOkSuperuser = true;
+        if (isServerConnectOk)
+        {
+          connString = FunctionClass.CreateSqlConnectionString(session, server, connectType, null, login, password);
+          if (!FunctionClass.CheckConnect(session, connString, out exNumber, out exMessage))
+          {
+            isLogPassOkUser = false;
+          }         
+
+          if (isLogPassOkUser)
+          {
+            result += "User's login and password is ok\r\n";
+          }
+          else
+          {
+            result += "User's login or password is failed\r\n";
+            verify = false;
+          }
+
+          //
+          // Check superuser's login and password
+          //
+          if (selectDBType == "CreateNewDB")
+          {
+            connString = FunctionClass.CreateSqlConnectionString(session, server, superconnectType, null, superlogin, superpassword);
+            if (!FunctionClass.CheckConnect(session, connString, out exNumber, out exMessage))
+            {
+              isLogPassOkSuperuser = false;
+            }            
+
+            if (isLogPassOkSuperuser)
+            {
+              result += "Superuser's login and password is ok\r\n";
+            }
+            else
+            {
+              result += "Superuser's login or password is failed\r\n";
+              verify = false;
+            }
+          }
+        }
+
+
+        //
+        // Check database exist
+        //
+        if (isServerConnectOk && isLogPassOkUser && isLogPassOkSuperuser)
+        {
+          connString = FunctionClass.CreateSqlConnectionString(session, server, connectType, database, login, password);          
+          bool isDatabaseExist = true;
+          if (!FunctionClass.CheckConnect(session, connString, out exNumber, out exMessage))
+          {
+            isDatabaseExist = false;
+          }          
+
+          if (database == "")
+          {
+            result += "Database is unknown\r\n";
+            verify = false;
+          }
+          else
+          {
+            if (isDatabaseExist)
+            {
+              result += "Database is exist\r\n";
+              if (selectDBType == "CreateNewDB")
+              {
+                verify = false;
+              }
+            }
+            else
+            {
+              result += "Database is not exist\r\n";
+              if (selectDBType != "CreateNewDB")
+              {
+                verify = false;
+              }
+            }
+          }
+        }*/
+
+
+
+/*
+// Restore DB
+Restore rest = new Restore();
+rest.Action = RestoreActionType.Database;
+rest.ReplaceDatabase = true;        
+rest.Database = database;        
+rest.Devices.Add(new BackupDeviceItem(backupPath, DeviceType.File));
+rest.SqlRestore(myServer);
+*/
+
+
+/*
+http://msdn.microsoft.com/en-us/library/aa372021(VS.85).aspx
+// UPDATE, Delete and INSERT command
+session.Database.Execute("UPDATE ComboBox SET Property='SQLSERVERNAME1' where Value='localhost'", new object[0]);
+session.Database.Execute("Delete from ComboBox where Property='SQLSERVERNAME'");
+session.Database.Execute("INSERT INTO ComboBox (Property,Order,Value,Text)VALUES('SQLSERVERNAME',1,'ValueFromCA1','TextFromCA1')");
+*/
+
+/* 
+// Get selected data from Table
+IList qRes = session.Database.ExecuteQuery("Select * from ComboBox");
+IEnumerator iEnum = qRes.GetEnumerator();
+
+res += qRes.Count + "\r\n";        
+while (iEnum.MoveNext())
+{
+  Type type = iEnum.Current.GetType();     
+  if (type.ToString() == "System.String")
+    res += (string)iEnum.Current + "\r\n";
+  else if (type.ToString() == "System.Int32")
+    res += (int)iEnum.Current + "\r\n";
+}
+*/
+
+/*
+// Get CustomActionData value
+session.CustomActionData["/SQLUSER"]
+//Get all CustomActionData values
+IEnumerator iEnum = session.CustomActionData.Keys.GetEnumerator();
+while (iEnum.MoveNext())    
+  res += (string)iEnum.Current + "=" + session.CustomActionData[(string)iEnum.Current] + "\r\n";                 
+*/
+
+   
+
+
+    /// <summary>
+    /// Try delete all undeleted files and folders (not work)
+    /// </summary>
+    /// <param name="session"></param>
+    /// <returns></returns>
+    [CustomAction]
+    public static ActionResult ClearArrearsCustomAction(Session session)
+    {
+      FunctionClass.WriteLog(session, "Begin ClearArrearsCustomAction");
+
+      MessageBox.Show("ClearArrearsCustomAction");
+
+      FunctionClass.WriteLog(session, "End ClearArrearsCustomAction");
+
+      return ActionResult.Success;
+    }
+
+
+
+
+ 
+ /// <summary>
+        /// Add certificate to certificate store after install Monitoring Web Service        
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
+        [CustomAction]
+        public static ActionResult AfterMonitoringWSInstallCustomAction(Session session)
+        {
+            FunctionClass.WriteLog(session, "Begin AfterMonitoringWSInstallCustomAction");
+
+            try
+            {
+                CertificateClass certClass = new CertificateClass();
+                //
+                // Get resources 
+                //
+                byte[] rootCAMonitoringTest_cer = global::WixSetupCustomActions.Properties.Resources.RootCAMonitoringTest_cer;
+                byte[] rootCAMonitoringTest_pvk = global::WixSetupCustomActions.Properties.Resources.RootCAMonitoringTest_pvk;
+                byte[] makeCert_exe = global::WixSetupCustomActions.Properties.Resources.makecert;
+
+                string infoString = "";
+                //
+                // Add RootCAMonitoringTest.cer to Root/CurrentName certificate store
+                //
+                if (!certClass.GetPrivateKey(new string[] { "Root", "CurrentUser", "CN=RootCAMonitoringTest" }, out infoString))
+                {
+                    certClass.AddCertificate("Root", "CurrentUser", rootCAMonitoringTest_cer);
+
+                    if (!certClass.GetPrivateKey(new string[] { "Root", "CurrentUser", "CN=RootCAMonitoringTest" }, out infoString))
+                    {
+                        throw new Exception("\n\n" + infoString + "\n\n");                        
+                    }
+                }
+
+                //
+                // if MonitoringTempCert is not in certificate store - run utilite "makecert"
+                //
+                if (!certClass.GetPrivateKey(new string[] { "My", "LocalMachine", "CN=MonitoringTempCert", "-path" }, out infoString))
+                {
+                    //
+                    // Save all resources files to hard disk
+                    //
+                    string cerFilePath = Path.Combine(Environment.CurrentDirectory, "RootCAMonitoringTest.cer");
+                    using (FileStream fs = new FileStream(cerFilePath, FileMode.Create))
+                    {
+                        fs.Write(rootCAMonitoringTest_cer, 0, rootCAMonitoringTest_cer.Length);
+                    }
+
+                    string pvkFilePath = Path.Combine(Environment.CurrentDirectory, "RootCAMonitoringTest.pvk");
+                    using (FileStream fs = new FileStream(pvkFilePath, FileMode.Create))
+                    {
+                        fs.Write(rootCAMonitoringTest_pvk, 0, rootCAMonitoringTest_pvk.Length);
+                    }
+
+                    string makecertFilePath = Path.Combine(Environment.CurrentDirectory, "makecert.exe");
+                    using (FileStream fs = new FileStream(makecertFilePath, FileMode.Create))
+                    {
+                        fs.Write(makeCert_exe, 0, makeCert_exe.Length);
+                    }
+
+                    //
+                    // Create MonitoringTempCert.cer and add it to My/LocalMachine certificate store
+                    // 
+                    string monitorCertFilePath = Path.Combine(Environment.CurrentDirectory, "MonitoringTempCert.cer");
+                    try
+                    {
+                        FunctionClass.InvokeExternalScript(session, "\"" + makecertFilePath + "\"", "-sk MonitoringKeyName -iv \"" + pvkFilePath + "\" -n \"CN=MonitoringTempCert\" -ic \"" + cerFilePath + "\" -sr localmachine -ss my -sky exchange -pe \"" + monitorCertFilePath + "\"");
+
+                        //
+                        // Get file path of MonitoringTempCert
+                        //
+                        if (!certClass.GetPrivateKey(new string[] { "My", "LocalMachine", "CN=MonitoringTempCert", "-path" }, out infoString))
+                        {
+                             throw new Exception("\n\n" + infoString + "\n\n");
+                        }
+
+                        //
+                        // Check correct returned value
+                        //
+                        if (infoString != Path.GetFullPath(infoString) || infoString == "")
+                        {
+                            throw new Exception("\n\nUtilite \"makecert\" return incorrect value:\n" + infoString + "\n\n");
+                        }
+                    }
+                    finally
+                    {
+                        //
+                        // Delete temporary files
+                        //
+                        if (File.Exists(cerFilePath))
+                        {
+                            File.Delete(cerFilePath);
+                        }
+                        if (File.Exists(pvkFilePath))
+                        {
+                            File.Delete(pvkFilePath);
+                        }
+                        if (File.Exists(monitorCertFilePath))
+                        {
+                            File.Delete(monitorCertFilePath);
+                        }
+                        if (File.Exists(makecertFilePath))
+                        {
+                            File.Delete(makecertFilePath);
+                        }
+                    }
+
+                    //
+                    // Set privileges
+                    //
+
+                    FunctionClass.InvokeExternalScript(session, Path.Combine(Environment.GetEnvironmentVariable("SYSTEMROOT"), @"system32\cacls.exe"), "\"" + infoString + "\" /E /G \"NT AUTHORITY\\NETWORK SERVICE\":R");
+
+                    FunctionClass.InvokeExternalScript(session, Path.Combine(Environment.GetEnvironmentVariable("SYSTEMROOT"), @"system32\cacls.exe"), "\"" + infoString + "\" /E /G \"ASPNET\":R");
+                }
+
+                
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                FunctionClass.WriteLog(session, ex.ToString());
+                session["FATALERRORMONITORINGWS"] = ex.Message;
+                return ActionResult.Failure;
+            }
+            finally
+            {
+                FunctionClass.WriteLog(session, "End AfterMonitoringWSInstallCustomAction");                
+            }
+        }
+
+
+
+
+
+
+
+FeatureBackEnd.wxs
+      <!--
+      <?if $(var.ProcessorArchitecture)=x64 ?>
+        <Component Id='BackEndModifyConfig_WCFDebugSettings_x64' Guid='{55CD0288-E7E8-4ec6-B933-0619A0B30202}' Feature='BackEndFeature' Permanent='yes' Win64='yes'>
+      <?else ?>
+        <Component Id='BackEndModifyConfig_WCFDebugSettings_x86' Guid='5D6DCF43-39B5-40ac-8E98-011EC9629B32' Feature='BackEndFeature' Permanent='yes'>
+      <?endif ?>
+          <Condition><![CDATA[NOT UPGRADEFOUND AND WCFSETTINGS~="Debug"]]></Condition>
+          <Util:XmlFile Id="Modify_InternalServiceBehavior_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='InternalServiceBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_CatiConsoleServiceBehavior_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='CatiConsoleServiceBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_MonitoringInterviewerBehavior_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='MonitoringInterviewerBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_MonitoringSupervisorBehavior_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='MonitoringSupervisorBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          
+          <Util:XmlFile Id="Modify_Trace_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.diagnostics/switches/add[\[]@name='WcfTraceSwitch'[\]]/@value"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="Information" />
+
+          <Util:XmlFile Id="Modify_logMalformedMessages_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMalformedMessages"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_logMessagesAtServiceLevel_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMessagesAtServiceLevel"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_logMessagesAtTransportLevel_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMessagesAtTransportLevel"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+          <Util:XmlFile Id="Modify_logEntireMessage_Debug"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logEntireMessage"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="true" />
+      <?if $(var.ProcessorArchitecture)=x64 ?>
+        </Component>
+      <?else ?>
+        </Component>
+      <?endif ?>
+      
+      <?if $(var.ProcessorArchitecture)=x64 ?>
+        <Component Id='BackEndModifyConfig_WCFProductionSettings_x64' Guid='{4D536418-4DFF-40f0-96ED-15876FA62944}' Feature='BackEndFeature' Permanent='yes' Win64='yes'>
+      <?else ?>
+        <Component Id='BackEndModifyConfig_WCFProductionSettings_x86' Guid='F1E800E9-9AD4-47de-B279-9E5D55116695' Feature='BackEndFeature' Permanent='yes'>
+      <?endif ?>
+          <Condition><![CDATA[NOT UPGRADEFOUND AND WCFSETTINGS~="Production"]]></Condition>
+          <Util:XmlFile Id="Modify_InternalServiceBehavior_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='InternalServiceBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_CatiConsoleServiceBehavior_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='CatiConsoleServiceBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_MonitoringInterviewerBehavior_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='MonitoringInterviewerBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_MonitoringSupervisorBehavior_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[\[]@name='MonitoringSupervisorBehavior'[\]]/serviceMetadata/@httpGetEnabled"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          
+          <Util:XmlFile Id="Modify_Trace_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.diagnostics/switches/add[\[]@name='WcfTraceSwitch'[\]]/@value"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="Warning" />
+
+          <Util:XmlFile Id="Modify_logMalformedMessages_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMalformedMessages"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_logMessagesAtServiceLevel_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMessagesAtServiceLevel"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_logMessagesAtTransportLevel_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logMessagesAtTransportLevel"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+          <Util:XmlFile Id="Modify_logEntireMessage_Production"
+                        Action="setValue"
+                        ElementPath="/configuration/system.serviceModel/diagnostics/messageLogging/@logEntireMessage"
+                        File="[INSTALLLOCATION]Confirmit.CATI.Backend.exe.config"
+                        Value="false" />
+      <?if $(var.ProcessorArchitecture)=x64 ?>
+        </Component>
+      <?else ?>
+        </Component>
+      <?endif ?>
+      -->
+
+ƒл€ расположени€ €рлыка на рабочем столе
+
+<Shortcut Id="desktopCATIConsole" Directory="DesktopFolder" WorkingDirectory="INSTALLLOCATION" Name="Confirmit V14 CATI" Advertise="yes" Icon="CATIConsole.ico" IconIndex="0" />
+Product.wxs
+<Directory Id="ProgramMenuFolder" Name="PMenu">
+    <Directory Id="DesktopFolder" Name="Desktop" />
+</Directory>
+
+
+
+
+
+
+
+
+
+Program.cs
+
+
+    <Upgrade Id='f7f852e8-926f-4d51-8020-4763b5c92bcc'>
+      <UpgradeVersion OnlyDetect='yes' Property='PATCHFOUND' IncludeMinimum='yes' Minimum='1.0.0.0' />
+    </Upgrade>
+
+
+/// <summary>
+        /// Add new guid into guid.txt file
+        /// </summary>
+        /// <param name="path">Path to components directory</param>
+        /// <returns>New guid</returns>
+        private string AddNewGuid(string path)
+        {
+            string guid = "";
+            using (StreamWriter sw = new StreamWriter(guidsPath, true))
+            {
+                guid = Guid.NewGuid().ToString();
+                if (path.StartsWith(rootPath))
+                {
+                    path = path.Substring(rootPath.Length);
+                }
+                sw.WriteLine(path + guidSeparate + guid + ";");
+            }
+            return guid;
+        }
+
+
+guid = AddNewGuid(diRoot.FullName);
+
+
+
+
+
+
+
+
+PrepareDlg.wxs
+
+<!--<Custom Action='AlreadyUpdated' After='FindRelatedProducts'>PATCHFOUND</Custom>-->
+
+
+
+
+
+
+// конфиг дл€ программы
+
+ [CustomAction]
+        public static ActionResult InitializeValuesFromConfigCustomAction(Session session)
+        {
+            var functionClass = new FunctionClass(session);
+            functionClass.WriteLog("Begin InitializeValuesFromConfigCustomAction");
+
+            string configForSetupPath = session["CONFIGFORSETUPPATH"];
+            bool isConfigForSetupUse = Convert.ToBoolean(session["ISCONFIGFORSETUPUSE"]);
+
+            try
+            {
+                if (isConfigForSetupUse)
+                {
+                    if (!File.Exists(configForSetupPath))
+                    {
+                        MessageBox.Show("File " + configForSetupPath + " is not exist", session["ProductName"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        session["TESTSUCCESS"] = "Error";
+                        return ActionResult.Success;
+                    }
+
+                    var xd = new XmlDocument();
+                    xd.Load(configForSetupPath);
+                    XmlNodeList list = xd.SelectNodes("/configuration/appSettings");
+
+                    if (list != null && list.Count == 1)
+                    {
+                        foreach (XmlNode childNode in list[0].ChildNodes)
+                        {
+                            if (childNode.Attributes["key"] == null ||
+                               childNode.Attributes["value"] == null)
+                            {
+                                MessageBox.Show("File " + configForSetupPath + " has wrong parameters", session["ProductName"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                session["TESTSUCCESS"] = "Error";
+                                return ActionResult.Success;
+                            }
+
+                            session[childNode.Attributes["key"].Value] = childNode.Attributes["value"].Value;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("File " + configForSetupPath + " hasn't appSettings section", session["ProductName"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        session["TESTSUCCESS"] = "Error";
+                        return ActionResult.Success;
+                    }
+                }
+                else
+                {
+                    session["CATICONSOLESERVICEENDPOINTFORCATI"] = "https://localhost/MultimodeInstance";
+                    session["MONITORINGSERVICEENDPOINTFORCATI"] = "https://localhost/MonitoringInterviewerMultimodeInstance";
+                    session["CONFIRMITSERVICEENDPOINTFORCATI"] = "http://localhost/Confirmit/InternalWebServices/14.0/ConsoleToSurveyEngine.svc";
+                    session["MONITORINGSERVICEENDPOINTFORPLAYER"] = "https://localhost/MonitoringSupervisorMultimodeInstance";
+                }
+
+                session["TESTSUCCESS"] = "Success";
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                functionClass.WriteLog(ex.ToString());
+                session["FATALERROR"] = "\n\n" + ex.Message + "\n\n";
+                session["TESTSUCCESS"] = "Error";
+                return ActionResult.Failure;
+            }
+            finally
+            {
+                functionClass.WriteLog("End InitializeValuesFromConfigCustomAction");
+            }
+        }
+
+
+            <!--<Publish  Dialog="DlgConfigForSetupSettings"  Control="Back"  Event="NewDialog"  Value="CustomizeDlg"  Order="1">1</Publish>                
+            <Publish  Dialog="DlgConfigForSetupSettings"  Control="Next"  Event="NewDialog"  Value="DlgIISSettings"  Order="2">
+                TESTSUCCESS  ~=  "Success"
+            </Publish>-->
+
+
+    <String Id="ConfigForSetupSettings_Title" Overridable="yes">[ProductName] setup</String>
+    <String Id="ConfigForSetupSettingsBannerBitmap" Overridable="yes">WixUI_Bmp_Banner</String>
+    <String Id="ConfigForSetupSettingsDescription" Overridable="yes">Select Setup Config Settings</String>
+    <String Id="ConfigForSetupSettingsDefault" Overridable="yes">Use Default Values</String>
+    <String Id="ConfigForSetupSettingsConfig" Overridable="yes">Use Values From Config File</String>    
+    <String Id="ConfigForSetupSettingsConfigForSetupPath" Overridable="yes">Path to config file: </String>
