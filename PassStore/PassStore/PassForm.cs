@@ -28,7 +28,7 @@ namespace PassStore
     /// <param name="e"></param>
     private void OK_Click(object sender, EventArgs e)
     {
-      mainForm.passStr = textPass.Text;
+      mainForm.PassStr = textPass.Text;
       this.Close();
     }
 
