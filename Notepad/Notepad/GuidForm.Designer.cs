@@ -46,8 +46,8 @@
             // 
             // textBoxGuid
             // 
-            this.textBoxGuid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxGuid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxGuid.Location = new System.Drawing.Point(101, 6);
             this.textBoxGuid.Name = "textBoxGuid";
             this.textBoxGuid.Size = new System.Drawing.Size(450, 20);
@@ -55,7 +55,6 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDelete.Location = new System.Drawing.Point(257, 203);
             this.buttonDelete.Name = "buttonDelete";
@@ -63,9 +62,9 @@
             this.buttonDelete.TabIndex = 2;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.MouseEnter += new System.EventHandler(this.buttonDelete_MouseEnter);
-            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             // 
             // labelGuid
             // 
@@ -87,8 +86,8 @@
             // 
             // textBoxInvolvedGuid
             // 
-            this.textBoxInvolvedGuid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxInvolvedGuid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxInvolvedGuid.Location = new System.Drawing.Point(101, 73);
             this.textBoxInvolvedGuid.Name = "textBoxInvolvedGuid";
             this.textBoxInvolvedGuid.Size = new System.Drawing.Size(450, 20);
@@ -96,7 +95,6 @@
             // 
             // buttonCheck
             // 
-            this.buttonCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCheck.Location = new System.Drawing.Point(15, 203);
             this.buttonCheck.Name = "buttonCheck";
@@ -104,15 +102,14 @@
             this.buttonCheck.TabIndex = 6;
             this.buttonCheck.Text = "Проверить";
             this.buttonCheck.UseVisualStyleBackColor = true;
+            this.buttonCheck.MouseLeave += new System.EventHandler(this.buttonCheck_MouseLeave);
             this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             this.buttonCheck.MouseEnter += new System.EventHandler(this.buttonCheck_MouseEnter);
-            this.buttonCheck.MouseLeave += new System.EventHandler(this.buttonCheck_MouseLeave);
             // 
             // textBoxValueNames
             // 
-            this.textBoxValueNames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxValueNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValueNames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxValueNames.Location = new System.Drawing.Point(15, 107);
             this.textBoxValueNames.MaxLength = 2000000;
@@ -125,7 +122,6 @@
             // 
             // buttonGotoReplaceForm
             // 
-            this.buttonGotoReplaceForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonGotoReplaceForm.BackgroundImage = global::Notepad.Properties.Resources._goto32;
             this.buttonGotoReplaceForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonGotoReplaceForm.Location = new System.Drawing.Point(511, 32);
@@ -133,13 +129,12 @@
             this.buttonGotoReplaceForm.Size = new System.Drawing.Size(40, 35);
             this.buttonGotoReplaceForm.TabIndex = 28;
             this.buttonGotoReplaceForm.UseVisualStyleBackColor = true;
+            this.buttonGotoReplaceForm.MouseLeave += new System.EventHandler(this.buttonReplaceGuid_MouseLeave);
             this.buttonGotoReplaceForm.Click += new System.EventHandler(this.buttonGotoReplaceForm_Click);
             this.buttonGotoReplaceForm.MouseEnter += new System.EventHandler(this.buttonReplaceGuid_MouseEnter);
-            this.buttonGotoReplaceForm.MouseLeave += new System.EventHandler(this.buttonReplaceGuid_MouseLeave);
             // 
             // buttonConvertBack
             // 
-            this.buttonConvertBack.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.buttonConvertBack.BackgroundImage = global::Notepad.Properties.Resources.up;
             this.buttonConvertBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonConvertBack.Location = new System.Drawing.Point(257, 32);
@@ -147,13 +142,12 @@
             this.buttonConvertBack.Size = new System.Drawing.Size(35, 35);
             this.buttonConvertBack.TabIndex = 9;
             this.buttonConvertBack.UseVisualStyleBackColor = true;
+            this.buttonConvertBack.MouseLeave += new System.EventHandler(this.buttonConvertBack_MouseLeave);
             this.buttonConvertBack.Click += new System.EventHandler(this.buttonConvertBack_Click);
             this.buttonConvertBack.MouseEnter += new System.EventHandler(this.buttonConvertBack_MouseEnter);
-            this.buttonConvertBack.MouseLeave += new System.EventHandler(this.buttonConvertBack_MouseLeave);
             // 
             // buttonClose
             // 
-            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.BackgroundImage = global::Notepad.Properties.Resources.cansel24;
             this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonClose.Location = new System.Drawing.Point(516, 202);
@@ -161,13 +155,12 @@
             this.buttonClose.Size = new System.Drawing.Size(35, 35);
             this.buttonClose.TabIndex = 7;
             this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // buttonConvert
             // 
-            this.buttonConvert.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.buttonConvert.BackgroundImage = global::Notepad.Properties.Resources.down;
             this.buttonConvert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonConvert.Location = new System.Drawing.Point(306, 32);
@@ -175,9 +168,9 @@
             this.buttonConvert.Size = new System.Drawing.Size(35, 35);
             this.buttonConvert.TabIndex = 1;
             this.buttonConvert.UseVisualStyleBackColor = true;
+            this.buttonConvert.MouseLeave += new System.EventHandler(this.buttonConvert_MouseLeave);
             this.buttonConvert.Click += new System.EventHandler(this.buttonConvert_Click);
             this.buttonConvert.MouseEnter += new System.EventHandler(this.buttonConvert_MouseEnter);
-            this.buttonConvert.MouseLeave += new System.EventHandler(this.buttonConvert_MouseLeave);
             // 
             // GuidForm
             // 
@@ -195,6 +188,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonConvert);
             this.Controls.Add(this.textBoxGuid);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "GuidForm";

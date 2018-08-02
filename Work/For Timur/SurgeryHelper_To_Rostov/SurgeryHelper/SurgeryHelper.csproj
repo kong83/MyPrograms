@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8E3F966C-EC06-4AC9-A097-9490AB440472}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SurgeryHelper</RootNamespace>
+    <AssemblyName>SurgeryHelper</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>ANGEL.ico</ApplicationIcon>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Microsoft.Office.Interop.Word.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Office.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net, Version=1.0.2433.27290, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdditionalDocumentsInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdditionalDocumentsInfoForm.Designer.cs">
+      <DependentUpon>AdditionalDocumentsInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePasswordForm.Designer.cs">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engines\ConfigurationEngine.cs" />
+    <Compile Include="Engines\DbEngine.cs" />
+    <Compile Include="DischargeEpicrisisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DischargeEpicrisisForm.Designer.cs">
+      <DependentUpon>DischargeEpicrisisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentsForm.Designer.cs">
+      <DependentUpon>DocumentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engines\ConvertEngine.cs" />
+    <Compile Include="Engines\ExcelExportEngine.cs" />
+    <Compile Include="Engines\MKBEngine.cs" />
+    <Compile Include="Entities\GlobalSettingsClass.cs" />
+    <Compile Include="Entities\HeAnestetistClass.cs" />
+    <Compile Include="Entities\LoggerEngine.cs" />
+    <Compile Include="Entities\MKBClass.cs" />
+    <Compile Include="Entities\SheAnestetistClass.cs" />
+    <Compile Include="GlobalSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSettingsForm.Designer.cs">
+      <DependentUpon>GlobalSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeAnestethistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeAnestethistForm.Designer.cs">
+      <DependentUpon>HeAnestethistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeAnestethistViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeAnestethistViewForm.Designer.cs">
+      <DependentUpon>HeAnestethistViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportDataForm.Designer.cs">
+      <DependentUpon>ImportDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportKSGForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportKSGForm.Designer.cs">
+      <DependentUpon>ImportKSGForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineOfCommunicationEpicrisisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineOfCommunicationEpicrisisForm.Designer.cs">
+      <DependentUpon>LineOfCommunicationEpicrisisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engines\MasterKeyEngine.cs" />
+    <Compile Include="Entities\MedicalClass.cs" />
+    <Compile Include="MedicalInspectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalInspectionForm.Designer.cs">
+      <DependentUpon>MedicalInspectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\NosologyClass.cs" />
+    <Compile Include="MKBSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MKBSelectForm.Designer.cs">
+      <DependentUpon>MKBSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NosologyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NosologyForm.Designer.cs">
+      <DependentUpon>NosologyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NosologyRemoveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NosologyRemoveForm.Designer.cs">
+      <DependentUpon>NosologyRemoveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NosologyViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NosologyViewForm.Designer.cs">
+      <DependentUpon>NosologyViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OperationClass.cs" />
+    <Compile Include="OperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationForm.Designer.cs">
+      <DependentUpon>OperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationProtocolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationProtocolForm.Designer.cs">
+      <DependentUpon>OperationProtocolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationViewForm.Designer.cs">
+      <DependentUpon>OperationViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrderlyClass.cs" />
+    <Compile Include="OrderlyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderlyForm.Designer.cs">
+      <DependentUpon>OrderlyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderlyViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderlyViewForm.Designer.cs">
+      <DependentUpon>OrderlyViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PassForm.designer.cs">
+      <DependentUpon>PassForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PatientClass.cs" />
+    <Compile Include="PatientListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientListForm.Designer.cs">
+      <DependentUpon>PatientListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatientViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientViewForm.Designer.cs">
+      <DependentUpon>PatientViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdditionalDocumentsInfoForm.resx">
+      <DependentUpon>AdditionalDocumentsInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePasswordForm.resx">
+      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DischargeEpicrisisForm.resx">
+      <DependentUpon>DischargeEpicrisisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsForm.resx">
+      <DependentUpon>DocumentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsForm.resx">
+      <DependentUpon>GlobalSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeAnestethistForm.resx">
+      <DependentUpon>HeAnestethistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeAnestethistViewForm.resx">
+      <DependentUpon>HeAnestethistViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDataForm.resx">
+      <DependentUpon>ImportDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportKSGForm.resx">
+      <DependentUpon>ImportKSGForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineOfCommunicationEpicrisisForm.resx">
+      <DependentUpon>LineOfCommunicationEpicrisisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalInspectionForm.resx">
+      <DependentUpon>MedicalInspectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MKBSelectForm.resx">
+      <DependentUpon>MKBSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NosologyForm.resx">
+      <DependentUpon>NosologyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NosologyRemoveForm.resx">
+      <DependentUpon>NosologyRemoveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NosologyViewForm.resx">
+      <DependentUpon>NosologyViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationForm.resx">
+      <DependentUpon>OperationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationProtocolForm.resx">
+      <DependentUpon>OperationProtocolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationViewForm.resx">
+      <DependentUpon>OperationViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderlyForm.resx">
+      <DependentUpon>OrderlyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderlyViewForm.resx">
+      <DependentUpon>OrderlyViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PassForm.resx">
+      <DependentUpon>PassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientListForm.resx">
+      <DependentUpon>PatientListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientViewForm.resx">
+      <DependentUpon>PatientViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScrubNurseForm.resx">
+      <DependentUpon>ScrubNurseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScrubNurseViewForm.resx">
+      <DependentUpon>ScrubNurseViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SheAnestethistForm.resx">
+      <DependentUpon>SheAnestethistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SheAnestethistViewForm.resx">
+      <DependentUpon>SheAnestethistViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SurgeonForm.resx">
+      <DependentUpon>SurgeonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SurgeonViewForm.resx">
+      <DependentUpon>SurgeonViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferableEpicrisisForm.resx">
+      <DependentUpon>TransferableEpicrisisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitForm.resx">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScrubNurseViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScrubNurseViewForm.Designer.cs">
+      <DependentUpon>ScrubNurseViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ScrubNurseClass.cs" />
+    <Compile Include="ScrubNurseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScrubNurseForm.Designer.cs">
+      <DependentUpon>ScrubNurseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SurgeonClass.cs" />
+    <Compile Include="SheAnestethistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SheAnestethistForm.Designer.cs">
+      <DependentUpon>SheAnestethistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SheAnestethistViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SheAnestethistViewForm.Designer.cs">
+      <DependentUpon>SheAnestethistViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurgeonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurgeonForm.Designer.cs">
+      <DependentUpon>SurgeonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurgeonViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurgeonViewForm.Designer.cs">
+      <DependentUpon>SurgeonViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferableEpicrisisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferableEpicrisisForm.Designer.cs">
+      <DependentUpon>TransferableEpicrisisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitForm.Designer.cs">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engines\WordExportEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\close.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\OK.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\ANGEL.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\DOCTOR.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\patient_add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\patient_delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\patient_view.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\patients.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ANGEL.ico" />
+    <None Include="Image\importKSG.ico" />
+    <None Include="Image\help.ico" />
+    <None Include="Image\FilterShow.ico" />
+    <None Include="Image\FilterHide.ico" />
+    <None Include="Image\GetData.ico" />
+    <None Include="Image\information.ico" />
+    <None Include="App.config" />
+    <None Include="Image\generate16.ico" />
+    <None Include="Image\filterDelete.ico" />
+    <None Include="Image\ExportToExcel.ico" />
+    <None Include="Image\open16.ico" />
+    <None Include="Image\operation_list.ico" />
+    <None Include="Image\DOCUMENT.ico" />
+    <None Include="Image\Untitled.ico" />
+    <None Include="Image\documents.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

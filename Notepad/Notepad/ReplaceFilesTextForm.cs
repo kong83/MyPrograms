@@ -108,7 +108,11 @@ namespace Notepad
 
                 foreach (string dir in directoryes)
                 {
-                    WorkArround(dir);
+                    if (dir != ".git")
+                    {
+                        WorkArround(dir);
+                    }
+                    
                     if (_stopExecution)
                     {
                         return;
@@ -134,11 +138,8 @@ namespace Notepad
                 try
                 {
                     file.Attributes = FileAttributes.Normal;
-                    string fileText;
-                    using (var sr = new StreamReader(s, Encoding.GetEncoding("windows-1251")))
-                    {
-                        fileText = sr.ReadToEnd();
-                    }
+                    string fileText = File.ReadAllText(s, Encoding.UTF8);
+                    string fileTextSave = fileText;
 
                     switch (currentAction)
                     {
@@ -150,10 +151,9 @@ namespace Notepad
                             break;
                     }
 
-
-                    using (var sw = new StreamWriter(s, false, Encoding.GetEncoding("windows-1251")))
+                    if (fileTextSave != fileText)
                     {
-                        sw.Write(fileText);
+                        File.WriteAllText(s, fileText, Encoding.UTF8);
                     }
                 }
                 catch

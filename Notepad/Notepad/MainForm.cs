@@ -1337,15 +1337,5 @@ namespace Notepad
         {
             new AutostartForm().ShowDialog();
         }
-
-        /// <summary>
-        /// Управление счётчиками производительности
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuActionPerfCounter_Click(object sender, EventArgs e)
-        {
-            new PerfCounterForm().ShowDialog();
-        }
     }
 }

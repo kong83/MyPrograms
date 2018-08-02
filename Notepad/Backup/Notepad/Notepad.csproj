@@ -95,12 +95,6 @@
       <DependentUpon>GuidForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HistoryClass.cs" />
-    <Compile Include="PerfCounterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PerfCounterForm.Designer.cs">
-      <DependentUpon>PerfCounterForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +148,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GuidForm.resx">
       <DependentUpon>GuidForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PerfCounterForm.resx">
-      <DependentUpon>PerfCounterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProcessForm.resx">
       <DependentUpon>ProcessForm.cs</DependentUpon>

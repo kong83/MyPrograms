@@ -29,22 +29,24 @@ namespace Notepad
         {
             ProgramList.Rows.Clear();
 
-            using (RegistryKey regKey = Registry.LocalMachine.OpenSubKey(RegPath))
-            {
-                if (regKey == null)
-                {
-                    MessageBox.Show(@"Can't find HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    Close();
-                    return;
-                }
+            RegistryKey regKey = Registry.LocalMachine;
+            regKey = regKey.OpenSubKey(RegPath);
 
-                foreach (string name in regKey.GetValueNames())
-                {
-                    var value = (string)regKey.GetValue(name, string.Empty);
-                    var param = new object[] { name, value };
-                    ProgramList.Rows.Add(param);
-                }
+            if (regKey == null)
+            {
+                MessageBox.Show(@"Can't find HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Close();
+                return;
             }
+
+            foreach (string name in regKey.GetValueNames())
+            {
+                var value = (string)regKey.GetValue(name, string.Empty);
+                var param = new[] { name, value };
+                ProgramList.Rows.Add(param);
+            }
+
+            regKey.Close();
         }
 
 

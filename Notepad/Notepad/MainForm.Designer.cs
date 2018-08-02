@@ -87,7 +87,6 @@
         this.printDialog1 = new System.Windows.Forms.PrintDialog();
         this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
         this.textWindow = new System.Windows.Forms.TextBox();
-        this.menuActionPerfCounter = new System.Windows.Forms.ToolStripMenuItem();
         this.contextMenuStrip1.SuspendLayout();
         this.menuStrip1.SuspendLayout();
         this.statusStrip1.SuspendLayout();
@@ -388,8 +387,7 @@
             this.menuActionZlibArchive,
             this.menuActionInvolvedGuids,
             this.menuActionReplaceGuids,
-            this.menuActionAutostart,
-            this.menuActionPerfCounter});
+            this.menuActionAutostart});
         this.menuAction.Name = "menuAction";
         this.menuAction.Size = new System.Drawing.Size(68, 20);
         this.menuAction.Text = "&Действия";
@@ -399,7 +397,7 @@
         this.menuActionFind.Image = global::Notepad.Properties.Resources.find16;
         this.menuActionFind.Name = "menuActionFind";
         this.menuActionFind.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-        this.menuActionFind.Size = new System.Drawing.Size(233, 22);
+        this.menuActionFind.Size = new System.Drawing.Size(224, 22);
         this.menuActionFind.Text = "&Поиск...";
         this.menuActionFind.Click += new System.EventHandler(this.menuActionFindReplace_Click);
         // 
@@ -408,7 +406,7 @@
         this.menuActionReplace.Image = global::Notepad.Properties.Resources.replace16;
         this.menuActionReplace.Name = "menuActionReplace";
         this.menuActionReplace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-        this.menuActionReplace.Size = new System.Drawing.Size(233, 22);
+        this.menuActionReplace.Size = new System.Drawing.Size(224, 22);
         this.menuActionReplace.Text = "&Замена...";
         this.menuActionReplace.Click += new System.EventHandler(this.menuActionFindReplace_Click);
         // 
@@ -417,20 +415,20 @@
         this.menuActionQuickReplace.Image = global::Notepad.Properties.Resources.replace16;
         this.menuActionQuickReplace.Name = "menuActionQuickReplace";
         this.menuActionQuickReplace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-        this.menuActionQuickReplace.Size = new System.Drawing.Size(233, 22);
+        this.menuActionQuickReplace.Size = new System.Drawing.Size(224, 22);
         this.menuActionQuickReplace.Text = "Быстрая замена...";
         this.menuActionQuickReplace.Click += new System.EventHandler(this.menuActionQuickReplace_Click);
         // 
         // toolStripSeparator3
         // 
         this.toolStripSeparator3.Name = "toolStripSeparator3";
-        this.toolStripSeparator3.Size = new System.Drawing.Size(230, 6);
+        this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
         // 
         // menuActionConvert
         // 
         this.menuActionConvert.Image = global::Notepad.Properties.Resources.convert16;
         this.menuActionConvert.Name = "menuActionConvert";
-        this.menuActionConvert.Size = new System.Drawing.Size(233, 22);
+        this.menuActionConvert.Size = new System.Drawing.Size(224, 22);
         this.menuActionConvert.Text = "&Конвертация...";
         this.menuActionConvert.Click += new System.EventHandler(this.menuActionConvert_Click);
         // 
@@ -438,7 +436,7 @@
         // 
         this.menuActionUninstall.Image = global::Notepad.Properties.Resources.UninstallProgram16;
         this.menuActionUninstall.Name = "menuActionUninstall";
-        this.menuActionUninstall.Size = new System.Drawing.Size(233, 22);
+        this.menuActionUninstall.Size = new System.Drawing.Size(224, 22);
         this.menuActionUninstall.Text = "&Установленные программы...";
         this.menuActionUninstall.Click += new System.EventHandler(this.menuActionUninstall_Click);
         // 
@@ -446,7 +444,7 @@
         // 
         this.menuActionProcess.Image = global::Notepad.Properties.Resources.process16;
         this.menuActionProcess.Name = "menuActionProcess";
-        this.menuActionProcess.Size = new System.Drawing.Size(233, 22);
+        this.menuActionProcess.Size = new System.Drawing.Size(224, 22);
         this.menuActionProcess.Text = "Работа с процессами";
         this.menuActionProcess.Click += new System.EventHandler(this.menuActionProcess_Click);
         // 
@@ -454,28 +452,28 @@
         // 
         this.menuActionZlibArchive.Image = global::Notepad.Properties.Resources.zlib16;
         this.menuActionZlibArchive.Name = "menuActionZlibArchive";
-        this.menuActionZlibArchive.Size = new System.Drawing.Size(233, 22);
+        this.menuActionZlibArchive.Size = new System.Drawing.Size(224, 22);
         this.menuActionZlibArchive.Text = "Работа с zlib архивом";
         this.menuActionZlibArchive.Click += new System.EventHandler(this.menuActionZlibArchive_Click);
         // 
         // menuActionInvolvedGuids
         // 
         this.menuActionInvolvedGuids.Name = "menuActionInvolvedGuids";
-        this.menuActionInvolvedGuids.Size = new System.Drawing.Size(233, 22);
+        this.menuActionInvolvedGuids.Size = new System.Drawing.Size(224, 22);
         this.menuActionInvolvedGuids.Text = "ГУИДы";
         this.menuActionInvolvedGuids.Click += new System.EventHandler(this.menuActionInvolvedGuids_Click);
         // 
         // menuActionReplaceGuids
         // 
         this.menuActionReplaceGuids.Name = "menuActionReplaceGuids";
-        this.menuActionReplaceGuids.Size = new System.Drawing.Size(233, 22);
+        this.menuActionReplaceGuids.Size = new System.Drawing.Size(224, 22);
         this.menuActionReplaceGuids.Text = "Замена текста в файлах";
         this.menuActionReplaceGuids.Click += new System.EventHandler(this.menuActionReplaceGuids_Click);
         // 
         // menuActionAutostart
         // 
         this.menuActionAutostart.Name = "menuActionAutostart";
-        this.menuActionAutostart.Size = new System.Drawing.Size(233, 22);
+        this.menuActionAutostart.Size = new System.Drawing.Size(224, 22);
         this.menuActionAutostart.Text = "&Автозагрузка";
         this.menuActionAutostart.Click += new System.EventHandler(this.menuActionAutostart_Click);
         // 
@@ -589,13 +587,6 @@
         this.textWindow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textWindow_MouseUp);
         this.textWindow.DragEnter += new System.Windows.Forms.DragEventHandler(this.textWindow_DragEnter);
         // 
-        // menuActionPerfCounter
-        // 
-        this.menuActionPerfCounter.Name = "menuActionPerfCounter";
-        this.menuActionPerfCounter.Size = new System.Drawing.Size(233, 22);
-        this.menuActionPerfCounter.Text = "&Счётчики производительности";
-        this.menuActionPerfCounter.Click += new System.EventHandler(this.menuActionPerfCounter_Click);
-        // 
         // MainForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,7 +676,6 @@
     private System.Windows.Forms.ToolStripMenuItem menuActionZlibArchive;
     private System.Windows.Forms.ToolStripMenuItem menuActionProcess;
     private System.Windows.Forms.ToolStripMenuItem menuActionAutostart;
-    private System.Windows.Forms.ToolStripMenuItem menuActionPerfCounter;
   }
 }
 

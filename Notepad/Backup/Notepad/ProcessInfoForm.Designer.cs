@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcessInfoForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ProcessInfoList = new System.Windows.Forms.DataGridView();
             this.column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,8 +57,8 @@
             this.ProcessInfoList.Name = "ProcessInfoList";
             this.ProcessInfoList.ReadOnly = true;
             this.ProcessInfoList.RowHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ProcessInfoList.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ProcessInfoList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ProcessInfoList.RowTemplate.Height = 17;
             this.ProcessInfoList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProcessInfoList.Size = new System.Drawing.Size(483, 410);
@@ -95,7 +94,6 @@
             // 
             // labelInfo
             // 
-            this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelInfo.AutoSize = true;
             this.labelInfo.Location = new System.Drawing.Point(0, 428);
             this.labelInfo.Name = "labelInfo";
@@ -111,7 +109,6 @@
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.ProcessInfoList);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProcessInfoForm";
             this.Text = "Дополнительная информация";
             this.TopMost = true;

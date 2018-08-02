@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace Notepad
 {
@@ -174,17 +174,30 @@ namespace Notepad
                 {
                     textBoxInvolvedGuid.Text = CreateInvolvedGuid(textBoxGuid.Text);
                 }
-                
-                string namesStr = GetRegistryInfo(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\" + textBoxInvolvedGuid.Text));
-                namesStr += GetRegistryInfo(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-                namesStr += GetRegistryInfo(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Classes\Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-                namesStr += GetRegistryInfo(Registry.ClassesRoot.OpenSubKey(@"Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-                
-                if (string.IsNullOrEmpty(namesStr))
+
+                RegistryKey regKey = Registry.LocalMachine;
+                regKey = regKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\" + textBoxInvolvedGuid.Text);
+
+                string namesStr = "";
+                if (regKey == null)
                 {
                     namesStr = "Данный гуид не найден";
                 }
-                
+                else
+                {
+                    string[] names = regKey.GetValueNames();
+
+                    foreach (string s in names)
+                    {
+                        object value = regKey.GetValue(s);
+
+                        namesStr += s + "\t=\t" + value + "\r\n";
+                    }
+                    if (string.IsNullOrEmpty(namesStr))
+                    {
+                        namesStr = "Нет значений";
+                    }
+                }
                 textBoxValueNames.Text = namesStr;
             }
             catch (Exception ex)
@@ -194,25 +207,6 @@ namespace Notepad
             }
         }
 
-        private string GetRegistryInfo(RegistryKey regKey)
-        {
-            if (regKey == null)
-            {
-                return "";
-            }
-
-            string namesStr = "Гуид найден в " + regKey + "\r\n";
-            string[] names = regKey.GetValueNames();
-
-            foreach (string s in names)
-            {
-                object value = regKey.GetValue(s);
-
-                namesStr += "\t" + s + "\t=\t" + value + "\r\n";
-            }
-
-            return namesStr;
-        }
 
         /// <summary>
         /// Remove button
@@ -221,34 +215,23 @@ namespace Notepad
         /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxInvolvedGuid.Text))
-            {
-                textBoxInvolvedGuid.Text = CreateInvolvedGuid(textBoxGuid.Text);
-            }
+            RegistryKey regKey = Registry.LocalMachine;
+            regKey = regKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\", true);
 
-            textBoxValueNames.Clear();
-
-            DeleteRegistryKey(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\" + textBoxInvolvedGuid.Text));
-            DeleteRegistryKey(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-            DeleteRegistryKey(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Classes\Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-            DeleteRegistryKey(Registry.ClassesRoot.OpenSubKey(@"Installer\UpgradeCodes\" + textBoxInvolvedGuid.Text));
-        }
-
-        private void DeleteRegistryKey(RegistryKey regKey)
-        {
             try
             {
-                if (regKey == null)
+                if (string.IsNullOrEmpty(textBoxInvolvedGuid.Text))
                 {
-                    return;
+                    textBoxInvolvedGuid.Text = CreateInvolvedGuid(textBoxGuid.Text);
                 }
 
                 regKey.DeleteSubKeyTree(textBoxInvolvedGuid.Text);
-                textBoxValueNames.Text += "Ключ успешно удалён\r\n";
+                textBoxValueNames.Text = "Ключ успешно удалён";
             }
             catch (Exception ex)
             {
-                textBoxValueNames.Text += ex.Message + "\r\n";
+                textBoxValueNames.Text = ex.Message;
+
             }
         }
 

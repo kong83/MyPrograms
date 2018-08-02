@@ -29,5 +29,14 @@
     <Setting Name="SetAttributeSettings" Type="System.String" Scope="User">
       <Value Profile="(Default)">No</Value>
     </Setting>
+    <Setting Name="StartNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MinCountDigits" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="NumerationSettings" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DoNumeration</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -7,7 +7,7 @@ namespace FilesName
 {
     public partial class MainForm : Form
     {
-        string m_TextFind, m_TextReplace; // Строки для поиска и замены
+        string _textFind, _textReplace; // Строки для поиска и замены
 
         public MainForm()
         {
@@ -38,7 +38,7 @@ namespace FilesName
             Close();
         }
 
-        bool m_StopExecution;
+        private bool _stopExecution;
 
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace FilesName
                     {
                         try
                         {
-                            file = new FileInfo(newPath) 
+                            file = new FileInfo(newPath)
                             {
                                 Attributes = FileAttributes.Normal
                             };
@@ -88,7 +88,7 @@ namespace FilesName
 
                     if (dialogResult == DialogResult.Cancel)
                     {
-                        m_StopExecution = true;
+                        _stopExecution = true;
                         return true;
                     }
                 }
@@ -131,7 +131,7 @@ namespace FilesName
                 foreach (string dir in Directory.GetDirectories(directoryName))
                 {
                     WorkArround(dir);
-                    if (m_StopExecution)
+                    if (_stopExecution)
                     {
                         return;
                     }
@@ -147,23 +147,23 @@ namespace FilesName
             Application.DoEvents();
             foreach (string s in files)
             {
-                if (m_TextFind.Length == 0) // Если строка для поиска пуста - то добавляем строку
+                if (_textFind.Length == 0) // Если строка для поиска пуста - то добавляем строку
                 {                                       // для замены в конец или начало имени файла          
                     string newName = s;
                     if (comboReplaceTo.Text == "конец")            // Добавляем в конец
                     {
                         if (radioCheckFile.Checked)             // имени файла
                         {
-                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileNameWithoutExtension(s) + m_TextReplace + Path.GetExtension(s);
+                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileNameWithoutExtension(s) + _textReplace + Path.GetExtension(s);
                         }
                         else if (radioCheckExp.Checked)               // раширения
                         {
-                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileName(s) + m_TextReplace;
+                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileName(s) + _textReplace;
                         }
                         else                                          // тела файла
                         {
                             var sw = new StreamWriter(s, true, Encoding.GetEncoding("1251"));
-                            sw.Write(m_TextReplace);
+                            sw.Write(_textReplace);
                             sw.Close();
                         }
                     }
@@ -171,11 +171,11 @@ namespace FilesName
                     {
                         if (radioCheckFile.Checked)             // имени файла
                         {
-                            newName = Path.GetDirectoryName(s) + "\\" + m_TextReplace + Path.GetFileName(s);
+                            newName = Path.GetDirectoryName(s) + "\\" + _textReplace + Path.GetFileName(s);
                         }
                         else if (radioCheckExp.Checked)         // раширения
                         {
-                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileNameWithoutExtension(s) + "." + m_TextReplace + Path.GetExtension(s).Substring(1);
+                            newName = Path.GetDirectoryName(s) + "\\" + Path.GetFileNameWithoutExtension(s) + "." + _textReplace + (Path.GetExtension(s) ?? string.Empty).Substring(1);
                         }
                         else                                    // тела файла
                         {
@@ -183,7 +183,7 @@ namespace FilesName
                             string fileText = sr.ReadToEnd();
                             sr.Close();
 
-                            fileText = m_TextReplace + fileText;
+                            fileText = _textReplace + fileText;
                             var sw = new StreamWriter(s, false, Encoding.GetEncoding("windows-1251"));
                             sw.Write(fileText);
                             sw.Close();
@@ -195,7 +195,7 @@ namespace FilesName
                     {
                         continue;
                     }
-                    if (m_StopExecution)
+                    if (_stopExecution)
                     {
                         return;
                     }
@@ -206,16 +206,16 @@ namespace FilesName
                     {
                         StringWork strWork;
                         if (radioCheckFile.Checked)
-                            strWork = new StringWork(s, m_TextFind, 1);
+                            strWork = new StringWork(s, _textFind, 1);
                         else
                         {
                             if (!Path.HasExtension(s))
                                 continue;
-                            strWork = new StringWork(s, m_TextFind, 2);
+                            strWork = new StringWork(s, _textFind, 2);
                         }
 
                         int numFirst;
-                        if (m_TextFind.Equals("*"))
+                        if (_textFind.Equals("*"))
                         {
                             numFirst = 0;
                             numLast = strWork.GetStr.Length;
@@ -223,7 +223,7 @@ namespace FilesName
                         else
                         {
                             int iFind;
-                            if (m_TextFind[0] == '*')
+                            if (_textFind[0] == '*')
                             {
                                 numFirst = 0;
                                 iFind = 1;
@@ -237,7 +237,7 @@ namespace FilesName
                                 numLast = strWork.GetiStr;
                             }
 
-                            while (iFind < m_TextFind.Length)
+                            while (iFind < _textFind.Length)
                             {
                                 if (strWork.SearchNext(strWork.GetString(iFind)) == -1)
                                 {
@@ -248,22 +248,22 @@ namespace FilesName
                                 numLast = strWork.GetiStr;
                             }
 
-                            if (m_TextFind[m_TextFind.Length - 1] == '*')
+                            if (_textFind[_textFind.Length - 1] == '*')
                                 numLast = strWork.GetStr.Length;
                         }
                     Ex:
                         if (numFirst != -1 && numLast != -1)
                         {
-                            string newName = s.Substring(0, strWork.Offset + numFirst) + m_TextReplace + s.Substring(strWork.Offset + numLast);
+                            string newName = s.Substring(0, strWork.Offset + numFirst) + _textReplace + s.Substring(strWork.Offset + numLast);
 
                             if (!TransferFile(s, newName))
                             {
                                 continue;
                             }
-                            if (m_StopExecution)
+                            if (_stopExecution)
                             {
                                 return;
-                            }                            
+                            }
                         }
                     } // end if
                     else                          // В теле файла
@@ -277,7 +277,7 @@ namespace FilesName
                             string fileText = sr.ReadToEnd();
                             sr.Close();
 
-                            fileText = fileText.Replace(m_TextFind, m_TextReplace);
+                            fileText = fileText.Replace(_textFind, _textReplace);
 
                             var sw = new StreamWriter(s, false, Encoding.GetEncoding("windows-1251"));
                             sw.Write(fileText);
@@ -309,15 +309,15 @@ namespace FilesName
         {
             string directoryName = textPath.Text;
 
-            m_TextFind = "";
+            _textFind = "";
             if (textPath.Text.IndexOf("**") > 0)
             {
                 MessageBox.Show("Неправильная запись в строке для поиска: ** ", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            m_TextFind = textFindString.Text;
+            _textFind = textFindString.Text;
 
-            m_TextReplace = textReplaceString.Text;
+            _textReplace = textReplaceString.Text;
 
             if (!Directory.Exists(directoryName))
             {
@@ -328,7 +328,7 @@ namespace FilesName
             progressBarInfo.Value = 0;
             labelInfo.Visible = progressBarInfo.Visible = true;
             Application.DoEvents();
-            m_StopExecution = false;
+            _stopExecution = false;
             WorkArround(directoryName);
             labelInfo.Visible = progressBarInfo.Visible = false;
 
@@ -342,7 +342,7 @@ namespace FilesName
         /// <returns></returns>
         private StringBuilder GetNames(string directoryName)
         {
-            var names = new StringBuilder(); 
+            var names = new StringBuilder();
 
             if (radioFolderName.Checked)
             {
@@ -351,7 +351,7 @@ namespace FilesName
                     names.Append(subDirectoryName + "\r\n");
                 }
             }
-            else 
+            else
             {
                 foreach (string fileName in Directory.GetFiles(directoryName))
                 {
@@ -396,7 +396,7 @@ namespace FilesName
         /// <param name="e"></param>
         private void buttonCopyInBuffer_Click(object sender, EventArgs e)
         {
-            string directoryName = textPath.Text;           
+            string directoryName = textPath.Text;
 
             if (!Directory.Exists(directoryName))
             {
@@ -469,7 +469,7 @@ namespace FilesName
         /// <param name="e"></param>
         private void buttonAttributes_Click(object sender, EventArgs e)
         {
-            string directoryName = textPath.Text;            
+            string directoryName = textPath.Text;
 
             if (!Directory.Exists(directoryName))
             {
@@ -491,7 +491,7 @@ namespace FilesName
         private string ConvertName(string name)
         {
             string ext = Path.GetExtension(name);
-            string newName = Path.GetFileNameWithoutExtension(name.Replace('_', ' ').Trim());
+            string newName = Path.GetFileNameWithoutExtension(name.Replace('_', ' ').Trim()) ?? string.Empty;
             while (newName.IndexOf("  ") > 0)
             {
                 newName = newName.Replace("  ", " ");
@@ -518,14 +518,14 @@ namespace FilesName
             return newName + ext;
         }
 
-        private string NormalizeNameStartedWithDigit(string name)
+        private static string NormalizeNameStartedWithDigit(string name)
         {
             string newName = ExtractFirstDigit(ref name);
             if (string.IsNullOrEmpty(name))
             {
                 return newName;
             }
-            
+
             if (!string.IsNullOrEmpty(newName))
             {
                 newName += " ";
@@ -534,10 +534,10 @@ namespace FilesName
             return newName + name.Substring(0, 1).ToUpper() + name.Substring(1).ToLower();
         }
 
-        private string ExtractFirstDigit(ref string name)
+        private static string ExtractFirstDigit(ref string name)
         {
             var firstDigit = new StringBuilder();
-            int i=0;
+            int i = 0;
             int digit;
             while (i < name.Length && int.TryParse(name[i].ToString(), out digit))
             {
@@ -549,7 +549,7 @@ namespace FilesName
             return firstDigit.ToString();
         }
 
-        private string LatinToLowerKirill(string text)
+        private static string LatinToLowerKirill(string text)
         {
             text = text.ToLower();
             string res = "";
@@ -649,7 +649,7 @@ namespace FilesName
                 foreach (string dir in Directory.GetDirectories(directoryName))
                 {
                     UpperToLower(dir);
-                    if (m_StopExecution)
+                    if (_stopExecution)
                     {
                         return;
                     }
@@ -661,14 +661,14 @@ namespace FilesName
                 var file = new FileInfo(fileName);
                 string newName = file.DirectoryName + "\\" + ConvertName(file.Name);
 
-                if(!TransferFile(fileName, newName))
+                if (!TransferFile(fileName, newName))
                 {
                     continue;
                 }
-                if(m_StopExecution)
+                if (_stopExecution)
                 {
                     return;
-                }                
+                }
             }
         }
 
@@ -682,7 +682,7 @@ namespace FilesName
         {
             if (comboConvertion.SelectedIndex < 0)
             {
-                MessageBox.Show("Не выбран тип замены", "Предупреждение",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Не выбран тип замены", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -694,8 +694,155 @@ namespace FilesName
                 return;
             }
 
-            m_StopExecution = false;
+            _stopExecution = false;
             UpperToLower(directoryName);
+
+            MessageBox.Show("Выполнение программы завершено.", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        /// <summary>
+        /// Выставление нумерации для файлов в директории или убирание нумерации
+        /// </summary>
+        /// <param name="directoryName">Путь до папки</param>
+        private void NumerationWorks(string directoryName)
+        {
+            if (checkNestingFolder.Checked)
+            {
+                foreach (string dir in Directory.GetDirectories(directoryName))
+                {
+                    NumerationWorks(dir);
+                    if (_stopExecution)
+                    {
+                        return;
+                    }
+                }
+            }
+            
+            int currentNumber = Configuration.Default.StartNumber;
+            foreach (string fileName in Directory.GetFiles(directoryName))
+            {
+                var file = new FileInfo(fileName);
+                string newFileName;
+                if (Configuration.Default.NumerationSettings == "DoNumeration")
+                {
+                    newFileName = GetNewNumerationName(file.Name, currentNumber);
+                    currentNumber++;
+                }
+                else if (Configuration.Default.NumerationSettings == "RemoveNumeration")
+                {
+                    newFileName = RemoveNumeration(file.Name);
+                }
+                else
+                {
+                    newFileName = ModifyNumeration(file.Name);
+                }
+
+                string newPathName = file.DirectoryName + "\\" + newFileName;
+
+                if (!TransferFile(fileName, newPathName))
+                {
+                    continue;
+                }
+                if (_stopExecution)
+                {
+                    return;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Изменить номер, убрав или добавив нули в начало имени файла, в зависимости от минимального количества цифр
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <returns></returns>
+        private static string ModifyNumeration(string fileName)
+        {
+            // Получаем номер, который написан в начале имени файла
+            string result = fileName;
+            string number = null;
+            int digit;
+            while (result.Length > 0 && int.TryParse(result.Substring(0, 1), out digit))
+            {
+                number += digit.ToString();
+                result = result.Substring(1);
+            }
+
+            // Если такой номер там есть, то удаляем у него начальные нули и добавляем снова нули, если надо и столько, сколько надо
+            if (!string.IsNullOrEmpty(number))
+            {
+                result = result.TrimStart();
+
+                number = number.TrimStart('0');
+                int numberLength = number.Length;
+                for (int i = 0; i < Configuration.Default.MinCountDigits - numberLength; i++)
+                {
+                    number = "0" + number;
+                }
+
+                result = number + " " + result;
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Удаляет номер с пробелом в начале названия файла
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <returns></returns>
+        private static string RemoveNumeration(string fileName)
+        {
+            string result = fileName;
+            int digit;
+            while (result.Length > 0 && int.TryParse(result.Substring(0, 1), out digit))
+            {
+                result = result.Substring(1);
+            }
+            
+            return result.TrimStart();
+        }
+
+
+        /// <summary>
+        /// Добавляет номер с пробелом в начало файла. 
+        /// Если минимальное количество цифр в номере больше, чем количество цифр в переданном номере, то недостающие цифры будут заполнены нулями
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="currentNumber">Номер</param>
+        /// <returns></returns>
+        private static string GetNewNumerationName(string fileName, int currentNumber)
+        {
+            string currentNumberStr = currentNumber.ToString();
+            int currentNumberLength = currentNumberStr.Length;
+            for (int i = 0; i < Configuration.Default.MinCountDigits - currentNumberLength; i++)
+            {
+                currentNumberStr = "0" + currentNumberStr;
+            }
+
+            return currentNumberStr + " " + fileName;
+        }
+
+
+        /// <summary>
+        /// Пронумеровать или убрать нумерацию для файлов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonNumeration_Click(object sender, EventArgs e)
+        {
+            string directoryName = textPath.Text;
+
+            if (!Directory.Exists(directoryName))
+            {
+                MessageBox.Show("Ошибка в имени директории", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            _stopExecution = false;
+            NumerationWorks(directoryName);
 
             MessageBox.Show("Выполнение программы завершено.", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -737,7 +884,7 @@ namespace FilesName
             textReplaceString.Text = Configuration.Default.ReplaceString;
             comboReplaceTo.Text = Configuration.Default.ReplaceTo;
             switch (Configuration.Default.TypeOfReplace)
-            { 
+            {
                 case "File":
                     radioCheckFile.Checked = true;
                     break;
@@ -777,7 +924,7 @@ namespace FilesName
                     break;
                 case "Sys":
                     radioAttrSys.Checked = true;
-                    break;               
+                    break;
                 default:
                     radioAttrTemporary.Checked = true;
                     break;
@@ -799,12 +946,24 @@ namespace FilesName
 
         private void textFindString_TextChanged(object sender, EventArgs e)
         {
+            if (textFindString.Text.StartsWith("\r\n"))
+            {
+                textFindString.Text = " ";
+                return;
+            }
+
             Configuration.Default.FindString = textFindString.Text;
             Configuration.Default.Save();
         }
 
         private void textReplaceString_TextChanged(object sender, EventArgs e)
         {
+            if (textReplaceString.Text.StartsWith("\r\n"))
+            {
+                textReplaceString.Text = " ";
+                return;
+            }
+
             Configuration.Default.ReplaceString = textReplaceString.Text;
             Configuration.Default.Save();
         }
@@ -813,6 +972,32 @@ namespace FilesName
         {
             Configuration.Default.ReplaceTo = comboReplaceTo.Text;
             Configuration.Default.Save();
+        }
+
+        private void textStartNumber_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Configuration.Default.StartNumber = Convert.ToInt32(textStartNumber.Text);
+                Configuration.Default.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Начальный номер должен быть числом", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void textMinCountDigits_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Configuration.Default.MinCountDigits = Convert.ToInt32(textMinCountDigits.Text);
+                Configuration.Default.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Начальный номер должен быть числом", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void SaveTypeOfReplace_CheckedChanged(object sender, EventArgs e)
@@ -881,8 +1066,31 @@ namespace FilesName
             {
                 Configuration.Default.SetAttributeSettings = "Temp";
             }
-            Configuration.Default.Save();            
+            Configuration.Default.Save();
         }
+
+        private void SetNumeration_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioDoNumeration.Checked)
+            {
+                Configuration.Default.NumerationSettings = "DoNumeration";
+                labelStartNumber.Enabled = labelMinCountDigits.Enabled = textStartNumber.Enabled = textMinCountDigits.Enabled = true;
+            }
+            else if (radioRemoveNumeration.Checked)
+            {
+                Configuration.Default.NumerationSettings = "RemoveNumeration";
+                labelStartNumber.Enabled = labelMinCountDigits.Enabled = textStartNumber.Enabled = textMinCountDigits.Enabled = false;
+            }
+            else
+            {
+                Configuration.Default.NumerationSettings = "ModifyNumeration";
+                labelStartNumber.Enabled = textStartNumber.Enabled = false;
+                labelMinCountDigits.Enabled = textMinCountDigits.Enabled = true;
+            }
+
+            Configuration.Default.Save();
+        }
+
         #endregion
     }
 }

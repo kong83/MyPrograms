@@ -69,12 +69,22 @@
         this.radioFileNameWithExtentions = new System.Windows.Forms.RadioButton();
         this.radioFileName = new System.Windows.Forms.RadioButton();
         this.groupBox4 = new System.Windows.Forms.GroupBox();
+        this.groupBox5 = new System.Windows.Forms.GroupBox();
+        this.radioModifyNumeration = new System.Windows.Forms.RadioButton();
+        this.labelMinCountDigits = new System.Windows.Forms.Label();
+        this.buttonNumeration = new System.Windows.Forms.Button();
+        this.labelStartNumber = new System.Windows.Forms.Label();
+        this.radioRemoveNumeration = new System.Windows.Forms.RadioButton();
+        this.textMinCountDigits = new System.Windows.Forms.TextBox();
+        this.textStartNumber = new System.Windows.Forms.TextBox();
+        this.radioDoNumeration = new System.Windows.Forms.RadioButton();
         this.label5 = new System.Windows.Forms.Label();
         this.groupBox1.SuspendLayout();
         this.groupBox2.SuspendLayout();
         this.menuStrip1.SuspendLayout();
         this.groupBox3.SuspendLayout();
         this.groupBox4.SuspendLayout();
+        this.groupBox5.SuspendLayout();
         this.SuspendLayout();
         // 
         // folderBrowserDialog1
@@ -158,7 +168,7 @@
         // 
         // buttonExit
         // 
-        this.buttonExit.Location = new System.Drawing.Point(572, 117);
+        this.buttonExit.Location = new System.Drawing.Point(572, 202);
         this.buttonExit.Name = "buttonExit";
         this.buttonExit.Size = new System.Drawing.Size(75, 29);
         this.buttonExit.TabIndex = 13;
@@ -285,7 +295,7 @@
         // 
         // buttonLoverUpper
         // 
-        this.buttonLoverUpper.Location = new System.Drawing.Point(367, 117);
+        this.buttonLoverUpper.Location = new System.Drawing.Point(551, 117);
         this.buttonLoverUpper.Name = "buttonLoverUpper";
         this.buttonLoverUpper.Size = new System.Drawing.Size(96, 29);
         this.buttonLoverUpper.TabIndex = 11;
@@ -377,9 +387,6 @@
         // 
         // menuStrip1
         // 
-        this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.информацияToolStripMenuItem});
         this.menuStrip1.Location = new System.Drawing.Point(0, 0);
         this.menuStrip1.Name = "menuStrip1";
         this.menuStrip1.Size = new System.Drawing.Size(683, 24);
@@ -391,13 +398,13 @@
         this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.выходToolStripMenuItem});
         this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-        this.файлToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+        this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
         this.файлToolStripMenuItem.Text = "&Файл";
         // 
         // выходToolStripMenuItem
         // 
         this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-        this.выходToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+        this.выходToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
         this.выходToolStripMenuItem.Text = "Выход";
         this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
         // 
@@ -406,13 +413,13 @@
         this.информацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.оПрограммеToolStripMenuItem});
         this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-        this.информацияToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+        this.информацияToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
         this.информацияToolStripMenuItem.Text = "&Информация";
         // 
         // оПрограммеToolStripMenuItem
         // 
         this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-        this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+        this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
         this.оПрограммеToolStripMenuItem.Text = "&О программе...";
         this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
         // 
@@ -427,7 +434,7 @@
             "1 NAZVANIE_FAILA.RASSH -> 1 Название файла.rassh"});
         this.comboConvertion.Location = new System.Drawing.Point(9, 122);
         this.comboConvertion.Name = "comboConvertion";
-        this.comboConvertion.Size = new System.Drawing.Size(342, 21);
+        this.comboConvertion.Size = new System.Drawing.Size(530, 21);
         this.comboConvertion.TabIndex = 10;
         this.comboConvertion.SelectedIndexChanged += new System.EventHandler(this.comboConvertion_SelectedIndexChanged);
         // 
@@ -490,6 +497,7 @@
         // 
         // groupBox4
         // 
+        this.groupBox4.Controls.Add(this.groupBox5);
         this.groupBox4.Controls.Add(this.groupBox3);
         this.groupBox4.Controls.Add(this.comboConvertion);
         this.groupBox4.Controls.Add(this.buttonExit);
@@ -499,10 +507,108 @@
         this.groupBox4.Controls.Add(this.buttonAttributes);
         this.groupBox4.Location = new System.Drawing.Point(12, 288);
         this.groupBox4.Name = "groupBox4";
-        this.groupBox4.Size = new System.Drawing.Size(659, 159);
+        this.groupBox4.Size = new System.Drawing.Size(659, 247);
         this.groupBox4.TabIndex = 23;
         this.groupBox4.TabStop = false;
         this.groupBox4.Text = "Дополнительные возможности";
+        // 
+        // groupBox5
+        // 
+        this.groupBox5.Controls.Add(this.radioModifyNumeration);
+        this.groupBox5.Controls.Add(this.labelMinCountDigits);
+        this.groupBox5.Controls.Add(this.buttonNumeration);
+        this.groupBox5.Controls.Add(this.labelStartNumber);
+        this.groupBox5.Controls.Add(this.radioRemoveNumeration);
+        this.groupBox5.Controls.Add(this.textMinCountDigits);
+        this.groupBox5.Controls.Add(this.textStartNumber);
+        this.groupBox5.Controls.Add(this.radioDoNumeration);
+        this.groupBox5.Location = new System.Drawing.Point(0, 151);
+        this.groupBox5.Name = "groupBox5";
+        this.groupBox5.Size = new System.Drawing.Size(539, 91);
+        this.groupBox5.TabIndex = 27;
+        this.groupBox5.TabStop = false;
+        // 
+        // radioModifyNumeration
+        // 
+        this.radioModifyNumeration.AutoSize = true;
+        this.radioModifyNumeration.Location = new System.Drawing.Point(154, 13);
+        this.radioModifyNumeration.Name = "radioModifyNumeration";
+        this.radioModifyNumeration.Size = new System.Drawing.Size(102, 17);
+        this.radioModifyNumeration.TabIndex = 29;
+        this.radioModifyNumeration.Text = "преобразовать";
+        this.radioModifyNumeration.UseVisualStyleBackColor = true;
+        // 
+        // labelMinCountDigits
+        // 
+        this.labelMinCountDigits.AutoSize = true;
+        this.labelMinCountDigits.Location = new System.Drawing.Point(163, 36);
+        this.labelMinCountDigits.Name = "labelMinCountDigits";
+        this.labelMinCountDigits.Size = new System.Drawing.Size(94, 26);
+        this.labelMinCountDigits.TabIndex = 28;
+        this.labelMinCountDigits.Text = "Минимальное\r\nколичество цифр";
+        this.labelMinCountDigits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // buttonNumeration
+        // 
+        this.buttonNumeration.Location = new System.Drawing.Point(437, 33);
+        this.buttonNumeration.Name = "buttonNumeration";
+        this.buttonNumeration.Size = new System.Drawing.Size(96, 29);
+        this.buttonNumeration.TabIndex = 23;
+        this.buttonNumeration.Text = "Преобразовать";
+        this.buttonNumeration.UseVisualStyleBackColor = true;
+        this.buttonNumeration.Click += new System.EventHandler(this.buttonNumeration_Click);
+        // 
+        // labelStartNumber
+        // 
+        this.labelStartNumber.AutoSize = true;
+        this.labelStartNumber.Location = new System.Drawing.Point(51, 36);
+        this.labelStartNumber.Name = "labelStartNumber";
+        this.labelStartNumber.Size = new System.Drawing.Size(62, 26);
+        this.labelStartNumber.TabIndex = 27;
+        this.labelStartNumber.Text = "Стартовый\r\nномер";
+        this.labelStartNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // radioRemoveNumeration
+        // 
+        this.radioRemoveNumeration.AutoSize = true;
+        this.radioRemoveNumeration.Location = new System.Drawing.Point(298, 13);
+        this.radioRemoveNumeration.Name = "radioRemoveNumeration";
+        this.radioRemoveNumeration.Size = new System.Drawing.Size(119, 17);
+        this.radioRemoveNumeration.TabIndex = 3;
+        this.radioRemoveNumeration.Text = "убрать нумерацию";
+        this.radioRemoveNumeration.UseVisualStyleBackColor = true;
+        this.radioRemoveNumeration.CheckedChanged += new System.EventHandler(this.SetNumeration_CheckedChanged);
+        // 
+        // textMinCountDigits
+        // 
+        this.textMinCountDigits.Location = new System.Drawing.Point(184, 65);
+        this.textMinCountDigits.Name = "textMinCountDigits";
+        this.textMinCountDigits.Size = new System.Drawing.Size(55, 20);
+        this.textMinCountDigits.TabIndex = 26;
+        this.textMinCountDigits.Text = "2";
+        this.textMinCountDigits.TextChanged += new System.EventHandler(this.textMinCountDigits_TextChanged);
+        // 
+        // textStartNumber
+        // 
+        this.textStartNumber.Location = new System.Drawing.Point(54, 63);
+        this.textStartNumber.Name = "textStartNumber";
+        this.textStartNumber.Size = new System.Drawing.Size(55, 20);
+        this.textStartNumber.TabIndex = 25;
+        this.textStartNumber.Text = "1";
+        this.textStartNumber.TextChanged += new System.EventHandler(this.textStartNumber_TextChanged);
+        // 
+        // radioDoNumeration
+        // 
+        this.radioDoNumeration.AutoSize = true;
+        this.radioDoNumeration.Checked = true;
+        this.radioDoNumeration.Location = new System.Drawing.Point(6, 13);
+        this.radioDoNumeration.Name = "radioDoNumeration";
+        this.radioDoNumeration.Size = new System.Drawing.Size(103, 17);
+        this.radioDoNumeration.TabIndex = 0;
+        this.radioDoNumeration.TabStop = true;
+        this.radioDoNumeration.Text = "пронумеровать";
+        this.radioDoNumeration.UseVisualStyleBackColor = true;
+        this.radioDoNumeration.CheckedChanged += new System.EventHandler(this.SetNumeration_CheckedChanged);
         // 
         // label5
         // 
@@ -511,13 +617,13 @@
         this.label5.Name = "label5";
         this.label5.Size = new System.Drawing.Size(62, 13);
         this.label5.TabIndex = 24;
-        this.label5.Text = "Версия 2.2";
+        this.label5.Text = "Версия 3.0";
         // 
         // MainForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(683, 456);
+        this.ClientSize = new System.Drawing.Size(683, 540);
         this.Controls.Add(this.label5);
         this.Controls.Add(this.groupBox4);
         this.Controls.Add(this.groupBox1);
@@ -542,6 +648,8 @@
         this.groupBox3.ResumeLayout(false);
         this.groupBox3.PerformLayout();
         this.groupBox4.ResumeLayout(false);
+        this.groupBox5.ResumeLayout(false);
+        this.groupBox5.PerformLayout();
         this.ResumeLayout(false);
         this.PerformLayout();
 
@@ -590,6 +698,15 @@
     private System.Windows.Forms.RadioButton radioFileName;
     private System.Windows.Forms.GroupBox groupBox4;
     private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.GroupBox groupBox5;
+    private System.Windows.Forms.RadioButton radioRemoveNumeration;
+    private System.Windows.Forms.TextBox textMinCountDigits;
+    private System.Windows.Forms.TextBox textStartNumber;
+    private System.Windows.Forms.RadioButton radioDoNumeration;
+    private System.Windows.Forms.Button buttonNumeration;
+    private System.Windows.Forms.Label labelMinCountDigits;
+    private System.Windows.Forms.Label labelStartNumber;
+    private System.Windows.Forms.RadioButton radioModifyNumeration;
   }
 }
 
