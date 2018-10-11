@@ -136,6 +136,13 @@
             this.label20 = new System.Windows.Forms.Label();
             this.buttonCreateCATIInstances = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBoxFirstIndexForRemoving = new System.Windows.Forms.TextBox();
+            this.textBoxLastIndexForRemoving = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.buttonRemoveCatiInstances = new System.Windows.Forms.Button();
+            this.labelCatiInstancesRemovingAction = new System.Windows.Forms.Label();
             this.groupBoxBackup.SuspendLayout();
             this.groupBoxRestore.SuspendLayout();
             this.groupBoxServerSettings.SuspendLayout();
@@ -154,6 +161,7 @@
             this.tabPage6.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxBackup
@@ -671,7 +679,7 @@
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(69, 13);
             this.labelVersion.TabIndex = 6;
-            this.labelVersion.Text = "Version 3.0.0";
+            this.labelVersion.Text = "Version 3.1.0";
             // 
             // buttonRefresh
             // 
@@ -1193,6 +1201,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.groupBox3);
             this.tabPage6.Controls.Add(this.groupBox2);
             this.tabPage6.Controls.Add(this.groupBox1);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -1361,6 +1370,82 @@
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.labelCatiInstancesRemovingAction);
+            this.groupBox3.Controls.Add(this.textBoxFirstIndexForRemoving);
+            this.groupBox3.Controls.Add(this.textBoxLastIndexForRemoving);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.buttonRemoveCatiInstances);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox3.Location = new System.Drawing.Point(8, 108);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(226, 99);
+            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Remove CATI database instances";
+            // 
+            // textBoxFirstIndexForRemoving
+            // 
+            this.textBoxFirstIndexForRemoving.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxFirstIndexForRemoving.Location = new System.Drawing.Point(68, 19);
+            this.textBoxFirstIndexForRemoving.Name = "textBoxFirstIndexForRemoving";
+            this.textBoxFirstIndexForRemoving.Size = new System.Drawing.Size(35, 20);
+            this.textBoxFirstIndexForRemoving.TabIndex = 14;
+            this.textBoxFirstIndexForRemoving.Text = "1";
+            // 
+            // textBoxLastIndexForRemoving
+            // 
+            this.textBoxLastIndexForRemoving.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLastIndexForRemoving.Location = new System.Drawing.Point(68, 45);
+            this.textBoxLastIndexForRemoving.Name = "textBoxLastIndexForRemoving";
+            this.textBoxLastIndexForRemoving.Size = new System.Drawing.Size(35, 20);
+            this.textBoxLastIndexForRemoving.TabIndex = 17;
+            this.textBoxLastIndexForRemoving.Text = "100";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(4, 22);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(54, 13);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "First index";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label22.Location = new System.Drawing.Point(4, 48);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Last index";
+            // 
+            // buttonRemoveCatiInstances
+            // 
+            this.buttonRemoveCatiInstances.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRemoveCatiInstances.Location = new System.Drawing.Point(128, 28);
+            this.buttonRemoveCatiInstances.Name = "buttonRemoveCatiInstances";
+            this.buttonRemoveCatiInstances.Size = new System.Drawing.Size(84, 28);
+            this.buttonRemoveCatiInstances.TabIndex = 12;
+            this.buttonRemoveCatiInstances.Text = "Execute";
+            this.buttonRemoveCatiInstances.UseVisualStyleBackColor = true;
+            this.buttonRemoveCatiInstances.Click += new System.EventHandler(this.buttonRemoveCatiInstances_Click);
+            // 
+            // labelCatiInstancesRemovingAction
+            // 
+            this.labelCatiInstancesRemovingAction.AutoSize = true;
+            this.labelCatiInstancesRemovingAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCatiInstancesRemovingAction.Location = new System.Drawing.Point(5, 73);
+            this.labelCatiInstancesRemovingAction.Name = "labelCatiInstancesRemovingAction";
+            this.labelCatiInstancesRemovingAction.Size = new System.Drawing.Size(37, 13);
+            this.labelCatiInstancesRemovingAction.TabIndex = 18;
+            this.labelCatiInstancesRemovingAction.Text = "Action";
+            this.labelCatiInstancesRemovingAction.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1409,6 +1494,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1522,7 +1609,13 @@
         private System.Windows.Forms.CheckBox checkBoxSelectAllTestRuns;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button buttonRemoveTestRuns;
-
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBoxFirstIndexForRemoving;
+        private System.Windows.Forms.TextBox textBoxLastIndexForRemoving;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button buttonRemoveCatiInstances;
+        private System.Windows.Forms.Label labelCatiInstancesRemovingAction;
     }
 }
 

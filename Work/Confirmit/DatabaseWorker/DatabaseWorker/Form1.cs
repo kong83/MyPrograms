@@ -4,7 +4,10 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
+using System.ServiceProcess;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using Microsoft.SqlServer.Management.Common;
@@ -1515,15 +1518,21 @@ namespace DatabaseWorker
                         RestoreDatabase(newDatabaseName, tempPath);
 
                         ExecuteNonQuery(string.Format("alter database {0} set new_broker", newDatabaseName));
-                        ExecuteNonQuery(string.Format("alter database {0} set trustworthy on", newDatabaseName));
-                        ExecuteNonQuery(string.Format("INSERT INTO [{0}].[dbo].[BvBackendInstance] VALUES ('Confirmit.CATI.Backend${1}')", defaultCATIDatabaseName, i));
+                        ExecuteNonQuery(string.Format("alter database {0} set trustworthy on", newDatabaseName));                        
                     }
 
+                    ExecuteNonQuery(string.Format(@"
+IF NOT EXISTS(SELECT 1 FROM [{0}].[dbo].[BvBackendInstance] WHERE ServiceName = 'Confirmit.CATI.Backend${1}')
+BEGIN
+INSERT INTO [{0}].[dbo].[BvBackendInstance] VALUES ('Confirmit.CATI.Backend${1}')
+END", defaultCATIDatabaseName, i));
+
                     progressBarCATICreation.Value = i - firstIndex + 1;
+                    Application.DoEvents();
                 }
 
                 PutDatabasesList();
-                MessageBox.Show(string.Format("Databases were created successfully"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format("Instances were created successfully"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -1537,6 +1546,100 @@ namespace DatabaseWorker
                 }
 
                 progressBarCATICreation.Value = 0;
+                Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Для удаления инстанса достаточно удалить запись об удаляемом инстансе в дефолтной базе в таблице [BvBackendInstance],
+        /// а потом удалить ненужные базы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveCatiInstances_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int firstIndex;
+            if (!int.TryParse(textBoxFirstIndexForRemoving.Text, out firstIndex))
+            {
+                MessageBox.Show("First index is wrong. It should be a number", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxFirstIndexForRemoving.Focus();
+                return;
+            }
+            int lastIndex;
+            if (!int.TryParse(textBoxLastIndexForRemoving.Text, out lastIndex))
+            {
+                MessageBox.Show("Last index is wrong. It should be a number", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxFirstIndexForRemoving.Focus();
+                return;
+            }
+
+            const string defaultCATIDatabaseName = "ConfirmitCATIV15";
+            const string defaultCATIServiceName = "Confirmit.CATI.Backend.Rel";
+            labelCatiInstancesRemovingAction.Visible = true;
+            labelCatiInstancesRemovingAction.Text = "Action: Removing services";
+
+            Enabled = false;
+            Application.DoEvents();
+
+            try
+            {
+                for (int i = firstIndex; i <= lastIndex; i++)
+                {
+                    string removedDatabaseName = defaultCATIDatabaseName + "_" + i;
+                    
+                    ExecuteNonQuery(string.Format("DELETE [{0}].[dbo].[BvBackendInstance] WHERE ServiceName='Confirmit.CATI.Backend${1}'", defaultCATIDatabaseName, i));
+                }
+
+                // Wait until all services will be removed
+                bool isAnyCatiServicesRunned;
+                do
+                {
+                    Application.DoEvents();
+                    Thread.Sleep(1000);
+                    isAnyCatiServicesRunned = false;
+                    var services = ServiceController.GetServices();
+                    for (int i = firstIndex; i <= lastIndex; i++)
+                    {
+                        if (services.Any(x => x.ServiceName == defaultCATIServiceName + "$" + i))
+                        {
+                            isAnyCatiServicesRunned = true;
+                            break;
+                        }
+                    }
+                } while(isAnyCatiServicesRunned);
+
+                labelCatiInstancesRemovingAction.Text = "Action: Removing databases";
+                Application.DoEvents();
+
+                for (int i = firstIndex; i <= lastIndex; i++)
+                {
+                    string removedDatabaseName = defaultCATIDatabaseName + "_" + i;
+                    DropDatabase(removedDatabaseName, false);
+                }
+
+                labelCatiInstancesRemovingAction.Visible = false;
+                Application.DoEvents();
+
+                PutDatabasesList();
+                MessageBox.Show(string.Format("Instances were removed successfully"), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                labelCatiInstancesRemovingAction.Visible = false;
                 Enabled = true;
             }
         }
