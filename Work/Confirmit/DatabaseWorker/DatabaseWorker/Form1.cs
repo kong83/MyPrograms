@@ -405,6 +405,12 @@ namespace DatabaseWorker
                     {
                         ExecuteNonQuery(string.Format("alter database {0} set trustworthy on", databaseName));
                     }
+
+                    if (checkBoxSetNewBrokerOnResore.Checked)
+                    {
+                        ExecuteNonQuery(string.Format("alter database {0} set new_broker", databaseName));
+                    }
+
                     cur++;
                 }
 
@@ -1163,6 +1169,7 @@ namespace DatabaseWorker
             regKey.SetValue("checkBoxSetTrustworthyOn", checkBoxSetTrustworthyOn.Checked);
             regKey.SetValue("checkBoxSetNewBroker", checkBoxSetNewBroker.Checked);
             regKey.SetValue("checkBoxChangeDBOwner", checkBoxChangeDBOwner.Checked);
+            regKey.SetValue("checkBoxSetNewBrokerOnResore", checkBoxSetNewBrokerOnResore.Checked);
             regKey.SetValue("checkBoxSetTrustworthy", checkBoxSetTrustworthy.Checked);
             regKey.SetValue("checkBoxDropDatabaseStartWith", checkBoxDropDatabaseStartWith.Checked);
             regKey.SetValue("checkBoxRestoreAllDb", checkBoxRestoreAllDb.Checked);
@@ -1368,6 +1375,12 @@ namespace DatabaseWorker
             if (!string.IsNullOrEmpty(s))
             {
                 checkBoxChangeDBOwner.Checked = Convert.ToBoolean(s);
+            }
+
+            s = (string)regKey.GetValue("checkBoxSetNewBrokerOnResore", string.Empty);
+            if (!string.IsNullOrEmpty(s))
+            {
+                checkBoxSetNewBrokerOnResore.Checked = Convert.ToBoolean(s);
             }
 
             s = (string)regKey.GetValue("checkBoxSetTrustworthy", string.Empty);
