@@ -8,9 +8,13 @@ namespace PreventLocking
 {
     public partial class MainForm : Form
     {
+        private readonly SymantecCloser _symantecCloser;
+
         public MainForm()
         {
             InitializeComponent();
+
+            _symantecCloser = new SymantecCloser();
         }
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -39,6 +43,8 @@ namespace PreventLocking
             {
                 MessageBox.Show($"App cannot be added to autoraun because an error: {ex.Message}. App continue to work as usual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            timer.Enabled = true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -76,6 +82,16 @@ namespace PreventLocking
             {
                 key.DeleteValue("PreventLockingApp", false);
             }
+        }
+
+        /// <summary>
+        /// Check if symantek window is appeared and press "Allow the file" button on it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            _symantecCloser.FindWidowAndAllowFile();
         }
     }
 }

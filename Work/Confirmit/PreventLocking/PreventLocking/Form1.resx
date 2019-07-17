@@ -118,6 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="labelInfo.Text" xml:space="preserve">
-    <value>This app do nothing. This app prevents locking build server. This app was automatically added to autostart (in registry HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run ).  Press Remove button to exclude this program from autostart.</value>
+    <value>This app allows usage of suspicios files and close symantec window when it appears.
+This app also prevents locking build server. This app was automatically added to autostart (in registry HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run ). 
+Press Remove button to exclude this program from autostart.</value>
   </data>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

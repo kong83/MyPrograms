@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelInfo = new System.Windows.Forms.Label();
             this.buttonExcludeFromAutostart = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // labelInfo
@@ -39,14 +41,14 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelInfo.Location = new System.Drawing.Point(11, 9);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(276, 86);
+            this.labelInfo.Size = new System.Drawing.Size(276, 111);
             this.labelInfo.TabIndex = 0;
             this.labelInfo.Text = resources.GetString("labelInfo.Text");
             // 
             // buttonExcludeFromAutostart
             // 
             this.buttonExcludeFromAutostart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonExcludeFromAutostart.Location = new System.Drawing.Point(12, 98);
+            this.buttonExcludeFromAutostart.Location = new System.Drawing.Point(12, 123);
             this.buttonExcludeFromAutostart.Name = "buttonExcludeFromAutostart";
             this.buttonExcludeFromAutostart.Size = new System.Drawing.Size(75, 23);
             this.buttonExcludeFromAutostart.TabIndex = 1;
@@ -54,11 +56,16 @@
             this.buttonExcludeFromAutostart.UseVisualStyleBackColor = true;
             this.buttonExcludeFromAutostart.Click += new System.EventHandler(this.buttonExcludeFromAutostart_Click);
             // 
+            // timer
+            // 
+            this.timer.Interval = 500;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 128);
+            this.ClientSize = new System.Drawing.Size(299, 153);
             this.Controls.Add(this.buttonExcludeFromAutostart);
             this.Controls.Add(this.labelInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -74,6 +81,7 @@
         #endregion
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Button buttonExcludeFromAutostart;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
