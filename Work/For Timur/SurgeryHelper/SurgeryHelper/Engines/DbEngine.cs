@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -23,7 +23,10 @@ namespace SurgeryHelper.Engines
         private List<HeAnestethistClass> _heAnestethistList;
         private List<SheAnestethistClass> _sheAnestethistList;
         private readonly List<NosologyClass> _nosologyList;
-        private GlobalSettingsClass _globalSettings;        
+        private GlobalSettingsClass _globalSettings;
+        private readonly List<MkbClass> _mkbList;
+        private List<CureClass> _cureList;
+        private List<string> _surveyList;
 
         private readonly string _dataPath;
         private readonly string _patientPath;
@@ -34,43 +37,38 @@ namespace SurgeryHelper.Engines
         private readonly string _sheAnestethistPath;
         private readonly string _nosologyPath;
         private readonly string _globalSettingsPath;
+        private readonly string _mkbPath;
+        private readonly string _curePath;
+        private readonly string _surveyPath;
 
-        private readonly string _nightKSGPath;
-        private readonly string _dayKSGPath;
+        private readonly string _nightServicesPath;
+        private readonly string _dayServicesPath;
 
-        private const string ObjSplitStr = "^!&!^";
-        private const string DataSplitStr = "^%#%^";
+        public const string ObjSplitStr = "^!&!^";
+        public const string DataSplitStr = "^%#%^";
         private const string OperationSplitStr = "^*$*^";
         public const string ListSplitStr = ";;;";
 
         public LoggerEngine Logger { get; private set; }
 
-        private readonly ConfigurationEngine _configEngine;
+        public ConfigurationEngine ConfigEngine { get; }
 
-        public ConfigurationEngine ConfigEngine
+        public ServiceEngine NightServiceEngine { private get; set; }
+        public ServiceEngine DayServiceEngine { private get; set; }
+
+        public ServiceEngine GetCorrectServiceEngine(string typeOfKSG)
         {
-            get
+            if (typeOfKSG == "РЅ")
             {
-                return _configEngine;
-            }
-        }
-
-        public MKBEngine NightMKBEngine { private get; set; }
-        public MKBEngine DayMKBEngine { private get; set; }
-
-        public MKBEngine GetCorrectMKBEngine(string typeOfKSG)
-        {
-            if (typeOfKSG == "н")
-            {
-                return NightMKBEngine;
+                return NightServiceEngine;
             }
 
-            if (typeOfKSG == "д")
+            if (typeOfKSG == "Рґ")
             {
-                return DayMKBEngine;
+                return DayServiceEngine;
             }
 
-            return null;
+            return new ServiceEngine();
         }
 
         public DbEngine()
@@ -89,18 +87,22 @@ namespace SurgeryHelper.Engines
             _sheAnestethistPath = Path.Combine(_dataPath, "she_anestethist.save");
             _nosologyPath = Path.Combine(_dataPath, "nosologys.save");
             _globalSettingsPath = Path.Combine(_dataPath, "global_settings.save");
-            _nightKSGPath = Path.Combine(_dataPath, "night_GSK.save");
-            _dayKSGPath = Path.Combine(_dataPath, "day_GSK.save");
+            _mkbPath = Path.Combine(_dataPath, "mkb.save");
+            _nightServicesPath = Path.Combine(_dataPath, "night_service.save");
+            _dayServicesPath = Path.Combine(_dataPath, "day_service.save");
+            _curePath = Path.Combine(_dataPath, "cure.save");
+            _surveyPath = Path.Combine(_dataPath, "survey.save");
 
             _patientList = new List<PatientClass>();
             _nosologyList = new List<NosologyClass>();
+            _mkbList = new List<MkbClass>();
 
-            _configEngine = new ConfigurationEngine();
+            ConfigEngine = new ConfigurationEngine();
         }
 
-        #region Работа с глобальными настройками
+        #region Р Р°Р±РѕС‚Р° СЃ РіР»РѕР±Р°Р»СЊРЅС‹РјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё
         /// <summary>
-        /// ФИО заведующей отделения
+        /// Р¤РРћ Р·Р°РІРµРґСѓСЋС‰РµР№ РѕС‚РґРµР»РµРЅРёСЏ
         /// </summary>
         public GlobalSettingsClass GlobalSettings
         {
@@ -120,7 +122,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Название отделения
+        /// РќР°Р·РІР°РЅРёРµ РѕС‚РґРµР»РµРЅРёСЏ
         /// </summary>
         public string DepartmentName
         {
@@ -137,7 +139,7 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с пациентами
+        #region Р Р°Р±РѕС‚Р° СЃ РїР°С†РёРµРЅС‚Р°РјРё
         public PatientClass[] PatientList
         {
             get;
@@ -145,7 +147,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Получить список пациентов, где сначала идут зелёные, потом серые, потом белые пациенты
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ, РіРґРµ СЃРЅР°С‡Р°Р»Р° РёРґСѓС‚ Р·РµР»С‘РЅС‹Рµ, РїРѕС‚РѕРј СЃРµСЂС‹Рµ, РїРѕС‚РѕРј Р±РµР»С‹Рµ РїР°С†РёРµРЅС‚С‹
         /// </summary>
         public void GeneratePatientList()
         {
@@ -173,7 +175,7 @@ namespace SurgeryHelper.Engines
             PatientList = new PatientClass[_patientList.Count];
             int cnt = 0;
 
-            // Добавляем в массив пациентов только тех, у которых дата выписки - сегодня
+            // Р”РѕР±Р°РІР»СЏРµРј РІ РјР°СЃСЃРёРІ РїР°С†РёРµРЅС‚РѕРІ С‚РѕР»СЊРєРѕ С‚РµС…, Сѓ РєРѕС‚РѕСЂС‹С… РґР°С‚Р° РІС‹РїРёСЃРєРё - СЃРµРіРѕРґРЅСЏ
             foreach (PatientClass patientInfo in _patientList)
             {
                 if (patientInfo.ReleaseDate.HasValue &&
@@ -183,8 +185,8 @@ namespace SurgeryHelper.Engines
                 }
             }
 
-            // Добавляем в массив пациентов только тех, у которых дата выписки 
-            // не указана или в будущем
+            // Р”РѕР±Р°РІР»СЏРµРј РІ РјР°СЃСЃРёРІ РїР°С†РёРµРЅС‚РѕРІ С‚РѕР»СЊРєРѕ С‚РµС…, Сѓ РєРѕС‚РѕСЂС‹С… РґР°С‚Р° РІС‹РїРёСЃРєРё 
+            // РЅРµ СѓРєР°Р·Р°РЅР° РёР»Рё РІ Р±СѓРґСѓС‰РµРј
             foreach (PatientClass patientInfo in _patientList)
             {
                 if (!patientInfo.ReleaseDate.HasValue ||
@@ -194,8 +196,8 @@ namespace SurgeryHelper.Engines
                 }
             }
 
-            // Добавляем в массив пациентов только тех, у которых дата выписки 
-            // в прошлом
+            // Р”РѕР±Р°РІР»СЏРµРј РІ РјР°СЃСЃРёРІ РїР°С†РёРµРЅС‚РѕРІ С‚РѕР»СЊРєРѕ С‚РµС…, Сѓ РєРѕС‚РѕСЂС‹С… РґР°С‚Р° РІС‹РїРёСЃРєРё 
+            // РІ РїСЂРѕС€Р»РѕРј
             foreach (PatientClass patientInfo in _patientList)
             {
                 if (patientInfo.ReleaseDate.HasValue &&
@@ -207,7 +209,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для пациента
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ РїР°С†РёРµРЅС‚Р°
         /// </summary>
         /// <returns></returns>
         private int GetNewPatientId()
@@ -225,9 +227,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Получить список пациентов, у которых прописана указанная нозология
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ, Сѓ РєРѕС‚РѕСЂС‹С… РїСЂРѕРїРёСЃР°РЅР° СѓРєР°Р·Р°РЅРЅР°СЏ РЅРѕР·РѕР»РѕРіРёСЏ
         /// </summary>
-        /// <param name="nosologyName">Название нозологии</param>
+        /// <param name="nosologyName">РќР°Р·РІР°РЅРёРµ РЅРѕР·РѕР»РѕРіРёРё</param>
         /// <returns></returns>
         public List<PatientClass> GetPatientByNosology(string nosologyName)
         {
@@ -245,10 +247,10 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Поменять нозологию у всех пациентов
+        /// РџРѕРјРµРЅСЏС‚СЊ РЅРѕР·РѕР»РѕРіРёСЋ Сѓ РІСЃРµС… РїР°С†РёРµРЅС‚РѕРІ
         /// </summary>
-        /// <param name="oldNosology">Старая нозология</param>
-        /// <param name="newNosology">Новая нозология</param>
+        /// <param name="oldNosology">РЎС‚Р°СЂР°СЏ РЅРѕР·РѕР»РѕРіРёСЏ</param>
+        /// <param name="newNosology">РќРѕРІР°СЏ РЅРѕР·РѕР»РѕРіРёСЏ</param>
         public void ChangeNosologyForAllPatients(string oldNosology, string newNosology)
         {
             foreach (PatientClass patientInfo in GetPatientByNosology(oldNosology))
@@ -260,9 +262,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить нового пациента к списку пациентов
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ РїР°С†РёРµРЅС‚Р° Рє СЃРїРёСЃРєСѓ РїР°С†РёРµРЅС‚РѕРІ
         /// </summary>
-        /// <param name="patientInfo">Информация о пациенте</param>
+        /// <param name="patientInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїР°С†РёРµРЅС‚Рµ</param>
         public void AddPatient(PatientClass patientInfo)
         {
             var newPationInfo = new PatientClass(patientInfo) { Id = GetNewPatientId() };
@@ -272,9 +274,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию о пациенте
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїР°С†РёРµРЅС‚Рµ
         /// </summary>
-        /// <param name="patientInfo">Информация о пациенте</param>
+        /// <param name="patientInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїР°С†РёРµРЅС‚Рµ</param>
         public void UpdatePatient(PatientClass patientInfo)
         {
             int n = 0;
@@ -288,9 +290,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить пациента
+        /// РЈРґР°Р»РёС‚СЊ РїР°С†РёРµРЅС‚Р°
         /// </summary>
-        /// <param name="patientInfoId">ID пациента</param>
+        /// <param name="patientInfoId">ID РїР°С†РёРµРЅС‚Р°</param>
         public void RemovePatient(int patientInfoId)
         {
             int n = 0;
@@ -304,9 +306,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Получить пациента по id
+        /// РџРѕР»СѓС‡РёС‚СЊ РїР°С†РёРµРЅС‚Р° РїРѕ id
         /// </summary>
-        /// <param name="patientInfoId">ID пациента</param>
+        /// <param name="patientInfoId">ID РїР°С†РёРµРЅС‚Р°</param>
         /// <returns></returns>
         public PatientClass GetPatientById(int patientInfoId)
         {
@@ -320,11 +322,11 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Получить список пациентов с указанным ФИО, датой поступления и диагнозом
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј Р¤РРћ, РґР°С‚РѕР№ РїРѕСЃС‚СѓРїР»РµРЅРёСЏ Рё РґРёР°РіРЅРѕР·РѕРј
         /// </summary>
-        /// <param name="fullName">ФИО пациента</param>
-        /// <param name="deliveryDate">Дата поступления</param>
-        /// <param name="diagnose">Диагноз пациента</param>
+        /// <param name="fullName">Р¤РРћ РїР°С†РёРµРЅС‚Р°</param>
+        /// <param name="deliveryDate">Р”Р°С‚Р° РїРѕСЃС‚СѓРїР»РµРЅРёСЏ</param>
+        /// <param name="diagnose">Р”РёР°РіРЅРѕР· РїР°С†РёРµРЅС‚Р°</param>
         /// <returns></returns>
         private List<PatientClass> GetPatientByGeneralData(string fullName, DateTime deliveryDate, string diagnose)
         {
@@ -345,20 +347,20 @@ namespace SurgeryHelper.Engines
 
         #endregion
 
-        #region Работа с хирургами
+        #region Р Р°Р±РѕС‚Р° СЃ С…РёСЂСѓСЂРіР°РјРё
         /// <summary>
-        /// Получить список хирургов
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє С…РёСЂСѓСЂРіРѕРІ
         /// </summary>
-        public SurgeonClass[] SurgeonList
+        public List<SurgeonClass> SurgeonList
         {
             get
             {
-                return _surgeonList.ToArray();
+                return _surgeonList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для хирурга
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ С…РёСЂСѓСЂРіР°
         /// </summary>
         /// <returns></returns>
         private int GetNewSurgeonId()
@@ -376,9 +378,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить нового хирурга к списку хирургов
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ С…РёСЂСѓСЂРіР° Рє СЃРїРёСЃРєСѓ С…РёСЂСѓСЂРіРѕРІ
         /// </summary>
-        /// <param name="surgeonInfo">Информация о хирурге</param>
+        /// <param name="surgeonInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ С…РёСЂСѓСЂРіРµ</param>
         public void AddSurgeon(SurgeonClass surgeonInfo)
         {
             var newSurgeonInfo = new SurgeonClass(surgeonInfo) { Id = GetNewSurgeonId() };
@@ -388,9 +390,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию о хирурге
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ С…РёСЂСѓСЂРіРµ
         /// </summary>
-        /// <param name="surgeonInfo">Информация о хирурге</param>
+        /// <param name="surgeonInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ С…РёСЂСѓСЂРіРµ</param>
         public void UpdateSurgeon(SurgeonClass surgeonInfo)
         {
             int n = 0;
@@ -404,9 +406,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить хирурга
+        /// РЈРґР°Р»РёС‚СЊ С…РёСЂСѓСЂРіР°
         /// </summary>
-        /// <param name="surgeonInfoId">ID хирурга</param>
+        /// <param name="surgeonInfoId">ID С…РёСЂСѓСЂРіР°</param>
         public void RemoveSurgeon(int surgeonInfoId)
         {
             int n = 0;
@@ -420,20 +422,20 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с операционными мед. сёстрами
+        #region Р Р°Р±РѕС‚Р° СЃ РѕРїРµСЂР°С†РёРѕРЅРЅС‹РјРё РјРµРґ. СЃС‘СЃС‚СЂР°РјРё
         /// <summary>
-        /// Получить список операционных мед. сестёр
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… РјРµРґ. СЃРµСЃС‚С‘СЂ
         /// </summary>
-        public ScrubNurseClass[] ScrubNurseList
+        public List<ScrubNurseClass> ScrubNurseList
         {
             get
             {
-                return _scrubNurseList.ToArray();
+                return _scrubNurseList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для операционной мед. сестры
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ РјРµРґ. СЃРµСЃС‚СЂС‹
         /// </summary>
         /// <returns></returns>
         private int GetNewScrubNurseId()
@@ -451,9 +453,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить новую операционныю мед. сестру к списку операционных мед. сестёр
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ РѕРїРµСЂР°С†РёРѕРЅРЅС‹СЋ РјРµРґ. СЃРµСЃС‚СЂСѓ Рє СЃРїРёСЃРєСѓ РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… РјРµРґ. СЃРµСЃС‚С‘СЂ
         /// </summary>
-        /// <param name="scrubNurseInfo">Информация по опер. мед. сестре</param>
+        /// <param name="scrubNurseInfo">РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ РѕРїРµСЂ. РјРµРґ. СЃРµСЃС‚СЂРµ</param>
         public void AddScrubNurse(ScrubNurseClass scrubNurseInfo)
         {
             var newScrubNurseInfo = new ScrubNurseClass(scrubNurseInfo) { Id = GetNewScrubNurseId() };
@@ -463,9 +465,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию о операционной мед. сестре
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ РјРµРґ. СЃРµСЃС‚СЂРµ
         /// </summary>
-        /// <param name="scrubNurseInfo">Информация по опер. мед. сестре</param>
+        /// <param name="scrubNurseInfo">РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ РѕРїРµСЂ. РјРµРґ. СЃРµСЃС‚СЂРµ</param>
         public void UpdateScrubNurse(ScrubNurseClass scrubNurseInfo)
         {
             int n = 0;
@@ -479,9 +481,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить операционную мед. сестру
+        /// РЈРґР°Р»РёС‚СЊ РѕРїРµСЂР°С†РёРѕРЅРЅСѓСЋ РјРµРґ. СЃРµСЃС‚СЂСѓ
         /// </summary>
-        /// <param name="scrubNurseInfoId">ID опер. мед. сестры</param>
+        /// <param name="scrubNurseInfoId">ID РѕРїРµСЂ. РјРµРґ. СЃРµСЃС‚СЂС‹</param>
         public void RemoveScrubNurse(int scrubNurseInfoId)
         {
             int n = 0;
@@ -495,20 +497,20 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с санитарами
+        #region Р Р°Р±РѕС‚Р° СЃ СЃР°РЅРёС‚Р°СЂР°РјРё
         /// <summary>
-        /// Получить список санитаров
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє СЃР°РЅРёС‚Р°СЂРѕРІ
         /// </summary>
-        public OrderlyClass[] OrderlyList
+        public List<OrderlyClass> OrderlyList
         {
             get
             {
-                return _orderlyList.ToArray();
+                return _orderlyList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для санитара
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ СЃР°РЅРёС‚Р°СЂР°
         /// </summary>
         /// <returns></returns>
         private int GetNewOrderlyId()
@@ -526,9 +528,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить нового санитара к списку санитаров
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ СЃР°РЅРёС‚Р°СЂР° Рє СЃРїРёСЃРєСѓ СЃР°РЅРёС‚Р°СЂРѕРІ
         /// </summary>
-        /// <param name="orderlyInfo">Информация о санитре</param>
+        /// <param name="orderlyInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃР°РЅРёС‚СЂРµ</param>
         public void AddOrderly(OrderlyClass orderlyInfo)
         {
             var newOrderlyInfo = new OrderlyClass(orderlyInfo) { Id = GetNewOrderlyId() };
@@ -538,9 +540,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию о санитаре
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃР°РЅРёС‚Р°СЂРµ
         /// </summary>
-        /// <param name="orderlyInfo">Информация о санитаре</param>
+        /// <param name="orderlyInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃР°РЅРёС‚Р°СЂРµ</param>
         public void UpdateOrderly(OrderlyClass orderlyInfo)
         {
             int n = 0;
@@ -554,9 +556,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить санитара
+        /// РЈРґР°Р»РёС‚СЊ СЃР°РЅРёС‚Р°СЂР°
         /// </summary>
-        /// <param name="orderlyInfoId">ID санитара</param>
+        /// <param name="orderlyInfoId">ID СЃР°РЅРёС‚Р°СЂР°</param>
         public void RemoveOrderly(int orderlyInfoId)
         {
             int n = 0;
@@ -570,20 +572,20 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с анестезиологами
+        #region Р Р°Р±РѕС‚Р° СЃ Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіР°РјРё
         /// <summary>
-        /// Получить список анестезиологов
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРѕРІ
         /// </summary>
-        public HeAnestethistClass[] HeAnestethistList
+        public List<HeAnestethistClass> HeAnestethistList
         {
             get
             {
-                return _heAnestethistList.ToArray();
+                return _heAnestethistList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для анестезиолога
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіР°
         /// </summary>
         /// <returns></returns>
         private int GetNewHeAnestethistId()
@@ -601,9 +603,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить нового анестезиолога к списку анестезиологов
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіР° Рє СЃРїРёСЃРєСѓ Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРѕРІ
         /// </summary>
-        /// <param name="heAnestethistInfo">Информация об анестезиологе</param>
+        /// <param name="heAnestethistInfo">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРµ</param>
         public void AddHeAnestethist(HeAnestethistClass heAnestethistInfo)
         {
             var newHeAnestethistInfo = new HeAnestethistClass(heAnestethistInfo) { Id = GetNewHeAnestethistId() };
@@ -613,9 +615,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию об анестезиологе
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРµ
         /// </summary>
-        /// <param name="heAnestethistInfo">Информация об анестезиологе</param>
+        /// <param name="heAnestethistInfo">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРµ</param>
         public void UpdateHeAnestethist(HeAnestethistClass heAnestethistInfo)
         {
             int n = 0;
@@ -629,9 +631,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить анестезиолога
+        /// РЈРґР°Р»РёС‚СЊ Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіР°
         /// </summary>
-        /// <param name="heAnestethistInfoId">ID анестезиолога</param>
+        /// <param name="heAnestethistInfoId">ID Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіР°</param>
         public void RemoveHeAnestethist(int heAnestethistInfoId)
         {
             int n = 0;
@@ -645,20 +647,20 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с анестезистками
+        #region Р Р°Р±РѕС‚Р° СЃ Р°РЅРµСЃС‚РµР·РёСЃС‚РєР°РјРё
         /// <summary>
-        /// Получить список анестезисток
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёСЃС‚РѕРє
         /// </summary>
-        public SheAnestethistClass[] SheAnestethistList
+        public List<SheAnestethistClass> SheAnestethistList
         {
             get
             {
-                return _sheAnestethistList.ToArray();
+                return _sheAnestethistList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для анестезистки
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ Р°РЅРµСЃС‚РµР·РёСЃС‚РєРё
         /// </summary>
         /// <returns></returns>
         private int GetNewSheAnestethistId()
@@ -676,9 +678,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить нового анестезистку к списку анестезисток
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРіРѕ Р°РЅРµСЃС‚РµР·РёСЃС‚РєСѓ Рє СЃРїРёСЃРєСѓ Р°РЅРµСЃС‚РµР·РёСЃС‚РѕРє
         /// </summary>
-        /// <param name="sheAnestethistInfo">Информация об анестезистке</param>
+        /// <param name="sheAnestethistInfo">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р°РЅРµСЃС‚РµР·РёСЃС‚РєРµ</param>
         public void AddSheAnestethist(SheAnestethistClass sheAnestethistInfo)
         {
             var newSheAnestethistInfo = new SheAnestethistClass(sheAnestethistInfo) { Id = GetNewSheAnestethistId() };
@@ -688,9 +690,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Обновить информацию об анестезистке
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± Р°РЅРµСЃС‚РµР·РёСЃС‚РєРµ
         /// </summary>
-        /// <param name="sheAnestethistInfo">Информация об анестезистке</param>
+        /// <param name="sheAnestethistInfo">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р°РЅРµСЃС‚РµР·РёСЃС‚РєРµ</param>
         public void UpdateSheAnestethist(SheAnestethistClass sheAnestethistInfo)
         {
             int n = 0;
@@ -704,9 +706,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить анестезистку
+        /// РЈРґР°Р»РёС‚СЊ Р°РЅРµСЃС‚РµР·РёСЃС‚РєСѓ
         /// </summary>
-        /// <param name="sheAnestethistInfoId">ID анестезистки</param>
+        /// <param name="sheAnestethistInfoId">ID Р°РЅРµСЃС‚РµР·РёСЃС‚РєРё</param>
         public void RemoveSheAnestethist(int sheAnestethistInfoId)
         {
             int n = 0;
@@ -720,20 +722,238 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Работа с нозологиями
+        #region Р Р°Р±РѕС‚Р° СЃ Р»РµРєР°СЂСЃС‚РІР°РјРё
         /// <summary>
-        /// Получить список нозологий
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р»РµРєР°СЂСЃС‚РІ
         /// </summary>
-        public NosologyClass[] NosologyList
+        public List<CureClass> CureList
         {
             get
             {
-                return _nosologyList.ToArray();
+                return _cureList;
             }
         }
 
         /// <summary>
-        /// Сгенерировать новый ID для нозологии
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРµ Р»РµРєР°СЂСЃС‚РІРѕ
+        /// </summary>
+        /// <param name="cureInfo">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± Р»РµРєР°СЂСЃС‚РІРµ</param>
+        public void AddCure(CureClass cureInfo)
+        {
+            var newcureInfo = new CureClass(cureInfo);
+            _cureList.Add(newcureInfo);
+            SaveCures();
+        }
+
+
+        /// <summary>
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р»РµРєР°СЂСЃС‚РІРµ
+        /// </summary>
+        /// <param name="cureOldName">РџСЂРµР¶РЅРµРµ РЅР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°, РєРѕС‚РѕСЂРѕРµ РЅР°РґРѕ РёР·РјРµРЅРёС‚СЊ</param>
+        /// <param name="cureInfo">РРЅС„РѕСЂРјР°С†РёСЏ Рѕ Р»РµРєР°СЂСЃС‚РІРµ</param>
+        public void UpdateCure(string cureOldName, CureClass cureInfo)
+        {
+            int n = 0;
+            while (_cureList[n].Name != cureOldName)
+            {
+                n++;
+            }
+
+            _cureList[n] = new CureClass(cureInfo);
+            SaveCures();
+        }
+
+        /// <summary>
+        /// РЈРґР°Р»РёС‚СЊ Р»РµРєР°СЂСЃС‚РІРѕ
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public void RemoveCure(string cureName)
+        {
+            int n = 0;
+            while (_cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            _cureList.RemoveAt(n);
+            SaveCures();
+        }
+
+        /// <summary>
+        /// Р’РµСЂРЅСѓС‚СЊ РґР°РЅРЅС‹Рµ Рѕ Р»РµРєР°СЂСЃС‚РІРµ
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public CureClass GetCureByName(string cureName)
+        {
+            int n = 0;
+            while (n < _cureList.Count && _cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            return n < _cureList.Count ? _cureList[n] : null;
+        }
+
+        /// <summary>
+        /// РЎРґРІРёРЅСѓС‚СЊ Р»РµРєР°СЂСЃС‚РІРѕ РЅР° РѕРґРёРЅ С€Р°Рі РІРІРµСЂС…
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public void MoveCureUp(string cureName)
+        {
+            int n = 0;
+            while (n < _cureList.Count && _cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            if (n > 0)
+            {
+                var tempCure = new CureClass(_cureList[n]);
+                _cureList[n] = new CureClass(_cureList[n - 1]);
+                _cureList[n - 1] = new CureClass(tempCure);
+            }
+
+            SaveCures();
+        }
+
+        /// <summary>
+        /// РЎРґРІРёРЅСѓС‚СЊ Р»РµРєР°СЂСЃС‚РІРѕ РЅР° РѕРґРёРЅ С€Р°Рі РІРЅРёР·
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public void MoveCureDown(string cureName)
+        {
+            int n = 0;
+            while (n < _cureList.Count && _cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            if (n < _cureList.Count)
+            {
+                var tempCure = new CureClass(_cureList[n]);
+                _cureList[n] = new CureClass(_cureList[n + 1]);
+                _cureList[n + 1] = new CureClass(tempCure);
+            }
+
+            SaveCures();
+        }
+
+        /// <summary>
+        /// РЎРґРІРёРЅСѓС‚СЊ СЃС‚СЂРѕРєСѓ РІ РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР°
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public void MoveCureToFirst(string cureName)
+        {
+            int n = 0;
+            while (n < _cureList.Count && _cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            if (n > 0)
+            {
+                var tempCure = new CureClass(_cureList[n]);
+                _cureList[n] = new CureClass(_cureList[0]);
+                _cureList[0] = new CureClass(tempCure);
+            }
+
+            SaveCures();
+        }
+
+        /// <summary>
+        /// РЎРґРІРёРЅСѓС‚СЊ СЃС‚СЂРѕРєСѓ РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
+        /// </summary>
+        /// <param name="cureName">РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°</param>
+        public void MoveCureToLast(string cureName)
+        {
+            int n = 0;
+            while (n < _cureList.Count && _cureList[n].Name != cureName)
+            {
+                n++;
+            }
+
+            if (n < _cureList.Count)
+            {
+                var tempCure = new CureClass(_cureList[n]);
+                _cureList[n] = new CureClass(_cureList[_cureList.Count - 1]);
+                _cureList[_cureList.Count - 1] = new CureClass(tempCure);
+            }
+
+            SaveCures();
+        }
+        #endregion
+
+        #region Р Р°Р±РѕС‚Р° СЃ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹РјРё РјРµС‚РѕРґР°РјРё РѕР±СЃР»РµРґРѕРІР°РЅРёСЏ
+        /// <summary>
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р»РµРєР°СЂСЃС‚РІ
+        /// </summary>
+        public List<string> SurveyList
+        {
+            get
+            {
+                return _surveyList;
+            }
+        }
+
+        /// <summary>
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІРѕРµ РѕР±СЃР»РµРґРѕРІР°РЅРёРµ
+        /// </summary>
+        /// <param name="surveyName">РќР°Р·РІР°РЅРёРµ РѕР±СЃР»РµРґРѕРІР°РЅРёСЏ</param>
+        public void AddSurvey(string surveyName)
+        {
+            _surveyList.Add(surveyName);
+            SaveSurveys();
+        }
+
+
+        /// <summary>
+        /// РћР±РЅРѕРІРёС‚СЊ РѕР±СЃР»РµРґРѕРІР°РЅРёРµ
+        /// </summary>
+        /// <param name="surveyOldName">РџСЂРµР¶РЅРµРµ РЅР°Р·РІР°РЅРёРµ РѕР±СЃР»РµРґРѕРІР°РЅРёСЏ</param>
+        /// <param name="surveyName">РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РѕР±СЃР»РµРґРѕРІР°РЅРёСЏ</param>
+        public void UpdateSurvey(string surveyOldName, string surveyName)
+        {
+            int n = 0;
+            while (_surveyList[n] != surveyOldName)
+            {
+                n++;
+            }
+
+            _surveyList[n] = surveyName;
+            SaveSurveys();
+        }
+
+        /// <summary>
+        /// РЈРґР°Р»РёС‚СЊ РѕР±СЃР»РµРґРѕРІР°РЅРёРµ
+        /// </summary>
+        /// <param name="surveyName">РќР°Р·РІР°РЅРёРµ РѕР±СЃР»РµРґРѕРІР°РЅРёСЏ</param>
+        public void RemoveSurvey(string surveyName)
+        {
+            int n = 0;
+            while (_surveyList[n] != surveyName)
+            {
+                n++;
+            }
+
+            _surveyList.RemoveAt(n);
+            SaveSurveys();
+        }
+        #endregion
+
+        #region Р Р°Р±РѕС‚Р° СЃ РЅРѕР·РѕР»РѕРіРёСЏРјРё
+        /// <summary>
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№
+        /// </summary>
+        public List<NosologyClass> NosologyList
+        {
+            get
+            {
+                return _nosologyList;
+            }
+        }
+
+        /// <summary>
+        /// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РЅРѕРІС‹Р№ ID РґР»СЏ РЅРѕР·РѕР»РѕРіРёРё
         /// </summary>
         /// <returns></returns>
         private int GetNewNosologyId()
@@ -751,9 +971,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Выбрать список нозологий по имени
+        /// Р’С‹Р±СЂР°С‚СЊ СЃРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№ РїРѕ РёРјРµРЅРё
         /// </summary>
-        /// <param name="nosologyName">Название нолозогии</param>
+        /// <param name="nosologyName">РќР°Р·РІР°РЅРёРµ РЅРѕР»РѕР·РѕРіРёРё</param>
         /// <returns></returns>
         public List<NosologyClass> GetNosologyByName(string nosologyName)
         {
@@ -770,9 +990,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Добавить новую нозологию к списку нозологий
+        /// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ РЅРѕР·РѕР»РѕРіРёСЋ Рє СЃРїРёСЃРєСѓ РЅРѕР·РѕР»РѕРіРёР№
         /// </summary>
-        /// <param name="nosologyName">Информация по нозологии</param>
+        /// <param name="nosologyName">РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ РЅРѕР·РѕР»РѕРіРёРё</param>
         public void AddNosology(string nosologyName)
         {
             var newNosologyInfo = new NosologyClass
@@ -785,10 +1005,10 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Обновить информацию о нозологии
+        /// РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРѕР·РѕР»РѕРіРёРё
         /// </summary>
-        /// <param name="oldNosologyInfo">Информация по нозологии</param>
-        /// <param name="newNosologyName">Новое название нозологии</param>
+        /// <param name="oldNosologyInfo">РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ РЅРѕР·РѕР»РѕРіРёРё</param>
+        /// <param name="newNosologyName">РќРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ РЅРѕР·РѕР»РѕРіРёРё</param>
         public void UpdateNosology(NosologyClass oldNosologyInfo, string newNosologyName)
         {
             int n = 0;
@@ -804,9 +1024,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Удалить нозологию
+        /// РЈРґР°Р»РёС‚СЊ РЅРѕР·РѕР»РѕРіРёСЋ
         /// </summary>
-        /// <param name="nosologyInfoId">Информация по нозологии</param>
+        /// <param name="nosologyInfoId">РРЅС„РѕСЂРјР°С†РёСЏ РїРѕ РЅРѕР·РѕР»РѕРіРёРё</param>
         public void RemoveNosology(int nosologyInfoId)
         {
             int n = 0;
@@ -820,9 +1040,35 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Сохранение данных
+        #region Р Р°Р±РѕС‚Р° СЃ РњРљР‘
         /// <summary>
-        /// Сохранить список пациентов
+        /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РњРљР‘
+        /// </summary>
+        public List<MkbClass> MkbList
+        {
+            get
+            {
+                return _mkbList;
+            }
+        }
+
+        public string GetMkbName(string code)
+        {
+            foreach (MkbClass mkb in _mkbList)
+            {
+                if (mkb.MkbCode == code)
+                {
+                    return mkb.MkbName;
+                }
+            }
+
+            return string.Empty;
+        }
+        #endregion
+
+        #region РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С…
+        /// <summary>
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ
         /// </summary>
         private void SavePatients()
         {
@@ -861,9 +1107,10 @@ namespace SurgeryHelper.Engines
                         "BeforeOperationEpicrisisStomach=" + operationInfo.BeforeOperationEpicrisisStomach + DataSplitStr +
                         "BeforeOperationEpicrisisStool=" + operationInfo.BeforeOperationEpicrisisStool + DataSplitStr +
                         "BeforeOperationEpicrisisTemperature=" + operationInfo.BeforeOperationEpicrisisTemperature + DataSplitStr +
-                        "BeforeOperationEpicrisisTimeWriting=" + ConvertEngine.GetRightDateString(operationInfo.BeforeOperationEpicrisisTimeWriting, true) + DataSplitStr +
                         "BeforeOperationEpicrisisUrination=" + operationInfo.BeforeOperationEpicrisisUrination + DataSplitStr +
                         "BeforeOperationEpicrisisWheeze=" + operationInfo.BeforeOperationEpicrisisWheeze + DataSplitStr +
+                        "BeforeOperationEpicrisisIsAntibioticProphylaxisExist=" + operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist + DataSplitStr +
+                        "BeforeOperationEpicrisisAntibioticProphylaxis=" + operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis + DataSplitStr +
                         "Surgeons=" + ConvertEngine.ListToString(operationInfo.Surgeons) + OperationSplitStr);
                 }
 
@@ -887,7 +1134,10 @@ namespace SurgeryHelper.Engines
                     "Phone=" + patientInfo.Phone + DataSplitStr +
                     "TypeOfKSG=" + patientInfo.TypeOfKSG + DataSplitStr +
                     "MKB=" + patientInfo.MKB + DataSplitStr +
-                    "KSG=" + patientInfo.KSG + DataSplitStr +
+                    "ServiceName=" + patientInfo.ServiceName + DataSplitStr +
+                    "ServiceCode=" + patientInfo.ServiceCode + DataSplitStr +
+                    "KsgCode=" + patientInfo.KsgCode + DataSplitStr +
+                    "KsgDecoding=" + patientInfo.KsgDecoding + DataSplitStr +
                     "ReleaseDate=" + ConvertEngine.GetRightDateString(patientInfo.ReleaseDate, true) + DataSplitStr +
                     "StreetName=" + patientInfo.StreetName + DataSplitStr +
                     "TransferEpicrisAfterOperationPeriod=" + patientInfo.TransferEpicrisAfterOperationPeriod + DataSplitStr +
@@ -901,7 +1151,6 @@ namespace SurgeryHelper.Engines
                     "LineOfCommEpicrisWritingDate=" + ConvertEngine.GetRightDateString(patientInfo.LineOfCommEpicrisWritingDate, true) + DataSplitStr +
                     "DischargeEpicrisAnalysisDate=" + ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate, true) + DataSplitStr +
                     "DischargeEpicrisAfterOperation=" + patientInfo.DischargeEpicrisAfterOperation + DataSplitStr +
-                    "DischargeEpicrisConservativeTherapy=" + patientInfo.DischargeEpicrisConservativeTherapy + DataSplitStr +
                     "DischargeEpicrisEkg=" + patientInfo.DischargeEpicrisEkg + DataSplitStr +
                     "DischargeEpicrisOakEritrocits=" + patientInfo.DischargeEpicrisOakEritrocits + DataSplitStr +
                     "DischargeEpicrisOakHb=" + patientInfo.DischargeEpicrisOakHb + DataSplitStr +
@@ -915,9 +1164,13 @@ namespace SurgeryHelper.Engines
                     "DischargeEpicrisBakGeneralProtein=" + patientInfo.DischargeEpicrisBakGeneralProtein + DataSplitStr +
                     "DischargeEpicrisBakPTI=" + patientInfo.DischargeEpicrisBakPTI + DataSplitStr +
                     "DischargeEpicrisBakSugar=" + patientInfo.DischargeEpicrisBakSugar + DataSplitStr +
+                    "DischargeEpicrisBloodGroup=" + patientInfo.DischargeEpicrisBloodGroup + DataSplitStr +
+                    "DischargeEpicrisRhesusFactor=" + patientInfo.DischargeEpicrisRhesusFactor + DataSplitStr +
                     "DischargeEpicrisAdditionalAnalises=" + patientInfo.DischargeEpicrisAdditionalAnalises + DataSplitStr +
                     "DischargeEpicrisRecomendations=" + ConvertEngine.ListToString(patientInfo.DischargeEpicrisRecomendations) + DataSplitStr +
                     "DischargeEpicrisAdditionalRecomendations=" + ConvertEngine.ListToString(patientInfo.DischargeEpicrisAdditionalRecomendations) + DataSplitStr +
+                    "PrescriptionTherapy=" + ConvertEngine.ListToString(patientInfo.PrescriptionTherapy) + DataSplitStr +
+                    "PrescriptionSurveys=" + ConvertEngine.ListToString(patientInfo.PrescriptionSurveys) + DataSplitStr +
                     "TreatmentPlanDate=" + ConvertEngine.GetRightDateString(patientInfo.TreatmentPlanDate, true) + DataSplitStr +
                     "TreatmentPlanInspection=" + patientInfo.TreatmentPlanInspection + DataSplitStr +
                     "IsTreatmentPlanActiveInOperationProtocol=" + patientInfo.IsTreatmentPlanActiveInOperationProtocol + DataSplitStr +
@@ -959,7 +1212,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список хирургов
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє С…РёСЂСѓСЂРіРѕРІ
         /// </summary>
         private void SaveSurgeons()
         {
@@ -978,7 +1231,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список операционных мед. сестёр
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… РјРµРґ. СЃРµСЃС‚С‘СЂ
         /// </summary>
         private void SaveScrubNurses()
         {
@@ -997,7 +1250,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список санитаров
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє СЃР°РЅРёС‚Р°СЂРѕРІ
         /// </summary>
         private void SaveOrderlys()
         {
@@ -1016,7 +1269,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список анестезиологов
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРѕРІ
         /// </summary>
         private void SaveHeAnestethists()
         {
@@ -1035,7 +1288,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список анестезисток
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёСЃС‚РѕРє
         /// </summary>
         private void SaveSheAnestethists()
         {
@@ -1054,7 +1307,38 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список нозологий
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє Р»РµРєР°СЂСЃС‚РІ
+        /// </summary>
+        private void SaveCures()
+        {
+            var curesStr = new StringBuilder();
+
+            foreach (CureClass cureInfo in _cureList)
+            {
+                curesStr.Append(
+                    "Name=" + cureInfo.Name + DataSplitStr +
+                    "DefaultPerDayCount=" + cureInfo.DefaultPerDayCount + DataSplitStr +
+                    "DefaultReceivingMethod=" + cureInfo.DefaultReceivingMethod + DataSplitStr +
+                    "DefaultDuration=" + cureInfo.DefaultDuration + ObjSplitStr);
+            }
+           
+            PackedData(curesStr.ToString(), _curePath);
+        }
+
+        /// <summary>
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє РѕР±СЃР»РµРґРѕРІР°РЅРёР№
+        /// </summary>
+        private void SaveSurveys()
+        {
+            _surveyList.Sort();
+
+            var surveysStr = ConvertEngine.ListToString(_surveyList);
+
+            PackedData(surveysStr, _surveyPath);
+        }
+        
+        /// <summary>
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№
         /// </summary>
         private void SaveNosologys()
         {
@@ -1073,7 +1357,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранение глобальных настроек
+        /// РЎРѕС…СЂР°РЅРµРЅРёРµ РіР»РѕР±Р°Р»СЊРЅС‹С… РЅР°СЃС‚СЂРѕРµРє
         /// </summary>
         private void SaveGlobalSettings()
         {
@@ -1087,19 +1371,38 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Сохранить список нозологий
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє СѓСЃР»СѓРі Рё РљРЎР“
         /// </summary>
-        public void SaveKSG()
+        public void SaveServices()
         {
-            Logger.WriteLog("Сохраняем дневные данные в " + _dayKSGPath);
-            PackedData(DayMKBEngine.PrepareDataToPack(), _dayKSGPath);
-            Logger.WriteLog("Сохраняем ночные данные в " + _nightKSGPath);
-            PackedData(NightMKBEngine.PrepareDataToPack(), _nightKSGPath);
-            Logger.WriteLog("Всё сохранилось");
+            Logger.WriteLog("РЎРѕС…СЂР°РЅСЏРµРј РґРЅРµРІРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ " + _dayServicesPath);
+            PackedData(DayServiceEngine.PrepareDataToPack(), _dayServicesPath);
+
+            Logger.WriteLog("РЎРѕС…СЂР°РЅСЏРµРј РЅРѕС‡РЅС‹Рµ РґР°РЅРЅС‹Рµ РІ " + _nightServicesPath);
+            PackedData(NightServiceEngine.PrepareDataToPack(), _nightServicesPath);
+
+            Logger.WriteLog("Р’СЃС‘ СЃРѕС…СЂР°РЅРёР»РѕСЃСЊ");
+        }
+
+        /// <summary>
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ СЃРїРёСЃРѕРє РњРљР‘
+        /// </summary>
+        public void SaveMkbs()
+        {
+            var mkbsStr = new StringBuilder();
+
+            foreach (MkbClass mkbInfo in _mkbList)
+            {
+                mkbsStr.Append(
+                    "Code=" + mkbInfo.MkbCode + DataSplitStr +
+                    "Name=" + mkbInfo.MkbName + ObjSplitStr);
+            }
+
+            PackedData(mkbsStr.ToString(), _mkbPath);
         }
         #endregion
 
-        #region Импорт данных
+        #region РРјРїРѕСЂС‚ РґР°РЅРЅС‹С…
         public void GetImportedData(
             string folderPath,
             out List<PatientClass> patients,
@@ -1136,10 +1439,10 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Импортировать переданных пациентов и нозологии
+        /// РРјРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРµСЂРµРґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚РѕРІ Рё РЅРѕР·РѕР»РѕРіРёРё
         /// </summary>
-        /// <param name="foreignPatients">Список пациентов из внешней базы, которых надо добавить в нашу базу</param>
-        /// <param name="foreignNosologies">Список нозологий из внешней базы, которые надо добавить в нашу базу</param>
+        /// <param name="foreignPatients">РЎРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ РёР· РІРЅРµС€РЅРµР№ Р±Р°Р·С‹, РєРѕС‚РѕСЂС‹С… РЅР°РґРѕ РґРѕР±Р°РІРёС‚СЊ РІ РЅР°С€Сѓ Р±Р°Р·Сѓ</param>
+        /// <param name="foreignNosologies">РЎРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№ РёР· РІРЅРµС€РЅРµР№ Р±Р°Р·С‹, РєРѕС‚РѕСЂС‹Рµ РЅР°РґРѕ РґРѕР±Р°РІРёС‚СЊ РІ РЅР°С€Сѓ Р±Р°Р·Сѓ</param>
         public void ImportData(List<PatientClass> foreignPatients, List<NosologyClass> foreignNosologies)
         {
             foreach (PatientClass foreignPatientInfo in foreignPatients)
@@ -1154,11 +1457,11 @@ namespace SurgeryHelper.Engines
         }
         #endregion
 
-        #region Загрузка данных
+        #region Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
         /// <summary>
-        /// Загружается из файла список с пациентами.
-        /// Нужно для того, чтобы откатить изменения в операциях, 
-        /// если изменения для пациента не были сохранены
+        /// Р—Р°РіСЂСѓР¶Р°РµС‚СЃСЏ РёР· С„Р°Р№Р»Р° СЃРїРёСЃРѕРє СЃ РїР°С†РёРµРЅС‚Р°РјРё.
+        /// РќСѓР¶РЅРѕ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РѕС‚РєР°С‚РёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІ РѕРїРµСЂР°С†РёСЏС…, 
+        /// РµСЃР»Рё РёР·РјРµРЅРµРЅРёСЏ РґР»СЏ РїР°С†РёРµРЅС‚Р° РЅРµ Р±С‹Р»Рё СЃРѕС…СЂР°РЅРµРЅС‹
         /// </summary>
         public void RefreshPatients()
         {
@@ -1166,9 +1469,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Получение хэш кода строки
+        /// РџРѕР»СѓС‡РµРЅРёРµ С…СЌС€ РєРѕРґР° СЃС‚СЂРѕРєРё
         /// </summary>
-        /// <param name="passStr">Строка с кодом</param>
+        /// <param name="passStr">РЎС‚СЂРѕРєР° СЃ РєРѕРґРѕРј</param>
         /// <returns></returns>
         public static long GetHash(string passStr)
         {
@@ -1186,18 +1489,18 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить все данные 
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ 
         /// </summary>
         public void LoadData()
         {
             try
             {
-                // Сохранение файлов с базами данных, на всякий случай
+                // РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»РѕРІ СЃ Р±Р°Р·Р°РјРё РґР°РЅРЅС‹С…, РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№
                 SaveDbFilesToTempFolder();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Не удалось осуществить резервное копирование файлов с данными. Сообщение об ошибке:\r\n" + ex);
+                MessageBox.Show("РќРµ СѓРґР°Р»РѕСЃСЊ РѕСЃСѓС‰РµСЃС‚РІРёС‚СЊ СЂРµР·РµСЂРІРЅРѕРµ РєРѕРїРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»РѕРІ СЃ РґР°РЅРЅС‹РјРё. РЎРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ:\r\n" + ex);
             }
 
             LoadGlobalSettings();
@@ -1207,13 +1510,16 @@ namespace SurgeryHelper.Engines
             LoadOrderlys();
             LoadHeAnestetists();
             LoadSheAnestethists();
+            LoadCures();
+            LoadSurveys();
             LoadNosologys(_nosologyList, _nosologyPath);
-            LoadKSG();
+            LoadServices();
+            LoadMkbs();
         }
 
         /// <summary>
-        /// Сохранить файлы баз данных во временной папке пользователя
-        /// Один раз в день
+        /// РЎРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р»С‹ Р±Р°Р· РґР°РЅРЅС‹С… РІРѕ РІСЂРµРјРµРЅРЅРѕР№ РїР°РїРєРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        /// РћРґРёРЅ СЂР°Р· РІ РґРµРЅСЊ
         /// </summary>
         private void SaveDbFilesToTempFolder()
         {
@@ -1233,7 +1539,7 @@ namespace SurgeryHelper.Engines
                 fi.CopyTo(Path.Combine(newSaveDataLocation, fi.Name));
             }
 
-            // Удаление старых папок с сохранёнными файлами (оставить только 10 последних)
+            // РЈРґР°Р»РµРЅРёРµ СЃС‚Р°СЂС‹С… РїР°РїРѕРє СЃ СЃРѕС…СЂР°РЅС‘РЅРЅС‹РјРё С„Р°Р№Р»Р°РјРё (РѕСЃС‚Р°РІРёС‚СЊ С‚РѕР»СЊРєРѕ 10 РїРѕСЃР»РµРґРЅРёС…)
             di = new DirectoryInfo(saveDataPath);
             var savedFolders = new List<DateTime>();
             foreach (DirectoryInfo curDi in di.GetDirectories())
@@ -1256,10 +1562,10 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список пациентов
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ
         /// </summary>
-        /// <param name="patientList">Список с пациентами, в который надо загружать пациентов</param>
-        /// <param name="patientPath">Путь до файла с пациентами</param>
+        /// <param name="patientList">РЎРїРёСЃРѕРє СЃ РїР°С†РёРµРЅС‚Р°РјРё, РІ РєРѕС‚РѕСЂС‹Р№ РЅР°РґРѕ Р·Р°РіСЂСѓР¶Р°С‚СЊ РїР°С†РёРµРЅС‚РѕРІ</param>
+        /// <param name="patientPath">РџСѓС‚СЊ РґРѕ С„Р°Р№Р»Р° СЃ РїР°С†РёРµРЅС‚Р°РјРё</param>
         private void LoadPatients(List<PatientClass> patientList, string patientPath)
         {
             if (GetHash(PassStr) != ConfigEngine.InternalData)
@@ -1270,16 +1576,16 @@ namespace SurgeryHelper.Engines
             patientList.Clear();
             string allDataStr = GetPackedData(patientPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем данные пациента и данные операций
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РїР°С†РёРµРЅС‚Р° Рё РґР°РЅРЅС‹Рµ РѕРїРµСЂР°С†РёР№
                 string[] patientOperationsArray = objectStr.Split(new[] { OperationSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-                // Для каждого объекта с данными пациента получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° СЃ РґР°РЅРЅС‹РјРё РїР°С†РёРµРЅС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = patientOperationsArray[0].Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
                 var patientInfo = new PatientClass();
 
@@ -1353,8 +1659,17 @@ namespace SurgeryHelper.Engines
                         case "MKB":
                             patientInfo.MKB = keyValue[1];
                             break;
-                        case "KSG":
-                            patientInfo.KSG = keyValue[1];
+                        case "ServiceName":
+                            patientInfo.ServiceName = keyValue[1];
+                            break;
+                        case "ServiceCode":
+                            patientInfo.ServiceCode = keyValue[1];
+                            break;
+                        case "KsgCode":
+                            patientInfo.KsgCode = keyValue[1];
+                            break;
+                        case "KsgDecoding":
+                            patientInfo.KsgDecoding = keyValue[1];
                             break;
                         case "ReleaseDate":
                             if (string.IsNullOrEmpty(keyValue[1]))
@@ -1406,9 +1721,6 @@ namespace SurgeryHelper.Engines
                         case "DischargeEpicrisAfterOperation":
                             patientInfo.DischargeEpicrisAfterOperation = keyValue[1];
                             break;
-                        case "DischargeEpicrisConservativeTherapy":
-                            patientInfo.DischargeEpicrisConservativeTherapy = keyValue[1];
-                            break;
                         case "DischargeEpicrisEkg":
                             patientInfo.DischargeEpicrisEkg = keyValue[1];
                             break;
@@ -1448,6 +1760,12 @@ namespace SurgeryHelper.Engines
                         case "DischargeEpicrisBakSugar":
                             patientInfo.DischargeEpicrisBakSugar = keyValue[1];
                             break;
+                        case "DischargeEpicrisBloodGroup":
+                            patientInfo.DischargeEpicrisBloodGroup = keyValue[1];
+                            break;
+                        case "DischargeEpicrisRhesusFactor":
+                            patientInfo.DischargeEpicrisRhesusFactor = keyValue[1];
+                            break;
                         case "DischargeEpicrisAdditionalAnalises":
                             patientInfo.DischargeEpicrisAdditionalAnalises = keyValue[1];
                             break;
@@ -1456,6 +1774,12 @@ namespace SurgeryHelper.Engines
                             break;
                         case "DischargeEpicrisAdditionalRecomendations":
                             patientInfo.DischargeEpicrisAdditionalRecomendations = ConvertEngine.StringToList(keyValue[1]);
+                            break;
+                        case "PrescriptionTherapy":
+                            patientInfo.PrescriptionTherapy = ConvertEngine.StringToList(keyValue[1], StringSplitOptions.None);
+                            break;
+                        case "PrescriptionSurveys":
+                            patientInfo.PrescriptionSurveys = ConvertEngine.StringToList(keyValue[1]);
                             break;
                         case "TreatmentPlanInspection":
                             patientInfo.TreatmentPlanInspection = keyValue[1];
@@ -1576,7 +1900,7 @@ namespace SurgeryHelper.Engines
                 {
                     var operationInfo = new OperationClass();
 
-                    // Для каждого объекта с данными пациента получаем список значений
+                    // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° СЃ РґР°РЅРЅС‹РјРё РїР°С†РёРµРЅС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                     datasStr = patientOperationsArray[i].Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                     foreach (string dataStr in datasStr)
@@ -1662,14 +1986,17 @@ namespace SurgeryHelper.Engines
                             case "BeforeOperationEpicrisisTemperature":
                                 operationInfo.BeforeOperationEpicrisisTemperature = keyValue[1];
                                 break;
-                            case "BeforeOperationEpicrisisTimeWriting":
-                                operationInfo.BeforeOperationEpicrisisTimeWriting = ConvertEngine.GetDateTimeFromString(keyValue[1]);
-                                break;
                             case "BeforeOperationEpicrisisUrination":
                                 operationInfo.BeforeOperationEpicrisisUrination = keyValue[1];
                                 break;
                             case "BeforeOperationEpicrisisWheeze":
                                 operationInfo.BeforeOperationEpicrisisWheeze = keyValue[1];
+                                break;
+                            case "BeforeOperationEpicrisisIsAntibioticProphylaxisExist":
+                                operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = Convert.ToBoolean(keyValue[1]);
+                                break;
+                            case "BeforeOperationEpicrisisAntibioticProphylaxis":
+                                operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = keyValue[1];
                                 break;
                         }
                     }
@@ -1682,7 +2009,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список хирургов
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє С…РёСЂСѓСЂРіРѕРІ
         /// </summary>
         private void LoadSurgeons()
         {
@@ -1694,13 +2021,13 @@ namespace SurgeryHelper.Engines
             _surgeonList = new List<SurgeonClass>();
             string allDataStr = GetPackedData(_surgeonPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var surgeonInfo = new SurgeonClass();
@@ -1723,7 +2050,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список операционных сестёр
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє РѕРїРµСЂР°С†РёРѕРЅРЅС‹С… СЃРµСЃС‚С‘СЂ
         /// </summary>
         private void LoadScrubNurses()
         {
@@ -1735,13 +2062,13 @@ namespace SurgeryHelper.Engines
             _scrubNurseList = new List<ScrubNurseClass>();
             string allDataStr = GetPackedData(_scrubNursePath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var scrubNurseInfo = new ScrubNurseClass();
@@ -1764,7 +2091,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список санитаров
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє СЃР°РЅРёС‚Р°СЂРѕРІ
         /// </summary>
         private void LoadOrderlys()
         {
@@ -1776,13 +2103,13 @@ namespace SurgeryHelper.Engines
             _orderlyList = new List<OrderlyClass>();
             string allDataStr = GetPackedData(_orderlyPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var orderlyInfo = new OrderlyClass();
@@ -1805,7 +2132,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список анестезиологов
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёРѕР»РѕРіРѕРІ
         /// </summary>
         private void LoadHeAnestetists()
         {
@@ -1817,13 +2144,13 @@ namespace SurgeryHelper.Engines
             _heAnestethistList = new List<HeAnestethistClass>();
             string allDataStr = GetPackedData(_heAnestethistPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var heAnestetistInfo = new HeAnestethistClass();
@@ -1846,7 +2173,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список анестезисток
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє Р°РЅРµСЃС‚РµР·РёСЃС‚РѕРє
         /// </summary>
         private void LoadSheAnestethists()
         {
@@ -1858,13 +2185,13 @@ namespace SurgeryHelper.Engines
             _sheAnestethistList = new List<SheAnestethistClass>();
             string allDataStr = GetPackedData(_sheAnestethistPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var sheAnestethistInfo = new SheAnestethistClass();
@@ -1887,10 +2214,71 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить список нозологий
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє Р»РµРєР°СЂСЃС‚РІ
         /// </summary>
-        /// <param name="nosologyList">Список нозологий</param>
-        /// <param name="nosologyPath">Путь до файла с нозологиями</param>
+        private void LoadCures()
+        {
+            if (GetHash(PassStr) != ConfigEngine.InternalData)
+            {
+                Environment.Exit(0);
+            }
+
+            _cureList = new List<CureClass>();
+            string allDataStr = GetPackedData(_curePath);
+
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
+            string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
+            foreach (string objectStr in objectsStr)
+            {
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
+                string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+                var cureInfo = new CureClass();
+                foreach (string dataStr in datasStr)
+                {
+                    string[] keyValue = dataStr.Split(new[] { '=' }, 2);
+                    switch (keyValue[0])
+                    {
+                        case "Name":
+                            cureInfo.Name = keyValue[1];
+                            break;
+                        case "DefaultPerDayCount":
+                            cureInfo.DefaultPerDayCount = keyValue[1];
+                            break;
+                        case "DefaultReceivingMethod":
+                            cureInfo.DefaultReceivingMethod = keyValue[1];
+                            break;
+                        case "DefaultDuration":
+                            cureInfo.DefaultDuration = keyValue[1];
+                            break;
+                    }
+                }
+
+                _cureList.Add(cureInfo);
+            }
+        }
+
+        /// <summary>
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє РѕР±СЃР»РµРґРѕРІР°РЅРёР№
+        /// </summary>
+        private void LoadSurveys()
+        {
+            if (GetHash(PassStr) != ConfigEngine.InternalData)
+            {
+                Environment.Exit(0);
+            }
+
+            string allDataStr = GetPackedData(_surveyPath);
+            _surveyList = ConvertEngine.StringToList(allDataStr);
+        }
+
+        /// <summary>
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ СЃРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№
+        /// </summary>
+        /// <param name="nosologyList">РЎРїРёСЃРѕРє РЅРѕР·РѕР»РѕРіРёР№</param>
+        /// <param name="nosologyPath">РџСѓС‚СЊ РґРѕ С„Р°Р№Р»Р° СЃ РЅРѕР·РѕР»РѕРіРёСЏРјРё</param>
         private void LoadNosologys(List<NosologyClass> nosologyList, string nosologyPath)
         {
             if (GetHash(PassStr) != ConfigEngine.InternalData)
@@ -1901,13 +2289,13 @@ namespace SurgeryHelper.Engines
             nosologyList.Clear();
             string allDataStr = GetPackedData(nosologyPath);
 
-            // Получаем набор объектов
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Проходим по всем объектам
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
             foreach (string objectStr in objectsStr)
             {
-                // Для каждого объекта получаем список значений
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
                 string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
                 var nosologyInfo = new NosologyClass();
@@ -1930,7 +2318,7 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Загрузить глобальные настройки
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ РіР»РѕР±Р°Р»СЊРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё
         /// </summary>
         private void LoadGlobalSettings()
         {
@@ -1941,7 +2329,7 @@ namespace SurgeryHelper.Engines
 
             string allDataStr = GetPackedData(_globalSettingsPath);
 
-            // Для каждого объекта получаем список значений
+            // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
             string[] datasStr = allDataStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
 
             _globalSettings = new GlobalSettingsClass();
@@ -1969,28 +2357,72 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Заргузить дневные и ночные коды KSG
+        /// Р—Р°СЂРіСѓР·РёС‚СЊ РґРЅРµРІРЅС‹Рµ Рё РЅРѕС‡РЅС‹Рµ РєРѕРґС‹ KSG
         /// </summary>
-        private void LoadKSG()
+        private void LoadServices()
         {
             if (GetHash(PassStr) != ConfigEngine.InternalData)
             {
                 Environment.Exit(0);
             }
 
-            DayMKBEngine = new MKBEngine(GetPackedData(_dayKSGPath));
-            NightMKBEngine = new MKBEngine(GetPackedData(_nightKSGPath));
+            DayServiceEngine = new ServiceEngine(GetPackedData(_dayServicesPath));
+            NightServiceEngine = new ServiceEngine(GetPackedData(_nightServicesPath));
         }
 
+        /// <summary>
+        /// Р—Р°РіСЂСѓР·РёС‚СЊ РєРѕРґС‹ РњРљР‘
+        /// </summary>
+        private void LoadMkbs()
+        {
+            if (GetHash(PassStr) != ConfigEngine.InternalData)
+            {
+                Environment.Exit(0);
+            }
+            
+            LoadMkb(GetPackedData(_mkbPath));
+        }
+
+        public void LoadMkb(string allDataStr)
+        {
+            _mkbList.Clear();
+
+            // РџРѕР»СѓС‡Р°РµРј РЅР°Р±РѕСЂ РѕР±СЉРµРєС‚РѕРІ
+            string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РІСЃРµРј РѕР±СЉРµРєС‚Р°Рј
+            foreach (string objectStr in objectsStr)
+            {
+                // Р”Р»СЏ РєР°Р¶РґРѕРіРѕ РѕР±СЉРµРєС‚Р° РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р·РЅР°С‡РµРЅРёР№
+                string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+                var mkbInfo = new MkbClass();
+                foreach (string dataStr in datasStr)
+                {
+                    string[] keyValue = dataStr.Split(new[] { '=' }, 2);
+                    switch (keyValue[0])
+                    {
+                        case "Code":
+                            mkbInfo.MkbCode = keyValue[1];
+                            break;
+                        case "Name":
+                            mkbInfo.MkbName = keyValue[1];
+                            break;
+                    }
+                }
+
+                _mkbList.Add(mkbInfo);
+            }
+        }
         #endregion
 
-        #region Упаковочные функции
+        #region РЈРїР°РєРѕРІРѕС‡РЅС‹Рµ С„СѓРЅРєС†РёРё
 
         /// <summary>
-        /// Вызывает поток для запаковки данных в файл
+        /// Р’С‹Р·С‹РІР°РµС‚ РїРѕС‚РѕРє РґР»СЏ Р·Р°РїР°РєРѕРІРєРё РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
         /// </summary>
-        /// <param name="dataStr">Строка с данными</param>
-        /// <param name="path">Путь до файла</param>
+        /// <param name="dataStr">РЎС‚СЂРѕРєР° СЃ РґР°РЅРЅС‹РјРё</param>
+        /// <param name="path">РџСѓС‚СЊ РґРѕ С„Р°Р№Р»Р°</param>
         private static void PackedData(string dataStr, string path)
         {
             var newThread = new Thread(PackedDataRequest);
@@ -1998,9 +2430,9 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Запаковывает строку в файл
+        /// Р—Р°РїР°РєРѕРІС‹РІР°РµС‚ СЃС‚СЂРѕРєСѓ РІ С„Р°Р№Р»
         /// </summary>
-        /// <param name="parameters">Массив string со строкой с данными и путём до файла</param>
+        /// <param name="parameters">РњР°СЃСЃРёРІ string СЃРѕ СЃС‚СЂРѕРєРѕР№ СЃ РґР°РЅРЅС‹РјРё Рё РїСѓС‚С‘Рј РґРѕ С„Р°Р№Р»Р°</param>
         private static void PackedDataRequest(object parameters)
         {
             string path = string.Empty;
@@ -2019,14 +2451,14 @@ namespace SurgeryHelper.Engines
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при сохранении файла " + path + ":\r\n" + ex);
+                MessageBox.Show("РћС€РёР±РєР° РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё С„Р°Р№Р»Р° " + path + ":\r\n" + ex);
             }
         }
 
         /// <summary>
-        /// Получает текст из запакованного файла
+        /// РџРѕР»СѓС‡Р°РµС‚ С‚РµРєСЃС‚ РёР· Р·Р°РїР°РєРѕРІР°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
         /// </summary>
-        /// <param name="path">Путь до файла</param>
+        /// <param name="path">РџСѓС‚СЊ РґРѕ С„Р°Р№Р»Р°</param>
         /// <returns></returns>
         private static string GetPackedData(string path)
         {
@@ -2056,17 +2488,17 @@ namespace SurgeryHelper.Engines
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при чтении файла " + path + ":\r\n" + ex);
+                MessageBox.Show("РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё С„Р°Р№Р»Р° " + path + ":\r\n" + ex);
             }
 
             return unpackedString;
         }
-        
+
 
         /// <summary>
-        /// Запаковать массив байт
+        /// Р—Р°РїР°РєРѕРІР°С‚СЊ РјР°СЃСЃРёРІ Р±Р°Р№С‚
         /// </summary>
-        /// <param name="byteBuffer">Массив для запаковки</param>
+        /// <param name="byteBuffer">РњР°СЃСЃРёРІ РґР»СЏ Р·Р°РїР°РєРѕРІРєРё</param>
         /// <returns></returns>
         private static byte[] PackXml(byte[] byteBuffer)
         {
@@ -2086,9 +2518,9 @@ namespace SurgeryHelper.Engines
 
 
         /// <summary>
-        /// Распаковать массив байт
+        /// Р Р°СЃРїР°РєРѕРІР°С‚СЊ РјР°СЃСЃРёРІ Р±Р°Р№С‚
         /// </summary>
-        /// <param name="byteBuffer">Массив для распаковки</param>
+        /// <param name="byteBuffer">РњР°СЃСЃРёРІ РґР»СЏ СЂР°СЃРїР°РєРѕРІРєРё</param>
         /// <returns></returns>
         private static byte[] UnpackXml(byte[] byteBuffer)
         {
@@ -2114,124 +2546,6 @@ namespace SurgeryHelper.Engines
 
             return rez;
         }
-
-
-        /*
-        /// <summary>
-        /// Запаковать массив байт
-        /// </summary>
-        /// <param name="xmlInfo">Массив для запаковки</param>
-        /// <returns></returns>
-        private static byte[] PackXml(byte[] xmlInfo)
-        {
-            var newByffer = new byte[xmlInfo.Length * 10];
-            var stream = new MemoryStream(newByffer);
-            var zStream = new ZOutputStream(stream, zlibConst.Z_DEFAULT_COMPRESSION);
-            zStream.Write(xmlInfo, 0, xmlInfo.Length);
-            zStream.Close();
-
-            int i = (xmlInfo.Length * 10) - 1;
-            while (i >= 0 && newByffer[i] == 0)
-            {
-                i--;
-            }
-
-            var rez = new byte[i + 1];
-            for (int j = 0; j <= i; j++)
-            {
-                rez[j] = newByffer[j];
-            }
-
-            return rez;
-        }
-
-        
-        /// <summary>
-        /// Распаковать массив байт
-        /// </summary>
-        /// <param name="xmlInfo">Массив для распаковки</param>
-        /// <returns></returns>
-        private static byte[] UnpackXml(byte[] xmlInfo)
-        {
-            var newByffer = new byte[xmlInfo.Length * 100];
-            var stream = new MemoryStream(newByffer);
-            var zStream = new ZOutputStream(stream);
-
-            try
-            {
-                zStream.Write(xmlInfo, 0, xmlInfo.Length);
-            }
-            catch
-            {
-            }
-
-            zStream.Close();
-
-            int i = (xmlInfo.Length * 100) - 1;
-            while (i >= 0 && newByffer[i] == 0)
-            {
-                i--;
-            }
-
-            var rez = new byte[i + 1];
-            for (int j = 0; j <= i; j++)
-            {
-                rez[j] = newByffer[j];
-            }
-
-            return rez;
-        }*/
-
-
-        /*
-        /// <summary>
-        /// Запаковать массив байт
-        /// </summary>
-        /// <param name="xmlInfo">Массив для запаковки</param>
-        /// <returns></returns>
-        private static byte[] PackXml(byte[] xmlInfo)
-        {
-            using (var input = new MemoryStream(xmlInfo))
-            using (var output = new MemoryStream())
-            using (var outZStream = new ZOutputStream(output, zlibConst.Z_DEFAULT_COMPRESSION))
-            {
-                CopyStream(input, outZStream);
-                outZStream.finish();
-                output.Seek(0, SeekOrigin.Begin);
-                return output.ToArray();
-            }
-        }
-
-        
-        /// <summary>
-        /// Распаковать массив байт
-        /// </summary>
-        /// <param name="xmlInfo">Массив для распаковки</param>
-        /// <returns></returns>
-        private static byte[] UnpackXml(byte[] xmlInfo)
-        {            
-            using (var output = new MemoryStream())
-            using (var outZStream = new ZOutputStream(output))
-            using (var input = new MemoryStream(xmlInfo))
-            {
-                CopyStream(input, outZStream);
-                outZStream.finish();
-                return output.ToArray();
-            }
-        }
-
-        public static void CopyStream(Stream input, ZOutputStream output)
-        {
-            var buffer = new byte[input.Length];
-            int len;
-            while ((len = input.Read(buffer, 0, (int)input.Length)) > 0)
-            {
-                output.Write(buffer, 0, len);
-            }
-            output.Flush();
-        }
-        */
-
         #endregion
     }
 }

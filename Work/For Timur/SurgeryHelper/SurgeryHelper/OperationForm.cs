@@ -69,8 +69,8 @@ namespace SurgeryHelper
             while (listCnt < OperationList.Rows.Count && operationCnt < _patientInfo.Operations.Count)
             {
                 OperationList.Rows[listCnt].Cells[0].Value = _patientInfo.Operations[operationCnt].Id.ToString();
-                OperationList.Rows[listCnt].Cells[1].Value = _patientInfo.Operations[operationCnt].DataOfOperation.ToString("dd.MM.yyyy") +
-                                        " " + _patientInfo.Operations[operationCnt].StartTimeOfOperation.ToString("HH:mm");
+                OperationList.Rows[listCnt].Cells[1].Value = ConvertEngine.GetRightDateString(_patientInfo.Operations[operationCnt].DataOfOperation) +
+                                        " " + ConvertEngine.GetRightTimeString(_patientInfo.Operations[operationCnt].StartTimeOfOperation);
                 OperationList.Rows[listCnt].Cells[2].Value = _patientInfo.Operations[operationCnt].Name;
                 listCnt++;
                 operationCnt++;
@@ -90,8 +90,8 @@ namespace SurgeryHelper
                     var param = new[] 
                     {
                         _patientInfo.Operations[operationCnt].Id.ToString(),
-                        _patientInfo.Operations[operationCnt].DataOfOperation.ToString("dd.MM.yyyy") +
-                        " " + _patientInfo.Operations[operationCnt].StartTimeOfOperation.ToString("HH:mm"),
+                        ConvertEngine.GetRightDateString(_patientInfo.Operations[operationCnt].DataOfOperation) +
+                        " " + ConvertEngine.GetRightTimeString(_patientInfo.Operations[operationCnt].StartTimeOfOperation),
                         _patientInfo.Operations[operationCnt].Name
                     };
                     OperationList.Rows.Add(param);
@@ -395,7 +395,7 @@ namespace SurgeryHelper
 
         private void buttonOK_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Вернуться к окну со списком пациентов", buttonOK, 15, -20);
+            toolTip1.Show("Вернуться к окну с данными о пациенте", buttonOK, 15, -20);
             buttonOK.FlatStyle = FlatStyle.Popup;
         }
 

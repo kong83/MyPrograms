@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -41,7 +42,7 @@ namespace SurgeryHelper
                 dateTimePickerReasonEndDate.Value = _patientInfo.ReleaseDate.Value;
             }
 
-            textBoxConservativeTherapy.Text = _patientInfo.DischargeEpicrisConservativeTherapy;
+            textBoxConservativeTherapy.Text = _patientInfo.GetDischargeEpicrisConservativeTherapy();
             textBoxAfterOperation.Text = _patientInfo.DischargeEpicrisAfterOperation;
             if (_patientInfo.DischargeEpicrisAnalysisDate.HasValue)
             {
@@ -61,6 +62,8 @@ namespace SurgeryHelper
             textBoxBakGeneralProtein.Text = _patientInfo.DischargeEpicrisBakGeneralProtein;
             textBoxBakPTI.Text = _patientInfo.DischargeEpicrisBakPTI;
             textBoxBakSugar.Text = _patientInfo.DischargeEpicrisBakSugar;
+            comboBoxBloodGroup.Text = _patientInfo.DischargeEpicrisBloodGroup;
+            comboBoxRhesusFactor.Text = _patientInfo.DischargeEpicrisRhesusFactor;
 
             textBoxAdditionalAnalises.Text = _patientInfo.DischargeEpicrisAdditionalAnalises;
 
@@ -81,12 +84,12 @@ namespace SurgeryHelper
                         case "ученичес":
                             checkBox1.Checked = true;
                             comboBoxReason.Text = words[0] + " " + words[1];
-                            dateTimePickerReasonStartDate.Value = DateTime.Parse(words[5]);
-                            dateTimePickerReasonEndDate.Value = DateTime.Parse(words[7].TrimEnd('.'));
+                            dateTimePickerReasonStartDate.Value = ConvertEngine.GetDateTimeFromString(words[5]);
+                            dateTimePickerReasonEndDate.Value = ConvertEngine.GetDateTimeFromString(words[7].TrimEnd('.'));
                             break;
                         case "явка к х":
                             checkBox2.Checked = true;
-                            dateTimePickerSurgeryDate.Value = DateTime.Parse(words[5].TrimEnd('.'));
+                            dateTimePickerSurgeryDate.Value = ConvertEngine.GetDateTimeFromString(words[5].TrimEnd('.'));
                             break;
                         case "наблюден":
                             checkBox3.Checked = true;
@@ -189,6 +192,13 @@ namespace SurgeryHelper
                 string.IsNullOrEmpty(comboBoxOamColor.Text) ||
                 string.IsNullOrEmpty(textBoxOamDensity.Text))
             {
+                MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(comboBoxBloodGroup.Text) ^ string.IsNullOrEmpty(comboBoxRhesusFactor.Text))
+            {
+                MessageBox.Show("Поля для группы крови и резус фактора должны быть либо оба заполнены, либо оба пустые", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
 
@@ -205,8 +215,7 @@ namespace SurgeryHelper
             try
             {
                 if (IsFormHasEmptyNeededFields())
-                {
-                    MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {                    
                     return;
                 }
 
@@ -239,7 +248,6 @@ namespace SurgeryHelper
         /// <param name="patientInfo"></param>
         private void PutDataToPatient(PatientClass patientInfo)
         {
-            patientInfo.DischargeEpicrisConservativeTherapy = textBoxConservativeTherapy.Text.Replace("\r\n", " ");
             patientInfo.DischargeEpicrisAnalysisDate = dateTimePickerAnalysisDate.Value;
             patientInfo.DischargeEpicrisAfterOperation = textBoxAfterOperation.Text;
             patientInfo.DischargeEpicrisEkg = textBoxEkg.Text;
@@ -255,6 +263,8 @@ namespace SurgeryHelper
             patientInfo.DischargeEpicrisBakGeneralProtein = textBoxBakGeneralProtein.Text;
             patientInfo.DischargeEpicrisBakPTI = textBoxBakPTI.Text;
             patientInfo.DischargeEpicrisBakSugar = textBoxBakSugar.Text;
+            patientInfo.DischargeEpicrisBloodGroup = comboBoxBloodGroup.Text;
+            patientInfo.DischargeEpicrisRhesusFactor = comboBoxRhesusFactor.Text;
             patientInfo.DischargeEpicrisAdditionalAnalises = textBoxAdditionalAnalises.Text;
             patientInfo.DischargeEpicrisRecomendations = StringToList(textBoxRecomendations.Text);
             patientInfo.DischargeEpicrisAdditionalRecomendations = StringToList(textBoxAdditionalRecomendations.Text);
@@ -284,14 +294,23 @@ namespace SurgeryHelper
 
             PutDataToPatient(tempPatientInfo);
 
+            var wordExportEngine = new WordExportEngine(_dbEngine);
             if (_dbEngine.GlobalSettings.IsDepartmentNameStartWithNumber("8"))
             {
-                WordExportEngine.ExportDischargeEpicrisisFor8Department(tempPatientInfo, _dbEngine.GlobalSettings, dischargeEpicrisisHeaderFilePath);
+                wordExportEngine.ExportDischargeEpicrisisFor8Department(tempPatientInfo, dischargeEpicrisisHeaderFilePath);
             }
             else
             {
-                WordExportEngine.ExportDischargeEpicrisisForAllDepartment(tempPatientInfo, _dbEngine.GlobalSettings, dischargeEpicrisisHeaderFilePath);
+                wordExportEngine.ExportDischargeEpicrisisForAllDepartment(tempPatientInfo, dischargeEpicrisisHeaderFilePath);
             }
+        }
+
+        private void buttonPrescription_Click(object sender, EventArgs e)
+        {
+            var prescriptionForm = new PrescriptionForm(_dbEngine, _patientInfo);
+            prescriptionForm.ShowDialog();
+
+            textBoxConservativeTherapy.Text = _patientInfo.GetDischargeEpicrisConservativeTherapy();
         }
 
         #region Включение/выключение полей
@@ -386,14 +405,14 @@ namespace SurgeryHelper
             if (checkBox1.Checked)
             {
                 str += comboBoxReason.Text + " № _____________ c " +
-                    dateTimePickerReasonStartDate.Value.ToString("dd.MM.yyyy") + " по " +
-                    dateTimePickerReasonEndDate.Value.ToString("dd.MM.yyyy") + ".\r\n";
+                    ConvertEngine.GetRightDateString(dateTimePickerReasonStartDate.Value) + " по " +
+                    ConvertEngine.GetRightDateString(dateTimePickerReasonEndDate.Value) + ".\r\n";
             }
 
             if (checkBox2.Checked)
             {
                 str += "явка к хирургу в поликлинику " +
-                    dateTimePickerSurgeryDate.Value.ToString("dd.MM.yyyy") + ".\r\n";
+                    ConvertEngine.GetRightDateString(dateTimePickerSurgeryDate.Value) + ".\r\n";
             }
 
             if (checkBox3.Checked)
@@ -426,86 +445,6 @@ namespace SurgeryHelper
             textBoxRecomendations.Text = str.TrimEnd(new[] { '\r', '\n' });
         }
 
-        /// <summary>
-        /// Кнопка добавления данных к полю с консервативным лечением
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonAddTherapy_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string str = string.Empty;
-                if (textBoxConservativeTherapy.Text.Length > 0)
-                {
-                    str = ", ";
-                }
-
-                str += comboBoxDrug.Text + " ";
-
-                if (!string.IsNullOrEmpty(comboBoxPerOneCnt.Text))
-                {
-                    str += comboBoxPerOneCnt.Text + " ";
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxPerDayCnt.Text) ||
-                    !string.IsNullOrEmpty(comboBoxReceivingMethod.Text))
-                {
-                    str += "- ";
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxPerDayCnt.Text))
-                {
-                    string text;
-                    int cnt;
-                    if (int.TryParse(comboBoxPerDayCnt.Text, out cnt))
-                    {
-                        while (cnt > 100)
-                        {
-                            cnt -= 100;
-                        }
-
-                        int lastValue = cnt;
-                        while (lastValue >= 10)
-                        {
-                            lastValue -= 10;
-                        }
-
-                        if (lastValue >= 2 && lastValue <= 4 && (cnt < 12 || cnt > 14))
-                        {
-                            text = " раза в день ";
-                        }
-                        else
-                        {
-                            text = " раз в день ";
-                        }
-                    }
-                    else
-                    {
-                        text = " раз в день ";
-                    }
-
-                    str += comboBoxPerDayCnt.Text + text;
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxReceivingMethod.Text))
-                {
-                    str += comboBoxReceivingMethod.Text + " ";
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxDuration.Text))
-                {
-                    str += comboBoxDuration.Text + " дня";
-                }
-
-                textBoxConservativeTherapy.Text += str.TrimEnd();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void numericUpDownRentgen_Enter(object sender, EventArgs e)
         {
             numericUpDownRentgen.Select(0, 10);
@@ -530,100 +469,7 @@ namespace SurgeryHelper
 
             _dbEngine.ConfigEngine.DischargeEpicrisisFormLocation = Location;
         }
-
-        /// <summary>
-        /// Изменение значений в полях для дозировки, в зависимости от выбранного лекарства
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxDrug_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxDrug.Text == "S. Ceftriaxoni")
-            {
-                comboBoxPerOneCnt.Text = "1,0";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/м";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Ketoroli")
-            {
-                comboBoxPerOneCnt.Text = "1,0";
-                comboBoxPerDayCnt.Text = "3";
-                comboBoxReceivingMethod.Text = "в/м";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "ПСС")
-            {
-                comboBoxPerOneCnt.Text = string.Empty;
-                comboBoxPerDayCnt.Text = string.Empty;
-                comboBoxReceivingMethod.Text = string.Empty;
-                comboBoxDuration.Text = string.Empty;
-            }
-            else if (comboBoxDrug.Text == "S. Analgini")
-            {
-                comboBoxPerOneCnt.Text = "50% - 2ml";
-                comboBoxPerDayCnt.Text = "3";
-                comboBoxReceivingMethod.Text = "в/м";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Dimedroli")
-            {
-                comboBoxPerOneCnt.Text = "1% - 2ml";
-                comboBoxPerDayCnt.Text = "3";
-                comboBoxReceivingMethod.Text = "в/м";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. NaCl")
-            {
-                comboBoxPerOneCnt.Text = "0,9% - 400";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/в, кап.";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Glucosae")
-            {
-                comboBoxPerOneCnt.Text = "5% - 400";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/в, кап.";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Dexasoni")
-            {
-                comboBoxPerOneCnt.Text = "0,008";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/м";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Reopolyglucini")
-            {
-                comboBoxPerOneCnt.Text = "400 ml";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/в, кап.";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "S. Trentali")
-            {
-                comboBoxPerOneCnt.Text = "5 ml";
-                comboBoxPerDayCnt.Text = "1";
-                comboBoxReceivingMethod.Text = "в/в, кап.";
-                comboBoxDuration.Text = "3";
-            }
-            else if (comboBoxDrug.Text == "Магнитотерапия")
-            {
-                comboBoxPerOneCnt.Text = string.Empty;
-                comboBoxPerDayCnt.Text = string.Empty;
-                comboBoxReceivingMethod.Text = string.Empty;
-                comboBoxDuration.Text = "7";
-            }
-            else if (comboBoxDrug.Text == "ЛФК")
-            {
-                comboBoxPerOneCnt.Text = string.Empty;
-                comboBoxPerDayCnt.Text = string.Empty;
-                comboBoxReceivingMethod.Text = string.Empty;
-                comboBoxDuration.Text = string.Empty;
-            }
-        }
-
+        
         #region Подсказки
         private void buttonDocuments_MouseEnter(object sender, EventArgs e)
         {
@@ -661,14 +507,16 @@ namespace SurgeryHelper
             buttonClose.FlatStyle = FlatStyle.Flat;
         }
 
-        private void buttonAddTherapy_MouseEnter(object sender, EventArgs e)
+        private void buttonPrescription_MouseEnter(object sender, EventArgs e)
         {
-            buttonAddTherapy.FlatStyle = FlatStyle.Popup;
+            toolTip1.Show("Открыть список назначений и дополнительных обследований", buttonPrescription, 15, -20);
+            buttonPrescription.FlatStyle = FlatStyle.Popup;
         }
 
-        private void buttonAddTherapy_MouseLeave(object sender, EventArgs e)
+        private void buttonPrescription_MouseLeave(object sender, EventArgs e)
         {
-            buttonAddTherapy.FlatStyle = FlatStyle.Flat;
+            toolTip1.Hide(buttonPrescription);
+            buttonPrescription.FlatStyle = FlatStyle.Flat;
         }
         #endregion
     }

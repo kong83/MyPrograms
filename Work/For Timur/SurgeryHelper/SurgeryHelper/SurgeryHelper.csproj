@@ -122,6 +122,7 @@
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Engines\ConfigurationEngine.cs" />
+    <Compile Include="Entities\CureClass.cs" />
     <Compile Include="Engines\DbEngine.cs" />
     <Compile Include="DischargeEpicrisisForm.cs">
       <SubType>Form</SubType>
@@ -137,11 +138,12 @@
     </Compile>
     <Compile Include="Engines\ConvertEngine.cs" />
     <Compile Include="Engines\ExcelExportEngine.cs" />
-    <Compile Include="Engines\MKBEngine.cs" />
+    <Compile Include="Engines\ServiceEngine.cs" />
     <Compile Include="Entities\GlobalSettingsClass.cs" />
     <Compile Include="Entities\HeAnestetistClass.cs" />
     <Compile Include="Entities\LoggerEngine.cs" />
-    <Compile Include="Entities\MKBClass.cs" />
+    <Compile Include="Entities\MkbClass.cs" />
+    <Compile Include="Entities\ServiceClass.cs" />
     <Compile Include="Entities\SheAnestetistClass.cs" />
     <Compile Include="GlobalSettingsForm.cs">
       <SubType>Form</SubType>
@@ -149,11 +151,35 @@
     <Compile Include="GlobalSettingsForm.Designer.cs">
       <DependentUpon>GlobalSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CureForm.Designer.cs">
+      <DependentUpon>CureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurveyForm.Designer.cs">
+      <DependentUpon>SurveyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeAnestethistForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HeAnestethistForm.Designer.cs">
       <DependentUpon>HeAnestethistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CureViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CureViewForm.Designer.cs">
+      <DependentUpon>CureViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SurveyViewForm.Designer.cs">
+      <DependentUpon>SurveyViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HeAnestethistViewForm.cs">
       <SubType>Form</SubType>
@@ -194,6 +220,18 @@
       <DependentUpon>MedicalInspectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\NosologyClass.cs" />
+    <Compile Include="PrescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrescriptionForm.Designer.cs">
+      <DependentUpon>PrescriptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceSelectForm.Designer.cs">
+      <DependentUpon>ServiceSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MKBSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,8 +327,20 @@
     <EmbeddedResource Include="GlobalSettingsForm.resx">
       <DependentUpon>GlobalSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CureForm.resx">
+      <DependentUpon>CureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SurveyForm.resx">
+      <DependentUpon>SurveyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HeAnestethistForm.resx">
       <DependentUpon>HeAnestethistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CureViewForm.resx">
+      <DependentUpon>CureViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SurveyViewForm.resx">
+      <DependentUpon>SurveyViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HeAnestethistViewForm.resx">
       <DependentUpon>HeAnestethistViewForm.cs</DependentUpon>
@@ -309,6 +359,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MedicalInspectionForm.resx">
       <DependentUpon>MedicalInspectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrescriptionForm.resx">
+      <DependentUpon>PrescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceSelectForm.resx">
+      <DependentUpon>ServiceSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MKBSelectForm.resx">
       <DependentUpon>MKBSelectForm.cs</DependentUpon>
@@ -485,6 +541,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ANGEL.ico" />
+    <None Include="Image\makeLast.ico" />
+    <None Include="Image\makeFirst.ico" />
+    <None Include="Image\up.ico" />
+    <None Include="Image\down.ico" />
+    <None Include="Image\pill_green.ico" />
     <None Include="Image\importKSG.ico" />
     <None Include="Image\help.ico" />
     <None Include="Image\FilterShow.ico" />

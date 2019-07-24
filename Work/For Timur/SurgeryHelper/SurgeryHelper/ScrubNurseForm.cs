@@ -30,14 +30,14 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int orderlyCnt = 0;
-            while (listCnt < listBoxScrubNurce.Items.Count && orderlyCnt < _dbEngine.ScrubNurseList.Length)
+            while (listCnt < listBoxScrubNurce.Items.Count && orderlyCnt < _dbEngine.ScrubNurseList.Count)
             {
                 listBoxScrubNurce.Items[listCnt] = _dbEngine.ScrubNurseList[orderlyCnt].LastNameWithInitials;
                 listCnt++;
                 orderlyCnt++;
             }
 
-            if (orderlyCnt == _dbEngine.ScrubNurseList.Length)
+            if (orderlyCnt == _dbEngine.ScrubNurseList.Count)
             {
                 while (listCnt < listBoxScrubNurce.Items.Count)
                 {
@@ -46,7 +46,7 @@ namespace SurgeryHelper
             }
             else
             {
-                while (orderlyCnt < _dbEngine.ScrubNurseList.Length)
+                while (orderlyCnt < _dbEngine.ScrubNurseList.Count)
                 {
                     listBoxScrubNurce.Items.Add(_dbEngine.ScrubNurseList[orderlyCnt].LastNameWithInitials);
                     orderlyCnt++;

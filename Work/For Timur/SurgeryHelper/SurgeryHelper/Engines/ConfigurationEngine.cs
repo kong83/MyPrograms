@@ -1,6 +1,9 @@
-﻿using System;
+﻿using SurgeryHelper.Entities;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SurgeryHelper.Engines
@@ -98,6 +101,40 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
+        /// Размер формы с назначениями
+        /// </summary>
+        public Size PrescriptionFormSize
+        {
+            get
+            {
+                return GetSizeFromString(_appSettings.Settings["PrescriptionFormSize"].Value);
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormSize"].Value = GetStringFromSize(value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Размер формы с услугами
+        /// </summary>
+        public Size ServiceSelectFormSize
+        {
+            get
+            {
+                return GetSizeFromString(_appSettings.Settings["ServiceSelectFormSize"].Value);
+            }
+
+            set
+            {
+                _appSettings.Settings["ServiceSelectFormSize"].Value = GetStringFromSize(value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
         /// Размер формы с информацией по пациенту
         /// </summary>
         public Size PatientViewFormSize
@@ -115,19 +152,55 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Размер формы с информацией по пациенту
+        /// Список последних выбранных МКБ
         /// </summary>
         public string[] PatientViewFormLastMKB
         {
             get
             {
-                string[] lastMKBList = _appSettings.Settings["PatientViewFormLastMKB"].Value.Split(';');
+                string[] lastMKBList = _appSettings.Settings["PatientViewFormLastMKB"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 return lastMKBList;
             }
 
             set
             {
                 _appSettings.Settings["PatientViewFormLastMKB"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Список последних выбранных лекарств
+        /// </summary>
+        public string[] PrescriptionFormLastUsedPrescription
+        {
+            get
+            {
+                string[] lastList = _appSettings.Settings["PrescriptionFormLastUsedPrescription"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormLastUsedPrescription"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Список последних выбранных дополнительных методов обследования
+        /// </summary>
+        public string[] PrescriptionFormLastUsedSurvey
+        {
+            get
+            {
+                string[] lastList = _appSettings.Settings["PrescriptionFormLastUsedSurvey"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormLastUsedSurvey"].Value = string.Join(";", value);
                 _config.Save();
             }
         }
@@ -195,6 +268,24 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
+        /// Расположение формы с назначениями
+        /// </summary>
+        public Point PrescriptionFormLocation
+        {
+            get
+            {
+                return GetPointFromString(_appSettings.Settings["PrescriptionFormLocation"].Value);
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormLocation"].Value = GetStringFromPoint(value);
+                _config.Save();
+            }
+        }
+        
+
+        /// <summary>
         /// Расположение формы с кодами МКБ
         /// </summary>
         public Point MKBSelectFormLocation
@@ -207,6 +298,23 @@ namespace SurgeryHelper.Engines
             set
             {
                 _appSettings.Settings["MKBSelectFormLocation"].Value = GetStringFromPoint(value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Расположение формы с услугами
+        /// </summary>
+        public Point ServiceSelectFormLocation
+        {
+            get
+            {
+                return GetPointFromString(_appSettings.Settings["ServiceSelectFormLocation"].Value);
+            }
+
+            set
+            {
+                _appSettings.Settings["ServiceSelectFormLocation"].Value = GetStringFromPoint(value);
                 _config.Save();
             }
         }
@@ -479,6 +587,58 @@ namespace SurgeryHelper.Engines
             set
             {
                 _appSettings.Settings["MKBSelectFormListWidths"].Value = value;
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Ширина колонок в таблице с терапией на форме с назначениями
+        /// </summary>
+        public string PrescriptionFormTherapyListWidths
+        {
+            get
+            {
+                return _appSettings.Settings["PrescriptionFormTherapyListWidths"].Value;
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormTherapyListWidths"].Value = value;
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Ширина колонок в таблице с дополнительными методами исследования на форме с назначениями
+        /// </summary>
+        public string PrescriptionFormSurveyListWidths
+        {
+            get
+            {
+                return _appSettings.Settings["PrescriptionFormSurveyListWidths"].Value;
+            }
+
+            set
+            {
+                _appSettings.Settings["PrescriptionFormSurveyListWidths"].Value = value;
+                _config.Save();
+            }
+        }
+
+
+        /// <summary>
+        /// Ширина колонок в таблице с услугами
+        /// </summary>
+        public string ServiceSelectFormListWidths
+        {
+            get
+            {
+                return _appSettings.Settings["ServiceSelectFormListWidths"].Value;
+            }
+
+            set
+            {
+                _appSettings.Settings["ServiceSelectFormListWidths"].Value = value;
                 _config.Save();
             }
         }

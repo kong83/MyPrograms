@@ -14,7 +14,9 @@ namespace SurgeryHelper
 
         private readonly PatientClass _savePatientInfo;
 
-        public string MKBCodeFromMKBSelectForm { set; private get; }
+        public string MkbCodeFromMkbSelectForm { set; private get; }
+
+        public ServiceClass ServiceInfoFromServiceSelectForm { set; private get; }
 
         private readonly PatientListForm _patientForm;
         private readonly DbEngine _dbEngine;
@@ -43,17 +45,17 @@ namespace SurgeryHelper
 
         public PatientViewForm(PatientListForm patientListForm, DbEngine dbEngine, PatientClass patientInfo)
         {
-            _stopSaveParameters = true;
+            _stopSaveParameters = true;            
 
             InitializeComponent();
 
             _dbEngine = dbEngine;
             _patientForm = patientListForm;
 
-            PutObjectsToComboBox(_dbEngine.SurgeonList, comboBoxDoctorInChargeOfTheCase);
-            PutObjectsToComboBox(_dbEngine.NosologyList, comboBoxNosology);
+            PutObjectsToComboBox(_dbEngine.SurgeonList.ToArray(), comboBoxDoctorInChargeOfTheCase);
+            PutObjectsToComboBox(_dbEngine.NosologyList.ToArray(), comboBoxNosology);
 
-            comboBoxTypeKSG.SelectedIndex = 0;
+            comboBoxTypeKSG.SelectedIndex = 0;            
 
             comboBoxMKB.Items.Clear();
             comboBoxMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastMKB);
@@ -81,6 +83,7 @@ namespace SurgeryHelper
                 {
                     dateTimePickerBirthday.Checked = false;
                 }
+                comboBoxMKB.Text = _patientInfo.MKB;
 
                 textBoxCity.Text = _patientInfo.CityName;
                 textBoxStreet.Text = _patientInfo.StreetName;
@@ -90,8 +93,10 @@ namespace SurgeryHelper
                 textBoxWorkPlace.Text = _patientInfo.WorkPlace;
                 textBoxPhone.Text = _patientInfo.Phone;
                 comboBoxTypeKSG.Text = _patientInfo.TypeOfKSG;
-                comboBoxMKB.Text = _patientInfo.MKB;
-                comboBoxKSG.Text = _patientInfo.KSG;
+                textBoxServiceName.Text = _patientInfo.ServiceName;
+                textBoxServiceCode.Text = _patientInfo.ServiceCode;
+                textBoxKsgCode.Text = _patientInfo.KsgCode;
+                textBoxKsgDecoding.Text = _patientInfo.KsgDecoding;
 
                 textBoxDiagnose.Text = _patientInfo.Diagnose;
 
@@ -204,6 +209,12 @@ namespace SurgeryHelper
             }
         }
 
+        private void buttonPrescription_Click(object sender, EventArgs e)
+        {
+            new PrescriptionForm(_dbEngine, _patientInfo).ShowDialog();
+        }
+
+
         /// <summary>
         /// Открыть список с документами
         /// </summary>
@@ -219,7 +230,7 @@ namespace SurgeryHelper
 
             PutDataToPatient(_patientInfo);
 
-            new DocumentsForm(this, _patientInfo, _dbEngine.GlobalSettings).ShowDialog();
+            new DocumentsForm(this, _patientInfo, _dbEngine).ShowDialog();
 
             switch (SelectedDocument)
             {
@@ -302,7 +313,10 @@ namespace SurgeryHelper
             patientInfo.Phone = textBoxPhone.Text;
             patientInfo.TypeOfKSG = comboBoxTypeKSG.Text;
             patientInfo.MKB = comboBoxMKB.Text;
-            patientInfo.KSG = comboBoxKSG.Text;
+            patientInfo.ServiceName = textBoxServiceName.Text;
+            patientInfo.ServiceCode = textBoxServiceCode.Text;
+            patientInfo.KsgCode = textBoxKsgCode.Text;
+            patientInfo.KsgDecoding = textBoxKsgDecoding.Text;
 
             patientInfo.Diagnose = textBoxDiagnose.Text;
 
@@ -321,6 +335,11 @@ namespace SurgeryHelper
             patientInfo.DoctorInChargeOfTheCase = comboBoxDoctorInChargeOfTheCase.Text;
             patientInfo.PrivateFolder = textBoxPrivateFolder.Text;
 
+            SaveLastUsedMKB();
+        }
+
+        private void SaveLastUsedMKB()
+        {
             var lastMKBList = new List<string> { comboBoxMKB.Text };
             foreach (string mkb in comboBoxMKB.Items)
             {
@@ -447,10 +466,10 @@ namespace SurgeryHelper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelDoctorInCase_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new SurgeonForm(_dbEngine, this, "comboBoxDoctorInChargeOfTheCase").ShowDialog();
-            PutObjectsToComboBox(_dbEngine.SurgeonList, comboBoxDoctorInChargeOfTheCase);
+            PutObjectsToComboBox(_dbEngine.SurgeonList.ToArray(), comboBoxDoctorInChargeOfTheCase);
         }
 
         /// <summary>
@@ -661,64 +680,12 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void comboBoxTypeKSG_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxMKB_TextChanged(null, null);
-        }
-
-        /// <summary>
-        /// Заполнение списка кодов КСГ при изменении кода МКБ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxMKB_TextChanged(object sender, EventArgs e)
-        {
-            MKBEngine mkbEngine = _dbEngine.GetCorrectMKBEngine(comboBoxTypeKSG.Text);
-
-            if (mkbEngine == null)
-            { 
-                return;
-            }
-
-            List<MKBClass> mkbList = mkbEngine.GetMkbList(comboBoxMKB.Text);
-
-            comboBoxKSG.Items.Clear();
-            foreach (MKBClass mkbInfo in mkbList)
-            {
-                comboBoxKSG.Items.Add(mkbInfo.KsgName);
-            }
-
-            if (comboBoxKSG.Items.Count > 0)
-            {
-                comboBoxKSG.SelectedIndex = 0;
-            }
-            else
-            {
-                textBoxKSGDecoding.Text = textBoxKDNorm.Text = 
-                textBoxKDMin.Text = textBoxKDMax.Text = 
-                textBoxSpecialty.Text = string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Заполнение полей при изменении кода КСГ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxKSG_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MKBEngine mkbEngine = _dbEngine.GetCorrectMKBEngine(comboBoxTypeKSG.Text);
-
-            if (mkbEngine == null)
+            if (_stopSaveParameters)
             {
                 return;
             }
 
-            MKBClass mkbInfo = mkbEngine.GetMkbInfo(comboBoxMKB.Text, comboBoxKSG.Text);
-
-            textBoxKSGDecoding.Text = mkbInfo.KsgDecoding;
-            textBoxKDNorm.Text = mkbInfo.KDNorm;
-            textBoxKDMin.Text = mkbInfo.KDMin;
-            textBoxKDMax.Text = mkbInfo.KDMax;
-            textBoxSpecialty.Text = mkbInfo.Specialiy;
+            textBoxServiceName.Text = textBoxServiceCode.Text = textBoxKsgCode.Text = textBoxKsgDecoding.Text = string.Empty;
         }
 
         /// <summary>
@@ -728,11 +695,32 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void linkLabelMKB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            MkbCodeFromMkbSelectForm = "";
             new MKBSelectForm(this, _dbEngine).ShowDialog();
-            if (!string.IsNullOrEmpty(MKBCodeFromMKBSelectForm))
+            if (!string.IsNullOrEmpty(MkbCodeFromMkbSelectForm))
             {
-                comboBoxMKB.Text = MKBCodeFromMKBSelectForm;
+                comboBoxMKB.Text = MkbCodeFromMkbSelectForm;
             }
+        }
+
+        /// <summary>
+        /// Выбрать название услуги из списка услуг
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelServiceName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new ServiceSelectForm(this, _dbEngine, _dbEngine.GetCorrectServiceEngine(comboBoxTypeKSG.Text)).ShowDialog();
+
+            if (ServiceInfoFromServiceSelectForm == null)
+            {
+                return;
+            }
+
+            textBoxServiceName.Text = ServiceInfoFromServiceSelectForm.ServiceName;
+            textBoxServiceCode.Text = ServiceInfoFromServiceSelectForm.ServiceCode;
+            textBoxKsgCode.Text = ServiceInfoFromServiceSelectForm.KsgCode;
+            textBoxKsgDecoding.Text = ServiceInfoFromServiceSelectForm.KsgDecoding;
         }
 
         #region Подсказки
@@ -760,6 +748,18 @@ namespace SurgeryHelper
             buttonDocuments.FlatStyle = FlatStyle.Flat;
         }
 
+        private void buttonPrescription_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Открыть список назначений и дополнительных обследований", buttonPrescription, 15, -20);
+            buttonPrescription.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void buttonPrescription_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(buttonPrescription);
+            buttonPrescription.FlatStyle = FlatStyle.Flat;
+        }
+
         private void buttonOk_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.Show("Сохранить изменения", buttonOk, 15, -20);
@@ -774,7 +774,7 @@ namespace SurgeryHelper
 
         private void buttonClose_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Закрыть окно без сохранения изменений\r\nВнимание! Изменения в операциях также будут отменены!", buttonClose, 15, -40);
+            toolTip1.Show("Закрыть окно без сохранения изменений\r\nВнимание! Изменения в операциях и назначениях также будут отменены!", buttonClose, 15, -40);
             buttonClose.FlatStyle = FlatStyle.Popup;
         }
 
@@ -840,12 +840,12 @@ namespace SurgeryHelper
 
         private void textBoxKSGDecoding_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show(textBoxKSGDecoding.Text, textBoxKSGDecoding, 15, -20);
+            toolTip1.Show(textBoxKsgDecoding.Text, textBoxKsgDecoding, 15, -20);
         }
 
         private void textBoxKSGDecoding_MouseLeave(object sender, EventArgs e)
         {
-            toolTip1.Hide(textBoxKSGDecoding);
+            toolTip1.Hide(textBoxKsgDecoding);
         }
                       
         private void linkLabelMKB_MouseEnter(object sender, EventArgs e)
@@ -858,14 +858,39 @@ namespace SurgeryHelper
             toolTip1.Hide(linkLabelMKB);
         }
 
-        private void textBoxSpecialty_MouseEnter(object sender, EventArgs e)
+        private void textBoxServiceName_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show(textBoxSpecialty.Text, textBoxSpecialty, 15, -20);
+            toolTip1.Show(textBoxServiceName.Text, textBoxServiceName, 15, -20);
         }
 
-        private void textBoxSpecialty_MouseLeave(object sender, EventArgs e)
+        private void textBoxServiceName_MouseLeave(object sender, EventArgs e)
         {
-            toolTip1.Hide(textBoxSpecialty);
+            toolTip1.Hide(textBoxServiceName);
+        }
+
+        private void comboBoxMKB_MouseEnter(object sender, EventArgs e)
+        {
+            string mkbName = _dbEngine.GetMkbName(comboBoxMKB.Text);
+
+            if (!string.IsNullOrEmpty(mkbName))
+            {
+                toolTip1.Show(mkbName, comboBoxMKB, 15, -20);
+            }
+        }
+
+        private void comboBoxMKB_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(comboBoxMKB);
+        }
+
+        private void linkLabelServiceName_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Выбрать услугу и соответствующий код КСГ из списка услуг", linkLabelServiceName, 15, -20);
+        }
+
+        private void linkLabelServiceName_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(linkLabelServiceName);
         }
         #endregion
     }

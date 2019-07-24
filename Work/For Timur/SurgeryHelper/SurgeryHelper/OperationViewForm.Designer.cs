@@ -130,9 +130,9 @@
             this.linkLabelSurgeonList.TabIndex = 9;
             this.linkLabelSurgeonList.TabStop = true;
             this.linkLabelSurgeonList.Text = "* Список хирургов";
-            this.linkLabelSurgeonList.MouseLeave += new System.EventHandler(this.linkLabelSurgeonList_MouseLeave);
             this.linkLabelSurgeonList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSurgeonList_LinkClicked);
             this.linkLabelSurgeonList.MouseEnter += new System.EventHandler(this.linkLabelSurgeonList_MouseEnter);
+            this.linkLabelSurgeonList.MouseLeave += new System.EventHandler(this.linkLabelSurgeonList_MouseLeave);
             // 
             // linkLabelAssistentList
             // 
@@ -144,9 +144,9 @@
             this.linkLabelAssistentList.TabIndex = 13;
             this.linkLabelAssistentList.TabStop = true;
             this.linkLabelAssistentList.Text = "Список ассистентов";
-            this.linkLabelAssistentList.MouseLeave += new System.EventHandler(this.linkLabelAssistentList_MouseLeave);
             this.linkLabelAssistentList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAssistentList_LinkClicked);
             this.linkLabelAssistentList.MouseEnter += new System.EventHandler(this.linkLabelAssistentList_MouseEnter);
+            this.linkLabelAssistentList.MouseLeave += new System.EventHandler(this.linkLabelAssistentList_MouseLeave);
             // 
             // linkLabelScrubNurseList
             // 
@@ -158,9 +158,9 @@
             this.linkLabelScrubNurseList.TabIndex = 21;
             this.linkLabelScrubNurseList.TabStop = true;
             this.linkLabelScrubNurseList.Text = "* Операц. мед. сестра";
-            this.linkLabelScrubNurseList.MouseLeave += new System.EventHandler(this.linkLabelScrubNurseList_MouseLeave);
             this.linkLabelScrubNurseList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelScrubNurseList_LinkClicked);
             this.linkLabelScrubNurseList.MouseEnter += new System.EventHandler(this.linkLabelScrubNurseList_MouseEnter);
+            this.linkLabelScrubNurseList.MouseLeave += new System.EventHandler(this.linkLabelScrubNurseList_MouseLeave);
             // 
             // linkLabelOrderlyList
             // 
@@ -168,13 +168,13 @@
             this.linkLabelOrderlyList.AutoSize = true;
             this.linkLabelOrderlyList.Location = new System.Drawing.Point(12, 394);
             this.linkLabelOrderlyList.Name = "linkLabelOrderlyList";
-            this.linkLabelOrderlyList.Size = new System.Drawing.Size(56, 13);
+            this.linkLabelOrderlyList.Size = new System.Drawing.Size(49, 13);
             this.linkLabelOrderlyList.TabIndex = 25;
             this.linkLabelOrderlyList.TabStop = true;
-            this.linkLabelOrderlyList.Text = "* Санитар";
-            this.linkLabelOrderlyList.MouseLeave += new System.EventHandler(this.linkLabelOrderlyList_MouseLeave);
+            this.linkLabelOrderlyList.Text = "Санитар";
             this.linkLabelOrderlyList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOrderlyList_LinkClicked);
             this.linkLabelOrderlyList.MouseEnter += new System.EventHandler(this.linkLabelOrderlyList_MouseEnter);
+            this.linkLabelOrderlyList.MouseLeave += new System.EventHandler(this.linkLabelOrderlyList_MouseLeave);
             // 
             // buttonOk
             // 
@@ -189,9 +189,9 @@
             this.buttonOk.TabIndex = 58;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // buttonClose
             // 
@@ -206,9 +206,9 @@
             this.buttonClose.TabIndex = 57;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // buttonProtocol
             // 
@@ -223,9 +223,9 @@
             this.buttonProtocol.TabIndex = 67;
             this.buttonProtocol.TabStop = false;
             this.buttonProtocol.UseVisualStyleBackColor = true;
-            this.buttonProtocol.MouseLeave += new System.EventHandler(this.buttonProtocol_MouseLeave);
             this.buttonProtocol.Click += new System.EventHandler(this.buttonProtocol_Click);
             this.buttonProtocol.MouseEnter += new System.EventHandler(this.buttonProtocol_MouseEnter);
+            this.buttonProtocol.MouseLeave += new System.EventHandler(this.buttonProtocol_MouseLeave);
             // 
             // comboBoxScrubNurse
             // 
@@ -299,9 +299,9 @@
             this.linkLabelHeAnestethist.TabIndex = 74;
             this.linkLabelHeAnestethist.TabStop = true;
             this.linkLabelHeAnestethist.Text = "Анестезиолог";
-            this.linkLabelHeAnestethist.MouseLeave += new System.EventHandler(this.linkLabelHeAnestethist_MouseLeave);
             this.linkLabelHeAnestethist.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHeAnestethist_LinkClicked);
             this.linkLabelHeAnestethist.MouseEnter += new System.EventHandler(this.linkLabelHeAnestethist_MouseEnter);
+            this.linkLabelHeAnestethist.MouseLeave += new System.EventHandler(this.linkLabelHeAnestethist_MouseLeave);
             // 
             // linkLabelSheAnestethistList
             // 
@@ -313,9 +313,9 @@
             this.linkLabelSheAnestethistList.TabIndex = 75;
             this.linkLabelSheAnestethistList.TabStop = true;
             this.linkLabelSheAnestethistList.Text = "Анестезистка";
-            this.linkLabelSheAnestethistList.MouseLeave += new System.EventHandler(this.linkLabelSheAnestethistList_MouseLeave);
             this.linkLabelSheAnestethistList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSheAnestethistList_LinkClicked);
             this.linkLabelSheAnestethistList.MouseEnter += new System.EventHandler(this.linkLabelSheAnestethistList_MouseEnter);
+            this.linkLabelSheAnestethistList.MouseLeave += new System.EventHandler(this.linkLabelSheAnestethistList_MouseLeave);
             // 
             // comboBoxHeAnestethist
             // 
@@ -372,8 +372,8 @@
             this.Name = "OperationViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "OperationViewForm";
-            this.Load += new System.EventHandler(this.OperationViewForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OperationViewForm_FormClosing);
+            this.Load += new System.EventHandler(this.OperationViewForm_Load);
             this.LocationChanged += new System.EventHandler(this.OperationViewForm_LocationChanged);
             this.ResumeLayout(false);
             this.PerformLayout();

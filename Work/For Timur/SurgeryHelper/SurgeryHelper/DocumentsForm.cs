@@ -12,16 +12,16 @@ namespace SurgeryHelper
 
         private readonly PatientViewForm _patientViewForm;
         private readonly PatientClass _patientInfo;
-        private readonly GlobalSettingsClass _globalSettings;
+        private readonly DbEngine _dbEngine;
         private readonly string _additionalDocumentsFolderPath;
 
-        public DocumentsForm(PatientViewForm patientViewForm, PatientClass patientInfo, GlobalSettingsClass globalSettings)
+        public DocumentsForm(PatientViewForm patientViewForm, PatientClass patientInfo, DbEngine dbEngine)
         {
             InitializeComponent();
 
             _patientViewForm = patientViewForm;
             _patientInfo = patientInfo;
-            _globalSettings = globalSettings;
+            _dbEngine = dbEngine;
             _patientViewForm.SelectedDocument = string.Empty;
             _additionalDocumentsFolderPath = Path.Combine(Application.StartupPath, AdditionalDocumentsFolderName);
         }
@@ -74,8 +74,8 @@ namespace SurgeryHelper
                 return;
             }
 
-            WordExportEngine.ExportAdditionalDocument(
-                Path.Combine(_additionalDocumentsFolderPath, comboBoxAdditionalDocuments.Text), _patientInfo, _globalSettings);
+            new WordExportEngine(_dbEngine).ExportAdditionalDocument(
+                Path.Combine(_additionalDocumentsFolderPath, comboBoxAdditionalDocuments.Text), _patientInfo);
 
             Close();
         }

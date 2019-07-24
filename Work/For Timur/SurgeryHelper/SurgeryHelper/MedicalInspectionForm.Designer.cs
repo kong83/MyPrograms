@@ -439,9 +439,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageGeneral);
             this.tabControl1.Controls.Add(this.tabPageAnamnes);
             this.tabControl1.Controls.Add(this.tabPageStPraesens);
@@ -517,9 +517,9 @@
             // 
             // textBoxStLocalisDescription
             // 
-            this.textBoxStLocalisDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStLocalisDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStLocalisDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxStLocalisDescription.Location = new System.Drawing.Point(6, 26);
             this.textBoxStLocalisDescription.MaxLength = 200000;
@@ -544,7 +544,7 @@
             this.dateTimePickerLnWithNumberEnd.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerLnWithNumberEnd.Enabled = false;
             this.dateTimePickerLnWithNumberEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerLnWithNumberEnd.Location = new System.Drawing.Point(746, 320);
+            this.dateTimePickerLnWithNumberEnd.Location = new System.Drawing.Point(757, 320);
             this.dateTimePickerLnWithNumberEnd.Name = "dateTimePickerLnWithNumberEnd";
             this.dateTimePickerLnWithNumberEnd.Size = new System.Drawing.Size(85, 20);
             this.dateTimePickerLnWithNumberEnd.TabIndex = 13;
@@ -554,7 +554,7 @@
             this.dateTimePickerLnWithNumberStart.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerLnWithNumberStart.Enabled = false;
             this.dateTimePickerLnWithNumberStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerLnWithNumberStart.Location = new System.Drawing.Point(641, 320);
+            this.dateTimePickerLnWithNumberStart.Location = new System.Drawing.Point(653, 320);
             this.dateTimePickerLnWithNumberStart.Name = "dateTimePickerLnWithNumberStart";
             this.dateTimePickerLnWithNumberStart.Size = new System.Drawing.Size(85, 20);
             this.dateTimePickerLnWithNumberStart.TabIndex = 11;
@@ -564,7 +564,7 @@
             this.dateTimePickerLnFirstStart.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerLnFirstStart.Enabled = false;
             this.dateTimePickerLnFirstStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerLnFirstStart.Location = new System.Drawing.Point(627, 349);
+            this.dateTimePickerLnFirstStart.Location = new System.Drawing.Point(639, 349);
             this.dateTimePickerLnFirstStart.Name = "dateTimePickerLnFirstStart";
             this.dateTimePickerLnFirstStart.Size = new System.Drawing.Size(85, 20);
             this.dateTimePickerLnFirstStart.TabIndex = 17;
@@ -575,10 +575,10 @@
             this.radioButtonNoLn.Checked = true;
             this.radioButtonNoLn.Location = new System.Drawing.Point(372, 380);
             this.radioButtonNoLn.Name = "radioButtonNoLn";
-            this.radioButtonNoLn.Size = new System.Drawing.Size(227, 17);
+            this.radioButtonNoLn.Size = new System.Drawing.Size(239, 17);
             this.radioButtonNoLn.TabIndex = 21;
             this.radioButtonNoLn.TabStop = true;
-            this.radioButtonNoLn.Text = "Лист нетрудоспособности не требуется";
+            this.radioButtonNoLn.Text = "Листок нетрудоспособности не требуется";
             this.radioButtonNoLn.UseVisualStyleBackColor = true;
             // 
             // radioButtonNewLn
@@ -586,9 +586,9 @@
             this.radioButtonNewLn.AutoSize = true;
             this.radioButtonNewLn.Location = new System.Drawing.Point(372, 350);
             this.radioButtonNewLn.Name = "radioButtonNewLn";
-            this.radioButtonNewLn.Size = new System.Drawing.Size(259, 17);
+            this.radioButtonNewLn.Size = new System.Drawing.Size(271, 17);
             this.radioButtonNewLn.TabIndex = 15;
-            this.radioButtonNewLn.Text = "Лист нетрудоспособности открыт первично с ";
+            this.radioButtonNewLn.Text = "Листок нетрудоспособности открыт первично с ";
             this.radioButtonNewLn.UseVisualStyleBackColor = true;
             this.radioButtonNewLn.CheckedChanged += new System.EventHandler(this.radioButtonNewLn_CheckedChanged);
             // 
@@ -597,9 +597,9 @@
             this.radioButtonLnWithNumber.AutoSize = true;
             this.radioButtonLnWithNumber.Location = new System.Drawing.Point(372, 321);
             this.radioButtonLnWithNumber.Name = "radioButtonLnWithNumber";
-            this.radioButtonLnWithNumber.Size = new System.Drawing.Size(376, 17);
+            this.radioButtonLnWithNumber.Size = new System.Drawing.Size(388, 17);
             this.radioButtonLnWithNumber.TabIndex = 7;
-            this.radioButtonLnWithNumber.Text = "Лист нетрудоспособности выдан амбулаторно с                               по";
+            this.radioButtonLnWithNumber.Text = "Листок нетрудоспособности выдан амбулаторно с                               по";
             this.radioButtonLnWithNumber.UseVisualStyleBackColor = true;
             this.radioButtonLnWithNumber.CheckedChanged += new System.EventHandler(this.radioButtonLnWithNumber_CheckedChanged);
             // 
@@ -843,7 +843,7 @@
             this.checkBoxIsAnamnezEnabled.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsAnamnezEnabled.Location = new System.Drawing.Point(12, 5);
             this.checkBoxIsAnamnezEnabled.Name = "checkBoxIsAnamnezEnabled";
-            this.checkBoxIsAnamnezEnabled.Size = new System.Drawing.Size(227, 20);
+            this.checkBoxIsAnamnezEnabled.Size = new System.Drawing.Size(230, 20);
             this.checkBoxIsAnamnezEnabled.TabIndex = 0;
             this.checkBoxIsAnamnezEnabled.Text = "Включить анамнез в отчёт";
             this.checkBoxIsAnamnezEnabled.UseVisualStyleBackColor = true;
@@ -1868,7 +1868,7 @@
             this.checkBoxIsUpperExtremityJoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsUpperExtremityJoint.Location = new System.Drawing.Point(10, 3);
             this.checkBoxIsUpperExtremityJoint.Name = "checkBoxIsUpperExtremityJoint";
-            this.checkBoxIsUpperExtremityJoint.Size = new System.Drawing.Size(393, 20);
+            this.checkBoxIsUpperExtremityJoint.Size = new System.Drawing.Size(398, 20);
             this.checkBoxIsUpperExtremityJoint.TabIndex = 101;
             this.checkBoxIsUpperExtremityJoint.Text = "Объем движений в суставах верхней конечности";
             this.checkBoxIsUpperExtremityJoint.UseVisualStyleBackColor = true;
@@ -2768,7 +2768,7 @@
             this.label54.Size = new System.Drawing.Size(379, 13);
             this.label54.TabIndex = 35;
             this.label54.Text = "ЗПС : лучевое отведение и приведение (F: 35-0-15): акт -                 , пасс -" +
-                "";
+    "";
             // 
             // label53
             // 
@@ -2799,7 +2799,7 @@
             this.label51.Size = new System.Drawing.Size(421, 13);
             this.label51.TabIndex = 32;
             this.label51.Text = "Лучезапястный сустав: разгибание и сгибание (S: 70-0-80): акт -                 ," +
-                " пасс -";
+    " пасс -";
             // 
             // label50
             // 
@@ -2810,7 +2810,7 @@
             this.label50.Size = new System.Drawing.Size(422, 13);
             this.label50.TabIndex = 31;
             this.label50.Text = "Луче-локтевые суставы: супинация и пронация (R: 90-0-90): акт -                 ," +
-                " пасс -";
+    " пасс -";
             // 
             // label49
             // 
@@ -2821,7 +2821,7 @@
             this.label49.Size = new System.Drawing.Size(391, 13);
             this.label49.TabIndex = 30;
             this.label49.Text = "Локтевой сустав: разгибание и сгибание (S: 0-0-150): акт -                 , пасс" +
-                " -";
+    " -";
             // 
             // label48
             // 
@@ -2832,7 +2832,7 @@
             this.label48.Size = new System.Drawing.Size(398, 13);
             this.label48.TabIndex = 29;
             this.label48.Text = "нар. и вн. ротация при приведенном плече (R: 65-0-70): акт -                 , па" +
-                "сс -";
+    "сс -";
             // 
             // label47
             // 
@@ -2843,7 +2843,7 @@
             this.label47.Size = new System.Drawing.Size(425, 13);
             this.label47.TabIndex = 28;
             this.label47.Text = "нар. и вн. ротация при отведенном на 90° плече (R: 90-0-90): акт -               " +
-                "  , пасс -";
+    "  , пасс -";
             // 
             // label46
             // 
@@ -2854,7 +2854,7 @@
             this.label46.Size = new System.Drawing.Size(390, 13);
             this.label46.TabIndex = 27;
             this.label46.Text = "горизонтальное разгибание и сгибание (Т: 30-0-135): акт -                 , пасс " +
-                "-";
+    "-";
             // 
             // label45
             // 
@@ -2875,7 +2875,7 @@
             this.label44.Size = new System.Drawing.Size(390, 13);
             this.label44.TabIndex = 25;
             this.label44.Text = "Плечевой сустав: разгибание/сгибание (S: 50-0-180): акт -                 , пасс " +
-                "-";
+    "-";
             // 
             // label63
             // 
@@ -2970,7 +2970,7 @@
             this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label94.Location = new System.Drawing.Point(350, 172);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(203, 16);
+            this.label94.Size = new System.Drawing.Size(209, 16);
             this.label94.TabIndex = 20;
             this.label94.Text = "Дистальнее повреждения:";
             // 
@@ -4397,7 +4397,7 @@
             this.checkBoxIsHandDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsHandDamage.Location = new System.Drawing.Point(10, 2);
             this.checkBoxIsHandDamage.Name = "checkBoxIsHandDamage";
-            this.checkBoxIsHandDamage.Size = new System.Drawing.Size(174, 20);
+            this.checkBoxIsHandDamage.Size = new System.Drawing.Size(178, 20);
             this.checkBoxIsHandDamage.TabIndex = 1;
             this.checkBoxIsHandDamage.Text = "Повреждения кисти";
             this.checkBoxIsHandDamage.UseVisualStyleBackColor = true;

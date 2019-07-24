@@ -125,7 +125,7 @@ namespace SurgeryHelper
 
             PutDataToPatient(tempPatientInfo);
 
-            WordExportEngine.ExportLineOfCommunicationEpicrisis(tempPatientInfo, _dbEngine.GlobalSettings);
+            new WordExportEngine(_dbEngine).ExportLineOfCommunicationEpicrisis(tempPatientInfo);
         }
 
         private void LineOfCommunicationEpicrisisForm_FormClosing(object sender, FormClosingEventArgs e)

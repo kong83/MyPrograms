@@ -74,14 +74,16 @@
             this.checkBoxDnevnik = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxOperationCourse = new System.Windows.Forms.TextBox();
-            this.dateTimePickerTimeWritingEpicrisis = new System.Windows.Forms.DateTimePicker();
-            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxAntibioticProphylaxis = new System.Windows.Forms.CheckBox();
+            this.comboBoxAntibioticProphylaxis = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownChDD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADFirst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPulse)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDocuments
@@ -94,12 +96,12 @@
             this.buttonDocuments.Location = new System.Drawing.Point(59, 433);
             this.buttonDocuments.Name = "buttonDocuments";
             this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
-            this.buttonDocuments.TabIndex = 79;
+            this.buttonDocuments.TabIndex = 10;
             this.buttonDocuments.TabStop = false;
             this.buttonDocuments.UseVisualStyleBackColor = true;
-            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
             this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
             this.buttonDocuments.MouseEnter += new System.EventHandler(this.buttonDocuments_MouseEnter);
+            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
             // 
             // buttonOk
             // 
@@ -111,12 +113,12 @@
             this.buttonOk.Location = new System.Drawing.Point(620, 433);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
-            this.buttonOk.TabIndex = 78;
+            this.buttonOk.TabIndex = 11;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // buttonClose
             // 
@@ -128,12 +130,12 @@
             this.buttonClose.Location = new System.Drawing.Point(718, 433);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
-            this.buttonClose.TabIndex = 77;
+            this.buttonClose.TabIndex = 12;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // checkBoxPlan
             // 
@@ -234,28 +236,28 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.checkBoxDnevnik);
-            this.groupBox2.Location = new System.Drawing.Point(12, 34);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(439, 396);
+            this.groupBox2.Size = new System.Drawing.Size(439, 418);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
             // textBoxStLocalis
             // 
-            this.textBoxStLocalis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStLocalis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStLocalis.Location = new System.Drawing.Point(115, 312);
             this.textBoxStLocalis.MaxLength = 200000;
             this.textBoxStLocalis.Multiline = true;
             this.textBoxStLocalis.Name = "textBoxStLocalis";
             this.textBoxStLocalis.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxStLocalis.Size = new System.Drawing.Size(312, 74);
+            this.textBoxStLocalis.Size = new System.Drawing.Size(312, 97);
             this.textBoxStLocalis.TabIndex = 49;
             // 
             // textBoxStool
             // 
-            this.textBoxStool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStool.Location = new System.Drawing.Point(115, 286);
             this.textBoxStool.Name = "textBoxStool";
             this.textBoxStool.Size = new System.Drawing.Size(312, 20);
@@ -264,8 +266,8 @@
             // 
             // textBoxUrination
             // 
-            this.textBoxUrination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUrination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUrination.Location = new System.Drawing.Point(115, 260);
             this.textBoxUrination.Name = "textBoxUrination";
             this.textBoxUrination.Size = new System.Drawing.Size(312, 20);
@@ -274,8 +276,8 @@
             // 
             // textBoxStomach
             // 
-            this.textBoxStomach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStomach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStomach.Location = new System.Drawing.Point(115, 234);
             this.textBoxStomach.Name = "textBoxStomach";
             this.textBoxStomach.Size = new System.Drawing.Size(312, 20);
@@ -309,8 +311,8 @@
             // 
             // textBoxWheeze
             // 
-            this.textBoxWheeze.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxWheeze.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxWheeze.Location = new System.Drawing.Point(115, 154);
             this.textBoxWheeze.Name = "textBoxWheeze";
             this.textBoxWheeze.Size = new System.Drawing.Size(312, 20);
@@ -409,8 +411,8 @@
             // 
             // textBoxComplaints
             // 
-            this.textBoxComplaints.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxComplaints.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxComplaints.Location = new System.Drawing.Point(115, 48);
             this.textBoxComplaints.Name = "textBoxComplaints";
             this.textBoxComplaints.Size = new System.Drawing.Size(312, 20);
@@ -418,8 +420,8 @@
             // 
             // textBoxTemperature
             // 
-            this.textBoxTemperature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTemperature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxTemperature.Location = new System.Drawing.Point(115, 22);
             this.textBoxTemperature.Name = "textBoxTemperature";
             this.textBoxTemperature.Size = new System.Drawing.Size(312, 20);
@@ -582,7 +584,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(647, 123);
+            this.label5.Location = new System.Drawing.Point(643, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 81;
@@ -590,40 +592,56 @@
             // 
             // textBoxOperationCourse
             // 
-            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 144);
+            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 191);
             this.textBoxOperationCourse.MaxLength = 200000;
             this.textBoxOperationCourse.Multiline = true;
             this.textBoxOperationCourse.Name = "textBoxOperationCourse";
             this.textBoxOperationCourse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 286);
-            this.textBoxOperationCourse.TabIndex = 4;
+            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 239);
+            this.textBoxOperationCourse.TabIndex = 6;
             // 
-            // dateTimePickerTimeWritingEpicrisis
+            // groupBox3
             // 
-            this.dateTimePickerTimeWritingEpicrisis.CustomFormat = "HH:mm";
-            this.dateTimePickerTimeWritingEpicrisis.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTimeWritingEpicrisis.Location = new System.Drawing.Point(165, 10);
-            this.dateTimePickerTimeWritingEpicrisis.Name = "dateTimePickerTimeWritingEpicrisis";
-            this.dateTimePickerTimeWritingEpicrisis.ShowUpDown = true;
-            this.dateTimePickerTimeWritingEpicrisis.Size = new System.Drawing.Size(62, 20);
-            this.dateTimePickerTimeWritingEpicrisis.TabIndex = 1;
+            this.groupBox3.Controls.Add(this.comboBoxAntibioticProphylaxis);
+            this.groupBox3.Controls.Add(this.checkBoxAntibioticProphylaxis);
+            this.groupBox3.Location = new System.Drawing.Point(457, 118);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(479, 51);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
             // 
-            // label18
+            // checkBoxAntibioticProphylaxis
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(9, 13);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(148, 13);
-            this.label18.TabIndex = 84;
-            this.label18.Text = "Время написания эпикриза";
+            this.checkBoxAntibioticProphylaxis.AutoSize = true;
+            this.checkBoxAntibioticProphylaxis.Checked = true;
+            this.checkBoxAntibioticProphylaxis.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAntibioticProphylaxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxAntibioticProphylaxis.Location = new System.Drawing.Point(6, 0);
+            this.checkBoxAntibioticProphylaxis.Name = "checkBoxAntibioticProphylaxis";
+            this.checkBoxAntibioticProphylaxis.Size = new System.Drawing.Size(187, 17);
+            this.checkBoxAntibioticProphylaxis.TabIndex = 1;
+            this.checkBoxAntibioticProphylaxis.Text = "Антибиотикопрофилактика";
+            this.checkBoxAntibioticProphylaxis.UseVisualStyleBackColor = true;
+            this.checkBoxAntibioticProphylaxis.CheckedChanged += new System.EventHandler(this.checkBoxAntibioticProphylaxis_CheckedChanged);
+            // 
+            // comboBoxAntibioticProphylaxis
+            // 
+            this.comboBoxAntibioticProphylaxis.FormattingEnabled = true;
+            this.comboBoxAntibioticProphylaxis.Items.AddRange(new object[] {
+            "S. Cefasolini 1,0 - в/в однократно",
+            "S. Amoxicillinum + acidum Clavulanicum 1,0+0,2 в/в однократно"});
+            this.comboBoxAntibioticProphylaxis.Location = new System.Drawing.Point(9, 23);
+            this.comboBoxAntibioticProphylaxis.Name = "comboBoxAntibioticProphylaxis";
+            this.comboBoxAntibioticProphylaxis.Size = new System.Drawing.Size(464, 21);
+            this.comboBoxAntibioticProphylaxis.TabIndex = 3;
+            this.comboBoxAntibioticProphylaxis.Text = "S. Cefasolini 1,0 - в/в однократно";
             // 
             // OperationProtocolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 475);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.dateTimePickerTimeWritingEpicrisis);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.textBoxOperationCourse);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
@@ -639,8 +657,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Протокол операции";
-            this.Load += new System.EventHandler(this.OperationProtocolForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OperationProtocolForm_FormClosing);
+            this.Load += new System.EventHandler(this.OperationProtocolForm_Load);
             this.LocationChanged += new System.EventHandler(this.OperationProtocolForm_LocationChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -650,6 +668,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADFirst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPulse)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,8 +706,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePickerTimeWritingEpicrisis;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.NumericUpDown numericUpDownPulse;
         private System.Windows.Forms.TextBox textBoxComplaints;
         private System.Windows.Forms.TextBox textBoxTemperature;
@@ -703,5 +721,8 @@
         private System.Windows.Forms.TextBox textBoxStLocalis;
         private System.Windows.Forms.TextBox textBoxStool;
         private System.Windows.Forms.TextBox textBoxUrination;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboBoxAntibioticProphylaxis;
+        private System.Windows.Forms.CheckBox checkBoxAntibioticProphylaxis;
     }
 }

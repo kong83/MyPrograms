@@ -29,14 +29,14 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int nosologyCnt = 0;
-            while (listCnt < checkedListBoxNosologyes.Items.Count && nosologyCnt < _dbEngine.NosologyList.Length)
+            while (listCnt < checkedListBoxNosologyes.Items.Count && nosologyCnt < _dbEngine.NosologyList.Count)
             {
                 checkedListBoxNosologyes.Items[listCnt] = _dbEngine.NosologyList[nosologyCnt].LastNameWithInitials;
                 listCnt++;
                 nosologyCnt++;
             }
 
-            if (nosologyCnt == _dbEngine.NosologyList.Length)
+            if (nosologyCnt == _dbEngine.NosologyList.Count)
             {
                 while (listCnt < checkedListBoxNosologyes.Items.Count)
                 {
@@ -45,7 +45,7 @@ namespace SurgeryHelper
             }
             else
             {
-                while (nosologyCnt < _dbEngine.NosologyList.Length)
+                while (nosologyCnt < _dbEngine.NosologyList.Count)
                 {
                     checkedListBoxNosologyes.Items.Add(_dbEngine.NosologyList[nosologyCnt].LastNameWithInitials);
                     nosologyCnt++;
@@ -113,7 +113,7 @@ namespace SurgeryHelper
 
             try
             {
-                _patientViewForm.PutObjectsToComboBox(_dbEngine.NosologyList, _patientViewForm.comboBoxNosology);
+                _patientViewForm.PutObjectsToComboBox(_dbEngine.NosologyList.ToArray(), _patientViewForm.comboBoxNosology);
                 _patientViewForm.PutStringToObject("comboBoxNosology", checkedListBoxNosologyes.SelectedItem.ToString());
                 Close();
             }

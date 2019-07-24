@@ -48,10 +48,6 @@ namespace SurgeryHelper
             textBoxStool.Text = _operationInfo.BeforeOperationEpicrisisStool;
             textBoxTemperature.Text = _operationInfo.BeforeOperationEpicrisisTemperature;
             comboBoxState.Text = _operationInfo.BeforeOperationEpicrisisState;
-            dateTimePickerTimeWritingEpicrisis.Value = 
-                _operationInfo.BeforeOperationEpicrisisTimeWriting.Year == 1 
-                ? DateTime.Now 
-                : _operationInfo.BeforeOperationEpicrisisTimeWriting;
 
             textBoxUrination.Text = _operationInfo.BeforeOperationEpicrisisUrination;
             textBoxWheeze.Text = _operationInfo.BeforeOperationEpicrisisWheeze;
@@ -61,6 +57,9 @@ namespace SurgeryHelper
             dateTimePickerDatePlan.Value = _patientInfo.TreatmentPlanDate.Year == 1 
                 ? _patientInfo.DeliveryDate 
                 : _patientInfo.TreatmentPlanDate;
+
+            checkBoxAntibioticProphylaxis.Checked = _operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
+            comboBoxAntibioticProphylaxis.Text = _operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis;
 
             textBoxOperationCourse.Text = _operationInfo.OperationCourse;
 
@@ -74,7 +73,7 @@ namespace SurgeryHelper
 
             PutDataToOperationAndPatient(tempOperationInfo, tempPatientInfo);
 
-            WordExportEngine.ExportOperationProtocol(tempOperationInfo, tempPatientInfo, _dbEngine.GlobalSettings);
+            new WordExportEngine(_dbEngine).ExportOperationProtocol(tempOperationInfo, tempPatientInfo);
         }
 
         /// <summary>
@@ -99,13 +98,15 @@ namespace SurgeryHelper
             operationInfo.BeforeOperationEpicrisisStomach = textBoxStomach.Text;
             operationInfo.BeforeOperationEpicrisisStool = textBoxStool.Text;
             operationInfo.BeforeOperationEpicrisisTemperature = textBoxTemperature.Text;
-            operationInfo.BeforeOperationEpicrisisTimeWriting = dateTimePickerTimeWritingEpicrisis.Value;
             operationInfo.BeforeOperationEpicrisisUrination = textBoxUrination.Text;
             operationInfo.BeforeOperationEpicrisisWheeze = textBoxWheeze.Text;
 
             patientInfo.IsTreatmentPlanActiveInOperationProtocol = checkBoxPlan.Checked;
             patientInfo.TreatmentPlanInspection = comboBoxInspectionPlan.Text;
             patientInfo.TreatmentPlanDate = dateTimePickerDatePlan.Value;
+
+            operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = checkBoxAntibioticProphylaxis.Checked;
+            operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = comboBoxAntibioticProphylaxis.Text;
 
             operationInfo.OperationCourse = textBoxOperationCourse.Text.TrimEnd(new[] { '\r', '\n' });
         }
@@ -210,6 +211,11 @@ namespace SurgeryHelper
             }
 
             _dbEngine.ConfigEngine.MedicalInspectionFormLocation = Location;
+        }
+
+        private void checkBoxAntibioticProphylaxis_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxAntibioticProphylaxis.Enabled = checkBoxAntibioticProphylaxis.Checked;
         }
     }
 }

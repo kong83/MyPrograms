@@ -195,9 +195,9 @@ namespace SurgeryHelper.Engines
         /// </summary>
         /// <param name="data">Данные, разделённые listSplitStr</param>
         /// <returns></returns>
-        public static List<string> StringToList(string data)
+        public static List<string> StringToList(string data, StringSplitOptions splitOption = StringSplitOptions.RemoveEmptyEntries)
         {
-            string[] parts = data.Split(new[] { DbEngine.ListSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = data.Split(new[] { DbEngine.ListSplitStr }, splitOption);
 
             var list = new List<string>();
 

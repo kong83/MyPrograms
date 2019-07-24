@@ -42,14 +42,14 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int orderlyCnt = 0;
-            while (listCnt < checkedListBoxSurgeons.Items.Count && orderlyCnt < _dbEngine.SurgeonList.Length)
+            while (listCnt < checkedListBoxSurgeons.Items.Count && orderlyCnt < _dbEngine.SurgeonList.Count)
             {
                 checkedListBoxSurgeons.Items[listCnt] = _dbEngine.SurgeonList[orderlyCnt].LastNameWithInitials;
                 listCnt++;
                 orderlyCnt++;
             }
 
-            if (orderlyCnt == _dbEngine.SurgeonList.Length)
+            if (orderlyCnt == _dbEngine.SurgeonList.Count)
             {
                 while (listCnt < checkedListBoxSurgeons.Items.Count)
                 {
@@ -58,7 +58,7 @@ namespace SurgeryHelper
             }
             else
             {
-                while (orderlyCnt < _dbEngine.SurgeonList.Length)
+                while (orderlyCnt < _dbEngine.SurgeonList.Count)
                 {
                     checkedListBoxSurgeons.Items.Add(_dbEngine.SurgeonList[orderlyCnt].LastNameWithInitials);
                     orderlyCnt++;

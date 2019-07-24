@@ -38,11 +38,11 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 78);
+            this.label1.Size = new System.Drawing.Size(221, 78);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Программа \"Помощник хирурга\" v. 1.9.0\r\nПрограммист: Коновалов Григорий\r\nВсе права" +
-    " на программу принадлежат \r\nТорно Тимуру Эдуардовичу\r\nПожелания и предложения на" +
-    "правляйте\r\nпо адресу: torno@mail.ru";
+            this.label1.Text = "Программа \"Помощник хирурга\" v. 1.10.3\r\nПрограммист: Коновалов Григорий\r\nВсе прав" +
+    "а на программу принадлежат \r\nТорно Тимуру Эдуардовичу\r\nПожелания и предложения н" +
+    "аправляйте\r\nпо адресу: torno@mail.ru";
             // 
             // buttonOK
             // 

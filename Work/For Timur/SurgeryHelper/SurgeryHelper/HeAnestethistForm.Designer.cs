@@ -60,9 +60,9 @@
             this.buttonEdit.TabIndex = 73;
             this.buttonEdit.TabStop = false;
             this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.MouseLeave += new System.EventHandler(this.buttonEdit_MouseLeave);
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             this.buttonEdit.MouseEnter += new System.EventHandler(this.buttonEdit_MouseEnter);
+            this.buttonEdit.MouseLeave += new System.EventHandler(this.buttonEdit_MouseLeave);
             // 
             // buttonDelete
             // 
@@ -77,9 +77,9 @@
             this.buttonDelete.TabIndex = 72;
             this.buttonDelete.TabStop = false;
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.MouseEnter += new System.EventHandler(this.buttonDelete_MouseEnter);
+            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             // 
             // buttonAdd
             // 
@@ -94,9 +94,9 @@
             this.buttonAdd.TabIndex = 71;
             this.buttonAdd.TabStop = false;
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             this.buttonAdd.MouseEnter += new System.EventHandler(this.buttonAdd_MouseEnter);
+            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             // 
             // buttonOk
             // 
@@ -111,9 +111,9 @@
             this.buttonOk.TabIndex = 70;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // HeAnestethistForm
             // 
@@ -132,7 +132,7 @@
             this.Name = "HeAnestethistForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "HeAnestethistForm";
+            this.Text = "Список анестезиологов";
             this.Load += new System.EventHandler(this.HeAnestethistForm_Load);
             this.ResumeLayout(false);
 

@@ -44,12 +44,14 @@
             this.dateTimePickerDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerReleaseDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabelMKB = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.numericUpDownAge = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxMKB = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBoxWorkPlace = new System.Windows.Forms.TextBox();
@@ -79,20 +81,17 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.comboBoxTypeKSG = new System.Windows.Forms.ComboBox();
-            this.comboBoxMKB = new System.Windows.Forms.ComboBox();
-            this.comboBoxKSG = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.linkLabelMKB = new System.Windows.Forms.LinkLabel();
-            this.textBoxKDMax = new System.Windows.Forms.TextBox();
-            this.textBoxKDMin = new System.Windows.Forms.TextBox();
-            this.textBoxSpecialty = new System.Windows.Forms.TextBox();
-            this.textBoxKDNorm = new System.Windows.Forms.TextBox();
-            this.textBoxKSGDecoding = new System.Windows.Forms.TextBox();
+            this.textBoxServiceName = new System.Windows.Forms.TextBox();
+            this.linkLabelServiceName = new System.Windows.Forms.LinkLabel();
+            this.textBoxKsgCode = new System.Windows.Forms.TextBox();
+            this.textBoxServiceCode = new System.Windows.Forms.TextBox();
+            this.textBoxKsgDecoding = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.buttonPrescription = new System.Windows.Forms.Button();
             this.buttonDocuments = new System.Windows.Forms.Button();
             this.buttonOperations = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
@@ -142,10 +141,12 @@
             // 
             // textBoxCity
             // 
+            this.textBoxCity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCity.Location = new System.Drawing.Point(168, 22);
             this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.Size = new System.Drawing.Size(207, 20);
+            this.textBoxCity.Size = new System.Drawing.Size(258, 20);
             this.textBoxCity.TabIndex = 10;
             // 
             // textBoxHome
@@ -174,8 +175,8 @@
             // 
             // textBoxCaseHistory
             // 
-            this.textBoxCaseHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCaseHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCaseHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCaseHistory.Location = new System.Drawing.Point(123, 15);
             this.textBoxCaseHistory.Name = "textBoxCaseHistory";
@@ -184,10 +185,12 @@
             // 
             // textBoxStreet
             // 
+            this.textBoxStreet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStreet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxStreet.Location = new System.Drawing.Point(168, 46);
             this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(207, 20);
+            this.textBoxStreet.Size = new System.Drawing.Size(258, 20);
             this.textBoxStreet.TabIndex = 11;
             // 
             // textBoxDiagnose
@@ -199,13 +202,13 @@
             this.textBoxDiagnose.Multiline = true;
             this.textBoxDiagnose.Name = "textBoxDiagnose";
             this.textBoxDiagnose.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxDiagnose.Size = new System.Drawing.Size(378, 131);
+            this.textBoxDiagnose.Size = new System.Drawing.Size(428, 157);
             this.textBoxDiagnose.TabIndex = 0;
             // 
             // dateTimePickerDeliveryDate
             // 
-            this.dateTimePickerDeliveryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerDeliveryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerDeliveryDate.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dateTimePickerDeliveryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -216,8 +219,8 @@
             // 
             // dateTimePickerReleaseDate
             // 
-            this.dateTimePickerReleaseDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerReleaseDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerReleaseDate.Checked = false;
             this.dateTimePickerReleaseDate.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerReleaseDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -230,8 +233,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.linkLabelMKB);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.dateTimePickerBirthday);
             this.groupBox1.Controls.Add(this.numericUpDownAge);
@@ -242,13 +246,28 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.comboBoxMKB);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 150);
+            this.groupBox1.Size = new System.Drawing.Size(270, 176);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Общие данные о пациенте";
+            // 
+            // linkLabelMKB
+            // 
+            this.linkLabelMKB.AutoSize = true;
+            this.linkLabelMKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabelMKB.Location = new System.Drawing.Point(6, 148);
+            this.linkLabelMKB.Name = "linkLabelMKB";
+            this.linkLabelMKB.Size = new System.Drawing.Size(37, 13);
+            this.linkLabelMKB.TabIndex = 1;
+            this.linkLabelMKB.TabStop = true;
+            this.linkLabelMKB.Text = "* МКБ";
+            this.linkLabelMKB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMKB_LinkClicked);
+            this.linkLabelMKB.MouseEnter += new System.EventHandler(this.linkLabelMKB_MouseEnter);
+            this.linkLabelMKB.MouseLeave += new System.EventHandler(this.linkLabelMKB_MouseLeave);
             // 
             // label14
             // 
@@ -316,6 +335,18 @@
             this.label4.TabIndex = 81;
             this.label4.Text = "* Возраст";
             // 
+            // comboBoxMKB
+            // 
+            this.comboBoxMKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxMKB.FormattingEnabled = true;
+            this.comboBoxMKB.Location = new System.Drawing.Point(78, 145);
+            this.comboBoxMKB.MaxDropDownItems = 20;
+            this.comboBoxMKB.Name = "comboBoxMKB";
+            this.comboBoxMKB.Size = new System.Drawing.Size(69, 21);
+            this.comboBoxMKB.TabIndex = 8;
+            this.comboBoxMKB.MouseEnter += new System.EventHandler(this.comboBoxMKB_MouseEnter);
+            this.comboBoxMKB.MouseLeave += new System.EventHandler(this.comboBoxMKB_MouseLeave);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -334,9 +365,9 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 168);
+            this.groupBox2.Location = new System.Drawing.Point(12, 194);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(383, 138);
+            this.groupBox2.Size = new System.Drawing.Size(434, 138);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Место жительства пациента";
@@ -354,18 +385,22 @@
             // 
             // textBoxWorkPlace
             // 
+            this.textBoxWorkPlace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxWorkPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxWorkPlace.Location = new System.Drawing.Point(71, 112);
             this.textBoxWorkPlace.Name = "textBoxWorkPlace";
-            this.textBoxWorkPlace.Size = new System.Drawing.Size(304, 20);
+            this.textBoxWorkPlace.Size = new System.Drawing.Size(355, 20);
             this.textBoxWorkPlace.TabIndex = 16;
             // 
             // textBoxPhone
             // 
+            this.textBoxPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPhone.Location = new System.Drawing.Point(191, 88);
             this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(184, 20);
+            this.textBoxPhone.Size = new System.Drawing.Size(235, 20);
             this.textBoxPhone.TabIndex = 15;
             // 
             // label15
@@ -434,8 +469,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.buttonGenerateFolder);
             this.groupBox3.Controls.Add(this.linkLabelPrivateFolder);
             this.groupBox3.Controls.Add(this.buttonOpen);
@@ -453,7 +488,7 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.dateTimePickerReleaseDate);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(410, 168);
+            this.groupBox3.Location = new System.Drawing.Point(452, 194);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(262, 203);
             this.groupBox3.TabIndex = 10;
@@ -472,9 +507,9 @@
             this.buttonGenerateFolder.TabIndex = 16;
             this.buttonGenerateFolder.TabStop = false;
             this.buttonGenerateFolder.UseVisualStyleBackColor = true;
-            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
             this.buttonGenerateFolder.Click += new System.EventHandler(this.buttonGenerateFolder_Click);
             this.buttonGenerateFolder.MouseEnter += new System.EventHandler(this.buttonGenerateFolder_MouseEnter);
+            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
             // 
             // linkLabelPrivateFolder
             // 
@@ -486,9 +521,9 @@
             this.linkLabelPrivateFolder.TabIndex = 14;
             this.linkLabelPrivateFolder.TabStop = true;
             this.linkLabelPrivateFolder.Text = "Личная папка";
-            this.linkLabelPrivateFolder.MouseLeave += new System.EventHandler(this.linkLabelPrivateFolder_MouseLeave);
             this.linkLabelPrivateFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrivateFolder_LinkClicked);
             this.linkLabelPrivateFolder.MouseEnter += new System.EventHandler(this.linkLabelPrivateFolder_MouseEnter);
+            this.linkLabelPrivateFolder.MouseLeave += new System.EventHandler(this.linkLabelPrivateFolder_MouseLeave);
             // 
             // buttonOpen
             // 
@@ -503,14 +538,14 @@
             this.buttonOpen.TabIndex = 20;
             this.buttonOpen.TabStop = false;
             this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             this.buttonOpen.MouseEnter += new System.EventHandler(this.buttonOpen_MouseEnter);
+            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
             // 
             // textBoxPrivateFolder
             // 
-            this.textBoxPrivateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrivateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPrivateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPrivateFolder.Location = new System.Drawing.Point(123, 147);
             this.textBoxPrivateFolder.Name = "textBoxPrivateFolder";
@@ -528,14 +563,14 @@
             this.linkLabelNosology.TabIndex = 2;
             this.linkLabelNosology.TabStop = true;
             this.linkLabelNosology.Text = "* Нозология";
-            this.linkLabelNosology.MouseLeave += new System.EventHandler(this.linkLabelNosology_MouseLeave);
             this.linkLabelNosology.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNosology_LinkClicked);
             this.linkLabelNosology.MouseEnter += new System.EventHandler(this.linkLabelNosology_MouseEnter);
+            this.linkLabelNosology.MouseLeave += new System.EventHandler(this.linkLabelNosology_MouseLeave);
             // 
             // comboBoxNosology
             // 
-            this.comboBoxNosology.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxNosology.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxNosology.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxNosology.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxNosology.FormattingEnabled = true;
@@ -547,8 +582,8 @@
             // 
             // comboBoxDoctorInChargeOfTheCase
             // 
-            this.comboBoxDoctorInChargeOfTheCase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDoctorInChargeOfTheCase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDoctorInChargeOfTheCase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxDoctorInChargeOfTheCase.FormattingEnabled = true;
             this.comboBoxDoctorInChargeOfTheCase.Location = new System.Drawing.Point(123, 120);
@@ -567,14 +602,14 @@
             this.linkLabelDoctorInCase.TabIndex = 28;
             this.linkLabelDoctorInCase.TabStop = true;
             this.linkLabelDoctorInCase.Text = "* Лечащий врач";
-            this.linkLabelDoctorInCase.MouseLeave += new System.EventHandler(this.linkLabel1_MouseLeave);
-            this.linkLabelDoctorInCase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabelDoctorInCase.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelDoctorInCase_LinkClicked);
             this.linkLabelDoctorInCase.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
+            this.linkLabelDoctorInCase.MouseLeave += new System.EventHandler(this.linkLabel1_MouseLeave);
             // 
             // textBoxOperationCount
             // 
-            this.textBoxOperationCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOperationCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxOperationCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxOperationCount.Location = new System.Drawing.Point(123, 173);
             this.textBoxOperationCount.Name = "textBoxOperationCount";
@@ -629,14 +664,14 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.textBoxDiagnose);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(288, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(384, 150);
+            this.groupBox4.Size = new System.Drawing.Size(434, 176);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "* Диагноз";
@@ -659,141 +694,100 @@
             this.comboBoxTypeKSG.TabIndex = 0;
             this.comboBoxTypeKSG.SelectedIndexChanged += new System.EventHandler(this.comboBoxTypeKSG_SelectedIndexChanged);
             // 
-            // comboBoxMKB
-            // 
-            this.comboBoxMKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxMKB.FormattingEnabled = true;
-            this.comboBoxMKB.Location = new System.Drawing.Point(54, 32);
-            this.comboBoxMKB.MaxDropDownItems = 20;
-            this.comboBoxMKB.Name = "comboBoxMKB";
-            this.comboBoxMKB.Size = new System.Drawing.Size(69, 21);
-            this.comboBoxMKB.TabIndex = 2;
-            this.comboBoxMKB.TextChanged += new System.EventHandler(this.comboBoxMKB_TextChanged);
-            // 
-            // comboBoxKSG
-            // 
-            this.comboBoxKSG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxKSG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxKSG.FormattingEnabled = true;
-            this.comboBoxKSG.Location = new System.Drawing.Point(129, 32);
-            this.comboBoxKSG.MaxDropDownItems = 20;
-            this.comboBoxKSG.Name = "comboBoxKSG";
-            this.comboBoxKSG.Size = new System.Drawing.Size(246, 21);
-            this.comboBoxKSG.TabIndex = 3;
-            this.comboBoxKSG.SelectedIndexChanged += new System.EventHandler(this.comboBoxKSG_SelectedIndexChanged);
-            // 
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox5.Controls.Add(this.linkLabelMKB);
-            this.groupBox5.Controls.Add(this.textBoxKDMax);
-            this.groupBox5.Controls.Add(this.textBoxKDMin);
-            this.groupBox5.Controls.Add(this.textBoxSpecialty);
-            this.groupBox5.Controls.Add(this.textBoxKDNorm);
-            this.groupBox5.Controls.Add(this.textBoxKSGDecoding);
+            this.groupBox5.Controls.Add(this.textBoxServiceName);
+            this.groupBox5.Controls.Add(this.linkLabelServiceName);
+            this.groupBox5.Controls.Add(this.textBoxKsgCode);
+            this.groupBox5.Controls.Add(this.textBoxServiceCode);
+            this.groupBox5.Controls.Add(this.textBoxKsgDecoding);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.comboBoxTypeKSG);
-            this.groupBox5.Controls.Add(this.comboBoxKSG);
-            this.groupBox5.Controls.Add(this.comboBoxMKB);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 312);
+            this.groupBox5.Location = new System.Drawing.Point(12, 338);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(383, 108);
+            this.groupBox5.Size = new System.Drawing.Size(434, 108);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Информация о КСГ";
             // 
-            // linkLabelMKB
+            // textBoxServiceName
             // 
-            this.linkLabelMKB.AutoSize = true;
-            this.linkLabelMKB.Location = new System.Drawing.Point(75, 16);
-            this.linkLabelMKB.Name = "linkLabelMKB";
-            this.linkLabelMKB.Size = new System.Drawing.Size(33, 13);
-            this.linkLabelMKB.TabIndex = 1;
-            this.linkLabelMKB.TabStop = true;
-            this.linkLabelMKB.Text = "МКБ";
-            this.linkLabelMKB.MouseLeave += new System.EventHandler(this.linkLabelMKB_MouseLeave);
-            this.linkLabelMKB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMKB_LinkClicked);
-            this.linkLabelMKB.MouseEnter += new System.EventHandler(this.linkLabelMKB_MouseEnter);
+            this.textBoxServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxServiceName.Location = new System.Drawing.Point(54, 33);
+            this.textBoxServiceName.Name = "textBoxServiceName";
+            this.textBoxServiceName.ReadOnly = true;
+            this.textBoxServiceName.Size = new System.Drawing.Size(372, 20);
+            this.textBoxServiceName.TabIndex = 4;
+            this.textBoxServiceName.MouseEnter += new System.EventHandler(this.textBoxServiceName_MouseEnter);
+            this.textBoxServiceName.MouseLeave += new System.EventHandler(this.textBoxServiceName_MouseLeave);
             // 
-            // textBoxKDMax
+            // linkLabelServiceName
             // 
-            this.textBoxKDMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKDMax.Location = new System.Drawing.Point(245, 76);
-            this.textBoxKDMax.Name = "textBoxKDMax";
-            this.textBoxKDMax.ReadOnly = true;
-            this.textBoxKDMax.Size = new System.Drawing.Size(19, 20);
-            this.textBoxKDMax.TabIndex = 7;
+            this.linkLabelServiceName.AutoSize = true;
+            this.linkLabelServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabelServiceName.Location = new System.Drawing.Point(190, 16);
+            this.linkLabelServiceName.Name = "linkLabelServiceName";
+            this.linkLabelServiceName.Size = new System.Drawing.Size(93, 13);
+            this.linkLabelServiceName.TabIndex = 2;
+            this.linkLabelServiceName.TabStop = true;
+            this.linkLabelServiceName.Text = "Название услуги";
+            this.linkLabelServiceName.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelServiceName_LinkClicked);
+            this.linkLabelServiceName.MouseEnter += new System.EventHandler(this.linkLabelServiceName_MouseEnter);
+            this.linkLabelServiceName.MouseLeave += new System.EventHandler(this.linkLabelServiceName_MouseLeave);
             // 
-            // textBoxKDMin
+            // textBoxKsgCode
             // 
-            this.textBoxKDMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKDMin.Location = new System.Drawing.Point(225, 76);
-            this.textBoxKDMin.Name = "textBoxKDMin";
-            this.textBoxKDMin.ReadOnly = true;
-            this.textBoxKDMin.Size = new System.Drawing.Size(19, 20);
-            this.textBoxKDMin.TabIndex = 6;
+            this.textBoxKsgCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxKsgCode.Location = new System.Drawing.Point(100, 81);
+            this.textBoxKsgCode.Name = "textBoxKsgCode";
+            this.textBoxKsgCode.ReadOnly = true;
+            this.textBoxKsgCode.Size = new System.Drawing.Size(53, 20);
+            this.textBoxKsgCode.TabIndex = 8;
             // 
-            // textBoxSpecialty
+            // textBoxServiceCode
             // 
-            this.textBoxSpecialty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSpecialty.Location = new System.Drawing.Point(270, 76);
-            this.textBoxSpecialty.Name = "textBoxSpecialty";
-            this.textBoxSpecialty.ReadOnly = true;
-            this.textBoxSpecialty.Size = new System.Drawing.Size(105, 20);
-            this.textBoxSpecialty.TabIndex = 8;
-            this.textBoxSpecialty.MouseLeave += new System.EventHandler(this.textBoxSpecialty_MouseLeave);
-            this.textBoxSpecialty.MouseEnter += new System.EventHandler(this.textBoxSpecialty_MouseEnter);
+            this.textBoxServiceCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxServiceCode.Location = new System.Drawing.Point(6, 81);
+            this.textBoxServiceCode.Name = "textBoxServiceCode";
+            this.textBoxServiceCode.ReadOnly = true;
+            this.textBoxServiceCode.Size = new System.Drawing.Size(88, 20);
+            this.textBoxServiceCode.TabIndex = 6;
             // 
-            // textBoxKDNorm
+            // textBoxKsgDecoding
             // 
-            this.textBoxKDNorm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKDNorm.Location = new System.Drawing.Point(205, 76);
-            this.textBoxKDNorm.Name = "textBoxKDNorm";
-            this.textBoxKDNorm.ReadOnly = true;
-            this.textBoxKDNorm.Size = new System.Drawing.Size(19, 20);
-            this.textBoxKDNorm.TabIndex = 5;
-            // 
-            // textBoxKSGDecoding
-            // 
-            this.textBoxKSGDecoding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxKSGDecoding.Location = new System.Drawing.Point(6, 76);
-            this.textBoxKSGDecoding.Name = "textBoxKSGDecoding";
-            this.textBoxKSGDecoding.ReadOnly = true;
-            this.textBoxKSGDecoding.Size = new System.Drawing.Size(193, 20);
-            this.textBoxKSGDecoding.TabIndex = 4;
-            this.textBoxKSGDecoding.MouseLeave += new System.EventHandler(this.textBoxKSGDecoding_MouseLeave);
-            this.textBoxKSGDecoding.MouseEnter += new System.EventHandler(this.textBoxKSGDecoding_MouseEnter);
+            this.textBoxKsgDecoding.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxKsgDecoding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxKsgDecoding.Location = new System.Drawing.Point(159, 81);
+            this.textBoxKsgDecoding.Name = "textBoxKsgDecoding";
+            this.textBoxKsgDecoding.ReadOnly = true;
+            this.textBoxKsgDecoding.Size = new System.Drawing.Size(267, 20);
+            this.textBoxKsgDecoding.TabIndex = 10;
+            this.textBoxKsgDecoding.MouseEnter += new System.EventHandler(this.textBoxKSGDecoding_MouseEnter);
+            this.textBoxKsgDecoding.MouseLeave += new System.EventHandler(this.textBoxKSGDecoding_MouseLeave);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label21.Location = new System.Drawing.Point(282, 60);
+            this.label21.Location = new System.Drawing.Point(19, 65);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(85, 13);
+            this.label21.Size = new System.Drawing.Size(62, 13);
             this.label21.TabIndex = 84;
-            this.label21.Text = "Специальность";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(222, 58);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(24, 13);
-            this.label20.TabIndex = 83;
-            this.label20.Text = "к/д";
+            this.label21.Text = "Код услуги";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(61, 60);
+            this.label19.Location = new System.Drawing.Point(231, 65);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 13);
             this.label19.TabIndex = 82;
@@ -803,11 +797,11 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(224, 16);
+            this.label18.Location = new System.Drawing.Point(102, 65);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 13);
+            this.label18.Size = new System.Drawing.Size(49, 13);
             this.label18.TabIndex = 81;
-            this.label18.Text = "КСГ";
+            this.label18.Text = "Код КСГ";
             // 
             // label16
             // 
@@ -819,6 +813,23 @@
             this.label16.TabIndex = 79;
             this.label16.Text = "Тип стац.";
             // 
+            // buttonPrescription
+            // 
+            this.buttonPrescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonPrescription.BackgroundImage = global::SurgeryHelper.Properties.Resources.pill_green;
+            this.buttonPrescription.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonPrescription.FlatAppearance.BorderSize = 0;
+            this.buttonPrescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrescription.Location = new System.Drawing.Point(555, 406);
+            this.buttonPrescription.Name = "buttonPrescription";
+            this.buttonPrescription.Size = new System.Drawing.Size(40, 40);
+            this.buttonPrescription.TabIndex = 76;
+            this.buttonPrescription.TabStop = false;
+            this.buttonPrescription.UseVisualStyleBackColor = true;
+            this.buttonPrescription.Click += new System.EventHandler(this.buttonPrescription_Click);
+            this.buttonPrescription.MouseEnter += new System.EventHandler(this.buttonPrescription_MouseEnter);
+            this.buttonPrescription.MouseLeave += new System.EventHandler(this.buttonPrescription_MouseLeave);
+            // 
             // buttonDocuments
             // 
             this.buttonDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -826,15 +837,15 @@
             this.buttonDocuments.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonDocuments.FlatAppearance.BorderSize = 0;
             this.buttonDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDocuments.Location = new System.Drawing.Point(462, 380);
+            this.buttonDocuments.Location = new System.Drawing.Point(503, 406);
             this.buttonDocuments.Name = "buttonDocuments";
             this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
             this.buttonDocuments.TabIndex = 75;
             this.buttonDocuments.TabStop = false;
             this.buttonDocuments.UseVisualStyleBackColor = true;
-            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
             this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
             this.buttonDocuments.MouseEnter += new System.EventHandler(this.buttonDocuments_MouseEnter);
+            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
             // 
             // buttonOperations
             // 
@@ -843,15 +854,15 @@
             this.buttonOperations.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOperations.FlatAppearance.BorderSize = 0;
             this.buttonOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOperations.Location = new System.Drawing.Point(410, 380);
+            this.buttonOperations.Location = new System.Drawing.Point(452, 406);
             this.buttonOperations.Name = "buttonOperations";
             this.buttonOperations.Size = new System.Drawing.Size(40, 40);
             this.buttonOperations.TabIndex = 74;
             this.buttonOperations.TabStop = false;
             this.buttonOperations.UseVisualStyleBackColor = true;
-            this.buttonOperations.MouseLeave += new System.EventHandler(this.buttonOperations_MouseLeave);
             this.buttonOperations.Click += new System.EventHandler(this.buttonOperations_Click);
             this.buttonOperations.MouseEnter += new System.EventHandler(this.buttonOperations_MouseEnter);
+            this.buttonOperations.MouseLeave += new System.EventHandler(this.buttonOperations_MouseLeave);
             // 
             // buttonOk
             // 
@@ -860,15 +871,15 @@
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(577, 380);
+            this.buttonOk.Location = new System.Drawing.Point(630, 406);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
             this.buttonOk.TabIndex = 56;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // buttonClose
             // 
@@ -877,21 +888,22 @@
             this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonClose.FlatAppearance.BorderSize = 0;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(632, 380);
+            this.buttonClose.Location = new System.Drawing.Point(682, 406);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
             this.buttonClose.TabIndex = 55;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // PatientViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 425);
+            this.ClientSize = new System.Drawing.Size(734, 451);
+            this.Controls.Add(this.buttonPrescription);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -904,14 +916,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(700, 463);
+            this.MinimumSize = new System.Drawing.Size(750, 490);
             this.Name = "PatientViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PatientViewForm";
-            this.Load += new System.EventHandler(this.PatientViewForm_Load);
-            this.SizeChanged += new System.EventHandler(this.PatientViewForm_SizeChanged);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientViewForm_FormClosing);
+            this.Load += new System.EventHandler(this.PatientViewForm_Load);
             this.LocationChanged += new System.EventHandler(this.PatientViewForm_LocationChanged);
+            this.SizeChanged += new System.EventHandler(this.PatientViewForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).EndInit();
@@ -980,22 +992,21 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBoxKSG;
         private System.Windows.Forms.ComboBox comboBoxMKB;
         private System.Windows.Forms.ComboBox comboBoxTypeKSG;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBoxKDMax;
-        private System.Windows.Forms.TextBox textBoxKDMin;
-        private System.Windows.Forms.TextBox textBoxSpecialty;
-        private System.Windows.Forms.TextBox textBoxKDNorm;
-        private System.Windows.Forms.TextBox textBoxKSGDecoding;
+        private System.Windows.Forms.TextBox textBoxServiceCode;
+        private System.Windows.Forms.TextBox textBoxKsgDecoding;
         private System.Windows.Forms.LinkLabel linkLabelMKB;
         private System.Windows.Forms.TextBox textBoxWorkPlace;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.LinkLabel linkLabelServiceName;
+        private System.Windows.Forms.TextBox textBoxKsgCode;
+        private System.Windows.Forms.TextBox textBoxServiceName;
+        private System.Windows.Forms.Button buttonPrescription;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using SurgeryHelper.Engines;
 
 namespace SurgeryHelper.Entities
@@ -90,9 +91,24 @@ namespace SurgeryHelper.Entities
         public string MKB;
 
         /// <summary>
-        /// Код КСГ вместе с информацией о детях
+        /// Название услуги
         /// </summary>
-        public string KSG;
+        public string ServiceName;
+
+        /// <summary>
+        /// Код услуги
+        /// </summary>
+        public string ServiceCode;
+
+        /// <summary>
+        /// Код КСГ
+        /// </summary>
+        public string KsgCode;
+
+        /// <summary>
+        /// Расшифровка КСГ
+        /// </summary>
+        public string KsgDecoding;
 
         /// <summary>
         /// Дата поступления
@@ -180,11 +196,6 @@ namespace SurgeryHelper.Entities
         public DateTime LineOfCommEpicrisWritingDate;
 
         /// <summary>
-        /// Консервативное лечение
-        /// </summary>
-        public string DischargeEpicrisConservativeTherapy;
-
-        /// <summary>
         /// Дата взятия анализов
         /// </summary>
         public DateTime? DischargeEpicrisAnalysisDate;
@@ -255,6 +266,16 @@ namespace SurgeryHelper.Entities
         public string DischargeEpicrisBakPTI;
 
         /// <summary>
+        /// Биохимический анализ крови, группа крови
+        /// </summary>
+        public string DischargeEpicrisBloodGroup;
+
+        /// <summary>
+        /// Биохимический анализ крови, резус фактор
+        /// </summary>
+        public string DischargeEpicrisRhesusFactor;
+
+        /// <summary>
         /// Общий анализ мочи, другие анализы
         /// </summary>
         public string DischargeEpicrisAdditionalAnalises;
@@ -310,7 +331,7 @@ namespace SurgeryHelper.Entities
         public string MedicalInspectionTeoRisk;
 
         /// <summary>
-        /// Осмотр в отделении, общие данные, 1, 2 или 3 лист нетрудоспособности
+        /// Осмотр в отделении, общие данные, 1, 2 или 3
         /// </summary>
         public int MedicalInspectionExpertAnamnese;
 
@@ -439,6 +460,69 @@ namespace SurgeryHelper.Entities
         /// </summary>
         public int MedicalInspectionStLocalisPart2NumericUpDown;
 
+        /// <summary>
+        /// Назначенные препараты для консервативной терапии (с датой назначения после символа &)
+        /// </summary>
+        public List<string> PrescriptionTherapy;
+
+        /// <summary>
+        /// Назначенные дополнительные методы обследования (с датой назначения после символа &)
+        /// </summary>
+        public List<string> PrescriptionSurveys;
+
+        /// <summary>
+        /// Консервативное лечение
+        /// </summary>
+        public string GetDischargeEpicrisConservativeTherapy()
+        {
+            StringBuilder result = new StringBuilder();
+
+            foreach (string therapy in PrescriptionTherapy)
+            {
+                string[] therapyData = therapy.Split(new[] { '&' }, StringSplitOptions.None);
+                if (therapyData.Length > 1)
+                {
+                    result.Append(therapyData[0] + GetDurationWithWords(therapyData[1]) + ", ");
+                }
+            }
+
+            return result.ToString().Substring(0, result.Length - 2);
+        }
+
+        private string GetDurationWithWords(string duration)
+        {
+            string result = "";
+            if (!string.IsNullOrEmpty(duration))
+            {
+                string text;
+                int cnt;
+                if (int.TryParse(duration, out cnt))
+                {
+                    int rem = cnt > 10 ? cnt % 10 : cnt;
+
+                    if ((cnt >= 5 && cnt <= 20) || rem < 1 || rem > 4)
+                    {
+                        text = " дней";
+                    }
+                    else if (rem == 1)
+                    {
+                        text = " день";
+                    }
+                    else
+                    {
+                        text = " дня";
+                    }
+                }
+                else
+                {
+                    text = " дней";
+                }
+
+                result = " " + duration + text;
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Вернуть полный адрес
@@ -542,14 +626,20 @@ namespace SurgeryHelper.Entities
 
             DischargeEpicrisAnalysisDate = DateTime.Now;
             DischargeEpicrisAfterOperation = "раны зажили первичным натяжением, швы сняты.";
-            DischargeEpicrisConservativeTherapy = "S. Ceftriaxoni 1,0 – 1 раз в день в/м 3 дня, S. Ketoroli 1,0 – 3 раза в день в/м 3 дня";
+            PrescriptionTherapy = new List<string>
+            {
+                string.Format("S. Ceftriaxoni 1,0 – 1 раз в день в/м&3&{0}", ConvertEngine.GetRightDateString(DateTime.Now)),
+                string.Format("S. Ketoroli 1,0 – 3 раза в день в/м&3&{0}", ConvertEngine.GetRightDateString(DateTime.Now)),
+            };
+            PrescriptionSurveys = new List<string>();
             DischargeEpicrisOamColor = "с/ж";
             DischargeEpicrisOamDensity = "1015";
             DischargeEpicrisOamEritrocits = "нет";
             DischargeEpicrisOamLekocits = "нет";
             DischargeEpicrisEkg = "без патологии";
             DischargeEpicrisRecomendations = new List<string> { "notdefined" };
-            DischargeEpicrisAdditionalRecomendations = new List<string> { "notdefined" };            
+            DischargeEpicrisAdditionalRecomendations = new List<string> { "notdefined" };
+            DischargeEpicrisAdditionalAnalises = "анализ крови на ВИЧ - отр.";
             TreatmentPlanInspection = "ОАК, ОАМ, ЭКГ, биохимический анализ крови";
             IsTreatmentPlanActiveInOperationProtocol = true;
 
@@ -689,7 +779,10 @@ namespace SurgeryHelper.Entities
             Phone = patientClass.Phone;
             TypeOfKSG = patientClass.TypeOfKSG;
             MKB = patientClass.MKB;
-            KSG = patientClass.KSG;
+            ServiceName = patientClass.ServiceName;
+            ServiceCode = patientClass.ServiceCode;
+            KsgCode = patientClass.KsgCode;
+            KsgDecoding = patientClass.KsgDecoding;
             HomeNumber = patientClass.HomeNumber;
             Nosology = patientClass.Nosology;
             NumberOfCaseHistory = patientClass.NumberOfCaseHistory;
@@ -725,8 +818,7 @@ namespace SurgeryHelper.Entities
             LineOfCommEpicrisWritingDate = CopyDateTime(patientClass.LineOfCommEpicrisWritingDate);
 
             DischargeEpicrisAnalysisDate = patientClass.DischargeEpicrisAnalysisDate;
-            DischargeEpicrisAfterOperation = patientClass.DischargeEpicrisAfterOperation;
-            DischargeEpicrisConservativeTherapy = patientClass.DischargeEpicrisConservativeTherapy;
+            DischargeEpicrisAfterOperation = patientClass.DischargeEpicrisAfterOperation;            
             DischargeEpicrisEkg = patientClass.DischargeEpicrisEkg;
             DischargeEpicrisOakEritrocits = patientClass.DischargeEpicrisOakEritrocits;
             DischargeEpicrisOakHb = patientClass.DischargeEpicrisOakHb;
@@ -740,12 +832,17 @@ namespace SurgeryHelper.Entities
             DischargeEpicrisBakGeneralProtein = patientClass.DischargeEpicrisBakGeneralProtein;
             DischargeEpicrisBakPTI = patientClass.DischargeEpicrisBakPTI;
             DischargeEpicrisBakSugar = patientClass.DischargeEpicrisBakSugar;
+            DischargeEpicrisBloodGroup = patientClass.DischargeEpicrisBloodGroup;
+            DischargeEpicrisRhesusFactor = patientClass.DischargeEpicrisRhesusFactor;
 
             DischargeEpicrisAdditionalAnalises = patientClass.DischargeEpicrisAdditionalAnalises;
 
             DischargeEpicrisRecomendations = new List<string>(patientClass.DischargeEpicrisRecomendations);            
 
             DischargeEpicrisAdditionalRecomendations = new List<string>(patientClass.DischargeEpicrisAdditionalRecomendations);
+
+            PrescriptionTherapy = new List<string>(patientClass.PrescriptionTherapy);
+            PrescriptionSurveys = new List<string>(patientClass.PrescriptionSurveys);
 
             TreatmentPlanInspection = patientClass.TreatmentPlanInspection;
             TreatmentPlanDate = CopyDateTime(patientClass.TreatmentPlanDate);
@@ -812,7 +909,10 @@ namespace SurgeryHelper.Entities
             patientInfo.Phone = Phone;
             patientInfo.TypeOfKSG = TypeOfKSG;
             patientInfo.MKB = MKB;
-            patientInfo.KSG = KSG;
+            patientInfo.ServiceName = ServiceName;
+            patientInfo.ServiceCode = ServiceCode;
+            patientInfo.KsgCode = KsgCode;
+            patientInfo.KsgDecoding = KsgDecoding;
             patientInfo.HomeNumber = HomeNumber;
             patientInfo.Nosology = Nosology;
             patientInfo.NumberOfCaseHistory = NumberOfCaseHistory;
@@ -849,7 +949,6 @@ namespace SurgeryHelper.Entities
 
             patientInfo.DischargeEpicrisAnalysisDate = DischargeEpicrisAnalysisDate;
             patientInfo.DischargeEpicrisAfterOperation = DischargeEpicrisAfterOperation;
-            patientInfo.DischargeEpicrisConservativeTherapy = DischargeEpicrisConservativeTherapy;
             patientInfo.DischargeEpicrisEkg = DischargeEpicrisEkg;
             patientInfo.DischargeEpicrisOakEritrocits = DischargeEpicrisOakEritrocits;
             patientInfo.DischargeEpicrisOakHb = DischargeEpicrisOakHb;
@@ -863,12 +962,17 @@ namespace SurgeryHelper.Entities
             patientInfo.DischargeEpicrisBakGeneralProtein = DischargeEpicrisBakGeneralProtein;
             patientInfo.DischargeEpicrisBakPTI = DischargeEpicrisBakPTI;
             patientInfo.DischargeEpicrisBakSugar = DischargeEpicrisBakSugar;
+            patientInfo.DischargeEpicrisBloodGroup = DischargeEpicrisBloodGroup;
+            patientInfo.DischargeEpicrisRhesusFactor = DischargeEpicrisRhesusFactor;
 
             patientInfo.DischargeEpicrisAdditionalAnalises = DischargeEpicrisAdditionalAnalises;
 
             patientInfo.DischargeEpicrisRecomendations = new List<string>(DischargeEpicrisRecomendations);
 
             patientInfo.DischargeEpicrisAdditionalRecomendations = new List<string>(DischargeEpicrisAdditionalRecomendations);
+
+            patientInfo.PrescriptionTherapy = new List<string>(PrescriptionTherapy);
+            patientInfo.PrescriptionSurveys = new List<string>(PrescriptionSurveys);
 
             patientInfo.TreatmentPlanInspection = TreatmentPlanInspection;
             patientInfo.TreatmentPlanDate = CopyDateTime(TreatmentPlanDate);

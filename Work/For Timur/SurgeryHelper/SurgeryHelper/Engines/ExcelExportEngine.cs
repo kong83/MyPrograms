@@ -26,7 +26,7 @@ namespace SurgeryHelper.Engines
         [DllImport("kernel32.dll")]
         private static extern int WinExec(string lpCmdLine, int nCmdShow);
 
-        public static string GetKSGDataFromFile(string ksgFilePath)
+        public static string GetServiceDataFromFile(string servicesFilePath)
         {
             CultureInfo oldCi = Thread.CurrentThread.CurrentCulture;
 
@@ -39,13 +39,20 @@ namespace SurgeryHelper.Engines
                 // Стартуем Excel-приложение
                 _oxl = new Application();
 
-                _oxb = _oxl.Workbooks.Open(ksgFilePath, Missing.Value, Missing.Value,
+                _oxb = _oxl.Workbooks.Open(servicesFilePath, Missing.Value, Missing.Value,
                     Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
                     Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
 
-                _ows = (_Worksheet)_oxb.Sheets[1];
+                try
+                {
+                    _ows = (_Worksheet)_oxb.Sheets["Группировщик детальный"];
+                }
+                catch
+                {
+                    throw new Exception("Лист с именем 'Группировщик детальный' не найден. Вероятно, указанный файл имеет неверный формат.");
+                }
 
-                int rowCnt = 3;
+                int rowCnt = 2;
 
                 int shag = 10000;
                 while (shag > 0)
@@ -60,24 +67,21 @@ namespace SurgeryHelper.Engines
                     shag /= 10;
                 }
 
-                var data = (object[,])_ows.get_Range(_ows.Cells[3, 1], _ows.Cells[rowCnt - 1, 9]).Value2;
+                var data = (object[,])_ows.get_Range(_ows.Cells[2, 6], _ows.Cells[rowCnt, 14]).Value2;
 
                 var sb = new StringBuilder();
-                for (int i = 1; i < rowCnt - 3; i++)
+                for (int i = 1; i < rowCnt; i++)
                 {
-                    string ksg = data[i, 2].ToString();
-                    if (!string.IsNullOrEmpty(data[i, 4].ToString()))
+                    string service = data[i, 2]?.ToString();
+                    if (string.IsNullOrEmpty(service))
                     {
-                        ksg += " (дети)";
+                        continue;
                     }
 
-                    sb.AppendFormat("{0};{1};{2};{3};{4};{5};{6}^", 
+                    sb.AppendFormat("{0};{1};{2};{3}^",
+                        service,
                         data[i, 1],
-                        ksg,
-                        data[i, 3],
-                        data[i, 5],
-                        data[i, 6],
-                        data[i, 7],
+                        data[i, 8],
                         data[i, 9]);
                 }
 
@@ -85,7 +89,79 @@ namespace SurgeryHelper.Engines
             }
             catch (Exception ex)
             {
-                throw new Exception("В процессе загрузки данных с кодами КСГ произошла ошибка:\r\n" + ex);
+                throw new Exception("В процессе загрузки данных с услугами произошла ошибка:\r\n" + ex);
+            }
+            finally
+            {
+                QuitExcel();
+                Thread.CurrentThread.CurrentCulture = oldCi;
+            }
+        }
+        
+        public static string GetMkbDataFromFile(string mkbFilePath)
+        {
+            CultureInfo oldCi = Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+                _excelProcessesBeforeStartWork = Process.GetProcessesByName("EXCEL");
+
+                // Стартуем Excel-приложение
+                _oxl = new Application();
+
+                _oxb = _oxl.Workbooks.Open(mkbFilePath, Missing.Value, Missing.Value,
+                    Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                    Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+
+                try
+                {
+                    _ows = (_Worksheet)_oxb.Sheets["МКБ 10"];
+                }
+                catch                
+                {
+                    _ows = (_Worksheet)_oxb.Sheets[1];
+                }
+
+                int rowCnt = 2;
+
+                int shag = 10000;
+                while (shag > 0)
+                {
+                    while (((Range)_ows.Cells[rowCnt, 1]).Value2 != null)
+                    {
+                        rowCnt += shag;
+                    }
+
+                    rowCnt -= shag;
+
+                    shag /= 10;
+                }
+
+                var data = (object[,])_ows.get_Range(_ows.Cells[2, 1], _ows.Cells[rowCnt, 2]).Value2;
+
+                var sb = new StringBuilder();
+                for (int i = 1; i < rowCnt; i++)
+                {
+                    string mkbCode = data[i, 1]?.ToString();
+                    if (string.IsNullOrEmpty(mkbCode))
+                    {
+                        continue;
+                    }
+                    
+                    sb.AppendFormat("Code={0}{2}Name={1}{3}",
+                        mkbCode,
+                        data[i, 2],
+                        DbEngine.DataSplitStr,
+                        DbEngine.ObjSplitStr);
+                }
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("В процессе загрузки кодов МКБ произошла ошибка:\r\n" + ex);
             }
             finally
             {
@@ -250,13 +326,13 @@ namespace SurgeryHelper.Engines
                 _owr.ColumnWidth = 9;
                 _owr.Font.Bold = true;
                 _owr.HorizontalAlignment = 3;
-                _owr.Value2 = "Код КСГ";
+                _owr.Value2 = "Код услуги";
 
                 _owr = _ows.get_Range("J2", "J2");
                 _owr.ColumnWidth = 20;
                 _owr.Font.Bold = true;
                 _owr.HorizontalAlignment = 3;
-                _owr.Value2 = "Расшифровка кода КСГ";
+                _owr.Value2 = "Название услуги";
 
                 _owr = _ows.get_Range("K2", "K2");
                 _owr.ColumnWidth = 13;
@@ -382,16 +458,8 @@ namespace SurgeryHelper.Engines
 
                     _ows.Cells[rowCnt, 7] = patientList[i].TypeOfKSG;
                     _ows.Cells[rowCnt, 8] = patientList[i].MKB;
-                    _ows.Cells[rowCnt, 9] = patientList[i].KSG;
-
-                    if (!string.IsNullOrEmpty(patientList[i].MKB) && 
-                        !string.IsNullOrEmpty(patientList[i].KSG) &&
-                        !string.IsNullOrEmpty(patientList[i].TypeOfKSG))
-                    {
-                        MKBEngine mkb = dbEngine.GetCorrectMKBEngine(patientList[i].TypeOfKSG);
-                        MKBClass mkbInfo = mkb.GetMkbInfo(patientList[i].MKB, patientList[i].KSG);
-                        _ows.Cells[rowCnt, 10] = mkbInfo.KsgDecoding;
-                    }
+                    _ows.Cells[rowCnt, 9] = patientList[i].ServiceCode;
+                    _ows.Cells[rowCnt, 10] = patientList[i].ServiceName;                    
 
                     _ows.Cells[rowCnt, 11] = patientList[i].Nosology;
                     _ows.Cells[rowCnt, 12] = patientList[i].DoctorInChargeOfTheCase;

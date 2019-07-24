@@ -40,10 +40,10 @@ namespace SurgeryHelper
             _patientInfo = patientInfo;
             _operationForm = operationForm;            
 
-            PutObjectsToComboBox(_dbEngine.OrderlyList, comboBoxOrderly);
-            PutObjectsToComboBox(_dbEngine.ScrubNurseList, comboBoxScrubNurse);
-            PutObjectsToComboBox(_dbEngine.HeAnestethistList, comboBoxHeAnestethist);
-            PutObjectsToComboBox(_dbEngine.SheAnestethistList, comboBoxSheAnestethist);
+            PutObjectsToComboBox(_dbEngine.OrderlyList.ToArray(), comboBoxOrderly);
+            PutObjectsToComboBox(_dbEngine.ScrubNurseList.ToArray(), comboBoxScrubNurse);
+            PutObjectsToComboBox(_dbEngine.HeAnestethistList.ToArray(), comboBoxHeAnestethist);
+            PutObjectsToComboBox(_dbEngine.SheAnestethistList.ToArray(), comboBoxSheAnestethist);
 
             if (operationInfo == null)
             {
@@ -318,7 +318,7 @@ namespace SurgeryHelper
         private void linkLabelScrubNurseList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new ScrubNurseForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.ScrubNurseList, comboBoxScrubNurse);
+            PutObjectsToComboBox(_dbEngine.ScrubNurseList.ToArray(), comboBoxScrubNurse);
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace SurgeryHelper
         private void linkLabelOrderlyList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new OrderlyForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.OrderlyList, comboBoxOrderly);
+            PutObjectsToComboBox(_dbEngine.OrderlyList.ToArray(), comboBoxOrderly);
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace SurgeryHelper
         private void linkLabelHeAnestethist_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new HeAnestethistForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.HeAnestethistList, comboBoxHeAnestethist);
+            PutObjectsToComboBox(_dbEngine.HeAnestethistList.ToArray(), comboBoxHeAnestethist);
         }    
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace SurgeryHelper
         private void linkLabelSheAnestethistList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new SheAnestethistForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.SheAnestethistList, comboBoxSheAnestethist);
+            PutObjectsToComboBox(_dbEngine.SheAnestethistList.ToArray(), comboBoxSheAnestethist);
         }
 
         /// <summary>

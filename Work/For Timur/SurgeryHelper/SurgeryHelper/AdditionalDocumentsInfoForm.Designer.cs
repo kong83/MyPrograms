@@ -38,26 +38,26 @@
             // 
             // richTextBoxWords
             // 
-            this.richTextBoxWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxWords.Location = new System.Drawing.Point(12, 35);
             this.richTextBoxWords.Name = "richTextBoxWords";
             this.richTextBoxWords.ReadOnly = true;
-            this.richTextBoxWords.Size = new System.Drawing.Size(262, 258);
+            this.richTextBoxWords.Size = new System.Drawing.Size(262, 297);
             this.richTextBoxWords.TabIndex = 0;
             this.richTextBoxWords.Text = resources.GetString("richTextBoxWords.Text");
             // 
             // labelInfo
             // 
-            this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelInfo.Location = new System.Drawing.Point(12, 298);
+            this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelInfo.Location = new System.Drawing.Point(12, 337);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(262, 71);
             this.labelInfo.TabIndex = 61;
             this.labelInfo.Text = "Все ключевые слова должны быть заключены в фигурные скобки.\r\nРегистр и лишние про" +
-                "белы игнорируются.\r\nВместо N нужно прописывать требуемый номер операции.";
+    "белы игнорируются.\r\nВместо N нужно прописывать требуемый номер операции.";
             // 
             // labelTitle
             // 
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 373);
+            this.ClientSize = new System.Drawing.Size(286, 412);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.richTextBoxWords);

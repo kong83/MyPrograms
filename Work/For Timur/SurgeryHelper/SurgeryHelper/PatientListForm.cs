@@ -272,16 +272,16 @@ namespace SurgeryHelper
                         PatientList.Rows[listCnt].Cells[0].Value = _dbEngine.PatientList[patientCnt].Id.ToString();
                         PatientList.Rows[listCnt].Cells[1].Value = (listCnt + 1).ToString();
                         PatientList.Rows[listCnt].Cells[2].Value = _dbEngine.PatientList[patientCnt].GetFullName();
-                        PatientList.Rows[listCnt].Cells[3].Value = _dbEngine.PatientList[patientCnt].DeliveryDate.ToString("dd.MM.yyyy HH:mm");
+                        PatientList.Rows[listCnt].Cells[3].Value = ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].DeliveryDate, true);
 
                         PatientList.Rows[listCnt].Cells[4].Value = _dbEngine.PatientList[patientCnt].ReleaseDate.HasValue
-                            ? _dbEngine.PatientList[patientCnt].ReleaseDate.Value.ToString("dd.MM.yyyy")
+                            ? ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].ReleaseDate.Value)
                             : string.Empty;
 
                         int opeartionCount = _dbEngine.PatientList[patientCnt].Operations.Count;
 
                         PatientList.Rows[listCnt].Cells[5].Value = opeartionCount > 0
-                            ? _dbEngine.PatientList[patientCnt].Operations[opeartionCount - 1].DataOfOperation.ToString("dd.MM.yyyy")
+                            ? ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].Operations[opeartionCount - 1].DataOfOperation)
                             : string.Empty;
 
                         PatientList.Rows[listCnt].Cells[6].Value = _dbEngine.PatientList[patientCnt].Nosology;
@@ -312,14 +312,14 @@ namespace SurgeryHelper
                             string releaseDateStr = string.Empty;
                             if (_dbEngine.PatientList[patientCnt].ReleaseDate.HasValue)
                             {
-                                releaseDateStr = _dbEngine.PatientList[patientCnt].ReleaseDate.Value.ToString("dd.MM.yyyy");
+                                releaseDateStr = ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].ReleaseDate.Value);
                             }
 
                             int opeartionCount = _dbEngine.PatientList[patientCnt].Operations.Count;
                             string operationDateStr = string.Empty;
                             if (opeartionCount > 0)
                             {
-                                operationDateStr = _dbEngine.PatientList[patientCnt].Operations[opeartionCount - 1].DataOfOperation.ToString("dd.MM.yyyy");
+                                operationDateStr = ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].Operations[opeartionCount - 1].DataOfOperation);
                             }
 
                             var param = new[] 
@@ -327,7 +327,7 @@ namespace SurgeryHelper
                                 _dbEngine.PatientList[patientCnt].Id.ToString(),
                                 (PatientList.Rows.Count + 1).ToString(),
                                 _dbEngine.PatientList[patientCnt].GetFullName(),
-                                _dbEngine.PatientList[patientCnt].DeliveryDate.ToString("dd.MM.yyyy HH:mm"),
+                                ConvertEngine.GetRightDateString(_dbEngine.PatientList[patientCnt].DeliveryDate, true),
                                 releaseDateStr,
                                 operationDateStr,
                                 _dbEngine.PatientList[patientCnt].Nosology,

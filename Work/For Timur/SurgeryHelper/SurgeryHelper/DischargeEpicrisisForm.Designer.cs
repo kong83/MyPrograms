@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DischargeEpicrisisForm));
-            this.buttonDocuments = new System.Windows.Forms.Button();
-            this.buttonOk = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxAfterOperation = new System.Windows.Forms.TextBox();
@@ -84,20 +81,11 @@
             this.timerCreateRecomendations = new System.Windows.Forms.Timer(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.textBoxAdditionalAnalises = new System.Windows.Forms.TextBox();
-            this.groupBoxConservativeTherapy = new System.Windows.Forms.GroupBox();
-            this.comboBoxReceivingMethod = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonAddTherapy = new System.Windows.Forms.Button();
-            this.comboBoxDuration = new System.Windows.Forms.ComboBox();
-            this.comboBoxPerDayCnt = new System.Windows.Forms.ComboBox();
-            this.comboBoxPerOneCnt = new System.Windows.Forms.ComboBox();
-            this.comboBoxDrug = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxConservativeTherapy = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxBAK = new System.Windows.Forms.GroupBox();
+            this.comboBoxRhesusFactor = new System.Windows.Forms.ComboBox();
+            this.comboBoxBloodGroup = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBoxBakSugar = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -108,69 +96,27 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.dateTimePickerAnalysisDate = new System.Windows.Forms.DateTimePicker();
+            this.textBoxConservativeTherapy = new System.Windows.Forms.TextBox();
+            this.groupBoxConservativeTherapy = new System.Windows.Forms.GroupBox();
+            this.buttonPrescription = new System.Windows.Forms.Button();
+            this.buttonDocuments = new System.Windows.Forms.Button();
+            this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.groupBoxOak.SuspendLayout();
             this.groupBoxOam.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGipsLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownShowing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRentgen)).BeginInit();
-            this.groupBoxConservativeTherapy.SuspendLayout();
             this.groupBoxBAK.SuspendLayout();
+            this.groupBoxConservativeTherapy.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonDocuments
-            // 
-            this.buttonDocuments.BackgroundImage = global::SurgeryHelper.Properties.Resources.Untitled;
-            this.buttonDocuments.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonDocuments.FlatAppearance.BorderSize = 0;
-            this.buttonDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDocuments.Location = new System.Drawing.Point(316, 423);
-            this.buttonDocuments.Name = "buttonDocuments";
-            this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
-            this.buttonDocuments.TabIndex = 79;
-            this.buttonDocuments.TabStop = false;
-            this.buttonDocuments.UseVisualStyleBackColor = true;
-            this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
-            this.buttonDocuments.MouseEnter += new System.EventHandler(this.buttonDocuments_MouseEnter);
-            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
-            // 
-            // buttonOk
-            // 
-            this.buttonOk.BackgroundImage = global::SurgeryHelper.Properties.Resources.OK;
-            this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonOk.FlatAppearance.BorderSize = 0;
-            this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(487, 423);
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(40, 40);
-            this.buttonOk.TabIndex = 78;
-            this.buttonOk.TabStop = false;
-            this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.BackgroundImage = global::SurgeryHelper.Properties.Resources.close;
-            this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonClose.FlatAppearance.BorderSize = 0;
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(544, 423);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(40, 40);
-            this.buttonClose.TabIndex = 77;
-            this.buttonClose.TabStop = false;
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(400, 289);
+            this.label5.Location = new System.Drawing.Point(400, 260);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 13);
             this.label5.TabIndex = 80;
@@ -178,13 +124,13 @@
             // 
             // textBoxAfterOperation
             // 
-            this.textBoxAfterOperation.Location = new System.Drawing.Point(312, 304);
+            this.textBoxAfterOperation.Location = new System.Drawing.Point(312, 275);
             this.textBoxAfterOperation.Multiline = true;
             this.textBoxAfterOperation.Name = "textBoxAfterOperation";
             this.textBoxAfterOperation.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxAfterOperation.Size = new System.Drawing.Size(272, 64);
             this.textBoxAfterOperation.TabIndex = 12;
-            this.textBoxAfterOperation.Text = "раны зажили первичным натяжением, швы сняты.";
+            this.textBoxAfterOperation.Text = "раны заживают первичным натяжением, швы без признаков воспаления";
             // 
             // groupBoxOak
             // 
@@ -197,7 +143,7 @@
             this.groupBoxOak.Controls.Add(this.textBoxOakLekocits);
             this.groupBoxOak.Controls.Add(this.textBoxOakErotrocits);
             this.groupBoxOak.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxOak.Location = new System.Drawing.Point(12, 182);
+            this.groupBoxOak.Location = new System.Drawing.Point(12, 163);
             this.groupBoxOak.Name = "groupBoxOak";
             this.groupBoxOak.Size = new System.Drawing.Size(294, 80);
             this.groupBoxOak.TabIndex = 2;
@@ -267,7 +213,7 @@
             // textBoxOakLekocits
             // 
             this.textBoxOakLekocits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxOakLekocits.Location = new System.Drawing.Point(84, 51);
+            this.textBoxOakLekocits.Location = new System.Drawing.Point(81, 51);
             this.textBoxOakLekocits.Name = "textBoxOakLekocits";
             this.textBoxOakLekocits.Size = new System.Drawing.Size(65, 20);
             this.textBoxOakLekocits.TabIndex = 2;
@@ -275,7 +221,7 @@
             // textBoxOakErotrocits
             // 
             this.textBoxOakErotrocits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxOakErotrocits.Location = new System.Drawing.Point(84, 21);
+            this.textBoxOakErotrocits.Location = new System.Drawing.Point(81, 21);
             this.textBoxOakErotrocits.Name = "textBoxOakErotrocits";
             this.textBoxOakErotrocits.Size = new System.Drawing.Size(65, 20);
             this.textBoxOakErotrocits.TabIndex = 1;
@@ -291,7 +237,7 @@
             this.groupBoxOam.Controls.Add(this.textBoxOamDensity);
             this.groupBoxOam.Controls.Add(this.textBoxOamLekocits);
             this.groupBoxOam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxOam.Location = new System.Drawing.Point(12, 271);
+            this.groupBoxOam.Location = new System.Drawing.Point(12, 252);
             this.groupBoxOam.Name = "groupBoxOam";
             this.groupBoxOam.Size = new System.Drawing.Size(294, 88);
             this.groupBoxOam.TabIndex = 4;
@@ -331,7 +277,7 @@
             this.label13.Size = new System.Drawing.Size(59, 26);
             this.label13.TabIndex = 100;
             this.label13.Text = "Относит.\r\nплотность";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label14
             // 
@@ -358,7 +304,7 @@
             // textBoxOamErotrocits
             // 
             this.textBoxOamErotrocits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxOamErotrocits.Location = new System.Drawing.Point(85, 25);
+            this.textBoxOamErotrocits.Location = new System.Drawing.Point(81, 25);
             this.textBoxOamErotrocits.Name = "textBoxOamErotrocits";
             this.textBoxOamErotrocits.Size = new System.Drawing.Size(65, 20);
             this.textBoxOamErotrocits.TabIndex = 1;
@@ -375,7 +321,7 @@
             // textBoxOamLekocits
             // 
             this.textBoxOamLekocits.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxOamLekocits.Location = new System.Drawing.Point(85, 55);
+            this.textBoxOamLekocits.Location = new System.Drawing.Point(81, 55);
             this.textBoxOamLekocits.Name = "textBoxOamLekocits";
             this.textBoxOamLekocits.Size = new System.Drawing.Size(65, 20);
             this.textBoxOamLekocits.TabIndex = 2;
@@ -383,7 +329,7 @@
             // 
             // textBoxEkg
             // 
-            this.textBoxEkg.Location = new System.Drawing.Point(312, 389);
+            this.textBoxEkg.Location = new System.Drawing.Point(312, 360);
             this.textBoxEkg.Name = "textBoxEkg";
             this.textBoxEkg.Size = new System.Drawing.Size(272, 20);
             this.textBoxEkg.TabIndex = 14;
@@ -393,7 +339,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(418, 374);
+            this.label7.Location = new System.Drawing.Point(418, 345);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 84;
@@ -631,13 +577,13 @@
             this.comboBoxReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxReason.FormattingEnabled = true;
             this.comboBoxReason.Items.AddRange(new object[] {
-            "лист нетрудоспособности",
+            "листок нетрудоспособности",
             "ученическая справка"});
             this.comboBoxReason.Location = new System.Drawing.Point(84, 24);
             this.comboBoxReason.Name = "comboBoxReason";
             this.comboBoxReason.Size = new System.Drawing.Size(241, 21);
             this.comboBoxReason.TabIndex = 2;
-            this.comboBoxReason.Text = "лист нетрудоспособности";
+            this.comboBoxReason.Text = "листок нетрудоспособности";
             this.comboBoxReason.TextChanged += new System.EventHandler(this.comboBoxReason_TextChanged);
             // 
             // checkBox6
@@ -766,7 +712,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(418, 211);
+            this.label16.Location = new System.Drawing.Point(418, 182);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(91, 13);
             this.label16.TabIndex = 85;
@@ -775,210 +721,21 @@
             // textBoxAdditionalAnalises
             // 
             this.textBoxAdditionalAnalises.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxAdditionalAnalises.Location = new System.Drawing.Point(312, 227);
+            this.textBoxAdditionalAnalises.Location = new System.Drawing.Point(312, 198);
             this.textBoxAdditionalAnalises.MaxLength = 20000;
             this.textBoxAdditionalAnalises.Multiline = true;
             this.textBoxAdditionalAnalises.Name = "textBoxAdditionalAnalises";
             this.textBoxAdditionalAnalises.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxAdditionalAnalises.Size = new System.Drawing.Size(272, 57);
             this.textBoxAdditionalAnalises.TabIndex = 10;
-            // 
-            // groupBoxConservativeTherapy
-            // 
-            this.groupBoxConservativeTherapy.Controls.Add(this.comboBoxReceivingMethod);
-            this.groupBoxConservativeTherapy.Controls.Add(this.label6);
-            this.groupBoxConservativeTherapy.Controls.Add(this.buttonAddTherapy);
-            this.groupBoxConservativeTherapy.Controls.Add(this.comboBoxDuration);
-            this.groupBoxConservativeTherapy.Controls.Add(this.comboBoxPerDayCnt);
-            this.groupBoxConservativeTherapy.Controls.Add(this.comboBoxPerOneCnt);
-            this.groupBoxConservativeTherapy.Controls.Add(this.comboBoxDrug);
-            this.groupBoxConservativeTherapy.Controls.Add(this.label4);
-            this.groupBoxConservativeTherapy.Controls.Add(this.label3);
-            this.groupBoxConservativeTherapy.Controls.Add(this.label2);
-            this.groupBoxConservativeTherapy.Controls.Add(this.textBoxConservativeTherapy);
-            this.groupBoxConservativeTherapy.Controls.Add(this.label1);
-            this.groupBoxConservativeTherapy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxConservativeTherapy.Location = new System.Drawing.Point(12, 12);
-            this.groupBoxConservativeTherapy.Name = "groupBoxConservativeTherapy";
-            this.groupBoxConservativeTherapy.Size = new System.Drawing.Size(572, 158);
-            this.groupBoxConservativeTherapy.TabIndex = 0;
-            this.groupBoxConservativeTherapy.TabStop = false;
-            this.groupBoxConservativeTherapy.Text = "* Консервативная терапия";
-            // 
-            // comboBoxReceivingMethod
-            // 
-            this.comboBoxReceivingMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxReceivingMethod.FormattingEnabled = true;
-            this.comboBoxReceivingMethod.Items.AddRange(new object[] {
-            "в/м",
-            "в/в",
-            "в/в, кап.",
-            "п/к",
-            "p/os"});
-            this.comboBoxReceivingMethod.Location = new System.Drawing.Point(373, 44);
-            this.comboBoxReceivingMethod.Name = "comboBoxReceivingMethod";
-            this.comboBoxReceivingMethod.Size = new System.Drawing.Size(93, 21);
-            this.comboBoxReceivingMethod.TabIndex = 4;
-            this.comboBoxReceivingMethod.Text = "в/м";
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(370, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 29);
-            this.label6.TabIndex = 85;
-            this.label6.Text = "Способ введения";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonAddTherapy
-            // 
-            this.buttonAddTherapy.BackgroundImage = global::SurgeryHelper.Properties.Resources.add;
-            this.buttonAddTherapy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonAddTherapy.FlatAppearance.BorderSize = 0;
-            this.buttonAddTherapy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddTherapy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddTherapy.Location = new System.Drawing.Point(13, 69);
-            this.buttonAddTherapy.Name = "buttonAddTherapy";
-            this.buttonAddTherapy.Size = new System.Drawing.Size(553, 32);
-            this.buttonAddTherapy.TabIndex = 83;
-            this.buttonAddTherapy.TabStop = false;
-            this.buttonAddTherapy.UseVisualStyleBackColor = true;
-            this.buttonAddTherapy.Click += new System.EventHandler(this.buttonAddTherapy_Click);
-            this.buttonAddTherapy.MouseEnter += new System.EventHandler(this.buttonAddTherapy_MouseEnter);
-            this.buttonAddTherapy.MouseLeave += new System.EventHandler(this.buttonAddTherapy_MouseLeave);
-            // 
-            // comboBoxDuration
-            // 
-            this.comboBoxDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxDuration.FormattingEnabled = true;
-            this.comboBoxDuration.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.comboBoxDuration.Location = new System.Drawing.Point(472, 44);
-            this.comboBoxDuration.MaxDropDownItems = 10;
-            this.comboBoxDuration.Name = "comboBoxDuration";
-            this.comboBoxDuration.Size = new System.Drawing.Size(94, 21);
-            this.comboBoxDuration.TabIndex = 5;
-            this.comboBoxDuration.Text = "3";
-            // 
-            // comboBoxPerDayCnt
-            // 
-            this.comboBoxPerDayCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxPerDayCnt.FormattingEnabled = true;
-            this.comboBoxPerDayCnt.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.comboBoxPerDayCnt.Location = new System.Drawing.Point(255, 44);
-            this.comboBoxPerDayCnt.Name = "comboBoxPerDayCnt";
-            this.comboBoxPerDayCnt.Size = new System.Drawing.Size(109, 21);
-            this.comboBoxPerDayCnt.TabIndex = 3;
-            this.comboBoxPerDayCnt.Text = "1";
-            // 
-            // comboBoxPerOneCnt
-            // 
-            this.comboBoxPerOneCnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxPerOneCnt.FormattingEnabled = true;
-            this.comboBoxPerOneCnt.Items.AddRange(new object[] {
-            "0,5",
-            "1,0",
-            "1,5",
-            "2,0"});
-            this.comboBoxPerOneCnt.Location = new System.Drawing.Point(169, 44);
-            this.comboBoxPerOneCnt.Name = "comboBoxPerOneCnt";
-            this.comboBoxPerOneCnt.Size = new System.Drawing.Size(80, 21);
-            this.comboBoxPerOneCnt.TabIndex = 2;
-            this.comboBoxPerOneCnt.Text = "1,0";
-            // 
-            // comboBoxDrug
-            // 
-            this.comboBoxDrug.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxDrug.FormattingEnabled = true;
-            this.comboBoxDrug.Items.AddRange(new object[] {
-            "S. Ceftriaxoni",
-            "S. Ketoroli",
-            "ПСС",
-            "S. Analgini",
-            "S. Dimedroli",
-            "S. NaCl",
-            "S. Glucosae",
-            "S. Dexasoni",
-            "S. Reopolyglucini",
-            "S. Trentali",
-            "Магнитотерапия",
-            "ЛФК"});
-            this.comboBoxDrug.Location = new System.Drawing.Point(13, 44);
-            this.comboBoxDrug.MaxDropDownItems = 20;
-            this.comboBoxDrug.Name = "comboBoxDrug";
-            this.comboBoxDrug.Size = new System.Drawing.Size(147, 21);
-            this.comboBoxDrug.TabIndex = 1;
-            this.comboBoxDrug.Text = "S. Ceftriaxoni";
-            this.comboBoxDrug.SelectedIndexChanged += new System.EventHandler(this.comboBoxDrug_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(472, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 29);
-            this.label4.TabIndex = 84;
-            this.label4.Text = "Продолжи- тельность";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(255, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 29);
-            this.label3.TabIndex = 83;
-            this.label3.Text = "Количество приёмов";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(166, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 29);
-            this.label2.TabIndex = 82;
-            this.label2.Text = "Разовая доза";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxConservativeTherapy
-            // 
-            this.textBoxConservativeTherapy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxConservativeTherapy.Location = new System.Drawing.Point(13, 105);
-            this.textBoxConservativeTherapy.MaxLength = 20000;
-            this.textBoxConservativeTherapy.Multiline = true;
-            this.textBoxConservativeTherapy.Name = "textBoxConservativeTherapy";
-            this.textBoxConservativeTherapy.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxConservativeTherapy.Size = new System.Drawing.Size(553, 46);
-            this.textBoxConservativeTherapy.TabIndex = 6;
-            this.textBoxConservativeTherapy.Text = "S. Ceftriaxoni 1,0 – 1 раз в день в/м 3 дня, S. Ketoroli 1,0 – 3 раза в день в/м " +
-    "3 дня";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(17, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 29);
-            this.label1.TabIndex = 80;
-            this.label1.Text = "Название лекарства";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.textBoxAdditionalAnalises.Text = "анализ крови на ВИЧ - отр.";
             // 
             // groupBoxBAK
             // 
+            this.groupBoxBAK.Controls.Add(this.comboBoxRhesusFactor);
+            this.groupBoxBAK.Controls.Add(this.comboBoxBloodGroup);
+            this.groupBoxBAK.Controls.Add(this.label2);
+            this.groupBoxBAK.Controls.Add(this.label1);
             this.groupBoxBAK.Controls.Add(this.textBoxBakSugar);
             this.groupBoxBAK.Controls.Add(this.label19);
             this.groupBoxBAK.Controls.Add(this.label23);
@@ -988,12 +745,60 @@
             this.groupBoxBAK.Controls.Add(this.textBoxBakGeneralProtein);
             this.groupBoxBAK.Controls.Add(this.label18);
             this.groupBoxBAK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxBAK.Location = new System.Drawing.Point(12, 369);
+            this.groupBoxBAK.Location = new System.Drawing.Point(12, 347);
             this.groupBoxBAK.Name = "groupBoxBAK";
-            this.groupBoxBAK.Size = new System.Drawing.Size(294, 88);
+            this.groupBoxBAK.Size = new System.Drawing.Size(294, 117);
             this.groupBoxBAK.TabIndex = 6;
             this.groupBoxBAK.TabStop = false;
             this.groupBoxBAK.Text = "Биохимический анализ крови";
+            // 
+            // comboBoxRhesusFactor
+            // 
+            this.comboBoxRhesusFactor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxRhesusFactor.FormattingEnabled = true;
+            this.comboBoxRhesusFactor.Items.AddRange(new object[] {
+            "+ (пол)",
+            "- (отр)"});
+            this.comboBoxRhesusFactor.Location = new System.Drawing.Point(218, 86);
+            this.comboBoxRhesusFactor.Name = "comboBoxRhesusFactor";
+            this.comboBoxRhesusFactor.Size = new System.Drawing.Size(65, 21);
+            this.comboBoxRhesusFactor.TabIndex = 8;
+            // 
+            // comboBoxBloodGroup
+            // 
+            this.comboBoxBloodGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxBloodGroup.FormattingEnabled = true;
+            this.comboBoxBloodGroup.Items.AddRange(new object[] {
+            "0 (I)",
+            "A (II)",
+            "B (III)",
+            "AB (IV)"});
+            this.comboBoxBloodGroup.Location = new System.Drawing.Point(81, 86);
+            this.comboBoxBloodGroup.Name = "comboBoxBloodGroup";
+            this.comboBoxBloodGroup.Size = new System.Drawing.Size(65, 21);
+            this.comboBoxBloodGroup.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(165, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 26);
+            this.label2.TabIndex = 103;
+            this.label2.Text = "Резуc\r\nфактор";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(11, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 26);
+            this.label1.TabIndex = 102;
+            this.label1.Text = "Группа\r\nкрови";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxBakSugar
             // 
@@ -1007,7 +812,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(180, 58);
+            this.label19.Location = new System.Drawing.Point(165, 58);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(30, 13);
             this.label19.TabIndex = 100;
@@ -1018,11 +823,11 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.Location = new System.Drawing.Point(175, 28);
+            this.label23.Location = new System.Drawing.Point(165, 28);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(37, 13);
+            this.label23.Size = new System.Drawing.Size(51, 13);
             this.label23.TabIndex = 99;
-            this.label23.Text = "Сахар";
+            this.label23.Text = "Глюкоза";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label24
@@ -1039,7 +844,7 @@
             // textBoxBakBillirubin
             // 
             this.textBoxBakBillirubin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBakBillirubin.Location = new System.Drawing.Point(85, 25);
+            this.textBoxBakBillirubin.Location = new System.Drawing.Point(81, 25);
             this.textBoxBakBillirubin.Name = "textBoxBakBillirubin";
             this.textBoxBakBillirubin.Size = new System.Drawing.Size(65, 20);
             this.textBoxBakBillirubin.TabIndex = 1;
@@ -1055,7 +860,7 @@
             // textBoxBakGeneralProtein
             // 
             this.textBoxBakGeneralProtein.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBakGeneralProtein.Location = new System.Drawing.Point(85, 55);
+            this.textBoxBakGeneralProtein.Location = new System.Drawing.Point(81, 55);
             this.textBoxBakGeneralProtein.Name = "textBoxBakGeneralProtein";
             this.textBoxBakGeneralProtein.Size = new System.Drawing.Size(65, 20);
             this.textBoxBakGeneralProtein.TabIndex = 2;
@@ -1066,16 +871,16 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label18.Location = new System.Drawing.Point(11, 58);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(75, 13);
+            this.label18.Size = new System.Drawing.Size(61, 13);
             this.label18.TabIndex = 101;
-            this.label18.Text = "Общий белок";
+            this.label18.Text = "Креатинин";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(313, 185);
+            this.label25.Location = new System.Drawing.Point(313, 156);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(122, 13);
             this.label25.TabIndex = 91;
@@ -1087,10 +892,102 @@
             this.dateTimePickerAnalysisDate.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerAnalysisDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerAnalysisDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerAnalysisDate.Location = new System.Drawing.Point(463, 182);
+            this.dateTimePickerAnalysisDate.Location = new System.Drawing.Point(463, 153);
             this.dateTimePickerAnalysisDate.Name = "dateTimePickerAnalysisDate";
             this.dateTimePickerAnalysisDate.Size = new System.Drawing.Size(121, 20);
             this.dateTimePickerAnalysisDate.TabIndex = 8;
+            // 
+            // textBoxConservativeTherapy
+            // 
+            this.textBoxConservativeTherapy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxConservativeTherapy.Location = new System.Drawing.Point(13, 18);
+            this.textBoxConservativeTherapy.MaxLength = 20000;
+            this.textBoxConservativeTherapy.Multiline = true;
+            this.textBoxConservativeTherapy.Name = "textBoxConservativeTherapy";
+            this.textBoxConservativeTherapy.ReadOnly = true;
+            this.textBoxConservativeTherapy.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxConservativeTherapy.Size = new System.Drawing.Size(511, 111);
+            this.textBoxConservativeTherapy.TabIndex = 6;
+            this.textBoxConservativeTherapy.TabStop = false;
+            this.textBoxConservativeTherapy.Text = "S. Ceftriaxoni 1,0 – 1 раз в день в/м 3 дня, S. Ketoroli 1,0 – 3 раза в день в/м " +
+    "3 дня";
+            // 
+            // groupBoxConservativeTherapy
+            // 
+            this.groupBoxConservativeTherapy.Controls.Add(this.buttonPrescription);
+            this.groupBoxConservativeTherapy.Controls.Add(this.textBoxConservativeTherapy);
+            this.groupBoxConservativeTherapy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxConservativeTherapy.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxConservativeTherapy.Name = "groupBoxConservativeTherapy";
+            this.groupBoxConservativeTherapy.Size = new System.Drawing.Size(572, 135);
+            this.groupBoxConservativeTherapy.TabIndex = 5;
+            this.groupBoxConservativeTherapy.TabStop = false;
+            this.groupBoxConservativeTherapy.Text = "* Консервативная терапия";
+            // 
+            // buttonPrescription
+            // 
+            this.buttonPrescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonPrescription.BackgroundImage = global::SurgeryHelper.Properties.Resources.pill_green;
+            this.buttonPrescription.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonPrescription.FlatAppearance.BorderSize = 0;
+            this.buttonPrescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrescription.Location = new System.Drawing.Point(530, 18);
+            this.buttonPrescription.Name = "buttonPrescription";
+            this.buttonPrescription.Size = new System.Drawing.Size(40, 111);
+            this.buttonPrescription.TabIndex = 10;
+            this.buttonPrescription.TabStop = false;
+            this.buttonPrescription.UseVisualStyleBackColor = true;
+            this.buttonPrescription.Click += new System.EventHandler(this.buttonPrescription_Click);
+            this.buttonPrescription.MouseEnter += new System.EventHandler(this.buttonPrescription_MouseEnter);
+            this.buttonPrescription.MouseLeave += new System.EventHandler(this.buttonPrescription_MouseLeave);
+            // 
+            // buttonDocuments
+            // 
+            this.buttonDocuments.BackgroundImage = global::SurgeryHelper.Properties.Resources.Untitled;
+            this.buttonDocuments.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonDocuments.FlatAppearance.BorderSize = 0;
+            this.buttonDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDocuments.Location = new System.Drawing.Point(316, 423);
+            this.buttonDocuments.Name = "buttonDocuments";
+            this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
+            this.buttonDocuments.TabIndex = 79;
+            this.buttonDocuments.TabStop = false;
+            this.buttonDocuments.UseVisualStyleBackColor = true;
+            this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
+            this.buttonDocuments.MouseEnter += new System.EventHandler(this.buttonDocuments_MouseEnter);
+            this.buttonDocuments.MouseLeave += new System.EventHandler(this.buttonDocuments_MouseLeave);
+            // 
+            // buttonOk
+            // 
+            this.buttonOk.BackgroundImage = global::SurgeryHelper.Properties.Resources.OK;
+            this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonOk.FlatAppearance.BorderSize = 0;
+            this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOk.Location = new System.Drawing.Point(487, 423);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(40, 40);
+            this.buttonOk.TabIndex = 78;
+            this.buttonOk.TabStop = false;
+            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.BackgroundImage = global::SurgeryHelper.Properties.Resources.close;
+            this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.Location = new System.Drawing.Point(544, 423);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(40, 40);
+            this.buttonClose.TabIndex = 77;
+            this.buttonClose.TabStop = false;
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // DischargeEpicrisisForm
             // 
@@ -1133,10 +1030,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGipsLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownShowing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRentgen)).EndInit();
-            this.groupBoxConservativeTherapy.ResumeLayout(false);
-            this.groupBoxConservativeTherapy.PerformLayout();
             this.groupBoxBAK.ResumeLayout(false);
             this.groupBoxBAK.PerformLayout();
+            this.groupBoxConservativeTherapy.ResumeLayout(false);
+            this.groupBoxConservativeTherapy.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1198,19 +1095,6 @@
         private System.Windows.Forms.ComboBox comboBoxGipsDay;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxAdditionalAnalises;
-        private System.Windows.Forms.GroupBox groupBoxConservativeTherapy;
-        private System.Windows.Forms.ComboBox comboBoxReceivingMethod;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button buttonAddTherapy;
-        private System.Windows.Forms.ComboBox comboBoxDuration;
-        private System.Windows.Forms.ComboBox comboBoxPerDayCnt;
-        private System.Windows.Forms.ComboBox comboBoxPerOneCnt;
-        private System.Windows.Forms.ComboBox comboBoxDrug;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxConservativeTherapy;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxBAK;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
@@ -1222,5 +1106,12 @@
         private System.Windows.Forms.TextBox textBoxBakSugar;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.DateTimePicker dateTimePickerAnalysisDate;
+        private System.Windows.Forms.TextBox textBoxConservativeTherapy;
+        private System.Windows.Forms.GroupBox groupBoxConservativeTherapy;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxRhesusFactor;
+        private System.Windows.Forms.ComboBox comboBoxBloodGroup;
+        private System.Windows.Forms.Button buttonPrescription;
     }
 }

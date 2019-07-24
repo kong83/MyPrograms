@@ -209,7 +209,7 @@ namespace SurgeryHelper
 
             PutDataToPatient(tempPatientInfo);
 
-            WordExportEngine.ExportMedicalInspection(tempPatientInfo, _dbEngine.GlobalSettings);
+            new WordExportEngine(_dbEngine).ExportMedicalInspection(tempPatientInfo);
         }
 
         /// <summary>

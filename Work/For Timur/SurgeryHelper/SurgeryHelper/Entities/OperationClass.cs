@@ -73,12 +73,6 @@ namespace SurgeryHelper.Entities
         /// </summary>
         public string Orderly;
 
-
-        /// <summary>
-        /// Время написания эпискриза
-        /// </summary>
-        public DateTime BeforeOperationEpicrisisTimeWriting;
-
         /// <summary>
         /// Активен ли дневник
         /// </summary>
@@ -159,7 +153,16 @@ namespace SurgeryHelper.Entities
         /// </summary>
         public string BeforeOperationEpicrisisStLocalis;
 
-        
+        /// <summary>
+        /// Антибиотикопрофилактика
+        /// </summary>
+        public bool BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
+
+        /// <summary>
+        /// Антибиотикопрофилактика
+        /// </summary>
+        public string BeforeOperationEpicrisisAntibioticProphylaxis;
+
         /// <summary>
         /// Ход операции
         /// </summary>
@@ -185,6 +188,8 @@ namespace SurgeryHelper.Entities
             BeforeOperationEpicrisisBreath = "везикулярное";
             BeforeOperationEpicrisisHeartSounds = "ясные";
             BeforeOperationEpicrisisHeartRhythm = "правильный";
+            BeforeOperationEpicrisisIsAntibioticProphylaxisExist = true;
+            BeforeOperationEpicrisisAntibioticProphylaxis = "S. Cefasolini 1,0 - в/в однократно";
         }
 
         public OperationClass(OperationClass operationInfo)
@@ -197,6 +202,8 @@ namespace SurgeryHelper.Entities
             HeAnaesthetist = operationInfo.HeAnaesthetist;
             SheAnaesthetist = operationInfo.SheAnaesthetist;
             OperationCourse = operationInfo.OperationCourse;
+            BeforeOperationEpicrisisIsAntibioticProphylaxisExist = operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
+            BeforeOperationEpicrisisAntibioticProphylaxis = operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis;
 
             Surgeons = new List<string>();
             foreach (string surgeon in operationInfo.Surgeons)
@@ -227,7 +234,6 @@ namespace SurgeryHelper.Entities
             BeforeOperationEpicrisisStomach = operationInfo.BeforeOperationEpicrisisStomach;
             BeforeOperationEpicrisisStool = operationInfo.BeforeOperationEpicrisisStool;
             BeforeOperationEpicrisisTemperature = operationInfo.BeforeOperationEpicrisisTemperature;
-            BeforeOperationEpicrisisTimeWriting = new DateTime(operationInfo.BeforeOperationEpicrisisTimeWriting.Year, operationInfo.BeforeOperationEpicrisisTimeWriting.Month, operationInfo.BeforeOperationEpicrisisTimeWriting.Day, operationInfo.BeforeOperationEpicrisisTimeWriting.Hour, operationInfo.BeforeOperationEpicrisisTimeWriting.Minute, operationInfo.BeforeOperationEpicrisisTimeWriting.Second);            
             BeforeOperationEpicrisisUrination = operationInfo.BeforeOperationEpicrisisUrination;
             BeforeOperationEpicrisisWheeze = operationInfo.BeforeOperationEpicrisisWheeze;
         }
@@ -251,6 +257,8 @@ namespace SurgeryHelper.Entities
             operationInfo.HeAnaesthetist = HeAnaesthetist;
             operationInfo.SheAnaesthetist = SheAnaesthetist;
             operationInfo.OperationCourse = OperationCourse;
+            operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
+            operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = BeforeOperationEpicrisisAntibioticProphylaxis;
 
             operationInfo.Surgeons = new List<string>();
             foreach (string surgeon in Surgeons)
@@ -281,7 +289,6 @@ namespace SurgeryHelper.Entities
             operationInfo.BeforeOperationEpicrisisStomach = BeforeOperationEpicrisisStomach;
             operationInfo.BeforeOperationEpicrisisStool = BeforeOperationEpicrisisStool;
             operationInfo.BeforeOperationEpicrisisTemperature = BeforeOperationEpicrisisTemperature;
-            operationInfo.BeforeOperationEpicrisisTimeWriting = new DateTime(BeforeOperationEpicrisisTimeWriting.Year, BeforeOperationEpicrisisTimeWriting.Month, BeforeOperationEpicrisisTimeWriting.Day, BeforeOperationEpicrisisTimeWriting.Hour, BeforeOperationEpicrisisTimeWriting.Minute, BeforeOperationEpicrisisTimeWriting.Second);
             operationInfo.BeforeOperationEpicrisisUrination = BeforeOperationEpicrisisUrination;
             operationInfo.BeforeOperationEpicrisisWheeze = BeforeOperationEpicrisisWheeze;
             operationInfo.OpenedOperationProtocolForm = OpenedOperationProtocolForm;

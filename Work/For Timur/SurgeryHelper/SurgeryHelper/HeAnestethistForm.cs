@@ -29,14 +29,14 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int heAnestethistCnt = 0;
-            while (listCnt < checkedListBoxHeAnestethistes.Items.Count && heAnestethistCnt < _dbEngine.HeAnestethistList.Length)
+            while (listCnt < checkedListBoxHeAnestethistes.Items.Count && heAnestethistCnt < _dbEngine.HeAnestethistList.Count)
             {
                 checkedListBoxHeAnestethistes.Items[listCnt] = _dbEngine.HeAnestethistList[heAnestethistCnt].LastNameWithInitials;
                 listCnt++;
                 heAnestethistCnt++;
             }
 
-            if (heAnestethistCnt == _dbEngine.HeAnestethistList.Length)
+            if (heAnestethistCnt == _dbEngine.HeAnestethistList.Count)
             {
                 while (listCnt < checkedListBoxHeAnestethistes.Items.Count)
                 {
@@ -45,7 +45,7 @@ namespace SurgeryHelper
             }
             else
             {
-                while (heAnestethistCnt < _dbEngine.HeAnestethistList.Length)
+                while (heAnestethistCnt < _dbEngine.HeAnestethistList.Count)
                 {
                     checkedListBoxHeAnestethistes.Items.Add(_dbEngine.HeAnestethistList[heAnestethistCnt].LastNameWithInitials);
                     heAnestethistCnt++;
