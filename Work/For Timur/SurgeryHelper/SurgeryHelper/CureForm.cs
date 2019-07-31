@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SurgeryHelper.Engines;
 using SurgeryHelper.Entities;
@@ -34,10 +35,11 @@ namespace SurgeryHelper
             {
                 CureClass cureInfo = _dbEngine.CureList[therapyCnt];
 
-                CureList.Rows[listCnt].Cells[0].Value = cureInfo.Name;
-                CureList.Rows[listCnt].Cells[1].Value = cureInfo.DefaultPerDayCount;
-                CureList.Rows[listCnt].Cells[2].Value = cureInfo.DefaultReceivingMethod;
-                CureList.Rows[listCnt].Cells[3].Value = cureInfo.DefaultDuration;
+                CureList.Rows[listCnt].Cells[0].Value = false;
+                CureList.Rows[listCnt].Cells[1].Value = cureInfo.Name;
+                CureList.Rows[listCnt].Cells[2].Value = cureInfo.DefaultPerDayCount;
+                CureList.Rows[listCnt].Cells[3].Value = cureInfo.DefaultReceivingMethod;
+                CureList.Rows[listCnt].Cells[4].Value = cureInfo.DefaultDuration;
                 listCnt++;
                 therapyCnt++;
             }
@@ -55,7 +57,7 @@ namespace SurgeryHelper
                 {
                     CureClass cureInfo = _dbEngine.CureList[therapyCnt];
 
-                    CureList.Rows.Add(new object[] { cureInfo.Name, cureInfo.DefaultPerDayCount, cureInfo.DefaultReceivingMethod, cureInfo.DefaultDuration });
+                    CureList.Rows.Add(new object[] { false, cureInfo.Name, cureInfo.DefaultPerDayCount, cureInfo.DefaultReceivingMethod, cureInfo.DefaultDuration });
                     therapyCnt++;
                 }
             }
@@ -88,7 +90,7 @@ namespace SurgeryHelper
 
             try
             {
-                string name = CureList.Rows[currentIndex].Cells[0].Value.ToString();
+                string name = CureList.Rows[currentIndex].Cells[1].Value.ToString();
                 if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить лекарство '" + name + "'?\r\nДанная операция необратима.", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
                     _dbEngine.RemoveCure(name);
@@ -134,22 +136,67 @@ namespace SurgeryHelper
                 return;
             }
 
-            _prescriptionForm.PutStringToObject("comboBoxCure", CureList.Rows[currentIndex].Cells[0].Value.ToString());
+            var cures = new List<string[]>();
+            foreach (DataGridViewRow row in CureList.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value) == false)
+                {
+                    continue;
+                }
+
+                cures.Add(GetCureFromRow(row));
+            }
+
+            _prescriptionForm.PutCuresToList(cures);
             Close();
         }
 
-        /// <summary>
-        /// Выбор лекарства двойным кликом
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void curesList_MouseDoubleClick(object sender, MouseEventArgs e)
+        private string[] GetCureFromRow(DataGridViewRow row)
         {
-            int currentIndex = CureList.CurrentCellAddress.Y;
-            if (currentIndex != -1)
+            string cureName = row.Cells[1].Value.ToString();
+            string perDayCnt = row.Cells[2].Value.ToString();
+            string receivingMethod = row.Cells[3].Value.ToString();
+            string duration = row.Cells[4].Value.ToString();
+
+            string str = cureName + " ";
+
+            if (!string.IsNullOrEmpty(perDayCnt) ||
+                !string.IsNullOrEmpty(receivingMethod))
             {
-                buttonOk_Click(null, null);
+                str += "- ";
             }
+
+            if (!string.IsNullOrEmpty(perDayCnt))
+            {
+                string text;
+                int cnt;
+                if (int.TryParse(perDayCnt, out cnt))
+                {
+                    int rem = cnt > 10 ? cnt % 10 : cnt;
+
+                    if ((cnt >= 5 && cnt <= 20) || rem < 2 || rem > 4)
+                    {
+                        text = " раз в день ";
+                    }
+                    else
+                    {
+                        text = " раза в день ";
+                    }
+                }
+                else
+                {
+                    text = " раз в день ";
+                }
+
+                str += perDayCnt + text;
+            }
+
+            if (!string.IsNullOrEmpty(receivingMethod))
+            {
+                str += receivingMethod + " ";
+            }
+
+            return new string[] { str.TrimEnd(), duration, ConvertEngine.GetRightDateString(dateTimePickerStartDate.Value) };
         }
 
         /// <summary>
@@ -171,12 +218,12 @@ namespace SurgeryHelper
                 return;
             }
 
-            var name = CureList.Rows[currentNumber].Cells[0].Value.ToString();
+            var name = CureList.Rows[currentNumber].Cells[1].Value.ToString();
             _dbEngine.MoveCureUp(name);
 
             ShowCures();
 
-            CureList.CurrentCell = CureList.Rows[currentNumber - 1].Cells[0];
+            CureList.CurrentCell = CureList.Rows[currentNumber - 1].Cells[1];
         }
 
         /// <summary>
@@ -198,12 +245,12 @@ namespace SurgeryHelper
                 return;
             }
 
-            var name = CureList.Rows[currentNumber].Cells[0].Value.ToString();
+            var name = CureList.Rows[currentNumber].Cells[1].Value.ToString();
             _dbEngine.MoveCureDown(name);
 
             ShowCures();
 
-            CureList.CurrentCell = CureList.Rows[currentNumber + 1].Cells[0];
+            CureList.CurrentCell = CureList.Rows[currentNumber + 1].Cells[1];
         }
 
         /// <summary>
@@ -225,12 +272,12 @@ namespace SurgeryHelper
                 return;
             }
 
-            var name = CureList.Rows[currentNumber].Cells[0].Value.ToString();
+            var name = CureList.Rows[currentNumber].Cells[1].Value.ToString();
             _dbEngine.MoveCureToFirst(name);
 
             ShowCures();
 
-            CureList.CurrentCell = CureList.Rows[0].Cells[0];
+            CureList.CurrentCell = CureList.Rows[0].Cells[1];
         }
 
         /// <summary>
@@ -252,12 +299,12 @@ namespace SurgeryHelper
                 return;
             }
 
-            var name = CureList.Rows[currentNumber].Cells[0].Value.ToString();
+            var name = CureList.Rows[currentNumber].Cells[1].Value.ToString();
             _dbEngine.MoveCureToLast(name);
 
             ShowCures();
 
-            CureList.CurrentCell = CureList.Rows[CureList.Rows.Count - 1].Cells[0];
+            CureList.CurrentCell = CureList.Rows[CureList.Rows.Count - 1].Cells[1];
         }
 
         #region Подсказки
@@ -335,7 +382,7 @@ namespace SurgeryHelper
 
         private void buttonMakeFirst_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Сдвинуть строку в начало списка", buttonMakeFirst, 15, -20);
+            toolTip1.Show("Поместить строку в начало списка", buttonMakeFirst, 15, -20);
             buttonMakeFirst.FlatStyle = FlatStyle.Popup;
         }
 
@@ -347,7 +394,7 @@ namespace SurgeryHelper
 
         private void buttonmakeLast_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Сдвинуть строку в конец списка", buttonmakeLast, 15, -20);
+            toolTip1.Show("Поместить строку в конец списка", buttonmakeLast, 15, -20);
             buttonmakeLast.FlatStyle = FlatStyle.Popup;
         }
 

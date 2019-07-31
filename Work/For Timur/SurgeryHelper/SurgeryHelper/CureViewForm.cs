@@ -100,6 +100,12 @@ namespace SurgeryHelper
                         return;
                     }
 
+                    if (textBoxCureName.Text.Contains("&") || comboBoxPerDayCnt.Text.Contains("&") || comboBoxReceivingMethod.Text.Contains("&") || comboBoxDuration.Text.Contains("&"))
+                    {
+                        MessageBox.Show("Использование символа '&' в полях запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     _dbEngine.AddCure(cureInfo);
                 }
                 else
@@ -107,6 +113,12 @@ namespace SurgeryHelper
                     if (_cureSaveName != cureInfo.Name && _dbEngine.GetCureByName(cureInfo.Name) != null)
                     {
                         MessageBox.Show("Лекарство с таким именем уже существует. Используйте другое имя.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (textBoxCureName.Text.Contains("&") || comboBoxPerDayCnt.Text.Contains("&") || comboBoxReceivingMethod.Text.Contains("&") || comboBoxDuration.Text.Contains("&"))
+                    {
+                        MessageBox.Show("Использование символа '&' в полях запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 

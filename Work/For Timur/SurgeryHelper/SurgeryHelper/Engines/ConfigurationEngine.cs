@@ -158,8 +158,8 @@ namespace SurgeryHelper.Engines
         {
             get
             {
-                string[] lastMKBList = _appSettings.Settings["PatientViewFormLastMKB"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                return lastMKBList;
+                string[] lastList = _appSettings.Settings["PatientViewFormLastMKB"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
             }
 
             set
@@ -170,37 +170,61 @@ namespace SurgeryHelper.Engines
         }
 
         /// <summary>
-        /// Список последних выбранных лекарств
+        /// Список последних выбранных сервисов для дневного стационара
         /// </summary>
-        public string[] PrescriptionFormLastUsedPrescription
+        public List<LastServiceComboBoxItem> PatientViewFormLastDayServices
         {
             get
             {
-                string[] lastList = _appSettings.Settings["PrescriptionFormLastUsedPrescription"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                return lastList;
+                string[] lastList = _appSettings.Settings["PatientViewFormLastDayServices"].Value.Split(new[] { "^&" }, StringSplitOptions.RemoveEmptyEntries);
+                var comboBoxItems = new List<LastServiceComboBoxItem>();
+                foreach (string lastValue in lastList)
+                {
+                    comboBoxItems.Add(new LastServiceComboBoxItem(lastValue));
+                }
+
+                return comboBoxItems;
             }
 
             set
             {
-                _appSettings.Settings["PrescriptionFormLastUsedPrescription"].Value = string.Join(";", value);
+                var result = new StringBuilder();
+                foreach (var item in value)
+                {
+                    result.Append(item.HiddenValue + "^&");
+                }
+
+                _appSettings.Settings["PatientViewFormLastDayServices"].Value = result.ToString();
                 _config.Save();
             }
         }
 
         /// <summary>
-        /// Список последних выбранных дополнительных методов обследования
+        /// Список последних выбранных сервисов для ночного стационара
         /// </summary>
-        public string[] PrescriptionFormLastUsedSurvey
+        public List<LastServiceComboBoxItem> PatientViewFormLastNightServices
         {
             get
             {
-                string[] lastList = _appSettings.Settings["PrescriptionFormLastUsedSurvey"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                return lastList;
+                string[] lastList = _appSettings.Settings["PatientViewFormLastNightServices"].Value.Split(new[] { "^&" }, StringSplitOptions.RemoveEmptyEntries);
+                var comboBoxItems = new List<LastServiceComboBoxItem>();
+                foreach (string lastValue in lastList)
+                {
+                    comboBoxItems.Add(new LastServiceComboBoxItem(lastValue));
+                }
+
+                return comboBoxItems;
             }
 
             set
             {
-                _appSettings.Settings["PrescriptionFormLastUsedSurvey"].Value = string.Join(";", value);
+                var result = new StringBuilder();
+                foreach (var item in value)
+                {
+                    result.Append(item.HiddenValue + "^&");
+                }
+
+                _appSettings.Settings["PatientViewFormLastNightServices"].Value = result.ToString();
                 _config.Save();
             }
         }

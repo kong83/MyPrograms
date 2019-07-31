@@ -76,6 +76,21 @@ namespace SurgeryHelper.Entities
         public string WorkPlace;
 
         /// <summary>
+        /// Серия и номер паспорта
+        /// </summary>
+        public string PassportNumber;
+
+        /// <summary>
+        /// Номер полиса
+        /// </summary>
+        public string PolisNumber;
+
+        /// <summary>
+        /// Номер СНИЛС
+        /// </summary>
+        public string SnilsNumber;
+
+        /// <summary>
         /// Телефон
         /// </summary>
         public string Phone;
@@ -649,6 +664,7 @@ namespace SurgeryHelper.Entities
             MedicalInspectionTeoRisk = "отсутствует";
             MedicalInspectionExpertAnamnese = 3;
             MedicalInspectionStLocalisRentgen = "без костной патологии";
+            MedicalInspectionComplaints = "";
 
             MedicalInspectionAnamneseAnVitae = new bool[4];
             MedicalInspectionAnamneseTextBoxes = new[] // string[8]
@@ -776,6 +792,9 @@ namespace SurgeryHelper.Entities
             DoctorInChargeOfTheCase = patientClass.DoctorInChargeOfTheCase;
             FlatNumber = patientClass.FlatNumber;
             WorkPlace = patientClass.WorkPlace;
+            PassportNumber = patientClass.PassportNumber;
+            PolisNumber = patientClass.PolisNumber;
+            SnilsNumber = patientClass.SnilsNumber;
             Phone = patientClass.Phone;
             TypeOfKSG = patientClass.TypeOfKSG;
             MKB = patientClass.MKB;
@@ -906,6 +925,9 @@ namespace SurgeryHelper.Entities
             patientInfo.DoctorInChargeOfTheCase = DoctorInChargeOfTheCase;
             patientInfo.FlatNumber = FlatNumber;
             patientInfo.WorkPlace = WorkPlace;
+            patientInfo.PassportNumber = PassportNumber;
+            patientInfo.PolisNumber = PolisNumber;
+            patientInfo.SnilsNumber = SnilsNumber;
             patientInfo.Phone = Phone;
             patientInfo.TypeOfKSG = TypeOfKSG;
             patientInfo.MKB = MKB;

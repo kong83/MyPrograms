@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CureForm));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.CureList = new System.Windows.Forms.DataGridView();
+            this.ColumnCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +47,8 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CureList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,29 +65,38 @@
             this.CureList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.CureList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CureList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnCheck,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.Column1,
             this.ColumnDuration,
             this.dataGridViewTextBoxColumn4});
             this.CureList.Location = new System.Drawing.Point(12, 12);
-            this.CureList.MultiSelect = false;
             this.CureList.Name = "CureList";
             this.CureList.RowHeadersVisible = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.CureList.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.CureList.RowTemplate.Height = 17;
+            this.CureList.RowTemplate.Height = 20;
             this.CureList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CureList.Size = new System.Drawing.Size(734, 242);
+            this.CureList.Size = new System.Drawing.Size(734, 256);
             this.CureList.StandardTab = true;
             this.CureList.TabIndex = 74;
-            this.CureList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.curesList_MouseDoubleClick);
+            // 
+            // ColumnCheck
+            // 
+            this.ColumnCheck.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnCheck.FillWeight = 25F;
+            this.ColumnCheck.HeaderText = "";
+            this.ColumnCheck.Name = "ColumnCheck";
+            this.ColumnCheck.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnCheck.Width = 5;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.FillWeight = 350F;
             this.dataGridViewTextBoxColumn2.HeaderText = "Препарат (название и доза)";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 350;
             // 
@@ -93,6 +105,7 @@
             this.dataGridViewTextBoxColumn3.FillWeight = 120F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Дефолтное кол-во приёмов";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn3.Width = 120;
             // 
@@ -101,6 +114,7 @@
             this.Column1.FillWeight = 120F;
             this.Column1.HeaderText = "Дефолтный способ введения";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column1.Width = 120;
             // 
@@ -109,6 +123,7 @@
             this.ColumnDuration.FillWeight = 120F;
             this.ColumnDuration.HeaderText = "Дефолтная продолжительность";
             this.ColumnDuration.Name = "ColumnDuration";
+            this.ColumnDuration.ReadOnly = true;
             this.ColumnDuration.Width = 120;
             // 
             // dataGridViewTextBoxColumn4
@@ -117,17 +132,18 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 2;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // buttonmakeLast
             // 
-            this.buttonmakeLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonmakeLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonmakeLast.BackgroundImage = global::SurgeryHelper.Properties.Resources.makeLast;
             this.buttonmakeLast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonmakeLast.FlatAppearance.BorderSize = 0;
             this.buttonmakeLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonmakeLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonmakeLast.Location = new System.Drawing.Point(598, 260);
+            this.buttonmakeLast.Location = new System.Drawing.Point(316, 274);
             this.buttonmakeLast.Name = "buttonmakeLast";
             this.buttonmakeLast.Size = new System.Drawing.Size(40, 40);
             this.buttonmakeLast.TabIndex = 97;
@@ -139,13 +155,13 @@
             // 
             // buttonMakeFirst
             // 
-            this.buttonMakeFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonMakeFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMakeFirst.BackgroundImage = global::SurgeryHelper.Properties.Resources.makeFirst;
             this.buttonMakeFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonMakeFirst.FlatAppearance.BorderSize = 0;
             this.buttonMakeFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMakeFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonMakeFirst.Location = new System.Drawing.Point(460, 260);
+            this.buttonMakeFirst.Location = new System.Drawing.Point(178, 274);
             this.buttonMakeFirst.Name = "buttonMakeFirst";
             this.buttonMakeFirst.Size = new System.Drawing.Size(40, 40);
             this.buttonMakeFirst.TabIndex = 96;
@@ -157,13 +173,13 @@
             // 
             // buttonTherapyDown
             // 
-            this.buttonTherapyDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTherapyDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonTherapyDown.BackgroundImage = global::SurgeryHelper.Properties.Resources.down;
             this.buttonTherapyDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonTherapyDown.FlatAppearance.BorderSize = 0;
             this.buttonTherapyDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTherapyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTherapyDown.Location = new System.Drawing.Point(552, 260);
+            this.buttonTherapyDown.Location = new System.Drawing.Point(270, 274);
             this.buttonTherapyDown.Name = "buttonTherapyDown";
             this.buttonTherapyDown.Size = new System.Drawing.Size(40, 40);
             this.buttonTherapyDown.TabIndex = 95;
@@ -175,13 +191,13 @@
             // 
             // buttonTherapyUp
             // 
-            this.buttonTherapyUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTherapyUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonTherapyUp.BackgroundImage = global::SurgeryHelper.Properties.Resources.up;
             this.buttonTherapyUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonTherapyUp.FlatAppearance.BorderSize = 0;
             this.buttonTherapyUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTherapyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTherapyUp.Location = new System.Drawing.Point(506, 260);
+            this.buttonTherapyUp.Location = new System.Drawing.Point(224, 274);
             this.buttonTherapyUp.Name = "buttonTherapyUp";
             this.buttonTherapyUp.Size = new System.Drawing.Size(40, 40);
             this.buttonTherapyUp.TabIndex = 94;
@@ -198,7 +214,7 @@
             this.buttonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonEdit.FlatAppearance.BorderSize = 0;
             this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Location = new System.Drawing.Point(104, 260);
+            this.buttonEdit.Location = new System.Drawing.Point(104, 274);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(40, 40);
             this.buttonEdit.TabIndex = 73;
@@ -215,7 +231,7 @@
             this.buttonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonDelete.FlatAppearance.BorderSize = 0;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Location = new System.Drawing.Point(58, 260);
+            this.buttonDelete.Location = new System.Drawing.Point(58, 274);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(40, 40);
             this.buttonDelete.TabIndex = 72;
@@ -232,7 +248,7 @@
             this.buttonAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonAdd.FlatAppearance.BorderSize = 0;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdd.Location = new System.Drawing.Point(12, 260);
+            this.buttonAdd.Location = new System.Drawing.Point(12, 274);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(40, 40);
             this.buttonAdd.TabIndex = 71;
@@ -249,7 +265,7 @@
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(706, 260);
+            this.buttonOk.Location = new System.Drawing.Point(706, 274);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
             this.buttonOk.TabIndex = 70;
@@ -259,11 +275,36 @@
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
             this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
+            // dateTimePickerStartDate
+            // 
+            this.dateTimePickerStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerStartDate.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePickerStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(595, 291);
+            this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(92, 20);
+            this.dateTimePickerStartDate.TabIndex = 98;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(592, 276);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 102;
+            this.label2.Text = "Дата назначения";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 312);
+            this.ClientSize = new System.Drawing.Size(751, 326);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePickerStartDate);
             this.Controls.Add(this.buttonmakeLast);
             this.Controls.Add(this.buttonMakeFirst);
             this.Controls.Add(this.buttonTherapyDown);
@@ -277,7 +318,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 298);
+            this.MinimumSize = new System.Drawing.Size(600, 200);
             this.Name = "CureForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -285,6 +326,7 @@
             this.Load += new System.EventHandler(this.CureForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CureList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -296,14 +338,17 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonOk;
         public System.Windows.Forms.DataGridView CureList;
+        private System.Windows.Forms.Button buttonTherapyDown;
+        private System.Windows.Forms.Button buttonTherapyUp;
+        private System.Windows.Forms.Button buttonMakeFirst;
+        private System.Windows.Forms.Button buttonmakeLast;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDuration;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.Button buttonTherapyDown;
-        private System.Windows.Forms.Button buttonTherapyUp;
-        private System.Windows.Forms.Button buttonMakeFirst;
-        private System.Windows.Forms.Button buttonmakeLast;
+        private System.Windows.Forms.Label label2;
     }
 }

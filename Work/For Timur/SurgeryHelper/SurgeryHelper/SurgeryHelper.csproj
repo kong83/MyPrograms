@@ -141,6 +141,7 @@
     <Compile Include="Engines\ServiceEngine.cs" />
     <Compile Include="Entities\GlobalSettingsClass.cs" />
     <Compile Include="Entities\HeAnestetistClass.cs" />
+    <Compile Include="Entities\LastServiceComboBoxItem.cs" />
     <Compile Include="Entities\LoggerEngine.cs" />
     <Compile Include="Entities\MkbClass.cs" />
     <Compile Include="Entities\ServiceClass.cs" />

@@ -43,14 +43,16 @@ namespace SurgeryHelper
 
         private void ServiceSelectForm_Shown(object sender, EventArgs e)
         {
-            textBoxFilterServiceName.Top = ServiceCodesList.Top + ServiceCodesList.Height + 9;
+            textBoxFilterServiceName.Top = textBoxFilterServiceCode.Top = textBoxFilterKsgCode.Top =
+                textBoxFilterKsgDecoding.Top = ServiceCodesList.Top + ServiceCodesList.Height + 9;
 
             ShowServiceCodes();
         }
 
         private void ShowServiceCodes()
         {
-            if(checkBoxDoNotShowAll.Checked && string.IsNullOrEmpty(textBoxFilterServiceName.Text))
+            if(checkBoxDoNotShowAll.Checked && string.IsNullOrEmpty(textBoxFilterServiceName.Text) && string.IsNullOrEmpty(textBoxFilterServiceCode.Text) &&
+                string.IsNullOrEmpty(textBoxFilterKsgCode.Text) && string.IsNullOrEmpty(textBoxFilterKsgDecoding.Text))
             {
                 ServiceCodesList.Rows.Clear();
                 return;
@@ -107,6 +109,21 @@ namespace SurgeryHelper
                 return false;
             }
 
+            if (!Service.ServiceCode.ToLower().Contains(textBoxFilterServiceCode.Text.ToLower()))
+            {
+                return false;
+            }
+
+            if (!Service.KsgCode.ToLower().Contains(textBoxFilterKsgCode.Text.ToLower()))
+            {
+                return false;
+            }
+
+            if (!Service.KsgDecoding.ToLower().Contains(textBoxFilterKsgDecoding.Text.ToLower()))
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -146,6 +163,15 @@ namespace SurgeryHelper
             const int distance = 4;
             textBoxFilterServiceName.Left = ServiceCodesList.Left + distance / 2;
             textBoxFilterServiceName.Width = ServiceCodesList.Columns[0].Width - distance;
+
+            textBoxFilterServiceCode.Left = textBoxFilterServiceName.Left + textBoxFilterServiceName.Width + distance;
+            textBoxFilterServiceCode.Width = ServiceCodesList.Columns[1].Width - distance;
+
+            textBoxFilterKsgCode.Left = textBoxFilterServiceCode.Left + textBoxFilterServiceCode.Width + distance;
+            textBoxFilterKsgCode.Width = ServiceCodesList.Columns[2].Width - distance;
+
+            textBoxFilterKsgDecoding.Left = textBoxFilterKsgCode.Left + textBoxFilterKsgCode.Width + distance;
+            textBoxFilterKsgDecoding.Width = ServiceCodesList.Columns[3].Width - distance;
 
             if (_stopSaveParameters)
             {

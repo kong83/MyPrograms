@@ -46,11 +46,7 @@ namespace SurgeryHelper
                 SurveyList.Columns[i].Width = Convert.ToInt32(widthsList[i]);
             }
 
-            FillCuresCombobox();
-            FillSurveysCombobox();
-
             ShowTherapy();
-
             ShowSurveys();
 
             _stopSaveParameters = false;
@@ -136,22 +132,28 @@ namespace SurgeryHelper
                 }
             }
         }
+  
+        /// <summary>
+        /// Поместить список выбранных лекарств в список лекарств
+        /// </summary>
+        /// <param name="cures"></param>
+        public void PutCuresToList(List<string[]> cures)
+        {
+            foreach (string[] cure in cures)
+            {
+                TherapyList.Rows.Add(cure);
+            }
+        }
 
         /// <summary>
-        /// Поместить строку в указанный объект
+        /// Поместить список выбранных обследований в список дополнительных методов обследования
         /// </summary>
-        /// <param name="objectName">Название объекта, куда класть текст</param>
-        /// <param name="str">Текст, который надо положить в объект</param>
-        public void PutStringToObject(string objectName, string str)
+        /// <param name="surveys"></param>
+        public void PutSurveysToList(List<string[]> surveys)
         {
-            switch (objectName)
+            foreach (string[] survey in surveys)
             {
-                case "comboBoxCure":
-                    comboBoxCure.Text = str;
-                    break;
-                case "comboBoxSurvey":
-                    comboBoxSurvey.Text = str;
-                    break;
+                SurveyList.Rows.Add(survey);
             }
         }
 
@@ -162,126 +164,7 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonAddTherapy_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string str = comboBoxCure.Text + " ";                
-
-                if (!string.IsNullOrEmpty(comboBoxPerDayCnt.Text) ||
-                    !string.IsNullOrEmpty(comboBoxReceivingMethod.Text))
-                {
-                    str += "- ";
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxPerDayCnt.Text))
-                {
-                    string text;
-                    int cnt;
-                    if (int.TryParse(comboBoxPerDayCnt.Text, out cnt))
-                    {
-                        int rem = cnt > 10 ? cnt % 10 : cnt;
-
-                        if ((cnt >= 5 && cnt <= 20) || rem < 2 || rem > 4)
-                        {
-                            text = " раз в день ";
-                        }
-                        else
-                        {
-                            text = " раза в день ";
-                        }
-                    }
-                    else
-                    {
-                        text = " раз в день ";
-                    }
-
-                    str += comboBoxPerDayCnt.Text + text;
-                }
-
-                if (!string.IsNullOrEmpty(comboBoxReceivingMethod.Text))
-                {
-                    str += comboBoxReceivingMethod.Text + " ";
-                }                
-
-                if (str.Contains("&"))
-                {
-                    MessageBox.Show("Использование символа '&' в данном месте запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                TherapyList.Rows.Add(new object[] { str.TrimEnd(), comboBoxDuration.Text, ConvertEngine.GetRightDateString(dateTimePickerPrescriptionStartDate.Value) });
-
-                AddLastUsedPrescription();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Добавить последнее использованное лекарство в списку последних использованных лекарств
-        /// </summary>
-        private void AddLastUsedPrescription()
-        {
-            var lastList = new List<string> { comboBoxCure.Text };
-            foreach (string prescription in comboBoxCure.Items)
-            {
-                if (lastList.Count >= 20)
-                {
-                    break;
-                }
-
-                if (!lastList.Contains(prescription) && !string.IsNullOrEmpty(prescription))
-                {
-                    lastList.Add(prescription);
-                }
-            }
-
-            _dbEngine.ConfigEngine.PrescriptionFormLastUsedPrescription = lastList.ToArray();
-
-            FillCuresCombobox();
-        }
-
-        /// <summary>
-        /// Добавить последний использованный дополнительный метод обследования в списку последних использованных методов
-        /// </summary>
-        private void AddLastUsedSurvey()
-        {
-            var lastList = new List<string> { comboBoxSurvey.Text };
-            foreach (string method in comboBoxSurvey.Items)
-            {
-                if (lastList.Count >= 20)
-                {
-                    break;
-                }
-
-                if (!lastList.Contains(method) && !string.IsNullOrEmpty(method))
-                {
-                    lastList.Add(method);
-                }
-            }
-
-            _dbEngine.ConfigEngine.PrescriptionFormLastUsedSurvey = lastList.ToArray();
-
-            FillSurveysCombobox();
-        }
-
-        /// <summary>
-        /// Заполнить список последних использованных лекарств
-        /// </summary>
-        private void FillCuresCombobox()
-        {
-            comboBoxCure.Items.Clear();
-            comboBoxCure.Items.AddRange(_dbEngine.ConfigEngine.PrescriptionFormLastUsedPrescription);
-        }
-
-        /// <summary>
-        /// Заполнить список последних использованных дополнительных методов обследования
-        /// </summary>
-        private void FillSurveysCombobox()
-        {
-            comboBoxSurvey.Items.Clear();
-            comboBoxSurvey.Items.AddRange(_dbEngine.ConfigEngine.PrescriptionFormLastUsedSurvey);
+            new CureForm(_dbEngine, this).ShowDialog();
         }
 
         /// <summary>
@@ -291,15 +174,7 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonAddSurvey_Click(object sender, EventArgs e)
         {
-            if (comboBoxSurvey.Text.Contains("&"))
-            {
-                MessageBox.Show("Использование символа '&' в данном месте запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            SurveyList.Rows.Add(new object[] { comboBoxSurvey.Text, ConvertEngine.GetRightDateString(dateTimePickerSurveyStartDate.Value) });
-
-            AddLastUsedSurvey();
+            new SurveyForm(_dbEngine, this).ShowDialog();
         }
 
         /// <summary>
@@ -318,10 +193,7 @@ namespace SurgeryHelper
                     return;
                 }
 
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить выделенное назначение?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    TherapyList.Rows.RemoveAt(currentNumber);
-                }
+                TherapyList.Rows.RemoveAt(currentNumber);
             }
             catch (Exception ex)
             {
@@ -345,10 +217,7 @@ namespace SurgeryHelper
                     return;
                 }
 
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить выделенный метод обследования?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    SurveyList.Rows.RemoveAt(currentNumber);
-                }
+                SurveyList.Rows.RemoveAt(currentNumber);
             }
             catch (Exception ex)
             {
@@ -412,6 +281,64 @@ namespace SurgeryHelper
             }
 
             TherapyList.CurrentCell = TherapyList.Rows[currentNumber + 1].Cells[0];
+        }
+
+        /// <summary>
+        /// Сдвиг выделенной строки с обследованием на шаг вверх
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSurveyUp_Click(object sender, EventArgs e)
+        {
+            int currentNumber = SurveyList.CurrentCellAddress.Y;
+            if (currentNumber < 0)
+            {
+                MessageBox.Show("Нет выделенных назначений", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (currentNumber == 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                var temp = SurveyList.Rows[currentNumber].Cells[i].Value;
+                SurveyList.Rows[currentNumber].Cells[i].Value = SurveyList.Rows[currentNumber - 1].Cells[i].Value;
+                SurveyList.Rows[currentNumber - 1].Cells[i].Value = temp;
+            }
+
+            SurveyList.CurrentCell = SurveyList.Rows[currentNumber - 1].Cells[0];
+        }
+
+        /// <summary>
+        ///  Сдвиг выделенной строки с обследованием на шаг вниз
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSurveyDown_Click(object sender, EventArgs e)
+        {
+            int currentNumber = SurveyList.CurrentCellAddress.Y;
+            if (currentNumber < 0)
+            {
+                MessageBox.Show("Нет выделенных назначений", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (currentNumber == SurveyList.Rows.Count - 1)
+            {
+                return;
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                var temp = SurveyList.Rows[currentNumber].Cells[i].Value;
+                SurveyList.Rows[currentNumber].Cells[i].Value = SurveyList.Rows[currentNumber + 1].Cells[i].Value;
+                SurveyList.Rows[currentNumber + 1].Cells[i].Value = temp;
+            }
+
+            SurveyList.CurrentCell = SurveyList.Rows[currentNumber + 1].Cells[0];
         }
 
         /// <summary>
@@ -508,44 +435,7 @@ namespace SurgeryHelper
 
             new WordExportEngine(_dbEngine).ExportSurveys(tempPatientInfo);
         }
-
-        /// <summary>
-        /// Открыть форму со списком лекарств для выбора лекарства
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void linkLabelCure_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            new CureForm(_dbEngine, this).ShowDialog();
-        }
-
-        /// <summary>
-        /// Открыть форму с дополнительными методами обследования для выбора метода обследования
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void linkLabelSurvey_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            new SurveyForm(_dbEngine, this).ShowDialog();
-        }
-
-        /// <summary>
-        /// Выставление дефолтных значений для выбранного лекарства
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxCure_TextChanged(object sender, EventArgs e)
-        {
-            CureClass cureInfo = _dbEngine.GetCureByName(comboBoxCure.Text);
-
-            if (cureInfo != null)
-            {
-                comboBoxPerDayCnt.Text = cureInfo.DefaultPerDayCount;
-                comboBoxReceivingMethod.Text = cureInfo.DefaultReceivingMethod;
-                comboBoxDuration.Text = cureInfo.DefaultDuration;
-            }
-        }
-
+  
         #region Сохранение параметров
         private void PrescriptionForm_LocationChanged(object sender, EventArgs e)
         {
@@ -603,11 +493,13 @@ namespace SurgeryHelper
         #region Подсказки
         private void buttonAddTherapy_MouseEnter(object sender, EventArgs e)
         {
+            toolTip1.Show("Добавить лекарства из списка лекарств", buttonAddTherapy, 15, -20);
             buttonAddTherapy.FlatStyle = FlatStyle.Popup;
         }
 
         private void buttonAddTherapy_MouseLeave(object sender, EventArgs e)
         {
+            toolTip1.Hide(buttonAddTherapy);
             buttonAddTherapy.FlatStyle = FlatStyle.Flat;
         }
 
@@ -633,15 +525,17 @@ namespace SurgeryHelper
         {
             toolTip1.Hide(buttonDeleteTherapy);
             buttonDeleteTherapy.FlatStyle = FlatStyle.Flat;
-        }    
+        } 
 
         private void buttonAddSurvey_MouseEnter(object sender, EventArgs e)
         {
+            toolTip1.Show("Добавить обследования из списка дополнительных методов обследования", buttonAddSurvey, 15, -20);
             buttonAddSurvey.FlatStyle = FlatStyle.Popup;
         }
 
         private void buttonAddSurvey_MouseLeave(object sender, EventArgs e)
         {
+            toolTip1.Hide(buttonAddSurvey);
             buttonAddSurvey.FlatStyle = FlatStyle.Flat;
         }
 
@@ -691,26 +585,6 @@ namespace SurgeryHelper
             toolTip1.Hide(pictureBoxInfo);
         }
 
-        private void linkLabelCure_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show("Выбрать лекарство из списока лекарств", linkLabelCure, 15, -20);
-        }
-
-        private void linkLabelCure_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(linkLabelCure);
-        }
-
-        private void linkLabelSurvey_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show("Выбрать обследование из списка дополнительных методов обследования", linkLabelSurvey, 15, -20);
-        }
-
-        private void linkLabelSurvey_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(linkLabelSurvey);
-        }
-
         private void buttonTherapyUp_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.Show("Сдвинуть выделенную строку на шаг вверх", buttonTherapyUp, 15, -20);
@@ -733,6 +607,30 @@ namespace SurgeryHelper
         {
             toolTip1.Hide(buttonTherapyDown);
             buttonTherapyDown.FlatStyle = FlatStyle.Flat;
+        }        
+
+        private void buttonSurveyUp_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Сдвинуть выделенную строку на шаг вверх", buttonSurveyUp, 15, -20);
+            buttonSurveyUp.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void buttonSurveyUp_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(buttonTherapyUp);
+            buttonTherapyUp.FlatStyle = FlatStyle.Flat;
+        }
+
+        private void buttonSurveyDown_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Сдвинуть выделенную строку на шаг вниз", buttonSurveyDown, 15, -20);
+            buttonSurveyDown.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void buttonSurveyDown_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(buttonSurveyDown);
+            buttonSurveyDown.FlatStyle = FlatStyle.Flat;
         }
         #endregion
     }

@@ -31,21 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SurveyForm));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkedListBoxSurveyes = new System.Windows.Forms.ListBox();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.checkedListBoxSurveyes = new System.Windows.Forms.CheckedListBox();
+            this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // checkedListBoxSurveyes
-            // 
-            this.checkedListBoxSurveyes.FormattingEnabled = true;
-            this.checkedListBoxSurveyes.Location = new System.Drawing.Point(12, 12);
-            this.checkedListBoxSurveyes.Name = "checkedListBoxSurveyes";
-            this.checkedListBoxSurveyes.Size = new System.Drawing.Size(214, 212);
-            this.checkedListBoxSurveyes.TabIndex = 74;
-            this.checkedListBoxSurveyes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxSurveyes_MouseDoubleClick);
             // 
             // buttonEdit
             // 
@@ -54,10 +47,10 @@
             this.buttonEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonEdit.FlatAppearance.BorderSize = 0;
             this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Location = new System.Drawing.Point(104, 234);
+            this.buttonEdit.Location = new System.Drawing.Point(104, 242);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(40, 40);
-            this.buttonEdit.TabIndex = 73;
+            this.buttonEdit.TabIndex = 14;
             this.buttonEdit.TabStop = false;
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -71,10 +64,10 @@
             this.buttonDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonDelete.FlatAppearance.BorderSize = 0;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Location = new System.Drawing.Point(58, 234);
+            this.buttonDelete.Location = new System.Drawing.Point(58, 242);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(40, 40);
-            this.buttonDelete.TabIndex = 72;
+            this.buttonDelete.TabIndex = 12;
             this.buttonDelete.TabStop = false;
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -88,10 +81,10 @@
             this.buttonAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonAdd.FlatAppearance.BorderSize = 0;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdd.Location = new System.Drawing.Point(12, 234);
+            this.buttonAdd.Location = new System.Drawing.Point(12, 242);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(40, 40);
-            this.buttonAdd.TabIndex = 71;
+            this.buttonAdd.TabIndex = 10;
             this.buttonAdd.TabStop = false;
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -105,21 +98,57 @@
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(186, 234);
+            this.buttonOk.Location = new System.Drawing.Point(186, 242);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
-            this.buttonOk.TabIndex = 70;
+            this.buttonOk.TabIndex = 16;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
             this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
+            // checkedListBoxSurveyes
+            // 
+            this.checkedListBoxSurveyes.CheckOnClick = true;
+            this.checkedListBoxSurveyes.FormattingEnabled = true;
+            this.checkedListBoxSurveyes.Location = new System.Drawing.Point(6, 36);
+            this.checkedListBoxSurveyes.Name = "checkedListBoxSurveyes";
+            this.checkedListBoxSurveyes.Size = new System.Drawing.Size(220, 199);
+            this.checkedListBoxSurveyes.TabIndex = 4;
+            // 
+            // dateTimePickerStartDate
+            // 
+            this.dateTimePickerStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerStartDate.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePickerStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(115, 9);
+            this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePickerStartDate.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(16, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 101;
+            this.label1.Text = "Дата назначения";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SurveyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 286);
+            this.ClientSize = new System.Drawing.Size(233, 286);
+            this.Controls.Add(this.dateTimePickerStartDate);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.checkedListBoxSurveyes);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonDelete);
@@ -135,16 +164,19 @@
             this.Text = "Список обследований";
             this.Load += new System.EventHandler(this.SurveyForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ListBox checkedListBoxSurveyes;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSurveyes;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
+        private System.Windows.Forms.Label label1;
     }
 }

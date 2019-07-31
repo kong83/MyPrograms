@@ -23,6 +23,7 @@ namespace SurgeryHelper
         private readonly PatientClass _patientInfo;
         private OperationForm _operationForm;
         private bool _stopSaveParameters;
+        private bool _stopComboBoxServiceNameItemsChanged = false;
         private bool _isFormClosingByButton;
 
         private TransferableEpicrisisForm _transferableEpicrisisForm;
@@ -43,6 +44,26 @@ namespace SurgeryHelper
             }
         }
 
+        private List<LastServiceComboBoxItem> LastUsedServices
+        {
+            get
+            {
+                return comboBoxTypeKSG.Text.ToLower() == "н" ? _dbEngine.ConfigEngine.PatientViewFormLastNightServices : _dbEngine.ConfigEngine.PatientViewFormLastDayServices;
+            }
+
+            set
+            {
+                if (comboBoxTypeKSG.Text.ToLower() == "н")
+                {
+                    _dbEngine.ConfigEngine.PatientViewFormLastNightServices = value;
+                }
+                else
+                {
+                    _dbEngine.ConfigEngine.PatientViewFormLastDayServices = value;
+                }
+            }
+        }
+
         public PatientViewForm(PatientListForm patientListForm, DbEngine dbEngine, PatientClass patientInfo)
         {
             _stopSaveParameters = true;            
@@ -55,7 +76,7 @@ namespace SurgeryHelper
             PutObjectsToComboBox(_dbEngine.SurgeonList.ToArray(), comboBoxDoctorInChargeOfTheCase);
             PutObjectsToComboBox(_dbEngine.NosologyList.ToArray(), comboBoxNosology);
 
-            comboBoxTypeKSG.SelectedIndex = 0;            
+            comboBoxTypeKSG.SelectedIndex = 0;
 
             comboBoxMKB.Items.Clear();
             comboBoxMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastMKB);
@@ -64,6 +85,8 @@ namespace SurgeryHelper
             {
                 Text = "Добавление нового пациента";
                 _patientInfo = new PatientClass();
+
+                FillComboBoxServiceName();
             }
             else
             {
@@ -91,12 +114,26 @@ namespace SurgeryHelper
                 textBoxBuilding.Text = _patientInfo.BuildingNumber;
                 textBoxFlat.Text = _patientInfo.FlatNumber;
                 textBoxWorkPlace.Text = _patientInfo.WorkPlace;
+                textBoxPassport.Text = _patientInfo.PassportNumber;
+                textBoxPolis.Text = _patientInfo.PolisNumber;
+                textBoxSnils.Text = _patientInfo.SnilsNumber;
                 textBoxPhone.Text = _patientInfo.Phone;
                 comboBoxTypeKSG.Text = _patientInfo.TypeOfKSG;
-                textBoxServiceName.Text = _patientInfo.ServiceName;
+
+                // Заполняем последние использованные услуги после установления типа стационара
+                FillComboBoxServiceName();
+
+                // Если задано название услуги то прописываем её первой в списке использованных услуг, чтобы текст мог отобразиться
+                if (!string.IsNullOrEmpty(_patientInfo.ServiceName))
+                {
+                    SaveLastUsedServices(
+                        new LastServiceComboBoxItem(string.Format("{0};{1};{2};{3}", _patientInfo.ServiceName, _patientInfo.ServiceCode, _patientInfo.KsgCode, _patientInfo.KsgDecoding)));
+                }
+
+                /*comboBoxServiceName.Text = _patientInfo.ServiceName;
                 textBoxServiceCode.Text = _patientInfo.ServiceCode;
                 textBoxKsgCode.Text = _patientInfo.KsgCode;
-                textBoxKsgDecoding.Text = _patientInfo.KsgDecoding;
+                textBoxKsgDecoding.Text = _patientInfo.KsgDecoding;*/
 
                 textBoxDiagnose.Text = _patientInfo.Diagnose;
 
@@ -116,7 +153,7 @@ namespace SurgeryHelper
                 comboBoxDoctorInChargeOfTheCase.Text = _patientInfo.DoctorInChargeOfTheCase;
                 textBoxPrivateFolder.Text = _patientInfo.PrivateFolder;
             }
-            
+
             textBoxOperationCount.Text = _patientInfo.Operations.Count.ToString();
         }
 
@@ -133,6 +170,7 @@ namespace SurgeryHelper
             _stopSaveParameters = false;
             textBoxPrivateFolder_TextChanged(null, null);
         }
+
 
         #region Валидация данных
         private bool _stopChangingPrivateFolderText;
@@ -209,11 +247,15 @@ namespace SurgeryHelper
             }
         }
 
+        /// <summary>
+        /// Открыть форму с назначениями
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonPrescription_Click(object sender, EventArgs e)
         {
             new PrescriptionForm(_dbEngine, _patientInfo).ShowDialog();
         }
-
 
         /// <summary>
         /// Открыть список с документами
@@ -310,10 +352,13 @@ namespace SurgeryHelper
             patientInfo.BuildingNumber = textBoxBuilding.Text;
             patientInfo.FlatNumber = textBoxFlat.Text;
             patientInfo.WorkPlace = textBoxWorkPlace.Text;
+            patientInfo.PassportNumber = textBoxPassport.Text;
+            patientInfo.PolisNumber = textBoxPolis.Text;
+            patientInfo.SnilsNumber = textBoxSnils.Text;
             patientInfo.Phone = textBoxPhone.Text;
             patientInfo.TypeOfKSG = comboBoxTypeKSG.Text;
             patientInfo.MKB = comboBoxMKB.Text;
-            patientInfo.ServiceName = textBoxServiceName.Text;
+            patientInfo.ServiceName = comboBoxServiceName.Text;
             patientInfo.ServiceCode = textBoxServiceCode.Text;
             patientInfo.KsgCode = textBoxKsgCode.Text;
             patientInfo.KsgDecoding = textBoxKsgDecoding.Text;
@@ -338,6 +383,9 @@ namespace SurgeryHelper
             SaveLastUsedMKB();
         }
 
+        /// <summary>
+        /// Сохранить 20 последних использованных кодов МКБ
+        /// </summary>
         private void SaveLastUsedMKB()
         {
             var lastMKBList = new List<string> { comboBoxMKB.Text };
@@ -357,6 +405,10 @@ namespace SurgeryHelper
             _dbEngine.ConfigEngine.PatientViewFormLastMKB = lastMKBList.ToArray();
         }
 
+        /// <summary>
+        /// Проверка на то, есть ли какое-нибудь незаполненное обязательное поле
+        /// </summary>
+        /// <returns></returns>
         private bool IsFormHasEmptyNeededFields()
         {
             if (string.IsNullOrEmpty(textBoxLastName.Text) ||
@@ -685,7 +737,9 @@ namespace SurgeryHelper
                 return;
             }
 
-            textBoxServiceName.Text = textBoxServiceCode.Text = textBoxKsgCode.Text = textBoxKsgDecoding.Text = string.Empty;
+            comboBoxServiceName.Text = textBoxServiceCode.Text = textBoxKsgCode.Text = textBoxKsgDecoding.Text = string.Empty;
+
+            FillComboBoxServiceName();
         }
 
         /// <summary>
@@ -704,12 +758,58 @@ namespace SurgeryHelper
         }
 
         /// <summary>
+        /// Сохранить 20 последних выбранных услуг
+        /// </summary>
+        /// <param name="currentItem"></param>
+        private void SaveLastUsedServices(LastServiceComboBoxItem currentItem)
+        {
+            if (string.IsNullOrEmpty(currentItem.HiddenValue))
+            {
+                return;
+            }
+
+            var lastServiceList = new List<LastServiceComboBoxItem> { currentItem };
+            foreach (LastServiceComboBoxItem service in comboBoxServiceName.Items)
+            {
+                if (string.IsNullOrEmpty(service.HiddenValue))
+                {
+                    continue;
+                }
+
+                if (lastServiceList.Count >= 20)
+                {
+                    break;
+                }
+
+                if (!lastServiceList.Contains(service))
+                {
+                    lastServiceList.Add(service);
+                }
+            }
+
+            LastUsedServices = lastServiceList;
+
+            FillComboBoxServiceName();
+            comboBoxServiceName.SelectedIndex = 1;
+        }
+
+        /// <summary>
+        /// Заполнить списк услуг последними выбранными услугами
+        /// </summary>
+        private void FillComboBoxServiceName()
+        {
+            comboBoxServiceName.Items.Clear();
+            comboBoxServiceName.Items.Add(new LastServiceComboBoxItem(""));
+            comboBoxServiceName.Items.AddRange(LastUsedServices.ToArray());
+        }
+
+        /// <summary>
         /// Выбрать название услуги из списка услуг
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void linkLabelServiceName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+        {            
             new ServiceSelectForm(this, _dbEngine, _dbEngine.GetCorrectServiceEngine(comboBoxTypeKSG.Text)).ShowDialog();
 
             if (ServiceInfoFromServiceSelectForm == null)
@@ -717,10 +817,39 @@ namespace SurgeryHelper
                 return;
             }
 
-            textBoxServiceName.Text = ServiceInfoFromServiceSelectForm.ServiceName;
-            textBoxServiceCode.Text = ServiceInfoFromServiceSelectForm.ServiceCode;
-            textBoxKsgCode.Text = ServiceInfoFromServiceSelectForm.KsgCode;
-            textBoxKsgDecoding.Text = ServiceInfoFromServiceSelectForm.KsgDecoding;
+            SaveLastUsedServices(new LastServiceComboBoxItem(ServiceInfoFromServiceSelectForm.ToString()));            
+        }
+
+        /// <summary>
+        /// Изменение кодов КСГ и других зависимых данных при смене имени услуги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBoxServiceName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_stopComboBoxServiceNameItemsChanged)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(comboBoxServiceName.Text))
+            {
+                textBoxServiceCode.Text =
+                textBoxKsgCode.Text =
+                textBoxKsgDecoding.Text = string.Empty;
+                return;
+            }
+
+            LastServiceComboBoxItem item = (LastServiceComboBoxItem)comboBoxServiceName.SelectedItem;
+            ServiceClass service = new ServiceClass(item.HiddenValue);
+
+            textBoxServiceCode.Text = service.ServiceCode;
+            textBoxKsgCode.Text = service.KsgCode;
+            textBoxKsgDecoding.Text = service.KsgDecoding;
+
+            _stopComboBoxServiceNameItemsChanged = true;
+            SaveLastUsedServices((LastServiceComboBoxItem)comboBoxServiceName.SelectedItem);
+            _stopComboBoxServiceNameItemsChanged = false;
         }
 
         #region Подсказки
@@ -858,14 +987,14 @@ namespace SurgeryHelper
             toolTip1.Hide(linkLabelMKB);
         }
 
-        private void textBoxServiceName_MouseEnter(object sender, EventArgs e)
+        private void comboBoxServiceName_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show(textBoxServiceName.Text, textBoxServiceName, 15, -20);
+            toolTip1.Show(comboBoxServiceName.Text, comboBoxServiceName, 15, -20);
         }
 
-        private void textBoxServiceName_MouseLeave(object sender, EventArgs e)
+        private void comboBoxServiceName_MouseLeave(object sender, EventArgs e)
         {
-            toolTip1.Hide(textBoxServiceName);
+            toolTip1.Hide(comboBoxServiceName);
         }
 
         private void comboBoxMKB_MouseEnter(object sender, EventArgs e)

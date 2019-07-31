@@ -81,9 +81,9 @@
             this.PatientList.AllowUserToAddRows = false;
             this.PatientList.AllowUserToDeleteRows = false;
             this.PatientList.AllowUserToResizeRows = false;
-            this.PatientList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.PatientList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PatientList.BackgroundColor = System.Drawing.SystemColors.Window;
             this.PatientList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PatientList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -277,9 +277,9 @@
             this.dateTimePickerFilterDeliveryDateStart.Size = new System.Drawing.Size(96, 20);
             this.dateTimePickerFilterDeliveryDateStart.TabIndex = 62;
             this.dateTimePickerFilterDeliveryDateStart.Visible = false;
-            this.dateTimePickerFilterDeliveryDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterDeliveryDateStart_MouseLeave);
             this.dateTimePickerFilterDeliveryDateStart.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterDeliveryDateStart.MouseEnter += new System.EventHandler(this.dateTimePickerFilterDeliveryDateStart_MouseEnter);
+            this.dateTimePickerFilterDeliveryDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterDeliveryDateStart_MouseLeave);
             // 
             // dateTimePickerFilterDeliveryDateEnd
             // 
@@ -294,9 +294,9 @@
             this.dateTimePickerFilterDeliveryDateEnd.Size = new System.Drawing.Size(96, 20);
             this.dateTimePickerFilterDeliveryDateEnd.TabIndex = 63;
             this.dateTimePickerFilterDeliveryDateEnd.Visible = false;
-            this.dateTimePickerFilterDeliveryDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterDeliveryDateEnd_MouseLeave);
             this.dateTimePickerFilterDeliveryDateEnd.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterDeliveryDateEnd.MouseEnter += new System.EventHandler(this.dateTimePickerFilterDeliveryDateEnd_MouseEnter);
+            this.dateTimePickerFilterDeliveryDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterDeliveryDateEnd_MouseLeave);
             // 
             // comboBoxFilterOperationCntMode
             // 
@@ -375,9 +375,9 @@
             this.buttonHideFilter.TabIndex = 74;
             this.buttonHideFilter.TabStop = false;
             this.buttonHideFilter.UseVisualStyleBackColor = true;
-            this.buttonHideFilter.MouseLeave += new System.EventHandler(this.buttonHideFilter_MouseLeave);
             this.buttonHideFilter.Click += new System.EventHandler(this.buttonHideFilter_Click);
             this.buttonHideFilter.MouseEnter += new System.EventHandler(this.buttonHideFilter_MouseEnter);
+            this.buttonHideFilter.MouseLeave += new System.EventHandler(this.buttonHideFilter_MouseLeave);
             // 
             // pictureBoxInfo
             // 
@@ -389,8 +389,8 @@
             this.pictureBoxInfo.TabIndex = 68;
             this.pictureBoxInfo.TabStop = false;
             this.pictureBoxInfo.Visible = false;
-            this.pictureBoxInfo.MouseLeave += new System.EventHandler(this.pictureBoxInfo_MouseLeave);
             this.pictureBoxInfo.MouseEnter += new System.EventHandler(this.pictureBoxInfo_MouseEnter);
+            this.pictureBoxInfo.MouseLeave += new System.EventHandler(this.pictureBoxInfo_MouseLeave);
             // 
             // buttonAdd
             // 
@@ -405,9 +405,9 @@
             this.buttonAdd.TabIndex = 54;
             this.buttonAdd.TabStop = false;
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             this.buttonAdd.MouseEnter += new System.EventHandler(this.buttonAdd_MouseEnter);
+            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             // 
             // buttonCopy
             // 
@@ -422,9 +422,9 @@
             this.buttonCopy.TabIndex = 52;
             this.buttonCopy.TabStop = false;
             this.buttonCopy.UseVisualStyleBackColor = true;
-            this.buttonCopy.MouseLeave += new System.EventHandler(this.buttonCopy_MouseLeave);
             this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             this.buttonCopy.MouseEnter += new System.EventHandler(this.buttonCopy_MouseEnter);
+            this.buttonCopy.MouseLeave += new System.EventHandler(this.buttonCopy_MouseLeave);
             // 
             // buttonView
             // 
@@ -439,9 +439,9 @@
             this.buttonView.TabIndex = 50;
             this.buttonView.TabStop = false;
             this.buttonView.UseVisualStyleBackColor = true;
-            this.buttonView.MouseLeave += new System.EventHandler(this.buttonView_MouseLeave);
             this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
             this.buttonView.MouseEnter += new System.EventHandler(this.buttonView_MouseEnter);
+            this.buttonView.MouseLeave += new System.EventHandler(this.buttonView_MouseLeave);
             // 
             // buttonDelete
             // 
@@ -456,9 +456,9 @@
             this.buttonDelete.TabIndex = 47;
             this.buttonDelete.TabStop = false;
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.MouseEnter += new System.EventHandler(this.buttonDelete_MouseEnter);
+            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             // 
             // buttonExportToExcel
             // 
@@ -473,9 +473,9 @@
             this.buttonExportToExcel.TabIndex = 66;
             this.buttonExportToExcel.TabStop = false;
             this.buttonExportToExcel.UseVisualStyleBackColor = true;
-            this.buttonExportToExcel.MouseLeave += new System.EventHandler(this.buttonExportToExcel_MouseLeave);
             this.buttonExportToExcel.Click += new System.EventHandler(this.buttonExportToExcel_Click);
             this.buttonExportToExcel.MouseEnter += new System.EventHandler(this.buttonExportToExcel_MouseEnter);
+            this.buttonExportToExcel.MouseLeave += new System.EventHandler(this.buttonExportToExcel_MouseLeave);
             // 
             // buttonFilterRemove
             // 
@@ -491,9 +491,9 @@
             this.buttonFilterRemove.TabStop = false;
             this.buttonFilterRemove.UseVisualStyleBackColor = true;
             this.buttonFilterRemove.Visible = false;
-            this.buttonFilterRemove.MouseLeave += new System.EventHandler(this.buttonFilterRemove_MouseLeave);
             this.buttonFilterRemove.Click += new System.EventHandler(this.buttonFilterRemove_Click);
             this.buttonFilterRemove.MouseEnter += new System.EventHandler(this.buttonFilterRemove_MouseEnter);
+            this.buttonFilterRemove.MouseLeave += new System.EventHandler(this.buttonFilterRemove_MouseLeave);
             // 
             // buttonShowFilter
             // 
@@ -508,9 +508,9 @@
             this.buttonShowFilter.TabIndex = 75;
             this.buttonShowFilter.TabStop = false;
             this.buttonShowFilter.UseVisualStyleBackColor = true;
-            this.buttonShowFilter.MouseLeave += new System.EventHandler(this.buttonShowFilter_MouseLeave);
             this.buttonShowFilter.Click += new System.EventHandler(this.buttonShowFilter_Click);
             this.buttonShowFilter.MouseEnter += new System.EventHandler(this.buttonShowFilter_MouseEnter);
+            this.buttonShowFilter.MouseLeave += new System.EventHandler(this.buttonShowFilter_MouseLeave);
             // 
             // dateTimePickerFilterReleaseDateEnd
             // 
@@ -525,9 +525,9 @@
             this.dateTimePickerFilterReleaseDateEnd.Size = new System.Drawing.Size(92, 20);
             this.dateTimePickerFilterReleaseDateEnd.TabIndex = 77;
             this.dateTimePickerFilterReleaseDateEnd.Visible = false;
-            this.dateTimePickerFilterReleaseDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterReleaseDateEnd_MouseLeave);
             this.dateTimePickerFilterReleaseDateEnd.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterReleaseDateEnd.MouseEnter += new System.EventHandler(this.dateTimePickerFilterReleaseDateEnd_MouseEnter);
+            this.dateTimePickerFilterReleaseDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterReleaseDateEnd_MouseLeave);
             // 
             // dateTimePickerFilterReleaseDateStart
             // 
@@ -542,9 +542,9 @@
             this.dateTimePickerFilterReleaseDateStart.Size = new System.Drawing.Size(92, 20);
             this.dateTimePickerFilterReleaseDateStart.TabIndex = 76;
             this.dateTimePickerFilterReleaseDateStart.Visible = false;
-            this.dateTimePickerFilterReleaseDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterReleaseDateStart_MouseLeave);
             this.dateTimePickerFilterReleaseDateStart.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterReleaseDateStart.MouseEnter += new System.EventHandler(this.dateTimePickerFilterReleaseDateStart_MouseEnter);
+            this.dateTimePickerFilterReleaseDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterReleaseDateStart_MouseLeave);
             // 
             // dateTimePickerFilterOperationDateEnd
             // 
@@ -559,9 +559,9 @@
             this.dateTimePickerFilterOperationDateEnd.Size = new System.Drawing.Size(96, 20);
             this.dateTimePickerFilterOperationDateEnd.TabIndex = 79;
             this.dateTimePickerFilterOperationDateEnd.Visible = false;
-            this.dateTimePickerFilterOperationDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterOperationDateEnd_MouseLeave);
             this.dateTimePickerFilterOperationDateEnd.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterOperationDateEnd.MouseEnter += new System.EventHandler(this.dateTimePickerFilterOperationDateEnd_MouseEnter);
+            this.dateTimePickerFilterOperationDateEnd.MouseLeave += new System.EventHandler(this.dateTimePickerFilterOperationDateEnd_MouseLeave);
             // 
             // dateTimePickerFilterOperationDateStart
             // 
@@ -576,9 +576,9 @@
             this.dateTimePickerFilterOperationDateStart.Size = new System.Drawing.Size(96, 20);
             this.dateTimePickerFilterOperationDateStart.TabIndex = 78;
             this.dateTimePickerFilterOperationDateStart.Visible = false;
-            this.dateTimePickerFilterOperationDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterOperationDateStart_MouseLeave);
             this.dateTimePickerFilterOperationDateStart.ValueChanged += new System.EventHandler(this.dateTimePickerFilter_ValueChanged);
             this.dateTimePickerFilterOperationDateStart.MouseEnter += new System.EventHandler(this.dateTimePickerFilterOperationDateStart_MouseEnter);
+            this.dateTimePickerFilterOperationDateStart.MouseLeave += new System.EventHandler(this.dateTimePickerFilterOperationDateStart_MouseLeave);
             // 
             // buttonImportKSG
             // 
@@ -593,11 +593,11 @@
             this.buttonImportKSG.TabIndex = 80;
             this.buttonImportKSG.TabStop = false;
             this.buttonImportKSG.UseVisualStyleBackColor = true;
-            this.buttonImportKSG.MouseLeave += new System.EventHandler(this.buttonImportKSG_MouseLeave);
             this.buttonImportKSG.Click += new System.EventHandler(this.buttonImportKSG_Click);
             this.buttonImportKSG.MouseEnter += new System.EventHandler(this.buttonImportKSG_MouseEnter);
+            this.buttonImportKSG.MouseLeave += new System.EventHandler(this.buttonImportKSG_MouseLeave);
             // 
-            // PatientForm
+            // PatientListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -633,14 +633,14 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(440, 230);
-            this.Name = "PatientForm";
+            this.Name = "PatientListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Список пациентов";
-            this.Load += new System.EventHandler(this.PatientForm_Load);
-            this.SizeChanged += new System.EventHandler(this.PatientForm_SizeChanged);
-            this.Shown += new System.EventHandler(this.PatientForm_Shown);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientForm_FormClosing);
+            this.Load += new System.EventHandler(this.PatientForm_Load);
+            this.Shown += new System.EventHandler(this.PatientForm_Shown);
             this.LocationChanged += new System.EventHandler(this.PatientForm_LocationChanged);
+            this.SizeChanged += new System.EventHandler(this.PatientForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.PatientList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).EndInit();
             this.ResumeLayout(false);
@@ -691,6 +691,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmptyColumn;
         private System.Windows.Forms.Button buttonImportKSG;
-
     }
 }

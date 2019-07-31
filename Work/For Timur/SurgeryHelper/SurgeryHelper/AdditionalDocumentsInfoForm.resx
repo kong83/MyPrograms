@@ -119,16 +119,26 @@
   </resheader>
   <data name="richTextBoxWords.Text" xml:space="preserve">
     <value>{ФИО пациента}
+{Дата рождения}
 {Возраст}
 {Адрес}
 {Дата  поступления}
+{Время поступления}
 {Дата  выписки}
+{Койко дни}
 {Диагноз}
 {Дата операции N}
+{Время начала операции N}
+{Время окончания операции N}}
 {Название операции N}
 {Хирург}
-{Анестезиолог}
-{Консервативная терапия}
+{Анестезиолог}</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>{Консервативная терапия}
 {№ ИБ}
 {№ отделения}
 {ФИО лечащего врача}
@@ -139,11 +149,11 @@
 {Код услуги}
 {Код КСГ}
 {Расшифровка КСГ}
-{Работа}</value>
+{Работа}
+{Паспорт}
+{Полис}
+{СНИЛС}</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

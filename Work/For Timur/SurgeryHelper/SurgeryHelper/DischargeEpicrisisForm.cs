@@ -294,15 +294,7 @@ namespace SurgeryHelper
 
             PutDataToPatient(tempPatientInfo);
 
-            var wordExportEngine = new WordExportEngine(_dbEngine);
-            if (_dbEngine.GlobalSettings.IsDepartmentNameStartWithNumber("8"))
-            {
-                wordExportEngine.ExportDischargeEpicrisisFor8Department(tempPatientInfo, dischargeEpicrisisHeaderFilePath);
-            }
-            else
-            {
-                wordExportEngine.ExportDischargeEpicrisisForAllDepartment(tempPatientInfo, dischargeEpicrisisHeaderFilePath);
-            }
+            new WordExportEngine(_dbEngine).ExportDischargeEpicrisis(tempPatientInfo, dischargeEpicrisisHeaderFilePath);
         }
 
         private void buttonPrescription_Click(object sender, EventArgs e)

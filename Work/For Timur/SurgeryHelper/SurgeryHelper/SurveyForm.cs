@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SurgeryHelper.Engines;
 
@@ -122,8 +123,14 @@ namespace SurgeryHelper
                 Close();
                 return;
             }
+            
+            var surveys = new List<string[]>();
+            foreach (var item in checkedListBoxSurveyes.CheckedItems)
+            {
+                surveys.Add(new string[] { item.ToString(), ConvertEngine.GetRightDateString(dateTimePickerStartDate.Value) });
+            }
 
-            _prescriptionForm.PutStringToObject("comboBoxSurvey", checkedListBoxSurveyes.SelectedItem.ToString());
+            _prescriptionForm.PutSurveysToList(surveys);            
             Close();
         }
 
@@ -143,7 +150,7 @@ namespace SurgeryHelper
         #region Подсказки
         private void buttonAdd_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Добавить нового анестезиолога", buttonAdd, 15, -20);
+            toolTip1.Show("Добавить новое обследование", buttonAdd, 15, -20);
             buttonAdd.FlatStyle = FlatStyle.Popup;
         }
 
@@ -155,7 +162,7 @@ namespace SurgeryHelper
 
         private void buttonDelete_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Удалить выбранного анестезиолога", buttonDelete, 15, -20);
+            toolTip1.Show("Удалить выбранное обследование", buttonDelete, 15, -20);
             buttonDelete.FlatStyle = FlatStyle.Popup;
         }
 
@@ -167,7 +174,7 @@ namespace SurgeryHelper
 
         private void buttonEdit_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Редактировать выбранного анестезиолога", buttonEdit, 15, -20);
+            toolTip1.Show("Редактировать выбранное обследование", buttonEdit, 15, -20);
             buttonEdit.FlatStyle = FlatStyle.Popup;
         }
 
@@ -179,7 +186,7 @@ namespace SurgeryHelper
 
         private void buttonOk_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Подтвердить выбор анестезиолога", buttonOk, 15, -20);
+            toolTip1.Show("Подтвердить выбор обследования", buttonOk, 15, -20);
             buttonOk.FlatStyle = FlatStyle.Popup;
         }
 

@@ -88,14 +88,26 @@ namespace SurgeryHelper
                         MessageBox.Show("Обследование с таким именем уже существует. Используйте другое имя.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    
+
+                    if (textBoxSurveyName.Text.Contains("&"))
+                    {
+                        MessageBox.Show("Использование символа '&' в имени запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     _dbEngine.AddSurvey(textBoxSurveyName.Text);
                 }
                 else
                 {
-                    if (_surveySaveName != textBoxSurveyName.Text && _dbEngine.SurveyList.Contains(_surveySaveName))
+                    if (_surveySaveName != textBoxSurveyName.Text && _dbEngine.SurveyList.Contains(textBoxSurveyName.Text))
                     {
                         MessageBox.Show("Обследование с таким именем уже существует. Используйте другое имя.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (textBoxSurveyName.Text.Contains("&"))
+                    {
+                        MessageBox.Show("Использование символа '&' в имени запрещено т.к. может привести к внутренней ошибке программы. Используйте другой символ.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 

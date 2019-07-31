@@ -1124,6 +1124,9 @@ namespace SurgeryHelper.Engines
                     "DoctorInChargeOfTheCase=" + patientInfo.DoctorInChargeOfTheCase + DataSplitStr +
                     "FlatNumber=" + patientInfo.FlatNumber + DataSplitStr +
                     "WorkPlace=" + patientInfo.WorkPlace + DataSplitStr +
+                    "PassportNumber=" + patientInfo.PassportNumber + DataSplitStr +
+                    "PolisNumber=" + patientInfo.PolisNumber + DataSplitStr +
+                    "SnilsNumber=" + patientInfo.SnilsNumber + DataSplitStr +                                            
                     "HomeNumber=" + patientInfo.HomeNumber + DataSplitStr +
                     "Id=" + patientInfo.Id + DataSplitStr +
                     "LastName=" + patientInfo.LastName + DataSplitStr +
@@ -1628,6 +1631,15 @@ namespace SurgeryHelper.Engines
                             break;
                         case "WorkPlace":
                             patientInfo.WorkPlace = keyValue[1];
+                            break;
+                        case "PassportNumber":
+                            patientInfo.PassportNumber = keyValue[1];
+                            break;
+                        case "PolisNumber":
+                            patientInfo.PolisNumber = keyValue[1];
+                            break;
+                        case "SnilsNumber":
+                            patientInfo.SnilsNumber = keyValue[1];
                             break;
                         case "HomeNumber":
                             patientInfo.HomeNumber = keyValue[1];

@@ -32,16 +32,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceSelectForm));
             this.ServiceCodesList = new System.Windows.Forms.DataGridView();
+            this.ColumnServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnServiceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnKsgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnKsgDecoding = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.textBoxFilterServiceName = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxDoNotShowAll = new System.Windows.Forms.CheckBox();
-            this.ColumnServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnServiceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnKsgCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnKsgDecoding = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxFilterServiceCode = new System.Windows.Forms.TextBox();
+            this.textBoxFilterKsgCode = new System.Windows.Forms.TextBox();
+            this.textBoxFilterKsgDecoding = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ServiceCodesList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +79,38 @@
             this.ServiceCodesList.TabIndex = 11;
             this.ServiceCodesList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ServiceCodesList_CellMouseDoubleClick);
             this.ServiceCodesList.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.ServiceCodesList_ColumnWidthChanged);
+            // 
+            // ColumnServiceName
+            // 
+            this.ColumnServiceName.HeaderText = "Название услуги";
+            this.ColumnServiceName.Name = "ColumnServiceName";
+            this.ColumnServiceName.ReadOnly = true;
+            this.ColumnServiceName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnServiceName.Width = 266;
+            // 
+            // ColumnServiceCode
+            // 
+            this.ColumnServiceCode.HeaderText = "Код услуги";
+            this.ColumnServiceCode.Name = "ColumnServiceCode";
+            this.ColumnServiceCode.ReadOnly = true;
+            this.ColumnServiceCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnServiceCode.Width = 70;
+            // 
+            // ColumnKsgCode
+            // 
+            this.ColumnKsgCode.HeaderText = "Код КСГ";
+            this.ColumnKsgCode.Name = "ColumnKsgCode";
+            this.ColumnKsgCode.ReadOnly = true;
+            this.ColumnKsgCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnKsgCode.Width = 60;
+            // 
+            // ColumnKsgDecoding
+            // 
+            this.ColumnKsgDecoding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnKsgDecoding.HeaderText = "Расшифровка КСГ";
+            this.ColumnKsgDecoding.Name = "ColumnKsgDecoding";
+            this.ColumnKsgDecoding.ReadOnly = true;
+            this.ColumnKsgDecoding.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // buttonOk
             // 
@@ -138,43 +173,38 @@
             this.checkBoxDoNotShowAll.UseVisualStyleBackColor = true;
             this.checkBoxDoNotShowAll.CheckedChanged += new System.EventHandler(this.checkBoxDoNotShowAll_CheckedChanged);
             // 
-            // ColumnServiceName
+            // textBoxFilterServiceCode
             // 
-            this.ColumnServiceName.HeaderText = "Название услуги";
-            this.ColumnServiceName.Name = "ColumnServiceName";
-            this.ColumnServiceName.ReadOnly = true;
-            this.ColumnServiceName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnServiceName.Width = 266;
+            this.textBoxFilterServiceCode.Location = new System.Drawing.Point(291, 302);
+            this.textBoxFilterServiceCode.Name = "textBoxFilterServiceCode";
+            this.textBoxFilterServiceCode.Size = new System.Drawing.Size(66, 20);
+            this.textBoxFilterServiceCode.TabIndex = 62;
+            this.textBoxFilterServiceCode.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
-            // ColumnServiceCode
+            // textBoxFilterKsgCode
             // 
-            this.ColumnServiceCode.HeaderText = "Код услуги";
-            this.ColumnServiceCode.Name = "ColumnServiceCode";
-            this.ColumnServiceCode.ReadOnly = true;
-            this.ColumnServiceCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnServiceCode.Width = 70;
+            this.textBoxFilterKsgCode.Location = new System.Drawing.Point(363, 302);
+            this.textBoxFilterKsgCode.Name = "textBoxFilterKsgCode";
+            this.textBoxFilterKsgCode.Size = new System.Drawing.Size(53, 20);
+            this.textBoxFilterKsgCode.TabIndex = 63;
+            this.textBoxFilterKsgCode.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
-            // ColumnKsgCode
+            // textBoxFilterKsgDecoding
             // 
-            this.ColumnKsgCode.HeaderText = "Код КСГ";
-            this.ColumnKsgCode.Name = "ColumnKsgCode";
-            this.ColumnKsgCode.ReadOnly = true;
-            this.ColumnKsgCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnKsgCode.Width = 60;
-            // 
-            // ColumnKsgDecoding
-            // 
-            this.ColumnKsgDecoding.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnKsgDecoding.HeaderText = "Расшифровка КСГ";
-            this.ColumnKsgDecoding.Name = "ColumnKsgDecoding";
-            this.ColumnKsgDecoding.ReadOnly = true;
-            this.ColumnKsgDecoding.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.textBoxFilterKsgDecoding.Location = new System.Drawing.Point(422, 302);
+            this.textBoxFilterKsgDecoding.Name = "textBoxFilterKsgDecoding";
+            this.textBoxFilterKsgDecoding.Size = new System.Drawing.Size(318, 20);
+            this.textBoxFilterKsgDecoding.TabIndex = 64;
+            this.textBoxFilterKsgDecoding.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
             // ServiceSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 382);
+            this.Controls.Add(this.textBoxFilterKsgDecoding);
+            this.Controls.Add(this.textBoxFilterKsgCode);
+            this.Controls.Add(this.textBoxFilterServiceCode);
             this.Controls.Add(this.checkBoxDoNotShowAll);
             this.Controls.Add(this.textBoxFilterServiceName);
             this.Controls.Add(this.buttonOk);
@@ -209,5 +239,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKsgCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKsgDecoding;
+        private System.Windows.Forms.TextBox textBoxFilterServiceCode;
+        private System.Windows.Forms.TextBox textBoxFilterKsgCode;
+        private System.Windows.Forms.TextBox textBoxFilterKsgDecoding;
     }
 }
