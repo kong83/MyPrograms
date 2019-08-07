@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using System.ServiceProcess;
+using System.Linq;
 
 namespace ServiceWorker
 {
@@ -23,7 +24,7 @@ namespace ServiceWorker
             int saveIndex = gridServices.CurrentCellAddress.Y;
 
             gridServices.Rows.Clear();
-            foreach (ServiceController sc in ServiceController.GetServices())
+            foreach (ServiceController sc in ServiceController.GetServices().OrderBy(x => x.ServiceName))
             {
                 var param = new string[7];
                 param[0] = sc.ServiceName;
@@ -60,7 +61,14 @@ namespace ServiceWorker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            RefreshServices();
+            try
+            {
+                RefreshServices();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -111,6 +119,7 @@ namespace ServiceWorker
                 var se = new ServiceEngine(GetSelectedServiceName(), ServiceAccess.Full);
                 se.RemoveService();
 
+                Thread.Sleep(1000);
                 RefreshServices();
             }
             catch (Exception ex)
@@ -131,6 +140,7 @@ namespace ServiceWorker
             {
                 new CreateServiceForm().ShowDialog();
 
+                Thread.Sleep(1000);
                 RefreshServices();
             }
             catch (Exception ex)
@@ -150,6 +160,9 @@ namespace ServiceWorker
             try
             {
                 new ServiceEngine(GetSelectedServiceName()).StartService();
+
+                Thread.Sleep(1000);
+                RefreshServices();
             }
             catch (Exception ex)
             {
@@ -168,6 +181,9 @@ namespace ServiceWorker
             try
             {
                 new ServiceEngine(GetSelectedServiceName()).StopService();
+
+                Thread.Sleep(1000);
+                RefreshServices();
             }
             catch (Exception ex)
             {
@@ -186,6 +202,9 @@ namespace ServiceWorker
             try
             {
                 new ServiceEngine(GetSelectedServiceName()).PauseService();
+
+                Thread.Sleep(1000);
+                RefreshServices();
             }
             catch (Exception ex)
             {
