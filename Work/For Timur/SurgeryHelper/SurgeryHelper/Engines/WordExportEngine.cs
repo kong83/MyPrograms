@@ -435,6 +435,14 @@ namespace SurgeryHelper.Engines
                 }
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующий: " + patientInfo.ConcomitantDiagnose;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Осложнения: " + patientInfo.Complications;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
                 _paragraph.Range.Text = "МКБ - " + patientInfo.MKB;
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
@@ -659,8 +667,8 @@ namespace SurgeryHelper.Engines
                 else
                 {
                     _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
-                    _paragraph.Range.Text = recomendations.ToString().TrimEnd('\r', '\n');
-                    _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
+                    _paragraph.Range.Text = recomendations.ToString();
+                    _paragraph.Range.ListFormat.ApplyNumberDefaultOld();                    
                 }
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
@@ -668,6 +676,8 @@ namespace SurgeryHelper.Engines
                 _paragraph.Range.ParagraphFormat.LeftIndent = 0;
                 _paragraph.Range.Text = "Лечащий врач\t\t\t\t\t\t\t" + patientInfo.DoctorInChargeOfTheCase;
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+
+                _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count - 1].Range.Text = "";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];

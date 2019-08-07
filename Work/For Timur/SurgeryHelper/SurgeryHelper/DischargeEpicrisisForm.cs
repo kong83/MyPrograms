@@ -80,7 +80,7 @@ namespace SurgeryHelper
                     string[] words = str.Split(' ');
                     switch (str.Substring(0, 8))
                     {
-                        case "больничн":
+                        case "листок н":
                         case "ученичес":
                             checkBox1.Checked = true;
                             comboBoxReason.Text = words[0] + " " + words[1];

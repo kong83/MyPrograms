@@ -130,13 +130,9 @@ namespace SurgeryHelper
                         new LastServiceComboBoxItem(string.Format("{0};{1};{2};{3}", _patientInfo.ServiceName, _patientInfo.ServiceCode, _patientInfo.KsgCode, _patientInfo.KsgDecoding)));
                 }
 
-                /*comboBoxServiceName.Text = _patientInfo.ServiceName;
-                textBoxServiceCode.Text = _patientInfo.ServiceCode;
-                textBoxKsgCode.Text = _patientInfo.KsgCode;
-                textBoxKsgDecoding.Text = _patientInfo.KsgDecoding;*/
-
                 textBoxDiagnose.Text = _patientInfo.Diagnose;
-
+                textBoxConcomitantDiagnose.Text = patientInfo.ConcomitantDiagnose;
+                textBoxComplications.Text = patientInfo.Complications;
                 textBoxCaseHistory.Text = _patientInfo.NumberOfCaseHistory;
                 comboBoxNosology.Text = _patientInfo.Nosology;
                 dateTimePickerDeliveryDate.Value = _patientInfo.DeliveryDate;
@@ -364,7 +360,9 @@ namespace SurgeryHelper
             patientInfo.KsgDecoding = textBoxKsgDecoding.Text;
 
             patientInfo.Diagnose = textBoxDiagnose.Text;
-
+            patientInfo.ConcomitantDiagnose = textBoxConcomitantDiagnose.Text;
+            patientInfo.Complications = textBoxComplications.Text;
+            
             patientInfo.NumberOfCaseHistory = textBoxCaseHistory.Text;
             patientInfo.Nosology = comboBoxNosology.Text;
             patientInfo.DeliveryDate = dateTimePickerDeliveryDate.Value;            

@@ -1121,6 +1121,8 @@ namespace SurgeryHelper.Engines
                     "CityName=" + patientInfo.CityName + DataSplitStr +
                     "DeliveryDate=" + ConvertEngine.GetRightDateString(patientInfo.DeliveryDate, true) + DataSplitStr +
                     "Diagnose=" + patientInfo.Diagnose + DataSplitStr +
+                    "ConcomitantDiagnose=" + patientInfo.ConcomitantDiagnose + DataSplitStr +
+                    "Complications=" + patientInfo.Complications + DataSplitStr +
                     "DoctorInChargeOfTheCase=" + patientInfo.DoctorInChargeOfTheCase + DataSplitStr +
                     "FlatNumber=" + patientInfo.FlatNumber + DataSplitStr +
                     "WorkPlace=" + patientInfo.WorkPlace + DataSplitStr +
@@ -1622,6 +1624,12 @@ namespace SurgeryHelper.Engines
                             break;
                         case "Diagnose":
                             patientInfo.Diagnose = keyValue[1];
+                            break;
+                        case "ConcomitantDiagnose":
+                            patientInfo.ConcomitantDiagnose = keyValue[1];
+                            break;
+                        case "Complications":
+                            patientInfo.Complications = keyValue[1];
                             break;
                         case "DoctorInChargeOfTheCase":
                             patientInfo.DoctorInChargeOfTheCase = keyValue[1];

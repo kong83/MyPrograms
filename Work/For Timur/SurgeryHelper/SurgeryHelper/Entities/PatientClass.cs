@@ -146,6 +146,16 @@ namespace SurgeryHelper.Entities
         public string Diagnose;
 
         /// <summary>
+        /// Сопутствующий диагноз пациента
+        /// </summary>
+        public string ConcomitantDiagnose;
+
+        /// <summary>
+        /// Осложнения
+        /// </summary>
+        public string Complications;
+        
+        /// <summary>
         /// Лечащий врач
         /// </summary>
         public string DoctorInChargeOfTheCase;
@@ -501,7 +511,7 @@ namespace SurgeryHelper.Entities
                 }
             }
 
-            return result.ToString().Substring(0, result.Length - 2);
+            return result.Length > 2 ? result.ToString().Substring(0, result.Length - 2) : result.ToString();
         }
 
         private string GetDurationWithWords(string duration)
@@ -631,6 +641,8 @@ namespace SurgeryHelper.Entities
         {
             Id = 0;
             Operations = new List<OperationClass>();
+            ConcomitantDiagnose = "нет";
+            Complications = "нет";
 
             TransferEpicrisAfterOperationPeriod = "без особенностей";
             TransferEpicrisPlan = "перевязки до заживления ран, ЛФК";
@@ -789,6 +801,8 @@ namespace SurgeryHelper.Entities
             BuildingNumber = patientClass.BuildingNumber;
             CityName = patientClass.CityName;
             Diagnose = patientClass.Diagnose;
+            ConcomitantDiagnose = patientClass.ConcomitantDiagnose;
+            Complications = patientClass.Complications;
             DoctorInChargeOfTheCase = patientClass.DoctorInChargeOfTheCase;
             FlatNumber = patientClass.FlatNumber;
             WorkPlace = patientClass.WorkPlace;
@@ -922,6 +936,8 @@ namespace SurgeryHelper.Entities
             patientInfo.BuildingNumber = BuildingNumber;
             patientInfo.CityName = CityName;
             patientInfo.Diagnose = Diagnose;
+            patientInfo.ConcomitantDiagnose = ConcomitantDiagnose;
+            patientInfo.Complications = Complications;
             patientInfo.DoctorInChargeOfTheCase = DoctorInChargeOfTheCase;
             patientInfo.FlatNumber = FlatNumber;
             patientInfo.WorkPlace = WorkPlace;

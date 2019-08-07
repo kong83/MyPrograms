@@ -53,6 +53,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxMKB = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBoxSnils = new System.Windows.Forms.TextBox();
+            this.textBoxPolis = new System.Windows.Forms.TextBox();
+            this.textBoxPassport = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.textBoxWorkPlace = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
@@ -82,6 +88,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.comboBoxTypeKSG = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.comboBoxServiceName = new System.Windows.Forms.ComboBox();
             this.linkLabelServiceName = new System.Windows.Forms.LinkLabel();
             this.textBoxKsgCode = new System.Windows.Forms.TextBox();
             this.textBoxServiceCode = new System.Windows.Forms.TextBox();
@@ -95,13 +102,10 @@
             this.buttonOperations = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBoxPassport = new System.Windows.Forms.TextBox();
-            this.textBoxPolis = new System.Windows.Forms.TextBox();
-            this.textBoxSnils = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.comboBoxServiceName = new System.Windows.Forms.ComboBox();
+            this.textBoxConcomitantDiagnose = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBoxComplications = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -201,14 +205,16 @@
             // 
             // textBoxDiagnose
             // 
-            this.textBoxDiagnose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDiagnose.Location = new System.Drawing.Point(3, 16);
             this.textBoxDiagnose.MaxLength = 20000000;
             this.textBoxDiagnose.Multiline = true;
             this.textBoxDiagnose.Name = "textBoxDiagnose";
             this.textBoxDiagnose.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxDiagnose.Size = new System.Drawing.Size(428, 154);
+            this.textBoxDiagnose.Size = new System.Drawing.Size(428, 93);
             this.textBoxDiagnose.TabIndex = 0;
             // 
             // dateTimePickerDeliveryDate
@@ -383,6 +389,63 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Паспортная часть";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label23.Location = new System.Drawing.Point(296, 141);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(45, 13);
+            this.label23.TabIndex = 96;
+            this.label23.Text = "СНИЛС";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label22.Location = new System.Drawing.Point(144, 141);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 13);
+            this.label22.TabIndex = 95;
+            this.label22.Text = "Полис";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxSnils
+            // 
+            this.textBoxSnils.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSnils.Location = new System.Drawing.Point(341, 138);
+            this.textBoxSnils.Name = "textBoxSnils";
+            this.textBoxSnils.Size = new System.Drawing.Size(85, 20);
+            this.textBoxSnils.TabIndex = 22;
+            // 
+            // textBoxPolis
+            // 
+            this.textBoxPolis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPolis.Location = new System.Drawing.Point(183, 138);
+            this.textBoxPolis.Name = "textBoxPolis";
+            this.textBoxPolis.Size = new System.Drawing.Size(107, 20);
+            this.textBoxPolis.TabIndex = 20;
+            // 
+            // textBoxPassport
+            // 
+            this.textBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPassport.Location = new System.Drawing.Point(59, 138);
+            this.textBoxPassport.Name = "textBoxPassport";
+            this.textBoxPassport.Size = new System.Drawing.Size(76, 20);
+            this.textBoxPassport.TabIndex = 18;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(8, 141);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(50, 13);
+            this.label20.TabIndex = 91;
+            this.label20.Text = "Паспорт";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label17
             // 
@@ -677,6 +740,10 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.textBoxComplications);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.textBoxConcomitantDiagnose);
+            this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.textBoxDiagnose);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(288, 12);
@@ -724,6 +791,19 @@
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Информация о КСГ";
+            // 
+            // comboBoxServiceName
+            // 
+            this.comboBoxServiceName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxServiceName.FormattingEnabled = true;
+            this.comboBoxServiceName.Location = new System.Drawing.Point(54, 32);
+            this.comboBoxServiceName.Name = "comboBoxServiceName";
+            this.comboBoxServiceName.Size = new System.Drawing.Size(372, 21);
+            this.comboBoxServiceName.TabIndex = 4;
+            this.comboBoxServiceName.SelectedIndexChanged += new System.EventHandler(this.comboBoxServiceName_SelectedIndexChanged);
+            this.comboBoxServiceName.MouseEnter += new System.EventHandler(this.comboBoxServiceName_MouseEnter);
+            this.comboBoxServiceName.MouseLeave += new System.EventHandler(this.comboBoxServiceName_MouseLeave);
             // 
             // linkLabelServiceName
             // 
@@ -895,75 +975,49 @@
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
             this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
-            // label20
+            // textBoxConcomitantDiagnose
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(8, 141);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(50, 13);
-            this.label20.TabIndex = 91;
-            this.label20.Text = "Паспорт";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.textBoxConcomitantDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxConcomitantDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxConcomitantDiagnose.Location = new System.Drawing.Point(96, 116);
+            this.textBoxConcomitantDiagnose.Name = "textBoxConcomitantDiagnose";
+            this.textBoxConcomitantDiagnose.Size = new System.Drawing.Size(335, 20);
+            this.textBoxConcomitantDiagnose.TabIndex = 58;
+            this.textBoxConcomitantDiagnose.Text = "нет";
             // 
-            // textBoxPassport
+            // label24
             // 
-            this.textBoxPassport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPassport.Location = new System.Drawing.Point(59, 138);
-            this.textBoxPassport.Name = "textBoxPassport";
-            this.textBoxPassport.Size = new System.Drawing.Size(76, 20);
-            this.textBoxPassport.TabIndex = 18;
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.Location = new System.Drawing.Point(3, 119);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(87, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Сопутствующий";
             // 
-            // textBoxPolis
+            // textBoxComplications
             // 
-            this.textBoxPolis.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPolis.Location = new System.Drawing.Point(183, 138);
-            this.textBoxPolis.Name = "textBoxPolis";
-            this.textBoxPolis.Size = new System.Drawing.Size(107, 20);
-            this.textBoxPolis.TabIndex = 20;
+            this.textBoxComplications.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxComplications.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxComplications.Location = new System.Drawing.Point(96, 141);
+            this.textBoxComplications.Name = "textBoxComplications";
+            this.textBoxComplications.Size = new System.Drawing.Size(335, 20);
+            this.textBoxComplications.TabIndex = 60;
+            this.textBoxComplications.Text = "нет";
             // 
-            // textBoxSnils
+            // label25
             // 
-            this.textBoxSnils.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSnils.Location = new System.Drawing.Point(341, 138);
-            this.textBoxSnils.Name = "textBoxSnils";
-            this.textBoxSnils.Size = new System.Drawing.Size(85, 20);
-            this.textBoxSnils.TabIndex = 22;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label22.Location = new System.Drawing.Point(144, 141);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 13);
-            this.label22.TabIndex = 95;
-            this.label22.Text = "Полис";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.Location = new System.Drawing.Point(296, 141);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(45, 13);
-            this.label23.TabIndex = 96;
-            this.label23.Text = "СНИЛС";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // comboBoxServiceName
-            // 
-            this.comboBoxServiceName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxServiceName.FormattingEnabled = true;
-            this.comboBoxServiceName.Location = new System.Drawing.Point(54, 32);
-            this.comboBoxServiceName.Name = "comboBoxServiceName";
-            this.comboBoxServiceName.Size = new System.Drawing.Size(372, 21);
-            this.comboBoxServiceName.TabIndex = 4;
-            this.comboBoxServiceName.SelectedIndexChanged += new System.EventHandler(this.comboBoxServiceName_SelectedIndexChanged);
-            this.comboBoxServiceName.MouseEnter += new System.EventHandler(this.comboBoxServiceName_MouseEnter);
-            this.comboBoxServiceName.MouseLeave += new System.EventHandler(this.comboBoxServiceName_MouseLeave);
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.Location = new System.Drawing.Point(4, 144);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(71, 13);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "Осложнения";
             // 
             // PatientViewForm
             // 
@@ -1081,5 +1135,9 @@
         private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboBoxServiceName;
+        private System.Windows.Forms.TextBox textBoxComplications;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBoxConcomitantDiagnose;
+        private System.Windows.Forms.Label label24;
     }
 }
