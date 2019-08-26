@@ -1115,7 +1115,6 @@ namespace SurgeryHelper.Engines
                 }
 
                 patientsStr.Append(
-                    "Age=" + patientInfo.Age + DataSplitStr +
                     "BuildingNumber=" + patientInfo.BuildingNumber + DataSplitStr +
                     "Birthday=" + ConvertEngine.GetRightDateString(patientInfo.Birthday, true) + DataSplitStr +
                     "CityName=" + patientInfo.CityName + DataSplitStr +
@@ -1599,13 +1598,10 @@ namespace SurgeryHelper.Engines
                     string[] keyValue = dataStr.Split(new[] { '=' }, 2);
                     switch (keyValue[0])
                     {
-                        case "Age":
-                            patientInfo.Age = Convert.ToInt32(keyValue[1]);
-                            break;
                         case "Birthday":
                             if (string.IsNullOrEmpty(keyValue[1]))
                             {
-                                patientInfo.Birthday = null;
+                                patientInfo.Birthday = DateTime.Now;
                             }
                             else
                             {

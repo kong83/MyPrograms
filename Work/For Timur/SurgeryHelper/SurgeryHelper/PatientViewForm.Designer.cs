@@ -47,7 +47,6 @@
             this.linkLabelMKB = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDownAge = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -84,6 +83,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxComplications = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBoxConcomitantDiagnose = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.comboBoxTypeKSG = new System.Windows.Forms.ComboBox();
@@ -102,12 +105,8 @@
             this.buttonOperations = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.textBoxConcomitantDiagnose = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBoxComplications = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.textBoxAge = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -247,10 +246,10 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.textBoxAge);
             this.groupBox1.Controls.Add(this.linkLabelMKB);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.dateTimePickerBirthday);
-            this.groupBox1.Controls.Add(this.numericUpDownAge);
             this.groupBox1.Controls.Add(this.textBoxLastName);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxName);
@@ -285,37 +284,22 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(12, 116);
+            this.label14.Location = new System.Drawing.Point(12, 92);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(57, 26);
             this.label14.TabIndex = 84;
-            this.label14.Text = "День\r\nрождения";
+            this.label14.Text = "* День\r\nрождения";
             // 
             // dateTimePickerBirthday
             // 
-            this.dateTimePickerBirthday.Checked = false;
             this.dateTimePickerBirthday.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBirthday.Location = new System.Drawing.Point(78, 119);
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(78, 95);
             this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
-            this.dateTimePickerBirthday.ShowCheckBox = true;
-            this.dateTimePickerBirthday.Size = new System.Drawing.Size(101, 20);
-            this.dateTimePickerBirthday.TabIndex = 6;
-            // 
-            // numericUpDownAge
-            // 
-            this.numericUpDownAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDownAge.Location = new System.Drawing.Point(78, 94);
-            this.numericUpDownAge.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownAge.Name = "numericUpDownAge";
-            this.numericUpDownAge.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDownAge.TabIndex = 4;
-            this.numericUpDownAge.Enter += new System.EventHandler(this.numericUpDownAge_Enter);
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(103, 20);
+            this.dateTimePickerBirthday.TabIndex = 5;
+            this.dateTimePickerBirthday.ValueChanged += new System.EventHandler(this.DateTimePickerBirthday_ValueChanged);
             // 
             // label2
             // 
@@ -341,11 +325,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(6, 96);
+            this.label4.Location = new System.Drawing.Point(6, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 81;
-            this.label4.Text = "* Возраст";
+            this.label4.Text = "Возраст";
             // 
             // comboBoxMKB
             // 
@@ -753,6 +737,50 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "* Диагноз";
             // 
+            // textBoxComplications
+            // 
+            this.textBoxComplications.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxComplications.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxComplications.Location = new System.Drawing.Point(96, 141);
+            this.textBoxComplications.Name = "textBoxComplications";
+            this.textBoxComplications.Size = new System.Drawing.Size(335, 20);
+            this.textBoxComplications.TabIndex = 60;
+            this.textBoxComplications.Text = "нет";
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.Location = new System.Drawing.Point(4, 144);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(71, 13);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "Осложнения";
+            // 
+            // textBoxConcomitantDiagnose
+            // 
+            this.textBoxConcomitantDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxConcomitantDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxConcomitantDiagnose.Location = new System.Drawing.Point(96, 116);
+            this.textBoxConcomitantDiagnose.Name = "textBoxConcomitantDiagnose";
+            this.textBoxConcomitantDiagnose.Size = new System.Drawing.Size(335, 20);
+            this.textBoxConcomitantDiagnose.TabIndex = 58;
+            this.textBoxConcomitantDiagnose.Text = "нет";
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.Location = new System.Drawing.Point(3, 119);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(87, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Сопутствующий";
+            // 
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
@@ -975,49 +1003,16 @@
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
             this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
-            // textBoxConcomitantDiagnose
+            // textBoxAge
             // 
-            this.textBoxConcomitantDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxConcomitantDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxConcomitantDiagnose.Location = new System.Drawing.Point(96, 116);
-            this.textBoxConcomitantDiagnose.Name = "textBoxConcomitantDiagnose";
-            this.textBoxConcomitantDiagnose.Size = new System.Drawing.Size(335, 20);
-            this.textBoxConcomitantDiagnose.TabIndex = 58;
-            this.textBoxConcomitantDiagnose.Text = "нет";
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.Location = new System.Drawing.Point(3, 119);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(87, 13);
-            this.label24.TabIndex = 59;
-            this.label24.Text = "Сопутствующий";
-            // 
-            // textBoxComplications
-            // 
-            this.textBoxComplications.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxComplications.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxComplications.Location = new System.Drawing.Point(96, 141);
-            this.textBoxComplications.Name = "textBoxComplications";
-            this.textBoxComplications.Size = new System.Drawing.Size(335, 20);
-            this.textBoxComplications.TabIndex = 60;
-            this.textBoxComplications.Text = "нет";
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(4, 144);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(71, 13);
-            this.label25.TabIndex = 61;
-            this.label25.Text = "Осложнения";
+            this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxAge.Location = new System.Drawing.Point(78, 121);
+            this.textBoxAge.Name = "textBoxAge";
+            this.textBoxAge.ReadOnly = true;
+            this.textBoxAge.Size = new System.Drawing.Size(50, 20);
+            this.textBoxAge.TabIndex = 6;
+            this.textBoxAge.TabStop = false;
+            this.textBoxAge.Text = "0";
             // 
             // PatientViewForm
             // 
@@ -1047,7 +1042,6 @@
             this.SizeChanged += new System.EventHandler(this.PatientViewForm_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1107,7 +1101,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.LinkLabel linkLabelPrivateFolder;
         private System.Windows.Forms.Button buttonGenerateFolder;
-        private System.Windows.Forms.NumericUpDown numericUpDownAge;
         public System.Windows.Forms.ComboBox comboBoxNosology;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
@@ -1139,5 +1132,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBoxConcomitantDiagnose;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBoxAge;
     }
 }

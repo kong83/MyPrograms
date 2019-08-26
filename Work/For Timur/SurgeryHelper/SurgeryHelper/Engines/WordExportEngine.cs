@@ -88,9 +88,10 @@ namespace SurgeryHelper.Engines
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
 
                 _paragraph.Range.Text = string.Format(
-                    "Пациент {0}, {1} лет, находится на лечении в {2} х.о. с {3} с диагнозом: {4}\r\n",
+                    "Пациент {0}, {1} {2}, находится на лечении в {3} х.о. с {4} с диагнозом: {5}\r\n",
                     patientInfo.GetFullName(),
                     patientInfo.Age,
+                    ConvertEngine.GetAgeString(patientInfo.Age),
                     _dbEngine.GlobalSettings.DepartmentName,
                     ConvertEngine.GetRightDateString(patientInfo.DeliveryDate),
                     patientInfo.Diagnose);
@@ -262,9 +263,10 @@ namespace SurgeryHelper.Engines
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
 
                 _paragraph.Range.Text = string.Format(
-                    "Пациент {0}, {1} лет, находится на лечении в {2} х.о. с {3} с диагнозом: {4}\r\n",
+                    "Пациент {0}, {1} {2}, находится на лечении в {3} х.о. с {4} с диагнозом: {5}\r\n",
                     patientInfo.GetFullName(),
                     patientInfo.Age,
+                    ConvertEngine.GetAgeString(patientInfo.Age),
                     _dbEngine.GlobalSettings.DepartmentName,
                     ConvertEngine.GetRightDateString(patientInfo.DeliveryDate),
                     patientInfo.Diagnose);
@@ -397,7 +399,7 @@ namespace SurgeryHelper.Engines
                 _paragraph.Range.Font.Bold = 0;
                 _paragraph.Range.Font.Underline = WdUnderline.wdUnderlineNone;
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                _paragraph.Range.Text = "Ф.И.О. " + patientInfo.GetFullName() + ", " + patientInfo.Age + " лет";
+                _paragraph.Range.Text = "Ф.И.О. " + patientInfo.GetFullName() + ", " + patientInfo.Age + " " + ConvertEngine.GetAgeString(patientInfo.Age);
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3, 4, 5, 6 });
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
@@ -547,13 +549,13 @@ namespace SurgeryHelper.Engines
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Font.Size = 12;
                 _paragraph.Range.Text = string.Format(
-                    "ОАК({0}): эритроциты-{1}х1012/л, лейкоциты-{2}х109/л, Hb-{3} г/л, СОЭ-{4} мм/ч;      Eml –",
+                    "ОАК({0}): эритроциты-{1}х1012/л, лейкоциты-{2}х109/л, Hb-{3} г/л, СОЭ-{4} мм/ч;",
                     ConvertEngine.GetRightDateString((patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now)),
                     patientInfo.DischargeEpicrisOakEritrocits,
                     patientInfo.DischargeEpicrisOakLekocits,
                     patientInfo.DischargeEpicrisOakHb,
                     patientInfo.DischargeEpicrisOakSoe);
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });                
 
                 _waitForm.SetProgress(70);
 
@@ -564,6 +566,10 @@ namespace SurgeryHelper.Engines
 
                 charNum = _paragraph.Range.Text.IndexOf("х109/л");
                 _paragraph.Range.Characters[charNum + 4].Font.Superscript = 1;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Eml отрицательный";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -1978,7 +1984,7 @@ namespace SurgeryHelper.Engines
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                _paragraph.Range.Text = "Пациент " + patientInfo.GetFullName() + ", " + patientInfo.Age + " лет";
+                _paragraph.Range.Text = "Пациент " + patientInfo.GetFullName() + ", " + patientInfo.Age + " " + ConvertEngine.GetAgeString(patientInfo.Age);
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
 
                 if (operationInfo.BeforeOperationEpicrisisIsDairyEnabled)
@@ -2044,14 +2050,7 @@ namespace SurgeryHelper.Engines
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Text = "Показано оперативное лечение. Планируется операция: " + operationInfo.Name +
-                    ".\r\nПациент согласен на операцию. Противопоказаний нет.";
-
-                if (operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist)
-                {
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "В качестве периоперационной антибиотикопрофилактики введено:\r\n" + operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis + "\r\n";
-                }
+                    ".\r\nПациент согласен на операцию. Противопоказаний нет.";                
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -2070,6 +2069,32 @@ namespace SurgeryHelper.Engines
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
 
                 AddEmptyParagraph();
+
+                if (operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                    _paragraph.Range.Font.Bold = 1;
+                    _paragraph.Range.Text = "Протокол периоперационной антибиотикопрофилактики";
+
+                    AddEmptyParagraph();
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                    _paragraph.Range.Font.Bold = 0;
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Дата: " + ConvertEngine.GetRightDateString(operationInfo.DataOfOperation) +
+                        ", время " + ConvertEngine.GetRightTimeString(operationInfo.StartTimeOfOperation.AddMinutes(-30));                    
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Введен антибиотик: " + operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis + "\r\n";
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Подпись врача____________\t\t\tПодпись м/с___________\r\n";
+                }
 
                 _waitForm.SetProgress(50);
 
@@ -2146,7 +2171,7 @@ namespace SurgeryHelper.Engines
 
                 _wordDoc.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
                 _wordDoc.PageSetup.TopMargin = 30;
-                _wordDoc.PageSetup.LeftMargin = 30;
+                _wordDoc.PageSetup.LeftMargin = 90;
                 _wordDoc.PageSetup.RightMargin = 30;
                 _wordDoc.PageSetup.BottomMargin = 30;
 
@@ -2168,8 +2193,8 @@ namespace SurgeryHelper.Engines
                 _paragraph.Range.Font.Size = 18;
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
                 _paragraph.Range.Font.Underline = WdUnderline.wdUnderlineNone;
-                _paragraph.Range.Text = string.Format("И.Б. {0} {1} {2} лет, {3} отделение", 
-                    patientInfo.NumberOfCaseHistory, patientInfo.GetFullName(), patientInfo.Age, _dbEngine.GlobalSettings.DepartmentName);
+                _paragraph.Range.Text = string.Format("И.Б. {0} {1} {2} {3}, {4} отделение", 
+                    patientInfo.NumberOfCaseHistory, patientInfo.GetFullName(), patientInfo.Age, ConvertEngine.GetAgeString(patientInfo.Age), _dbEngine.GlobalSettings.DepartmentName);
 
                 _waitForm.SetProgress(50);
 
@@ -2190,13 +2215,13 @@ namespace SurgeryHelper.Engines
 
                 for (int i = 1; i <= _wordTable.Rows.Count; i++)
                 {
-                    _wordTable.Rows[i].Cells[1].Width = 320;
+                    _wordTable.Rows[i].Cells[1].Width = 275;
                     _wordTable.Rows[i].Cells[2].Width = 75;
-                    _wordTable.Rows[i].Cells[3].Width = 65;
-                    _wordTable.Rows[i].Cells[4].Width = 65;
+                    _wordTable.Rows[i].Cells[3].Width = 60;
+                    _wordTable.Rows[i].Cells[4].Width = 60;
                     _wordTable.Rows[i].Cells[5].Width = 75;
-                    _wordTable.Rows[i].Cells[6].Width = 65;
-                    _wordTable.Rows[i].Cells[7].Width = 65;
+                    _wordTable.Rows[i].Cells[6].Width = 60;
+                    _wordTable.Rows[i].Cells[7].Width = 60;
                 }
 
                 object begCell;
@@ -2305,7 +2330,7 @@ namespace SurgeryHelper.Engines
 
                 _wordDoc.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
                 _wordDoc.PageSetup.TopMargin = 30;
-                _wordDoc.PageSetup.LeftMargin = 60;
+                _wordDoc.PageSetup.LeftMargin = 90;
                 _wordDoc.PageSetup.RightMargin = 20;
                 _wordDoc.PageSetup.BottomMargin = 30;
 
@@ -2327,8 +2352,8 @@ namespace SurgeryHelper.Engines
                 _paragraph.Range.Font.Size = 18;
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
                 _paragraph.Range.Font.Underline = WdUnderline.wdUnderlineNone;
-                _paragraph.Range.Text = string.Format("И.Б. {0} {1} {2} лет, {3} отделение",
-                    patientInfo.NumberOfCaseHistory, patientInfo.GetFullName(), patientInfo.Age, _dbEngine.GlobalSettings.DepartmentName);
+                _paragraph.Range.Text = string.Format("И.Б. {0} {1} {2} {3}, {4} отделение",
+                    patientInfo.NumberOfCaseHistory, patientInfo.GetFullName(), patientInfo.Age, ConvertEngine.GetAgeString(patientInfo.Age), _dbEngine.GlobalSettings.DepartmentName);
 
                 _waitForm.SetProgress(50);
 
@@ -2349,7 +2374,7 @@ namespace SurgeryHelper.Engines
 
                 for (int i = 1; i <= _wordTable.Rows.Count; i++)
                 {
-                    _wordTable.Rows[i].Cells[1].Width = 500;
+                    _wordTable.Rows[i].Cells[1].Width = 470;
                     _wordTable.Rows[i].Cells[2].Width = 75;
                     _wordTable.Rows[i].Cells[3].Width = 65;
                     _wordTable.Rows[i].Cells[4].Width = 65;
@@ -2617,12 +2642,7 @@ namespace SurgeryHelper.Engines
                 case "адрес":
                     return patientInfo.GetAddress();
                 case "дата рождения":
-                    if (patientInfo.Birthday.HasValue)
-                    {
-                        return ConvertEngine.GetRightDateString(patientInfo.Birthday.Value);
-                    }
-
-                    return "{ДАТА РОЖДЕНИЯ НЕ УКАЗАНА}";
+                    return ConvertEngine.GetRightDateString(patientInfo.Birthday);
                 case "дата поступления":
                     return ConvertEngine.GetRightDateString(patientInfo.DeliveryDate);
                 case "время поступления":

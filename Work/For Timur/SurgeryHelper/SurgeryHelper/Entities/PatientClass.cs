@@ -36,14 +36,9 @@ namespace SurgeryHelper.Entities
         public string Patronymic;
 
         /// <summary>
-        /// Возраст пациента
-        /// </summary>
-        public int Age;
-
-        /// <summary>
         /// День рождения пациента
         /// </summary>
-        public DateTime? Birthday;
+        public DateTime Birthday;
 
         /// <summary>
         /// Город проживания
@@ -496,6 +491,17 @@ namespace SurgeryHelper.Entities
         public List<string> PrescriptionSurveys;
 
         /// <summary>
+        /// Возраст пациента
+        /// </summary>
+        public string Age
+        {
+            get
+            {
+                return ConvertEngine.GetAge(Birthday);
+            }
+        }
+
+        /// <summary>
         /// Консервативное лечение
         /// </summary>
         public string GetDischargeEpicrisConservativeTherapy()
@@ -788,16 +794,7 @@ namespace SurgeryHelper.Entities
             LastName = patientClass.LastName;
             Name = patientClass.Name;
             Patronymic = patientClass.Patronymic;
-            Age = patientClass.Age;
-            if (patientClass.Birthday.HasValue)
-            {
-                Birthday = CopyDateTime(patientClass.Birthday.Value);
-            }
-            else
-            {
-                Birthday = null;
-            }
-
+            Birthday = ConvertEngine.CopyDateTime(patientClass.Birthday);
             BuildingNumber = patientClass.BuildingNumber;
             CityName = patientClass.CityName;
             Diagnose = patientClass.Diagnose;
@@ -822,15 +819,8 @@ namespace SurgeryHelper.Entities
             StreetName = patientClass.StreetName;
             PrivateFolder = patientClass.PrivateFolder;
 
-            DeliveryDate = CopyDateTime(patientClass.DeliveryDate);
-            if (patientClass.ReleaseDate.HasValue)
-            {
-                ReleaseDate = CopyDateTime(patientClass.ReleaseDate.Value);
-            }
-            else
-            {
-                ReleaseDate = null;
-            }
+            DeliveryDate = ConvertEngine.CopyDateTime(patientClass.DeliveryDate);
+            ReleaseDate = ConvertEngine.CopyDateTime(patientClass.ReleaseDate);
 
             Operations = new List<OperationClass>();
             foreach (OperationClass operation in patientClass.Operations)
@@ -841,14 +831,14 @@ namespace SurgeryHelper.Entities
 
             TransferEpicrisAfterOperationPeriod = patientClass.TransferEpicrisAfterOperationPeriod;
             TransferEpicrisPlan = patientClass.TransferEpicrisPlan;
-            TransferEpicrisWritingDate = CopyDateTime(patientClass.TransferEpicrisWritingDate);
+            TransferEpicrisWritingDate = ConvertEngine.CopyDateTime(patientClass.TransferEpicrisWritingDate);
             TransferEpicrisAdditionalInfo = patientClass.TransferEpicrisAdditionalInfo;
             TransferEpicrisDisabilityList = patientClass.TransferEpicrisDisabilityList;
             TransferEpicrisIsIncludeDisabilityList = patientClass.TransferEpicrisIsIncludeDisabilityList;
 
             LineOfCommEpicrisAdditionalInfo = patientClass.LineOfCommEpicrisAdditionalInfo;
             LineOfCommEpicrisPlan = patientClass.LineOfCommEpicrisPlan;
-            LineOfCommEpicrisWritingDate = CopyDateTime(patientClass.LineOfCommEpicrisWritingDate);
+            LineOfCommEpicrisWritingDate = ConvertEngine.CopyDateTime(patientClass.LineOfCommEpicrisWritingDate);
 
             DischargeEpicrisAnalysisDate = patientClass.DischargeEpicrisAnalysisDate;
             DischargeEpicrisAfterOperation = patientClass.DischargeEpicrisAfterOperation;            
@@ -878,10 +868,10 @@ namespace SurgeryHelper.Entities
             PrescriptionSurveys = new List<string>(patientClass.PrescriptionSurveys);
 
             TreatmentPlanInspection = patientClass.TreatmentPlanInspection;
-            TreatmentPlanDate = CopyDateTime(patientClass.TreatmentPlanDate);
+            TreatmentPlanDate = ConvertEngine.CopyDateTime(patientClass.TreatmentPlanDate);
             IsTreatmentPlanActiveInOperationProtocol = patientClass.IsTreatmentPlanActiveInOperationProtocol;
 
-            MedicalInspectionAnamneseTraumaDate = CopyDateTime(patientClass.MedicalInspectionAnamneseTraumaDate);
+            MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionAnamneseTraumaDate);
             MedicalInspectionAnamneseAnMorbi = patientClass.MedicalInspectionAnamneseAnMorbi;
             MedicalInspectionAnamneseAnVitae = CopyBoolArray(patientClass.MedicalInspectionAnamneseAnVitae);
             MedicalInspectionAnamneseCheckboxes = CopyBoolArray(patientClass.MedicalInspectionAnamneseCheckboxes);
@@ -895,9 +885,9 @@ namespace SurgeryHelper.Entities
             MedicalInspectionIsPlanEnabled = patientClass.MedicalInspectionIsPlanEnabled;
             MedicalInspectionIsStLocalisPart1Enabled = patientClass.MedicalInspectionIsStLocalisPart1Enabled;
             MedicalInspectionIsStLocalisPart2Enabled = patientClass.MedicalInspectionIsStLocalisPart2Enabled;
-            MedicalInspectionLnFirstDateStart = CopyDateTime(patientClass.MedicalInspectionLnFirstDateStart);
-            MedicalInspectionLnWithNumberDateEnd = CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateEnd);
-            MedicalInspectionLnWithNumberDateStart = CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateStart);
+            MedicalInspectionLnFirstDateStart = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnFirstDateStart);
+            MedicalInspectionLnWithNumberDateEnd = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateEnd);
+            MedicalInspectionLnWithNumberDateStart = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateStart);
             MedicalInspectionStLocalisPart1Fields = CopyStringArray(patientClass.MedicalInspectionStLocalisPart1Fields);
             MedicalInspectionStLocalisPart1OppositionFinger = patientClass.MedicalInspectionStLocalisPart1OppositionFinger;
             MedicalInspectionStLocalisPart2ComboBoxes = CopyStringArray(patientClass.MedicalInspectionStLocalisPart2ComboBoxes);
@@ -923,16 +913,7 @@ namespace SurgeryHelper.Entities
             patientInfo.LastName = LastName;
             patientInfo.Name = Name;
             patientInfo.Patronymic = Patronymic;
-            patientInfo.Age = Age;
-            if (patientInfo.Birthday.HasValue)
-            {
-                Birthday = CopyDateTime(patientInfo.Birthday.Value);
-            }
-            else
-            {
-                Birthday = null;
-            }
-
+            patientInfo.Birthday = ConvertEngine.CopyDateTime(Birthday);
             patientInfo.BuildingNumber = BuildingNumber;
             patientInfo.CityName = CityName;
             patientInfo.Diagnose = Diagnose;
@@ -957,15 +938,8 @@ namespace SurgeryHelper.Entities
             patientInfo.StreetName = StreetName;
             patientInfo.PrivateFolder = PrivateFolder;
 
-            patientInfo.DeliveryDate = CopyDateTime(DeliveryDate);
-            if (ReleaseDate.HasValue)
-            {
-                ReleaseDate = CopyDateTime(ReleaseDate.Value);
-            }
-            else
-            {
-                ReleaseDate = null;
-            }
+            patientInfo.DeliveryDate = ConvertEngine.CopyDateTime(DeliveryDate);
+            patientInfo.ReleaseDate = ConvertEngine.CopyDateTime(ReleaseDate);
 
             patientInfo.Operations = new List<OperationClass>();
             foreach (OperationClass operation in Operations)
@@ -976,14 +950,14 @@ namespace SurgeryHelper.Entities
 
             patientInfo.TransferEpicrisAfterOperationPeriod = TransferEpicrisAfterOperationPeriod;
             patientInfo.TransferEpicrisPlan = TransferEpicrisPlan;
-            patientInfo.TransferEpicrisWritingDate = CopyDateTime(TransferEpicrisWritingDate);
+            patientInfo.TransferEpicrisWritingDate = ConvertEngine.CopyDateTime(TransferEpicrisWritingDate);
             patientInfo.TransferEpicrisAdditionalInfo = TransferEpicrisAdditionalInfo;
             patientInfo.TransferEpicrisDisabilityList = TransferEpicrisDisabilityList;
             patientInfo.TransferEpicrisIsIncludeDisabilityList = TransferEpicrisIsIncludeDisabilityList;
 
             patientInfo.LineOfCommEpicrisAdditionalInfo = LineOfCommEpicrisAdditionalInfo;
             patientInfo.LineOfCommEpicrisPlan = LineOfCommEpicrisPlan;
-            patientInfo.LineOfCommEpicrisWritingDate = CopyDateTime(LineOfCommEpicrisWritingDate);
+            patientInfo.LineOfCommEpicrisWritingDate = ConvertEngine.CopyDateTime(LineOfCommEpicrisWritingDate);
 
             patientInfo.DischargeEpicrisAnalysisDate = DischargeEpicrisAnalysisDate;
             patientInfo.DischargeEpicrisAfterOperation = DischargeEpicrisAfterOperation;
@@ -1013,10 +987,10 @@ namespace SurgeryHelper.Entities
             patientInfo.PrescriptionSurveys = new List<string>(PrescriptionSurveys);
 
             patientInfo.TreatmentPlanInspection = TreatmentPlanInspection;
-            patientInfo.TreatmentPlanDate = CopyDateTime(TreatmentPlanDate);
+            patientInfo.TreatmentPlanDate = ConvertEngine.CopyDateTime(TreatmentPlanDate);
             patientInfo.IsTreatmentPlanActiveInOperationProtocol = IsTreatmentPlanActiveInOperationProtocol;
 
-            patientInfo.MedicalInspectionAnamneseTraumaDate = CopyDateTime(MedicalInspectionAnamneseTraumaDate);
+            patientInfo.MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(MedicalInspectionAnamneseTraumaDate);
             patientInfo.MedicalInspectionAnamneseAnMorbi = MedicalInspectionAnamneseAnMorbi;
             patientInfo.MedicalInspectionAnamneseAnVitae = CopyBoolArray(MedicalInspectionAnamneseAnVitae);
             patientInfo.MedicalInspectionAnamneseCheckboxes = CopyBoolArray(MedicalInspectionAnamneseCheckboxes);
@@ -1030,9 +1004,9 @@ namespace SurgeryHelper.Entities
             patientInfo.MedicalInspectionIsPlanEnabled = MedicalInspectionIsPlanEnabled;
             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = MedicalInspectionIsStLocalisPart1Enabled;
             patientInfo.MedicalInspectionIsStLocalisPart2Enabled = MedicalInspectionIsStLocalisPart2Enabled;
-            patientInfo.MedicalInspectionLnFirstDateStart = CopyDateTime(MedicalInspectionLnFirstDateStart);
-            patientInfo.MedicalInspectionLnWithNumberDateEnd = CopyDateTime(MedicalInspectionLnWithNumberDateEnd);
-            patientInfo.MedicalInspectionLnWithNumberDateStart = CopyDateTime(MedicalInspectionLnWithNumberDateStart);
+            patientInfo.MedicalInspectionLnFirstDateStart = ConvertEngine.CopyDateTime(MedicalInspectionLnFirstDateStart);
+            patientInfo.MedicalInspectionLnWithNumberDateEnd = ConvertEngine.CopyDateTime(MedicalInspectionLnWithNumberDateEnd);
+            patientInfo.MedicalInspectionLnWithNumberDateStart = ConvertEngine.CopyDateTime(MedicalInspectionLnWithNumberDateStart);
             patientInfo.MedicalInspectionStLocalisPart1Fields = CopyStringArray(MedicalInspectionStLocalisPart1Fields);
             patientInfo.MedicalInspectionStLocalisPart1OppositionFinger = MedicalInspectionStLocalisPart1OppositionFinger;
             patientInfo.MedicalInspectionStLocalisPart2ComboBoxes = CopyStringArray(MedicalInspectionStLocalisPart2ComboBoxes);
@@ -1046,22 +1020,7 @@ namespace SurgeryHelper.Entities
             patientInfo.MedicalInspectionStPraesensOthers = MedicalInspectionStPraesensOthers;
             patientInfo.MedicalInspectionStPraesensTextBoxes = CopyStringArray(MedicalInspectionStPraesensTextBoxes);
             patientInfo.MedicalInspectionTeoRisk = MedicalInspectionTeoRisk;
-        }
-
-        private static DateTime? CopyDateTime(DateTime? fromObj)
-        {
-            if (fromObj.HasValue)
-            {
-                return CopyDateTime(fromObj.Value);
-            }
-
-            return null;
-        }
-
-        private static DateTime CopyDateTime(DateTime fromObj)
-        {
-            return new DateTime(fromObj.Year, fromObj.Month, fromObj.Day, fromObj.Hour, fromObj.Minute, fromObj.Second);
-        }
+        } 
 
         private static string[] CopyStringArray(string[] fromObj)
         {

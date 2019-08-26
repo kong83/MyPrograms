@@ -446,11 +446,8 @@ namespace SurgeryHelper.Engines
                 for (int i = 0; i < patientList.Count; i++)
                 {
                     _ows.Cells[rowCnt, 1] = patientList[i].GetFullName();
-                    _ows.Cells[rowCnt, 2] = patientList[i].Age.ToString();
-                    if (patientList[i].Birthday.HasValue)
-                    {
-                        _ows.Cells[rowCnt, 3] = ConvertEngine.GetRightDateString(patientList[i].Birthday.Value, false);
-                    }
+                    _ows.Cells[rowCnt, 2] = patientList[i].Age;
+                    _ows.Cells[rowCnt, 3] = ConvertEngine.GetRightDateString(patientList[i].Birthday, false);
                     
                     _ows.Cells[rowCnt, 4] = patientList[i].GetAddress();
                     _ows.Cells[rowCnt, 5] = patientList[i].WorkPlace;

@@ -95,17 +95,8 @@ namespace SurgeryHelper
                 _savePatientInfo = new PatientClass(patientInfo);
                 textBoxLastName.Text = _patientInfo.LastName;
                 textBoxName.Text = _patientInfo.Name;
-                textBoxPatronymic.Text = _patientInfo.Patronymic;
-                numericUpDownAge.Value = _patientInfo.Age;
-                if (_patientInfo.Birthday.HasValue)
-                {
-                    dateTimePickerBirthday.Checked = true;
-                    dateTimePickerBirthday.Value = _patientInfo.Birthday.Value;
-                }
-                else
-                {
-                    dateTimePickerBirthday.Checked = false;
-                }
+                textBoxPatronymic.Text = _patientInfo.Patronymic;                
+                dateTimePickerBirthday.Value = _patientInfo.Birthday;
                 comboBoxMKB.Text = _patientInfo.MKB;
 
                 textBoxCity.Text = _patientInfo.CityName;
@@ -332,16 +323,7 @@ namespace SurgeryHelper
             patientInfo.LastName = textBoxLastName.Text;
             patientInfo.Name = textBoxName.Text;
             patientInfo.Patronymic = textBoxPatronymic.Text;
-            if (dateTimePickerBirthday.Checked)
-            {
-                patientInfo.Birthday = dateTimePickerBirthday.Value;
-            }
-            else
-            {
-                patientInfo.Birthday = null;
-            }
-
-            patientInfo.Age = (int)numericUpDownAge.Value;            
+            patientInfo.Birthday = dateTimePickerBirthday.Value;
             patientInfo.CityName = textBoxCity.Text;
             patientInfo.StreetName = textBoxStreet.Text;
             patientInfo.HomeNumber = textBoxHome.Text;
@@ -412,6 +394,8 @@ namespace SurgeryHelper
             if (string.IsNullOrEmpty(textBoxLastName.Text) ||
                 string.IsNullOrEmpty(textBoxName.Text) ||
                 string.IsNullOrEmpty(textBoxPatronymic.Text) ||
+                string.IsNullOrEmpty(textBoxAge.Text) ||
+                string.IsNullOrEmpty(comboBoxMKB.Text) ||
                 string.IsNullOrEmpty(textBoxDiagnose.Text) ||
                 string.IsNullOrEmpty(textBoxCaseHistory.Text) ||
                 string.IsNullOrEmpty(comboBoxNosology.Text) ||
@@ -720,7 +704,7 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void numericUpDownAge_Enter(object sender, EventArgs e)
         {
-            numericUpDownAge.Select(0, 10);
+            textBoxAge.Select(0, 10);
         }
 
         /// <summary>
@@ -848,6 +832,11 @@ namespace SurgeryHelper
             _stopComboBoxServiceNameItemsChanged = true;
             SaveLastUsedServices((LastServiceComboBoxItem)comboBoxServiceName.SelectedItem);
             _stopComboBoxServiceNameItemsChanged = false;
+        }
+
+        private void DateTimePickerBirthday_ValueChanged(object sender, EventArgs e)
+        {
+            textBoxAge.Text = ConvertEngine.GetAge(dateTimePickerBirthday.Value);
         }
 
         #region Подсказки

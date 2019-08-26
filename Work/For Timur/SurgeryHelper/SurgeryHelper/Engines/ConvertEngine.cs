@@ -339,5 +339,76 @@ namespace SurgeryHelper.Engines
 
             return (dateTimeEnd - dateTimeStart).Days;
         }
+
+        /// <summary>
+        /// Сделать копию переменной с датой и временем
+        /// </summary>
+        /// <param name="value">Переменная с датой и временем</param>
+        /// <returns></returns>
+        public static DateTime CopyDateTime(DateTime value)
+        {
+            return new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, value.Second);
+        }
+
+        /// <summary>
+        ///  Сделать копию переменной с датой и временем
+        /// </summary>
+        /// <param name="fromObj">Переменная с датой и временем</param>
+        /// <returns></returns>
+        public static DateTime? CopyDateTime(DateTime? fromObj)
+        {
+            if (fromObj.HasValue)
+            {
+                return CopyDateTime(fromObj.Value);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Получить возраст из даты рождения
+        /// </summary>
+        /// <param name="dateBirthday">Дата рождения</param>
+        /// <returns></returns>
+        public static string GetAge(DateTime dateBirthday)
+        {
+            DateTime temp = CopyDateTime(dateBirthday);
+            int yearCnt = 0;
+            while (temp.Date < DateTime.Now.Date)
+            {
+                temp = temp.AddYears(1);
+                yearCnt++;
+            }
+
+            if (yearCnt > 0)
+            {
+                return (--yearCnt).ToString();
+            }
+
+            return "0";
+        }
+
+        public static string GetAgeString(string ageStr)
+        {
+            int age;
+            if (!int.TryParse(ageStr, out age))
+            {
+                return "лет";
+            }
+
+            int rem = age > 10 ? age % 10 : age;
+
+            if ((age >= 5 && age <= 20) || (age >= 105 && age <= 120) || rem == 0 || rem >= 5)
+            {
+                return "лет";
+            }
+
+            if (rem == 1)
+            {
+                return "год";
+            }
+
+            return "года";
+        }
     }
 }
