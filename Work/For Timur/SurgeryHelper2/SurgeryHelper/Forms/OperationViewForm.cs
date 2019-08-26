@@ -89,7 +89,7 @@ namespace SurgeryHelper.Forms
                 dateTimePickerEndTimeOfOperation.Value = _operationInfo.EndTimeOfOperation.Value;
             }
 
-            Text = operationInfo == null 
+            Text = action == AddUpdate.Add
                 ? "Добавление операции" 
                 : "Просмотр данных об операции";
         }

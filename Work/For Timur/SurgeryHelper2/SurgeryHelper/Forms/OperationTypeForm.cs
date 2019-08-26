@@ -119,21 +119,28 @@ namespace SurgeryHelper.Forms
         /// <param name="e">Объект, содержащий данные посланного сообщения</param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            COperationType operationType = _operationTypeWorker.GetByGeneralData(treeViewOperationType.SelectedNode.Text);
-
-            if (operationType.Type == NodeType.Folder)
-            {
-                new OperationTypeViewForm(_workersKeeper, null, treeViewOperationType.SelectedNode.Text).ShowDialog();
-            }
-            else if (treeViewOperationType.SelectedNode.Level > 0)
-            {
-                new OperationTypeViewForm(_workersKeeper, null, treeViewOperationType.SelectedNode.Parent.Text).ShowDialog();
-            }
-            else
+            if (treeViewOperationType.SelectedNode == null)
             {
                 new OperationTypeViewForm(_workersKeeper, null).ShowDialog();
             }
-            
+            else
+            {
+                COperationType operationType = _operationTypeWorker.GetByGeneralData(treeViewOperationType.SelectedNode.Text);
+
+                if (operationType.Type == NodeType.Folder)
+                {
+                    new OperationTypeViewForm(_workersKeeper, null, treeViewOperationType.SelectedNode.Text).ShowDialog();
+                }
+                else if (treeViewOperationType.SelectedNode.Level > 0)
+                {
+                    new OperationTypeViewForm(_workersKeeper, null, treeViewOperationType.SelectedNode.Parent.Text).ShowDialog();
+                }
+                else
+                {
+                    new OperationTypeViewForm(_workersKeeper, null).ShowDialog();
+                }
+            }
+
             ShowOperationType();
         }
 
