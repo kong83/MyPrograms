@@ -1617,6 +1617,13 @@ namespace SurgeryHelper.Engines
                     _paragraph.Range.Text = diagnose[1];
                 }
 
+                if (!string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) && patientInfo.ConcomitantDiagnose.ToLowerInvariant() != "нет")
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = patientInfo.ConcomitantDiagnose;
+                }
+
                 AddEmptyParagraph();
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
